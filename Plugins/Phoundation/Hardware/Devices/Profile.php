@@ -16,7 +16,7 @@ use Phoundation\Data\DataEntry\Traits\TraitDataEntryName;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
 use Phoundation\Utils\Arrays;
 use Phoundation\Utils\Utils;
-use Phoundation\Web\Html\Enums\EnumInputType;
+use Phoundation\Web\Html\Enums\EnumElementInputType;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionsInterface;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfileInterface;
 
@@ -198,7 +198,7 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setVirtual(true)
                 ->setRender(false)
                 ->setSize(4)
-                ->setInputType(EnumInputType::select)
+                ->setInputType(EnumElementInputType::select)
                 ->addValidationFunction(function (ValidatorInterface $validator) {
                     // Validate the device name
                     $validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [':name' => '$device']);
@@ -210,7 +210,7 @@ class Profile extends DataEntry implements ProfileInterface
             ->add(Definition::new($this, 'default')
                 ->setRender(true)
                 ->setOptional(true, false)
-                ->setInputType(EnumInputType::checkbox)
+                ->setInputType(EnumElementInputType::checkbox)
                 ->setLabel(tr('Default profile'))
             )
             ->add(DefinitionFactory::getComments($this));
