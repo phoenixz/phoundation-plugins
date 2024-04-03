@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Components\Input;
-
-use Phoundation\Web\Html\Components\Input\InputRadio;
-
-
 /**
  * Class TemplateInputRadio
  *
@@ -17,14 +10,21 @@ use Phoundation\Web\Html\Components\Input\InputRadio;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\Mdb
  */
+
+declare(strict_types=1);
+
+namespace Templates\Mdb\Html\Components\Input;
+
+use Phoundation\Web\Html\Components\Input\InputRadio;
+
 class TemplateInputRadio extends TemplateInput
 {
     /**
-     * InputRadio class constructor
+     * TemplateInputRadio class constructor
      */
     public function __construct(InputRadio $component)
     {
-        $component->addClass('form-control');
         parent::__construct($component);
+        $component->getClasses()->removeKeys('form-control')->add(true, 'form-check-input');
     }
 }

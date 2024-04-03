@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Components\Buttons;
-
-use Phoundation\Web\Html\Template\TemplateRenderer;
-
-
 /**
  * Class TemplateButton
  *
@@ -15,14 +8,22 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Templates\Mdb
+ * @package Templates\AdminLte
  */
+
+declare(strict_types=1);
+
+namespace Templates\AdminLte\Html\Components\Input\Buttons;
+
+use Phoundation\Web\Html\Components\Input\Buttons\Button;
+use Phoundation\Web\Html\Template\TemplateRenderer;
+
 class TemplateButton extends TemplateRenderer
 {
     /**
      * Button class constructor
      */
-    public function __construct(\Phoundation\Web\Html\Components\Buttons\Button $component)
+    public function __construct(Button $component)
     {
         parent::__construct($component);
     }

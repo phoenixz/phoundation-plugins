@@ -169,4 +169,28 @@ class TemplatePage extends \Phoundation\Web\Html\Template\TemplatePage
                     </div>
                 </main>';
     }
+
+
+    /**
+     * Returns the string required for the bottom margin
+     *
+     * @return string|null
+     */
+    public static function getBottomMarginString(): ?string
+    {
+        static $return = null;
+
+        if ($return === null) {
+            $margin = Config::getInteger('templates.mdb.forms.margins.bottom', 4);
+
+            if ($margin) {
+                $return = ' mb-' . $margin . ' ';
+
+            } else {
+                $return = '';
+            }
+        }
+
+        return $return;
+    }
 }

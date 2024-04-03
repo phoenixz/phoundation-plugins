@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Buttons;
+namespace Templates\Mdb\Html\Components\Input\Buttons;
 
+use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 
 
@@ -15,14 +16,14 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Templates\AdminLte
+ * @package Templates\Mdb
  */
 class TemplateButtons extends TemplateRenderer
 {
     /**
      * Buttons class constructor
      */
-    public function __construct(\Phoundation\Web\Html\Components\Buttons\Buttons $component)
+    public function __construct(Buttons $component)
     {
         parent::__construct($component);
     }
@@ -42,7 +43,11 @@ class TemplateButtons extends TemplateRenderer
         }
 
         foreach ($this->component->getSource() as $button) {
-            $this->render .= $button->render(). ' ';
+            if (is_string($button)) {
+                $this->render .= $button . ' ';
+            } else {
+                $this->render .= $button->render(). ' ';
+            }
         }
 
         if ($this->component->getGroup()) {

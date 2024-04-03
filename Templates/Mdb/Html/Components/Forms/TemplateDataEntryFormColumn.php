@@ -11,6 +11,7 @@ use Phoundation\Web\Html\Components\Forms\Interfaces\DataEntryFormColumnInterfac
 use Phoundation\Web\Html\Components\Widgets\Tooltips\Tooltip;
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
+use Templates\Mdb\TemplatePage;
 
 
 /**
@@ -68,7 +69,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                 break;
 
             case 'select':
-                $this->render .= '<div class="' . static::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' nodisplay') . '">
+                $this->render .= '<div class="' . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' nodisplay') . '">
                                      '.$component->render() .
                                       ($definition->getLabel() ? ' <label class="form-label select-label" for="' . Html::safe($definition->getColumn()) . '">
                                                                      ' . Html::safe($definition->getLabel()) . '
@@ -91,7 +92,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
         }
 
         $this->render .= match ($definition->getInputType()?->value) {
-            default    => '  <div class="' . static::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' nodisplay') . '">
+            default    => '  <div class="' . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' nodisplay') . '">
                                  <div' . $mdb_init . ' class="form-outline' . (isset($class) ? ' ' . $class : '') . '"' . (isset($attributes) ? ' ' . $attributes : '') . '>
                                      ' . $render . '
                                      <label class="form-label' . $label . '" for="' . Html::safe($definition->getColumn()) . '">
@@ -123,29 +124,5 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
         }
 
         return null;
-    }
-
-
-    /**
-     * Returns the string required for the bottom margin
-     *
-     * @return string|null
-     */
-    protected static function getBottomMarginString(): ?string
-    {
-        static $return = null;
-
-        if ($return === null) {
-            $margin = Config::getInteger('templates.mdb.forms.margins.bottom', 4);
-
-            if ($margin) {
-                $return = ' mb-' . $margin . ' ';
-
-            } else {
-                $return = '';
-            }
-        }
-
-        return $return;
     }
 }
