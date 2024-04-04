@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Templates\AdminLte\Html\Components\Forms;
 
+use Phoundation\Core\Log\Log;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionInterface;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Components\Forms\Interfaces\DataEntryFormColumnInterface;
 use Phoundation\Web\Html\Components\Widgets\Tooltips\Tooltip;
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
+use Phoundation\Web\Requests\Response;
 
 
 /**
@@ -35,6 +37,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
 
     public function render(): ?string
     {
+        $scripts = '';
         $definition = $this->component->getDefinition();
         $component  = $this->component->getColumnComponent();
 
@@ -50,9 +53,16 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
             $component = $component->render();
         }
 
+        // Add scripts?
+        if ($definition->getScripts()) {
+            foreach ($definition->getScripts() as $script) {
+                $scripts .= $script->render();
+            }
+        }
+
         if ($definition->getHidden()) {
             // Hidden elements don't display anything beyond the hidden <input>
-            return $component;
+            return $component . $scripts;
         }
 
         $this->render .= match ($definition->getInputType()?->value) {
@@ -63,7 +73,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                                            ' . $this->renderTooltip($definition) . '
                                        </div>
                                        <div class="form-check">
-                                           ' . $component . '
+                                           ' . $component . $scripts . '
                                            <label class="form-check-label" for="' . Html::safe($definition->getColumn()) . '">' . Html::safe($definition->getLabel()) . '</label>
                                        </div>
                                    </div>
@@ -75,7 +85,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                                            <label for="' . Html::safe($definition->getColumn()) . '">' . Html::safe($definition->getLabel()) . '</label>
                                            ' . $this->renderTooltip($definition) . '
                                        </div>
-                                       ' . $component . '
+                                       ' . $component . $scripts . '
                                    </div>
                                 </div>',
         };
