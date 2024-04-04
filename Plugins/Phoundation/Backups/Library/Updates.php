@@ -30,17 +30,6 @@ class Updates extends \Phoundation\Core\Libraries\Updates
 
 
     /**
-     * The description for this library
-     *
-     * @return string
-     */
-    public function description(): string
-    {
-        return tr('This plugin adds backup functionality to your Phoundation project. It can create, restore, copy and move backups');
-    }
-
-
-    /**
      * The list of version updates available for this library
      *
      * @return void

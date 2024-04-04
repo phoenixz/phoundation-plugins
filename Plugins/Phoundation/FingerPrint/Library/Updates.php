@@ -30,17 +30,6 @@ class Updates extends \Phoundation\Core\Libraries\Updates
 
 
     /**
-     * The description for this library
-     *
-     * @return string
-     */
-    public function description(): string
-    {
-        return tr('This library can manage hardware fingerprint readers and enroll and verify finger prints');
-    }
-
-
-    /**
      * The list of version updates available for this library
      *
      * @return void

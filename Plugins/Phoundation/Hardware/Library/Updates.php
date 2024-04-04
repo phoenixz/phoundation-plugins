@@ -32,18 +32,6 @@ class Updates extends Libraries\Updates
         return '0.20.0';
     }
 
-
-    /**
-     * The description for this library
-     *
-     * @return string
-     */
-    public function description(): string
-    {
-        return tr('This is the hardware plugin, it manages hardware devices');
-    }
-
-
     /**
      * The list of version updates available for this library
      *
