@@ -17,7 +17,7 @@ namespace Plugins\Phoundation\Bookmarks\Library;
 
 use Phoundation\Web\Requests\Request;
 
-class Plugin extends \Phoundation\Core\Plugins\Phoundation\Plugin
+class Plugin extends \Phoundation\Core\Plugins\Plugin
 {
     /**
      * Returns the plugin description

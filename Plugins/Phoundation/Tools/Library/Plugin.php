@@ -15,7 +15,7 @@ namespace Plugins\Phoundation\Tools\Library;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Phoundation
  */
-class Plugin extends \Phoundation\Core\Plugins\Phoundation\Plugin
+class Plugin extends \Phoundation\Core\Plugins\Plugin
 {
     /**
      * Returns the plugin description

@@ -1,10 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Bookmarks\Library;
-
-
 /**
  * Updates class
  *
@@ -16,6 +11,11 @@ namespace Plugins\Phoundation\Bookmarks\Library;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Bookmarks
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Bookmarks\Library;
+
 class Updates extends \Phoundation\Core\Libraries\Updates
 {
     /**
