@@ -41,7 +41,7 @@ class AdminLte extends Template
      *
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return 'This is the AdminLte admin template for your website. You are free to add or build other templates';
     }

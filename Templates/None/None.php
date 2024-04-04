@@ -42,7 +42,7 @@ class None extends Template
      *
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return 'This is the None template, a template that will build *nothing* and allows (and requires) you to build all the HTML yourself';
     }
