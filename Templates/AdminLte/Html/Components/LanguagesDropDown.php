@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets;
+
+namespace Templates\AdminLte\Html\Components;
 
 use Phoundation\Date\Date;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Utils\Strings;
 use Phoundation\Web\Html\Html;
-use Phoundation\Web\Html\Template\TemplateRenderer;
+use Phoundation\Web\Html\Renderer;
 
 
 /**
- * Class TemplateLanguagesDropDown
+ * LanguagesDropDown class
  *
  *
  *
@@ -21,14 +22,14 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\AdminLte
  */
-class TemplateLanguagesDropDown extends TemplateRenderer
+class LanguagesDropDown extends Renderer
 {
     /**
      * LanguagesDropDown class constructor
      */
-    public function __construct(\Phoundation\Web\Html\Components\Widgets\LanguagesDropDown $component)
+    public function __construct(\Phoundation\Web\Html\Components\LanguagesDropDown $element)
     {
-        parent::__construct($component);
+        parent::__construct($element);
     }
 
 
@@ -39,11 +40,11 @@ class TemplateLanguagesDropDown extends TemplateRenderer
      */
     public function render(): ?string
     {
-        if (!$this->component->getSettingsUrl()) {
+        if (!$this->render_object->getSettingsUrl()) {
             throw new OutOfBoundsException(tr('No settings page URL specified'));
         }
 
-        $languages = $this->component->getLanguages();
+        $languages = $this->render_object->getLanguages();
         $count     = $languages?->getCount();
 
         $this->render = '   <a class="nav-link" data-toggle="dropdown" href="#">
@@ -62,7 +63,7 @@ class TemplateLanguagesDropDown extends TemplateRenderer
                     break;
                 }
 
-                $this->render .= '<a href="' . Html::safe(str_replace(':ID', $language->getId(), $this->component->getLanguagesUrl())) . '" class="dropdown-item">
+                $this->render .= '<a href="' . Html::safe(str_replace(':ID', $language->getId(), $this->render_object->getLanguagesUrl())) . '" class="dropdown-item">
                                     ' . ($language->getIcon() ? '<i class="text-' . Html::safe($language->getMode()->value) . ' fas fa-' . Html::safe($language->getIcon()) . ' mr-2"></i> ' : null) . Strings::truncate($language->getTitle(), 24) . '
                                     <span class="float-right text-muted text-sm"> ' . Html::safe(Date::getAge($language->getCreatedOnObject())) . '</span>
                                   </a>
@@ -74,7 +75,7 @@ class TemplateLanguagesDropDown extends TemplateRenderer
                                     <div class="dropdown-divider"></div>';
         }
 
-        $this->render .= '        <a href="' . Html::safe($this->component->getSettingsUrl()) . '" class="dropdown-item dropdown-footer">' . tr('Language settings') . '</a>
+        $this->render .= '        <a href="' . Html::safe($this->render_object->getSettingsUrl()) . '" class="dropdown-item dropdown-footer">' . tr('Language settings') . '</a>
                                 </div>';
 
         return parent::render();

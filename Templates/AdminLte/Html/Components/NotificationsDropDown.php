@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets;
+
+namespace Templates\AdminLte\Html\Components;
 
 use Phoundation\Date\Date;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Notifications\Html\Components\Modals\NotificationModal;
 use Phoundation\Utils\Strings;
 use Phoundation\Web\Html\Html;
-use Phoundation\Web\Html\Template\TemplateRenderer;
+use Phoundation\Web\Html\Renderer;
 
 
 /**
- * Class TemplateNotificationsDropDown
+ * NotificationsDropDown class
  *
  *
  *
@@ -22,14 +23,14 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\AdminLte
  */
-class TemplateNotificationsDropDown extends TemplateRenderer
+class NotificationsDropDown extends Renderer
 {
     /**
      * NotificationsDropDown class constructor
      */
-    public function __construct(\Phoundation\Web\Html\Components\Widgets\NotificationsDropDown $component)
+    public function __construct(\Phoundation\Web\Html\Components\NotificationsDropDown $element)
     {
-        parent::__construct($component);
+        parent::__construct($element);
     }
 
 
@@ -40,15 +41,15 @@ class TemplateNotificationsDropDown extends TemplateRenderer
      */
     public function render(): ?string
     {
-        if (!$this->component->getAllNotificationsUrl()) {
+        if (!$this->render_object->getAllNotificationsUrl()) {
             throw new OutOfBoundsException(tr('No all notifications page URL specified'));
         }
 
-        if (!$this->component->getNotificationsUrl()) {
+        if (!$this->render_object->getNotificationsUrl()) {
             throw new OutOfBoundsException(tr('No notifications page URL specified'));
         }
 
-        $notifications = $this->component->getNotifications();
+        $notifications = $this->render_object->getNotifications();
 
         if ($notifications) {
             $notifications->autoUpdate();
@@ -83,7 +84,7 @@ class TemplateNotificationsDropDown extends TemplateRenderer
                     break;
                 }
 
-                $this->render .= '<a href="' . Html::safe(str_replace(':ID', (string) $notification->getId(), (string) $this->component->getNotificationsUrl())) . '" class="dropdown-item notification open-modal" data-id="' . $notification->getId() . '">
+                $this->render .= '<a href="' . Html::safe(str_replace(':ID', (string) $notification->getId(), (string) $this->render_object->getNotificationsUrl())) . '" class="dropdown-item notification open-modal" data-id="' . $notification->getId() . '">
                                     ' . ($notification->getIcon() ? '<i class="text-' . Html::safe($notification->getMode()->value) . ' fas fa-' . Html::safe($notification->getIcon()) . ' mr-2"></i> ' : null) . Html::safe(Strings::truncate($notification->getTitle(), 24)) . '
                                     <span class="float-right text-muted text-sm"> ' . Html::safe(Date::getAge($notification->getCreatedOnObject())) . '</span>
                                   </a>
@@ -91,7 +92,7 @@ class TemplateNotificationsDropDown extends TemplateRenderer
             }
         }
 
-        $this->render .= '        <a href="' . Html::safe($this->component->getAllNotificationsUrl()) . '" class="dropdown-item dropdown-footer">' . tr('See all unread notifications') . '</a>
+        $this->render .= '        <a href="' . Html::safe($this->render_object->getAllNotificationsUrl()) . '" class="dropdown-item dropdown-footer">' . tr('See all unread notifications') . '</a>
                                 </div>';
 
         return parent::render() . NotificationModal::new()->render();
