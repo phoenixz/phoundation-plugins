@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Templates\Mdb\Html\Components\Input\Buttons\Buttons;
 
-use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 
 
@@ -23,9 +22,9 @@ class TemplateButtons extends TemplateRenderer
     /**
      * Buttons class constructor
      */
-    public function __construct(Buttons $component)
+    public function __construct(\Phoundation\Web\Html\Components\Input\Buttons\Buttons $element)
     {
-        parent::__construct($component);
+        parent::__construct($element);
     }
 
 
@@ -43,11 +42,7 @@ class TemplateButtons extends TemplateRenderer
         }
 
         foreach ($this->component->getSource() as $button) {
-            if (is_string($button)) {
-                $this->render .= $button . ' ';
-            } else {
-                $this->render .= $button->render(). ' ';
-            }
+            $this->render .= $button->render(). ' ';
         }
 
         if ($this->component->getGroup()) {
