@@ -121,7 +121,6 @@ class TemplatePage extends \Phoundation\Web\Html\Template\TemplatePage
             'adminlte/plugins/fontawesome-free-6.4.0-web/css/regular',
 //            'adminlte/plugins/fontawesome-free-6.4.0-web/css/v4-shim',
             'adminlte/css/adminlte',
-            'adminlte/css/phoundation',
             'adminlte/plugins/overlayScrollbars/css/OverlayScrollbars',
             'adminlte/css/phoundation'
         ], true);
@@ -159,7 +158,7 @@ class TemplatePage extends \Phoundation\Web\Html\Template\TemplatePage
         }
 
         if (Response::getBuildBodyWrapper()) {
-            $body = '   <div class="' . Response::setClass('content-wrapper', 'content-wrapper') .  '" style="min-height: 1518.06px;">
+            $body = '   <div class="' . Response::getClass('content-wrapper', 'content-wrapper') .  '" style="min-height: 1518.06px;">
                            ' . Request::getPanelsObject()->get('header', false)?->render() . '
                             <section class="content">
                                 <div class="container-fluid">
