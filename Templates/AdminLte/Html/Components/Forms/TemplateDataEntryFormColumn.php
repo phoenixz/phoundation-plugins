@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Templates\AdminLte\Html\Components\Forms;
 
-use Phoundation\Core\Log\Log;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionInterface;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Components\Forms\Interfaces\DataEntryFormColumnInterface;
 use Phoundation\Web\Html\Components\Widgets\Tooltips\Tooltip;
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
-use Phoundation\Web\Requests\Response;
 
 
 /**
