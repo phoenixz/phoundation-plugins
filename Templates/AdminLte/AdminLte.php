@@ -39,7 +39,7 @@ class AdminLte extends Template
     /**
      * Return a description for this template
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription(): ?string
     {
