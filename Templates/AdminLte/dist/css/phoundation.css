@@ -107,3 +107,26 @@ nav .nav li.nav-header
 .form-control:disabled {
     background-color: #e9ecef !important;
 }
+
+.brand-link {
+    padding: 0;
+}
+
+.brand-link .brand-image {
+    display:inline-block;
+    max-height: none;
+    float: none;
+    margin: 0;
+    padding: 0;
+    height: 56px;
+    width: 100%;
+}
+
+nav ul.nav ul.nav {
+    padding-left: 30px;
+}
+
+nav ul.nav ul.nav ul.nav {
+    padding-left: 30px;
+}
+
