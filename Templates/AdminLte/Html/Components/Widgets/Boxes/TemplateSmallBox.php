@@ -38,7 +38,7 @@ class TemplateSmallBox extends TemplateRenderer
     {
         $this->render = '   <div class="small-box bg-' . Html::safe($this->component->getMode()->value) . ($this->component->getShadow() ? ' ' . Html::safe($this->component->getShadow()) : '') . '">
                               <div class="inner">
-                                <h3>' . Html::safe($this->component->getValue()) . '</h3>       
+                                <h3>' . Html::safe($this->component->get()) . '</h3>       
                                 <p>' . Html::safe($this->component->getTitle()) . '</p>
                               </div>
                               ' . (($this->component->getProgress() !== null) ? '   <div class="progress">

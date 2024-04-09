@@ -41,7 +41,7 @@ class TemplateInfoBoxBg extends TemplateRenderer
                 
                               <div class="info-box-content">
                                 <span class="info-box-text">' . Html::safe($this->component->getTitle()) . '</span>
-                                <span class="info-box-number">' . Html::safe($this->component->getValue()) . '</span>
+                                <span class="info-box-number">' . Html::safe($this->component->get()) . '</span>
                 
                                 ' . (($this->component->getProgress() !== null) ? ' <div class="progress">
                                                                                     <div class="progress-bar" style="width: ' . Html::safe($this->component->getProgress()) . '%"></div>

@@ -41,7 +41,7 @@ class TemplateInfoBox extends TemplateRenderer
                 
                               <div class="info-box-content">
                                 <span class="info-box-text">' . Html::safe($this->component->getTitle()) . '</span>
-                                <span class="info-box-number">' . Html::safe($this->component->getValue()) . '</span>
+                                <span class="info-box-number">' . Html::safe($this->component->get()) . '</span>
                               </div>
                               ' . Html::safe($this->component->getDescription()) . '
                             </div>';
