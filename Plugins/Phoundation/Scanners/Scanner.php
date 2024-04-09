@@ -82,12 +82,11 @@ class Scanner extends Device
      * @param string|null $column
      * @param bool $meta_enabled
      * @param bool $force
-     * @param bool $no_identifier_exception
      * @return static
      */
-    public static function get(DataEntryInterface|string|int|null $identifier, ?string $column = null, bool $meta_enabled = false, bool $force = false, bool $no_identifier_exception = true): static
+    public static function get(DataEntryInterface|string|int|null $identifier, ?string $column = null, bool $meta_enabled = false, bool $force = false): static
     {
-        $entry = parent::get($identifier, $column, $meta_enabled, $force, $no_identifier_exception);
+        $entry = parent::get($identifier, $column, $meta_enabled, $force);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
