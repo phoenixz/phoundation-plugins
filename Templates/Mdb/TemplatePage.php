@@ -56,7 +56,7 @@ class TemplatePage extends \Phoundation\Web\Html\Template\TemplatePage
 
         if (Response::getBuildBodyWrapper()) {
             $output .=  '<body class="mdb-skin-custom" data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250">' .
-                            Request::getFlashMessages()->render() .
+                            Response::getFlashMessages()->render() .
                             Request::getPanelsObject()->get('top', false)?->render() .
                             Request::getPanelsObject()->get('left')?->render() .
                             $body .

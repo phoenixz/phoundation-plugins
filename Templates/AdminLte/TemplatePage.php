@@ -55,7 +55,7 @@ class TemplatePage extends \Phoundation\Web\Html\Template\TemplatePage
         if (Response::getBuildBodyWrapper()) {
             $output .= ' <body class="sidebar-mini' . (Config::get('web.panels.sidebar.collapsed', false) ? ' sidebar-collapse' : '') . '" style="height: auto;">
                             <div class="wrapper">' .
-                                Request::getFlashMessages()->render() .
+                                Response::getFlashMessages()->render() .
                                 Request::getPanelsObject()->get('top', false)?->render() .
                                 Request::getPanelsObject()->get('left')?->render() .
                                 $body .

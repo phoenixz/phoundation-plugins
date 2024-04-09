@@ -58,7 +58,7 @@ class TemplateInput extends TemplateRenderer
 
             return \Phoundation\Web\Html\Components\Input\InputHidden::new()
                 ->setName($this->component->getName())
-                ->setValue($this->component->getValue())
+                ->setValue($this->component->get())
                 ->render();
         }
 

@@ -43,9 +43,9 @@ class TemplateModal extends TemplateRenderer
 //        // Build the layout
 //        $layout = Grid::new()
 //            ->addRow(GridRow::new()
-//                ->addColumn(GridColumn::new()->setSize(DisplaySize::three))
-//                ->addColumn(GridColumn::new()->setSize(DisplaySize::six)->setContent($form))
-//                ->addColumn(GridColumn::new()->setSize(DisplaySize::three))
+//                ->addColumn(GridColumn::new()->setSize(EnumDisplaySize::three))
+//                ->addColumn(GridColumn::new()->setSize(EnumDisplaySize::six)->setContent($form))
+//                ->addColumn(GridColumn::new()->setSize(EnumDisplaySize::three))
 //            );
 //
 //        // Set defaults

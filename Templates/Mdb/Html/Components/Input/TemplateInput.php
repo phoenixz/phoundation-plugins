@@ -59,7 +59,7 @@ class TemplateInput extends TemplateRenderer
 
             return InputHidden::new()
                 ->setName($this->component->getName())
-                ->setValue($this->component->getValue())
+                ->setValue($this->component->get())
                 ->render();
         }
 
