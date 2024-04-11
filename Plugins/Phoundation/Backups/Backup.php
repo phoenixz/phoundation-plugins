@@ -20,7 +20,7 @@ use Phoundation\Data\Traits\TraitDataTarget;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Filesystem\Traits\TraitDataRestrictions;
 use Phoundation\Utils\Config;
-
+use Phoundation\Web\Html\Enums\EnumElementInputType;
 
 /**
  * Class Backup
@@ -320,7 +320,7 @@ class Backup extends DataEntry
         $definitions
             ->add(Definition::new($this, 'size')
                 ->setReadonly(true)
-                ->setInputType(InputTypeExtended::positiveInteger)
+                ->setInputType(EnumElementInputType::positiveInteger)
                 ->setMin(0)
             );
     }
