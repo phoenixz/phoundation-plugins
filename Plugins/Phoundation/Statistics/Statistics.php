@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Statistics;
 
-use Phoundation\Core\Exception\ConfigPathDoesNotExistsException;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\Validate;
 use Phoundation\Date\DateTime;
 use Phoundation\Date\Enums\DateTimeSegment;
-use Phoundation\Date\Enums\Interfaces\DateTimeSegmentInterface;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Notifications\Notification;
 use Phoundation\Utils\Arrays;
 use Phoundation\Utils\Config;
+use Phoundation\Utils\Exception\ConfigPathDoesNotExistsException;
 use Plugins\Phoundation\Statistics\Exception\StatisticsException;
 use Throwable;
 
@@ -104,10 +103,10 @@ class Statistics
      * Return correct timestamp for use in statistics by removing the seconds from the current minute
      *
      * @param int|null $timestamp
-     * @param DateTimeSegmentInterface|null $interval
+     * @param DateTimeSegment|null $interval
      * @return int
      */
-    protected function getTimestamp(?int $timestamp, ?DateTimeSegmentInterface $interval = null): int
+    protected function getTimestamp(?int $timestamp, ?DateTimeSegment $interval = null): int
     {
         if (!$interval) {
             $interval = static::$config[$this->server]['interval'];

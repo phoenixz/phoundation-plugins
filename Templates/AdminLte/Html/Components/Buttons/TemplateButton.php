@@ -22,7 +22,7 @@ class TemplateButton extends TemplateRenderer
     /**
      * Button class constructor
      */
-    public function __construct(\Phoundation\Web\Html\Components\Input\Buttons\Button $element)
+    public function __construct(\Phoundation\Web\Html\Components\Input\Buttons\InputButton $element)
     {
         parent::__construct($element);
     }
