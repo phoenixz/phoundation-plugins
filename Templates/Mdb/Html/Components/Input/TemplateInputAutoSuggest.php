@@ -22,7 +22,7 @@ class TemplateInputAutoSuggest extends TemplateInput
      */
     public function __construct(\Phoundation\Web\Html\Components\Input\InputAutoSuggest $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

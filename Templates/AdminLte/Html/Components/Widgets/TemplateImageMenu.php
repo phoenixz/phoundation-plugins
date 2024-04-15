@@ -50,7 +50,7 @@ class TemplateImageMenu extends TemplateRenderer
 
         $this->render .= $this->component->getImage()->getHtmlElement()
             ->setHeight($this->component->getHeight())
-            ->addClass('rounded-circle')
+            ->addClasses('rounded-circle')
             ->setExtra('loading="lazy"')
             ->render();
 

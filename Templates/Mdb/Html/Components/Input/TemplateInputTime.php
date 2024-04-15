@@ -25,7 +25,7 @@ class TemplateInputTime extends TemplateInputText
      */
     public function __construct(InputTime $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         $component->setInputType(EnumElementInputType::text);
         $component->getOuterDiv()
             ->addClasses('form-outline timepicker')

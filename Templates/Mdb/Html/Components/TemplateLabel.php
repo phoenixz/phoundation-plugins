@@ -36,7 +36,7 @@ class TemplateLabel extends TemplateRenderer
      */
     public function render(): ?string
     {
-        $this->component->addClass('form-label');
+        $this->component->addClasses('form-label');
         return parent::render();
     }
 }

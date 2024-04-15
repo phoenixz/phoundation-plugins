@@ -24,7 +24,7 @@ class TemplateInputDate extends TemplateInput
      */
     public function __construct(InputDate $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

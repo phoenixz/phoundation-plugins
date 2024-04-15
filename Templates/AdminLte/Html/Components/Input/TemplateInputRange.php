@@ -24,7 +24,7 @@ class TemplateInputRange extends TemplateInput
      */
     public function __construct(InputRange $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

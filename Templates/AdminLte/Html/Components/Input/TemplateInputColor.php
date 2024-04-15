@@ -24,7 +24,7 @@ class TemplateInputColor extends TemplateInput
      */
     public function __construct(InputColor $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

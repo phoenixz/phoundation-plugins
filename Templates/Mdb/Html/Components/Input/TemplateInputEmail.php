@@ -24,7 +24,7 @@ class TemplateInputEmail extends TemplateInput
      */
     public function __construct(InputEmail $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

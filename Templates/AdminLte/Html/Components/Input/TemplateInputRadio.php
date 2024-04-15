@@ -24,7 +24,7 @@ class TemplateInputRadio extends TemplateInput
      */
     public function __construct(InputRadio $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 

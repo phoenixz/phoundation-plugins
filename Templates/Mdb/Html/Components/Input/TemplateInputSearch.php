@@ -24,7 +24,7 @@ class TemplateInputSearch extends TemplateInput
      */
     public function __construct(InputSearch $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

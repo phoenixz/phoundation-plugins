@@ -24,7 +24,7 @@ class TemplateHtmlTable extends TemplateRenderer
      */
     public function __construct(\Phoundation\Web\Html\Components\Tables\HtmlTable $component)
     {
-        $component->addClass('table');
+        $component->addClasses('table');
         parent::__construct($component);
     }
 }

@@ -40,7 +40,7 @@ class TemplateA extends TemplateRenderer
      */
     public function render(): ?string
     {
-        $this->component->addClass('nav-link');
+        $this->component->addClasses('nav-link');
         return parent::render();
     }
 }

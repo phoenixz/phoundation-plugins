@@ -24,7 +24,7 @@ class TemplateInputSelect2 extends TemplateInputSelect
      */
     public function __construct(InputSelect $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

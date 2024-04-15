@@ -24,7 +24,7 @@ class TemplateInputAutoSuggest extends TemplateInput
      */
     public function __construct(InputAutoSuggest $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

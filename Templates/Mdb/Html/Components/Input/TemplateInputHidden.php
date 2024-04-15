@@ -24,7 +24,7 @@ class TemplateInputHidden extends TemplateInput
      */
     public function __construct(InputHidden $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }

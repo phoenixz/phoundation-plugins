@@ -24,7 +24,7 @@ class TemplateInputTextArea extends TemplateInput
      */
     public function __construct(InputTextArea $component)
     {
-        $component->addClass('form-control');
+        $component->addClasses('form-control');
         parent::__construct($component);
     }
 }
