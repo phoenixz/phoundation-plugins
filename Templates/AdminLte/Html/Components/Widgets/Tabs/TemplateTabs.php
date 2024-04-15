@@ -1,14 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
-namespace Templates\AdminLte\Html\Components\Widgets\Tabs;
-
-use Phoundation\Exception\UnderConstructionException;
-use Phoundation\Enums\EnumOrientation;
-use Phoundation\Web\Html\Template\TemplateRenderer;
-
-
 /**
  * Class TemplateCard
  *
@@ -19,12 +9,22 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\AdminLte
  */
+
+declare(strict_types=1);
+
+namespace Templates\AdminLte\Html\Components\Widgets\Tabs;
+
+use Phoundation\Exception\UnderConstructionException;
+use Phoundation\Enums\EnumOrientation;
+use Phoundation\Web\Html\Components\Widgets\Tabs\Tabs;
+use Phoundation\Web\Html\Template\TemplateRenderer;
+
 class TemplateTabs extends TemplateRenderer
 {
     /**
      * Card class constructor
      */
-    public function __construct(\Phoundation\Web\Html\Components\Widgets\Tabs\Tabs $component)
+    public function __construct(Tabs $component)
     {
         parent::__construct($component);
     }
@@ -35,43 +35,53 @@ class TemplateTabs extends TemplateRenderer
      */
     public function render(): ?string
     {
+        $buttons              = null;
         $tabs                 = $this->component;
         $content_display_size = $tabs->getContentDisplaySize()->value;
         $tab_display_size     = 12 - $content_display_size;
 
+        if ($tabs->getInputButtons()->getCount()) {
+            $buttons = '<div class="modal-footer justify-content-between buttons">
+                            ' . $tabs->getInputButtons()->render() . '
+                        </div>';
+        }
+
         switch ($tabs->getOrientation()) {
             case EnumOrientation::top:
-                $this->render .= '  <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">';
+                $this->render .= '  <div class="row">
+                                        <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">';
 
                 // Render the tabs
                 $active = true;
 
                 foreach ($tabs as $tab) {
-                    $this->render .= '          <li class="nav-item">
-                                                    <a class="nav-link' . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" data-toggle="pill" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
-                                                        ' . $tab->getLabel() . '
-                                                    </a>
-                                                </li>';
+                    $this->render .= '      <li class="nav-item">
+                                                <a class="nav-link' . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" data-toggle="pill" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
+                                                    ' . $tab->getLabel() . '
+                                                </a>
+                                            </li>';
 
                     $active = false;
                 }
 
                 // Render the change to tabs / contents
-                $this->render .= '  </ul>
-                                    <div class="tab-content tab-margin" id="custom-content-below-tabContent">';
+                $this->render .= '      </ul>
+                                        <div class="tab-content tab-margin" id="custom-content-below-tabContent">';
 
                 // Render the tab contents
                 $active = true;
 
                 foreach ($tabs as $tab) {
-                    $this->render .= '          <div class="tab-pane fade' . ($active ? ' active show' : '') . '" id="' . $tab->getId() . '" role="tabpanel" aria-labelledby="' . $tab->getId() . '-tab">
-                                                    ' . $tab->getContent() . '
-                                                </div>';
+                    $this->render .= '      <div class="tab-pane fade' . ($active ? ' active show' : '') . '" id="' . $tab->getId() . '" role="tabpanel" aria-labelledby="' . $tab->getId() . '-tab">
+                                                ' . $tab->getContent() . '
+                                            </div>';
 
                     $active = false;
                 }
 
-                $this->render .= '  </div>';
+                $this->render .= '      </div>
+                                        ' . $buttons . '
+                                    </div>';
                 break;
 
             case EnumOrientation::left:
@@ -108,6 +118,7 @@ class TemplateTabs extends TemplateRenderer
 
                 $this->render .= '          </div>
                                         </div>
+                                        ' . $buttons . '
                                     </div>';
                 break;
 
@@ -145,6 +156,7 @@ class TemplateTabs extends TemplateRenderer
                 // Render the change to tabs / contents
                 $this->render .= '          </div>
                                         </div>
+                                        ' . $buttons . '
                                     </div>';
                 break;
 

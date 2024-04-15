@@ -318,7 +318,7 @@ class TemplateTopPanel extends TemplateRenderer
 
                 case 'button':
                     $content = '  <li class="nav-item me-3 me-lg-1">
-                                    <span>' . $this->component->getButtons()->get($element_type)->render() . '</span>
+                                    <span>' . $this->component->getInputButtons()->get($element_type)->render() . '</span>
                                   </li>';
                     break;
 

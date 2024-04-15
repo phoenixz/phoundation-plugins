@@ -74,7 +74,6 @@ class TemplateModal extends TemplateRenderer
 //                  </div>
 //                </div>';
 
-
         return '<div class="modal fade" id="modal-' . $component->getId() . '" style="display: none;" aria-hidden="true" role="dialog">
                     <div class="modal-dialog modal-' . $component->getSize() . '">
                         <div class="modal-content">
@@ -86,7 +85,7 @@ class TemplateModal extends TemplateRenderer
                                 ' . $component->getContent() . '
                             </div>
                             <div class="modal-footer justify-content-between buttons">
-                                ' . $component->getButtons()->render() . '
+                                ' . $component->getInputButtons()->render() . '
                             </div>
                         </div>
                     </div>
