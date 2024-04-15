@@ -1,1 +1,0 @@
-filterizr.min.js
