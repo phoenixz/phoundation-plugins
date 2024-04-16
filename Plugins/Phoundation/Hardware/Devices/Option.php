@@ -93,7 +93,7 @@ class Option extends DataEntry
      *
      * @return string|null
      */
-    public function getValue(): ?string
+    public function get(): ?string
     {
         return $this->getSourceValueTypesafe('string', 'value');
     }
@@ -107,7 +107,7 @@ class Option extends DataEntry
      * @param string|null $value
      * @return static
      */
-    public function setValue(?string $value): static
+    public function set(?string $value): static
     {
         if ($value) {
             $this->checkRange($value)

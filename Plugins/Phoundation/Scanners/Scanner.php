@@ -54,7 +54,7 @@ class Scanner extends Device
         } else {
             if ($this->getClass() !== 'scanner') {
                 throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
-                    ':column'     => static::getColumn($identifier, $column),
+                    ':column'     => static::determineColumn($identifier, $column),
                     ':identifier' => $identifier
                 ]));
             }
@@ -84,13 +84,13 @@ class Scanner extends Device
      * @param bool $force
      * @return static
      */
-    public static function get(DataEntryInterface|string|int|null $identifier, ?string $column = null, bool $meta_enabled = false, bool $force = false): static
+    public static function load(DataEntryInterface|string|int|null $identifier, ?string $column = null, bool $meta_enabled = false, bool $force = false): static
     {
-        $entry = parent::get($identifier, $column, $meta_enabled, $force);
+        $entry = parent::load($identifier, $column, $meta_enabled, $force);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
-                ':column'     => static::getColumn($identifier, $column),
+                ':column'     => static::determineColumn($identifier, $column),
                 ':identifier' => $identifier
             ]));
         }

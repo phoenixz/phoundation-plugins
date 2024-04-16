@@ -49,21 +49,21 @@ CliDocumentation::autoComplete([
             'noword' => function ()      { return Devices::new()->load()->getKeys(); },
         ],
         1  => [
-            'word'   => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->getMatchingKeys($word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
-            'noword' => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->getKeys(); },
+            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getKeys(); },
         ],
         2  => [
-            'word'   => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getMatchingKeys($word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
-            'noword' => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getKeys(); },
+            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getMatchingKeys($word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getKeys(); },
         ],
         3  => [
             'word'   => function ($word, $arguments) {
-                $values = Device::get($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
+                $values = Device::load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
                 $values = Arrays::force($values, ',');
                 return Arrays::getMatches($values, $word, Utils::MATCH_NO_CASE | Utils::MATCH_ANY | Utils::MATCH_BEGIN);
             },
             'noword' => function ($word, $arguments) {
-                $values = Device::get($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
+                $values = Device::load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
                 $values = Arrays::force($values, ',');
                 return $values;
             },
@@ -82,7 +82,7 @@ $argv = ArgvValidator::new()
 
 
 // Get the device and profile
-$device  = Device::get($argv['device']);
+$device  = Device::load($argv['device']);
 $profile = Profile::find([
     'devices_id' => $device->getId(),
     'name'       => $argv['profile']
@@ -90,7 +90,7 @@ $profile = Profile::find([
 
 
 // Update the specified option
-$profile->getOptions()->get($argv['key'])->setValue($argv['value'])->save();
+$profile->getOptions()->get($argv['key'])->set($argv['value'])->save();
 
 
 // Done!

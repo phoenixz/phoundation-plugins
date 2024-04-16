@@ -46,8 +46,8 @@ CliDocumentation::autoComplete([
             'noword' => function ()      { return Devices::new()->load(); },
         ],
         1 => [
-            'word'   => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->getMatchingKeys($word); },
-            'noword' => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->getKeys(); },
+            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getKeys(); },
         ],
         2 => [
             'word'   => function ($word) use ($restrictions) { return Directory::new(DIRECTORY_DATA, $restrictions)->scan($word . '*') ; },
@@ -70,7 +70,7 @@ $argv = ArgvValidator::new()
 
 
 // List available devices
-$scanner = Scanner::get($argv['device'])
+$scanner = Scanner::load($argv['device'])
     ->setBatch($argv['batch'])
     ->scan($argv['profile'], $argv['path']);
 

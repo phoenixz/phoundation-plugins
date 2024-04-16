@@ -39,8 +39,8 @@ CliDocumentation::autoComplete([
             'noword' => function ()      { return Devices::new()->load(); },
         ],
         1 => [
-            'word'   => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles()->getMatchingKeys($word); },
-            'noword' => function ($word, $arguments) { return Device::get($arguments[0])->getProfiles(); },
+            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles(); },
         ],
     ]
 ]);
@@ -55,7 +55,7 @@ $argv = ArgvValidator::new()
 
 // Find the device and profile
 try {
-    $device = Device::get($argv['device']);
+    $device = Device::load($argv['device']);
 
 } catch (DataEntryNotExistsException $e) {
     throw NotExistsException::new(tr('The specified device ":device" does not exist', [

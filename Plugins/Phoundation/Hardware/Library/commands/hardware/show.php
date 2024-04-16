@@ -45,7 +45,7 @@ $argv = ArgvValidator::new()
 
 
 // Show the specified device and its profiles
-Device::get($argv['device'])
+Device::load($argv['device'])
     ->displayCliForm()
     ->getProfiles()
         ->displayCliTable();
