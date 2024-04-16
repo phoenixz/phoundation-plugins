@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace Templates\AdminLte\Html\Components\Input\Buttons;
 
-use Phoundation\Web\Html\Components\Input\Buttons\InputButtons;
+use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 
 class TemplateButtons extends TemplateRenderer
@@ -23,7 +23,7 @@ class TemplateButtons extends TemplateRenderer
     /**
      * Buttons class constructor
      */
-    public function __construct(InputButtons $component)
+    public function __construct(Buttons $component)
     {
         parent::__construct($component);
     }
@@ -36,6 +36,7 @@ class TemplateButtons extends TemplateRenderer
      */
     public function render(): ?string
     {
+        $render       = [];
         $this->render = '';
 
         if ($this->component->getGroup()) {
@@ -43,8 +44,14 @@ class TemplateButtons extends TemplateRenderer
         }
 
         foreach ($this->component->getSource() as $button) {
-            $this->render .= $button->render(). ' ';
+            if (is_string($button)) {
+                $render[] = $button;
+            } else {
+                $render[] = $button->render();
+            }
         }
+
+        $this->render = implode(' ', $render);
 
         if ($this->component->getGroup()) {
             $this->render .= '</div>';

@@ -1,15 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\AdminLte\Html\Components\Input;
-
-use Phoundation\Utils\Arrays;
-use Phoundation\Web\Html\Components\Input\Interfaces\InputInterface;
-use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
-use Phoundation\Web\Html\Template\TemplateRenderer;
-
-
 /**
  * Class TemplateInput
  *
@@ -20,8 +10,23 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\AdminLte
  */
+
+declare(strict_types=1);
+
+namespace Templates\AdminLte\Html\Components\Input;
+
+use Phoundation\Utils\Arrays;
+use Phoundation\Web\Html\Components\Input\InputHidden;
+use Phoundation\Web\Html\Components\Input\Interfaces\InputInterface;
+use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
+use Phoundation\Web\Html\Template\TemplateRenderer;
+use Templates\Mdb\Html\Traits\TraitTemplateRenderBeforeAfterButtons;
+
 class TemplateInput extends TemplateRenderer
 {
+    use TraitTemplateRenderBeforeAfterButtons;
+
+
     /**
      * Input class constructor
      */
@@ -39,27 +44,21 @@ class TemplateInput extends TemplateRenderer
      */
     public function render(): ?string
     {
-        // TODO Can non input elements render as hidden?
+        $component = $this->component;
+
         // Hidden elements render as an <input hidden>
-        if ($this->component->getHidden()) {
-            // Select input have multiple values support
-            if ($this->component instanceof InputSelectInterface) {
-                $return = null;
+        if ($component->getHidden()) {
+            return InputHidden::new()
+                              ->setName($component->getName())
+                              ->setValue($component->getValue())
+                              ->render();
+        }
 
-                foreach (Arrays::force($this->component->getSelected()) as $key => $value) {
-                    $return .= \Phoundation\Web\Html\Components\Input\InputHidden::new()
-                        ->setName($this->component->getName())
-                        ->setValue($key)
-                        ->render();
-                }
+        $after  = $this->renderAfterButtons($component);
+        $before = $this->renderBeforeButtons($component);
 
-                return $return;
-            }
-
-            return \Phoundation\Web\Html\Components\Input\InputHidden::new()
-                ->setName($this->component->getName())
-                ->setValue($this->component->get())
-                ->render();
+        if ($before or $after) {
+            return '<div class="input-group mb-3">' . $before . parent::render() . isset_get($render) . $after . '</div>';
         }
 
         return parent::render();

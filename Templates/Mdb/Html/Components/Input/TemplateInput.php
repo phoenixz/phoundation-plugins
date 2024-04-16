@@ -1,16 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Components\Input;
-
-use Phoundation\Utils\Arrays;
-use Phoundation\Web\Html\Components\Input\InputHidden;
-use Phoundation\Web\Html\Components\Input\Interfaces\InputInterface;
-use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
-use Phoundation\Web\Html\Template\TemplateRenderer;
-
-
 /**
  * Class TemplateInput
  *
@@ -21,8 +10,21 @@ use Phoundation\Web\Html\Template\TemplateRenderer;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\Mdb
  */
+
+declare(strict_types=1);
+
+namespace Templates\Mdb\Html\Components\Input;
+
+use Phoundation\Web\Html\Components\Input\InputHidden;
+use Phoundation\Web\Html\Components\Input\Interfaces\InputInterface;
+use Phoundation\Web\Html\Template\TemplateRenderer;
+use Templates\Mdb\Html\Traits\TraitTemplateRenderBeforeAfterButtons;
+
 class TemplateInput extends TemplateRenderer
 {
+    use TraitTemplateRenderBeforeAfterButtons;
+
+
     /**
      * Input class constructor
      */
@@ -40,27 +42,22 @@ class TemplateInput extends TemplateRenderer
      */
     public function render(): ?string
     {
-        // TODO Can non input elements render as hidden?
+        $component = $this->component;
+
         // Hidden elements render as an <input hidden>
-        if ($this->component->getHidden()) {
-            // Select input have multiple values support
-            if ($this->component instanceof InputSelectInterface) {
-                $return = null;
-
-                foreach (Arrays::force($this->component->getSelected()) as $key => $value) {
-                    $return .= InputHidden::new()
-                        ->setName($this->component->getName())
-                        ->setValue($key)
-                        ->render();
-                }
-
-                return $return;
-            }
-
+        if ($component->getHidden()) {
             return InputHidden::new()
-                ->setName($this->component->getName())
-                ->setValue($this->component->get())
+                ->setName($component->getName())
+                ->setValue($component->getValue())
                 ->render();
+        }
+
+        $after  = $this->renderAfterButtons($component);
+        $before = $this->renderBeforeButtons($component);
+
+        if ($before or $after) {
+            // Place buttons in an input group
+            return $before . parent::render() . isset_get($render) . $after;
         }
 
         return parent::render();

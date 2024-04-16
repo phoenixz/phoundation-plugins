@@ -108,9 +108,9 @@ class TemplateCard extends TemplateRenderer
                                         ' . $this->component->getContent(). '
                                     </div>';
 
-            if ($this->component->getInputButtons()) {
+            if ($this->component->getButtons()) {
                 $this->render .= '  <div class="card-footer">
-                                        ' . $this->component->getInputButtons()->render() . '           
+                                        ' . $this->component->getButtons()->render() . '           
                                     </div>';
             }
 

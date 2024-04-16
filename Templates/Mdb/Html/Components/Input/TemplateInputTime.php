@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Templates\Mdb\Html\Components\Input;
 
 use Phoundation\Web\Html\Components\Input\InputTime;
-use Phoundation\Web\Html\Enums\EnumElementInputType;
+use Phoundation\Web\Html\Enums\EnumInputType;
 
 
 /**
@@ -26,7 +26,7 @@ class TemplateInputTime extends TemplateInputText
     public function __construct(InputTime $component)
     {
         $component->addClasses('form-control');
-        $component->setInputType(EnumElementInputType::text);
+        $component->setInputType(EnumInputType::text);
         $component->getOuterDiv()
             ->addClasses('form-outline timepicker')
             ->getAttributes()

@@ -1,21 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Components\Forms;
-
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionInterface;
-use Phoundation\Exception\OutOfBoundsException;
-use Phoundation\Utils\Config;
-use Phoundation\Web\Html\Components\Forms\Interfaces\DataEntryFormColumnInterface;
-use Phoundation\Web\Html\Components\Widgets\Tooltips\Tooltip;
-use Phoundation\Web\Html\Html;
-use Phoundation\Web\Html\Template\TemplateRenderer;
-use Phoundation\Web\Requests\Response;
-use Templates\Mdb\TemplatePage;
-
-
 /**
  * Class DataEntryForm
  *
@@ -26,6 +9,19 @@ use Templates\Mdb\TemplatePage;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\Mdb
  */
+
+declare(strict_types=1);
+
+namespace Templates\Mdb\Html\Components\Forms;
+
+use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionInterface;
+use Phoundation\Exception\OutOfBoundsException;
+use Phoundation\Web\Html\Components\Forms\Interfaces\DataEntryFormColumnInterface;
+use Phoundation\Web\Html\Components\Widgets\Tooltips\Tooltip;
+use Phoundation\Web\Html\Html;
+use Phoundation\Web\Html\Template\TemplateRenderer;
+use Templates\Mdb\TemplatePage;
+
 class TemplateDataEntryFormColumn extends TemplateRenderer
 {
     /**
@@ -48,9 +44,10 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
      */
     public function render(): ?string
     {
-        $scripts = '';
         $definition = $this->component->getDefinition();
         $component  = $this->component->getColumnComponent();
+        $scripts    = '';
+        $group      = ($component->hasBeforeButtons() or $component->hasAfterButtons());
 
         if (!$definition) {
             throw new OutOfBoundsException(tr('Cannot render form component, no definition specified'));
@@ -79,7 +76,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                 break;
 
             case 'select':
-                $this->render .= '<div class="' . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' d-none') . '">
+                $this->render .= '<div class="' . ($group ? 'input-group ' : null) . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' d-none') . '">
                                      ' . $component->render() . $scripts .
                     ($definition->getLabel() ? ' <label class="form-label select-label" for="' . Html::safe($definition->getColumn()) . '">
                                                                      ' . Html::safe($definition->getLabel()) . '

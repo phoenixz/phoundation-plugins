@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Components\Input;
-
-use Phoundation\Web\Html\Components\Input\InputSelect;
-
-
 /**
  * Class TemplateSelect
  *
@@ -17,8 +10,21 @@ use Phoundation\Web\Html\Components\Input\InputSelect;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\Mdb
  */
+
+declare(strict_types=1);
+
+namespace Templates\Mdb\Html\Components\Input;
+
+use Phoundation\Utils\Arrays;
+use Phoundation\Web\Html\Components\Input\InputHidden;
+use Phoundation\Web\Html\Components\Input\InputSelect;
+use Templates\Mdb\Html\Traits\TraitTemplateRenderBeforeAfterButtons;
+
 class TemplateInputSelect extends TemplateInput
 {
+    use TraitTemplateRenderBeforeAfterButtons;
+
+
     /**
      * Select class constructor
      */
@@ -36,22 +42,38 @@ class TemplateInputSelect extends TemplateInput
      */
     public function render(): ?string
     {
-        if ($this->component->getClearButton()) {
-            $this->component->getAttributes()->add("true", 'data-mdb-clear-button');
-            $this->component->getAttributes()->removeKeys('clear_button');
+        $component = $this->component;
 
+        // Hidden elements render as an <input hidden>
+        if ($component->getHidden()) {
+            // Select input have multiple values support
+            $return = null;
+
+            foreach (Arrays::force($component->getSelected()) as $key => $value) {
+                $return .= InputHidden::new()
+                                      ->setName($component->getName())
+                                      ->setValue($key)
+                                      ->render();
+            }
+
+            return $return;
         }
 
-        if ($this->component->getSearch()) {
-            $this->component->getAttributes()->add("true", 'data-mdb-filter');
-            $this->component->getAttributes()->removeKeys('search');
+        if ($component->getClearButton()) {
+            $component->getAttributes()->add("true", 'data-mdb-clear-button');
+            $component->getAttributes()->removeKeys('clear_button');
         }
 
-        if ($this->component->getCustomContent()) {
-            $this->component->getAttributes()->removeKeys('custom_content');
+        if ($component->getSearch()) {
+            $component->getAttributes()->add("true", 'data-mdb-filter');
+            $component->getAttributes()->removeKeys('search');
+        }
+
+        if ($component->getCustomContent()) {
+            $component->getAttributes()->removeKeys('custom_content');
 
             $render = '<div class="select-custom-content">
-                         ' . render($this->component->getCustomContent()) . '
+                         ' . render($component->getCustomContent()) . '
                        </div>';
         }
 
