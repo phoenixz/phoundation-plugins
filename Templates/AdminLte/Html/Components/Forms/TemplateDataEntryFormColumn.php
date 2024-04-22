@@ -34,9 +34,10 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
 
     public function render(): ?string
     {
-        $scripts = '';
         $definition = $this->component->getDefinition();
         $component  = $this->component->getColumnComponent();
+        $group      = ($component->hasBeforeButtons() or $component->hasAfterButtons());
+        $scripts    = '';
 
         if (!$definition) {
             throw new OutOfBoundsException(tr('Cannot render form component, no definition specified'));
@@ -77,7 +78,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                                </div>',
 
             default    => '    <div class="col-sm-' . Html::safe($definition->getSize() ?? 12) . '">
-                                   <div class="form-group">
+                                   <div class="form-group'  . ($group ? 'input-group ' : null) . '">
                                        <div class="form-horizontal">
                                            <label for="' . Html::safe($definition->getColumn()) . '">' . Html::safe($definition->getLabel()) . '</label>
                                            ' . $this->renderTooltip($definition) . '

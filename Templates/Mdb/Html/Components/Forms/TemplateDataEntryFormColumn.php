@@ -46,8 +46,8 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
     {
         $definition = $this->component->getDefinition();
         $component  = $this->component->getColumnComponent();
-        $scripts    = '';
         $group      = ($component->hasBeforeButtons() or $component->hasAfterButtons());
+        $scripts    = '';
 
         if (!$definition) {
             throw new OutOfBoundsException(tr('Cannot render form component, no definition specified'));
@@ -100,7 +100,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
 
         $this->render .= match ($definition->getInputType()?->value) {
             default    => '  <div class="' . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' d-none') . '">
-                                 <div' . $mdb_init . ' class="form-outline' . (isset($class) ? ' ' . $class : '') . '"' . (isset($attributes) ? ' ' . $attributes : '') . '>
+                                 <div' . $mdb_init . ' class="form-outline' . ($group ? ' input-group' : null) . (isset($class) ? ' ' . $class : '') . '"' . (isset($attributes) ? ' ' . $attributes : '') . '>
                                      ' . $render . '
                                      <label class="form-label' . $label . '" for="' . Html::safe($definition->getColumn()) . '">
                                        ' . Html::safe($definition->getLabel()) . '
