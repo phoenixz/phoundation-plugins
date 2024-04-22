@@ -70,6 +70,8 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
         }
 
         switch ($definition->getElement()) {
+            case 'textarea':
+                // no break
             case 'input':
                 $label    = null;
                 $mdb_init = ' data-mdb-input-init=""';
