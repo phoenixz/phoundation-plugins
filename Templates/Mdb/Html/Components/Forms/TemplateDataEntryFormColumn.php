@@ -79,8 +79,8 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                 $this->render .= '<div class="' . ($group ? 'input-group ' : null) . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' d-none') . '">
                                      ' . $component->render() . $scripts .
                     ($definition->getLabel() ? ' <label class="form-label select-label" for="' . Html::safe($definition->getColumn()) . '">
-                                                                     ' . Html::safe($definition->getLabel()) . '
-                                                                   </label>' : '') . '
+                                                   ' . Html::safe($definition->getLabel()) . '
+                                                 </label>' : '') . '
                                   </div>';
                 return parent::render();
 

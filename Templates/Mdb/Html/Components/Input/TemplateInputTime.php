@@ -7,7 +7,6 @@ namespace Templates\Mdb\Html\Components\Input;
 use Phoundation\Web\Html\Components\Input\InputTime;
 use Phoundation\Web\Html\Enums\EnumInputType;
 
-
 /**
  * Class TemplateInputTime
  *
