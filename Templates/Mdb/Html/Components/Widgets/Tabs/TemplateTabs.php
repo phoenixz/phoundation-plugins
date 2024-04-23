@@ -56,7 +56,7 @@ class TemplateTabs extends TemplateRenderer
 
                 foreach ($tabs as $tab) {
                     $this->render .= '      <li class="nav-item" role="presentation">
-                                                <a data-mdb-tab-init class="nav-link ' . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
+                                                <a data-mdb-tab-init class="nav-link ' . ($active ? ' active' : '') . $tab->getClass(' ') . '" id="' . $tab->getId() . '-tab" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
                                                     ' . $tab->getLabel() . '
                                                 </a>
                                             </li>';
@@ -93,7 +93,7 @@ class TemplateTabs extends TemplateRenderer
                 $active = true;
 
                 foreach ($tabs as $tab) {
-                    $this->render .= '          <a data-mdb-tab-init class="nav-link' . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
+                    $this->render .= '          <a data-mdb-tab-init class="nav-link' . $tab->getClass(' ') . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
                                                     ' . $tab->getLabel() . '
                                                 </a>';
                     $active = false;
@@ -148,7 +148,7 @@ class TemplateTabs extends TemplateRenderer
                 $active = true;
 
                 foreach ($tabs as $tab) {
-                    $this->render .= '          <a class="nav-link' . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" data-toggle="pill" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
+                    $this->render .= '          <a class="nav-link' . $tab->getClass(' ') . ($active ? ' active' : '') . '" id="' . $tab->getId() . '-tab" data-toggle="pill" href="#' . $tab->getId() . '" role="tab" aria-controls="' . $tab->getId() . '" aria-selected="' . ($active ? 'true' : 'false') . '">
                                                     ' . $tab->getLabel() . '
                                                 </a>';
                     $active = false;
