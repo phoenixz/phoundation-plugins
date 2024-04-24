@@ -21,9 +21,9 @@ use Plugins\Phoundation\Hardware\Devices\Profiles;
  * @package Phoundation\Scripts
  */
 
-CliDocumentation::usage('./pho hardware profiles list');
+CliDocumentation::setUsage('./pho hardware profiles list');
 
-CliDocumentation::help('This command will list all hardware profiles registered in the database
+CliDocumentation::setHelp('This command will list all hardware profiles registered in the database
 
 
 ARGUMENTS
@@ -31,10 +31,10 @@ ARGUMENTS
 
 -');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'arguments' => [
         '-c,--class'  => [
-            'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
+            'word'   => function ($word) { return Arrays::keepMatchingValuesStartingWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
             'noword' => function ()      { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]

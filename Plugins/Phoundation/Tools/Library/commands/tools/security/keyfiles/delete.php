@@ -25,10 +25,10 @@ use Phoundation\Security\Crypt;
 $directory = '/';
 $restrictions = Restrictions::new('/', true, tr('security keyfiles delete'));
 
-CliDocumentation::usage('./pho tools security keyfiles delete
+CliDocumentation::setUsage('./pho tools security keyfiles delete
 ./pho tools security keyfiles create -s 8192');
 
-CliDocumentation::help('The keyfiles delete script can securely delete a keyfile 
+CliDocumentation::setHelp('The keyfiles delete script can securely delete a keyfile 
 
 
 ARGUMENTS
@@ -38,7 +38,7 @@ FILE                                    The file where to write the
 
 [-p,--passes PASSED]                    The number of passes to overwrite the key file before deleting it');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan($word . '*'); },

@@ -18,9 +18,9 @@ use Plugins\Phoundation\FingerPrint\FingerPrint;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho security fingerprints enroll -u EMAIL');
+CliDocumentation::setUsage('./pho security fingerprints enroll -u EMAIL');
 
-CliDocumentation::help('This script will enroll a new fingerprint in the database. The user which will have his / her 
+CliDocumentation::setHelp('This script will enroll a new fingerprint in the database. The user which will have his / her 
 fingerprints enrolled in the database must already exist
 
 
@@ -29,7 +29,7 @@ ARGUMENTS
 
 -u / --user EMAIL                       The user who\'s fingerprints will be enrolled in the database');
 
-CliDocumentation::autoComplete(User::getAutoComplete([
+CliDocumentation::setAutoComplete(User::getAutoComplete([
     'arguments' => [
         '-u,--user' => [
             'word'   => 'SELECT COALESCE(`username`, `email`, `code`) AS `email` FROM `accounts_users` WHERE COALESCE(`username`, `email`, `code`) LIKE :word AND `status` IS NULL',

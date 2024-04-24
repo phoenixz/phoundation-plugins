@@ -20,9 +20,9 @@ use Plugins\Phoundation\Hardware\Devices\Devices;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho hardware search');
+CliDocumentation::setUsage('./pho hardware search');
 
-CliDocumentation::help('This command will search for available hardware devices and register them in the database
+CliDocumentation::setHelp('This command will search for available hardware devices and register them in the database
 
 ARGUMENTS
 
@@ -35,12 +35,12 @@ ARGUMENTS
 [-n / --no-options]                     If specified, this command will not update the device options for each found 
                                         device');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'arguments' => [
         '--clear'  => false,
         '-n,--no-options',
         '-c,--class'  => [
-            'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
+            'word'   => function ($word) { return Arrays::keepMatchingValuesStartingWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
             'noword' => function ()      { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]

@@ -25,10 +25,10 @@ use Phoundation\Security\Crypt;
 $directory = '/';
 $restrictions = Restrictions::new('/', true, tr('security keyfiles create'));
 
-CliDocumentation::usage('./pho tools security keyfiles create
+CliDocumentation::setUsage('./pho tools security keyfiles create
 ./pho tools security keyfiles create -s 8192');
 
-CliDocumentation::help('The keyfiles create script can create a keyfile filled with random data that can be used for 
+CliDocumentation::setHelp('The keyfiles create script can create a keyfile filled with random data that can be used for 
 authentication 
 
 
@@ -39,7 +39,7 @@ FILE                                    The file where to write the
 
 [-s,--size]                             The size of the key file');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan($word . '*'); },

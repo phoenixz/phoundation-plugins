@@ -24,9 +24,9 @@ use Phoundation\Os\Devices\Storage\Exception\StorageException;
  */
 $restrictions = Restrictions::new('/dev', true);
 
-CliDocumentation::usage('./pho tools devices storage shred');
+CliDocumentation::setUsage('./pho tools devices storage shred');
 
-CliDocumentation::help('The shred script will shred the specified device by copying random data over it with 
+CliDocumentation::setHelp('The shred script will shred the specified device by copying random data over it with 
 (optionally and by default) multiple passes 
 
 NOTE: This will irreparably destroy all information on the specified device. Proceed with caution, here be dragons!
@@ -39,7 +39,7 @@ DEVICE                                  The device file to be shredded
 
 -p,--passes                             The number of passes it should make over the disk to completely scramble it');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($restrictions) { return Directory::new('/dev/', $restrictions)->scan($word . '*'); },

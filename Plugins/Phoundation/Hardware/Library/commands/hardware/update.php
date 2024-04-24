@@ -6,7 +6,6 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Utils\Arrays;
-use Phoundation\Utils\Utils;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 
 
@@ -20,9 +19,9 @@ use Plugins\Phoundation\Hardware\Devices\Devices;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho hardware update');
+CliDocumentation::setUsage('./pho hardware update');
 
-CliDocumentation::help('This command will update all options for all registered hardware devices
+CliDocumentation::setHelp('This command will update all options for all registered hardware devices
 
 
 ARGUMENTS
@@ -31,10 +30,10 @@ ARGUMENTS
 [-c / --class TYPE]                     The class of hardware to scan for. If not specified, will scan for all types of
                                         hardware Must be one of "scanner,printer,webcam,biometric"');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'arguments' => [
         '-c,--class'  => [
-            'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
+            'word'   => function ($word) { return Arrays::keepMatchingValuesStartingWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
             'noword' => function ()      { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]

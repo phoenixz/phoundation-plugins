@@ -163,7 +163,7 @@ class Profile extends DataEntry implements ProfileInterface
             ->save();
 
         // Copy the options to the new profile
-        $keys = Arrays::getMatches($this->getOptions()->getKeys(), $keys, Utils::MATCH_NO_CASE | Utils::MATCH_ANY | Utils::MATCH_END);
+        $keys = Arrays::keepMatchingValues($this->getOptions()->getKeys(), $keys, Utils::MATCH_CASE_INSENSITIVE | Utils::MATCH_ANY | Utils::MATCH_ENDS_WITH);
 
         foreach ($this->getOptions() as $key => $option) {
             if (in_array($key, $keys)) {

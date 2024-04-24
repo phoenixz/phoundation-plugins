@@ -20,9 +20,9 @@ use Plugins\Phoundation\Hardware\Devices\Device;use Plugins\Phoundation\Hardware
  * @package Phoundation\Scripts
  */
 
-CliDocumentation::usage('./pho hardware profiles copy');
+CliDocumentation::setUsage('./pho hardware profiles copy');
 
-CliDocumentation::help('This command will copy one hardware profile to another
+CliDocumentation::setHelp('This command will copy one hardware profile to another
 
 
 ARGUMENTS
@@ -38,10 +38,10 @@ TARGET                                  The target profile name. This profile mu
 [-k, --keys KEYS]                       A comma delimited list of device option keys that should be copied with this
                                         profile');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'arguments' => [
         '-k, --keys'  => [
-            'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_BEGIN | Utils::MATCH_NO_CASE); },
+            'word'   => function ($word) { return Arrays::keepMatchingValuesStartingWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
             'noword' => function ()      { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]
