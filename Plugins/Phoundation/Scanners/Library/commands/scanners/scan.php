@@ -24,9 +24,9 @@ use Plugins\Phoundation\Scanners\Scanner;
  */
 $restrictions = Restrictions::writable(DIRECTORY_DATA);
 
-CliDocumentation::usage('./pho scanners scan DEVICE PROFILE PATH');
+CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');
 
-CliDocumentation::help('This command will scan documents from the specified device with the specified profile to
+CliDocumentation::setHelp('This command will scan documents from the specified device with the specified profile to
 the specified path
 
 
@@ -39,7 +39,7 @@ PROFILE                                 The hardware device profile to use for t
 
 PATH                                    The path to which the scanned documents should be saved');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) { return Devices::new()->load()->getMatchingKeys($word); },

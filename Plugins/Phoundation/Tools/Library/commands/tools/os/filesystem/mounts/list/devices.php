@@ -19,8 +19,8 @@ use Phoundation\Utils\Arrays;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho tools os filesystem mounts list devices');
-CliDocumentation::help('This command will list all available mountable devices');
+CliDocumentation::setUsage('./pho tools os filesystem mounts list devices');
+CliDocumentation::setHelp('This command will list all available mountable devices');
 
 $argv = ArgvValidator::new()
     ->validate();

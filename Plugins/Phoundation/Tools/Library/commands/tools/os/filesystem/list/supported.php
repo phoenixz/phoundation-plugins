@@ -18,8 +18,8 @@ use Phoundation\Os\Devices\Storage\Proc;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho tools os filesystem list supported');
-CliDocumentation::help('This command will list all supported filesystem types');
+CliDocumentation::setUsage('./pho tools os filesystem list supported');
+CliDocumentation::setHelp('This command will list all supported filesystem types');
 
 $argv = ArgvValidator::new()
     ->validate();

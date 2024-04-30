@@ -20,7 +20,7 @@ use Phoundation\Utils\Numbers;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => [
             'word'   => function ($word) { return Directory::new(Directory::default($word), '/')->scan($word . '*'); },
@@ -29,9 +29,9 @@ CliDocumentation::autoComplete([
     ]
 ]);
 
-CliDocumentation::usage('./pho tools files size PATH');
+CliDocumentation::setUsage('./pho tools files size PATH');
 
-CliDocumentation::help('This command will count the sizes of all the files in the specified path recursively and
+CliDocumentation::setHelp('This command will count the sizes of all the files in the specified path recursively and
 display the amount found');
 
 $argv = ArgvValidator::new()

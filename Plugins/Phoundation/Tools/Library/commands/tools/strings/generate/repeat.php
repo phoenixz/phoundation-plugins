@@ -18,8 +18,8 @@ use Phoundation\Data\Validator\ArgvValidator;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho tools strings generate repeat');
-CliDocumentation::help('The command will output the specified character repeated the specified times');
+CliDocumentation::setUsage('./pho tools strings generate repeat');
+CliDocumentation::setHelp('The command will output the specified character repeated the specified times');
 
 $argv = ArgvValidator::new()
     ->select('character')->hasCharacters(1)

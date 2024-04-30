@@ -20,9 +20,9 @@ use Plugins\Phoundation\Hardware\Devices\Profile;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho hardware profiles show DEVICE PROFILE');
+CliDocumentation::setUsage('./pho hardware profiles show DEVICE PROFILE');
 
-CliDocumentation::help('This command will show the details of the specified hardware device
+CliDocumentation::setHelp('This command will show the details of the specified hardware device
 
 
 ARGUMENTS
@@ -32,7 +32,7 @@ DEVICE                                  The device name for which to show the de
 
 PROFILE                                 The profile name for which to show the details');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) { return Devices::new()->load()->getMatchingKeys($word); },

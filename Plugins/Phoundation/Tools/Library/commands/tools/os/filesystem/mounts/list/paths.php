@@ -19,8 +19,8 @@ use Phoundation\Utils\Arrays;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho tools os filesystem mounts list paths');
-CliDocumentation::help('This command will list all available mounted paths');
+CliDocumentation::setUsage('./pho tools os filesystem mounts list paths');
+CliDocumentation::setHelp('This command will list all available mounted paths');
 
 $argv = ArgvValidator::new()
     ->validate();

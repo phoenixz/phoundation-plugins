@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Script tools/os/filesystem/btrfs/subvolumes/create
+ *
+ *
+ *
+ * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+
 declare(strict_types=1);
 
 use Phoundation\Cli\CliDocumentation;
@@ -11,23 +22,12 @@ use Phoundation\Filesystem\Directory;
 use Phoundation\Filesystem\Restrictions;
 use Phoundation\Security\Crypt;
 
-
-/**
- * Script tools/os/filesystem/btrfs/subvolumes/create
- *
- *
- *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Scripts
- */
 $directory    = '/';
 $restrictions = Restrictions::new('/', true, tr('btrfs subvolumes create'));
 
-CliDocumentation::usage('./pho tools os filesystem btrfs subvolumes create PATH');
+CliDocumentation::setUsage('./pho tools os filesystem btrfs subvolumes create PATH');
 
-CliDocumentation::help('The BTRFS subvolume create script can create BTRFS subvolumes
+CliDocumentation::setHelp('The BTRFS subvolume create script can create BTRFS subvolumes
 
 
 ARGUMENTS
@@ -35,7 +35,7 @@ ARGUMENTS
 
 PATH                                    The path of the subvolume');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan($word . '*'); },

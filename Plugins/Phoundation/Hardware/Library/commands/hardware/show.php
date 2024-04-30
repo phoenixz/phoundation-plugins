@@ -18,9 +18,9 @@ use Plugins\Phoundation\Hardware\Devices\Devices;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho hardware show DEVICE');
+CliDocumentation::setUsage('./pho hardware show DEVICE');
 
-CliDocumentation::help('This command will show the details of the specified hardware device
+CliDocumentation::setHelp('This command will show the details of the specified hardware device
 
 
 ARGUMENTS
@@ -28,7 +28,7 @@ ARGUMENTS
 
 DEVICE                                  The device for which to show the details');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) { return Devices::new()->load()->getMatchingKeys($word); },

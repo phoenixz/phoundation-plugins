@@ -27,10 +27,10 @@ use Phoundation\Os\Devices\Storage\Exception\StorageException;
  */
 $restrictions = Restrictions::new('/dev', true);
 
-CliDocumentation::usage('./pho tools devices storage encrypt
+CliDocumentation::setUsage('./pho tools devices storage encrypt
 echo PASSWORD | ./pho tools devices storage encrypt -s');
 
-CliDocumentation::help('The encrypt script will encrypt the specified device by reformatting it and applying full disk encryption
+CliDocumentation::setHelp('The encrypt script will encrypt the specified device by reformatting it and applying full disk encryption
 
 NOTE: This will irreparably destroy all information on the specified device. Proceed with caution, here be dragons!
 
@@ -48,7 +48,7 @@ DEVICE                                  The device file to be encrypted
 
 -s,--scramble                           Scrambles the disk with random data before encrypting it, more secure');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($restrictions) { return Directory::new('/dev/', $restrictions)->scan($word . '*'); },

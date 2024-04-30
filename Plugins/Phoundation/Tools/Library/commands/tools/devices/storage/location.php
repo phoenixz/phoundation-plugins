@@ -22,10 +22,10 @@ use Phoundation\Filesystem\Restrictions;
  */
 $restrictions = Restrictions::new('/');
 
-CliDocumentation::usage('./pho tools devices storage location
+CliDocumentation::setUsage('./pho tools devices storage location
 ./pho tools devices storage location /home/user/filename');
 
-CliDocumentation::help('This script will display the device where the specified file is stored
+CliDocumentation::setHelp('This script will display the device where the specified file is stored
 
 
 ARGUMENTS
@@ -33,7 +33,7 @@ ARGUMENTS
 
 FILE                                    The path to the file (or directory) which needs to be examined');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($restrictions) { return Directory::new('/', $restrictions)->scan($word . '*'); },

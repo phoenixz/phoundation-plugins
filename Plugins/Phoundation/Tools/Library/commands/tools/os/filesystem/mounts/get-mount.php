@@ -20,7 +20,7 @@ use Phoundation\Filesystem\Restrictions;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => [
             'word'   => function ($word) { return Directory::new(Directory::default($word), '/')->scan($word . '*'); },
@@ -29,9 +29,9 @@ CliDocumentation::autoComplete([
     ]
 ]);
 
-CliDocumentation::usage('./pho tools os filesystem mounts get-mount PATH');
+CliDocumentation::setUsage('./pho tools os filesystem mounts get-mount PATH');
 
-CliDocumentation::help('This command will show where the specified PATH is mounted
+CliDocumentation::setHelp('This command will show where the specified PATH is mounted
 directory
 
 

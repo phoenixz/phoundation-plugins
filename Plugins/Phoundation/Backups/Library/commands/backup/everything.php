@@ -21,7 +21,7 @@ use Plugins\Phoundation\Backups\Backup;
  */
 $restrictions = Restrictions::writable(DIRECTORY_DATA . 'backups/');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'arguments' => [
         '-t,--target'  => [
             'word'   => function ($word) use ($restrictions) { return Directory::new(DIRECTORY_DATA . 'backups/', $restrictions)->scan('*' . $word . '*', GLOB_MARK | GLOB_ONLYDIR); },
@@ -30,9 +30,9 @@ CliDocumentation::autoComplete([
     ]
 ]);
 
-CliDocumentation::usage('./pho system backup everything');
+CliDocumentation::setUsage('./pho system backup everything');
 
-CliDocumentation::help('This command will backup *everything* related to this project to the default backup directory
+CliDocumentation::setHelp('This command will backup *everything* related to this project to the default backup directory
 
 
 ARGUMENTS

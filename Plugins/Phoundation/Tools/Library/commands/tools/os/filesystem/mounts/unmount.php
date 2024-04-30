@@ -23,7 +23,7 @@ use Phoundation\Os\Processes\Commands\UnMount;
  */
 $types = Proc::getSupportedFiletypes();
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         '1' => [
             'word'   => function ($word) { return Directory::new(Directory::default($word), '/')->scan($word . '*'); },
@@ -32,11 +32,11 @@ CliDocumentation::autoComplete([
     ]
 ]);
 
-CliDocumentation::usage('./pho tools os filesystem mounts umount TARGET
+CliDocumentation::setUsage('./pho tools os filesystem mounts umount TARGET
 ./pho tools os filesystem mounts umount TARGET [-f]
 ./pho tools os filesystem mounts umount TARGET [-l]');
 
-CliDocumentation::help('This command will unmount the specified target
+CliDocumentation::setHelp('This command will unmount the specified target
 
 If the specified target is a mounted target directory, it will be unmounted.
 

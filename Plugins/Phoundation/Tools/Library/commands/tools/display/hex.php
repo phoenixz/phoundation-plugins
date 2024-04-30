@@ -17,8 +17,8 @@ use Phoundation\Data\Validator\ArgvValidator;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho tools display hex');
-CliDocumentation::help('The display hex tool script will display the specified text in pure HEX code');
+CliDocumentation::setUsage('./pho tools display hex');
+CliDocumentation::setHelp('The display hex tool script will display the specified text in pure HEX code');
 
 $argv = ArgvValidator::new()
     ->select('text')->hasMaxCharacters(1048576)

@@ -23,7 +23,7 @@ use Phoundation\Utils\Arrays;
  */
 $types = Proc::getSupportedFiletypes();
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => true,
         '1' => [
@@ -40,11 +40,11 @@ CliDocumentation::autoComplete([
     ]
 ]);
 
-CliDocumentation::usage('./pho tools os filesystem mounts mount SOURCE TARGET
+CliDocumentation::setUsage('./pho tools os filesystem mounts mount SOURCE TARGET
 ./pho tools os filesystem mounts mount SOURCE TARGET [-t FILESYSTEM]
 ./pho tools os filesystem mounts mount SOURCE TARGET [-t FILESYSTEM] [-o OPTIONS]');
 
-CliDocumentation::help('This command will mount the specified source device (or directory) on the specified target
+CliDocumentation::setHelp('This command will mount the specified source device (or directory) on the specified target
 directory
 
 
