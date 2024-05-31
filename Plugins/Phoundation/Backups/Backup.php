@@ -29,7 +29,7 @@ use Phoundation\Web\Html\Enums\EnumElementInputType;
  *
  * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2023 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Accounts
  */
 
@@ -64,9 +64,9 @@ class Backup extends DataEntry
     /**
      * Returns the table name used by this object
      *
-     * @return string
+     * @return string|null
      */
-    public static function getTable(): string
+    public static function getTable(): ?string
     {
         return 'backups';
     }

@@ -46,11 +46,11 @@ CliDocumentation::setAutoComplete([
     'positions' => [
         0  => [
             'word'   => function ($word) { return Devices::new()->load()->keepMatchingKeysStartingWith($word,); },
-            'noword' => function ()      { return Devices::new()->load()->getKeys(); },
+            'noword' => function ()      { return Devices::new()->load()->getSourceKeys(); },
         ],
         1  => [
             'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->keepMatchingKeysStartingWith($word); },
-            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getKeys(); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getSourceKeys(); },
         ],
         2  => [
             'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->keepMatchingKeysStartingWith($word); },

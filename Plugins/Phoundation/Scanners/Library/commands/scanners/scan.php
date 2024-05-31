@@ -47,7 +47,7 @@ CliDocumentation::setAutoComplete([
         ],
         1 => [
             'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
-            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getKeys(); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getSourceKeys(); },
         ],
         2 => [
             'word'   => function ($word) use ($restrictions) { return Directory::new(DIRECTORY_DATA, $restrictions)->scan($word . '*') ; },

@@ -37,7 +37,7 @@ class Devices extends DataList implements DevicesInterface
     /**
      * @inheritDoc
      */
-    public static function getTable(): string
+    public static function getTable(): ?string
     {
         return 'hardware_devices';
     }
@@ -45,7 +45,7 @@ class Devices extends DataList implements DevicesInterface
     /**
      * @inheritDoc
      */
-    public static function getEntryClass(): string
+    public static function getEntryClass(): ?string
     {
         return Device::class;
     }

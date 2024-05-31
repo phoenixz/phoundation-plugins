@@ -33,7 +33,7 @@ class Profiles extends DataList implements ProfilesInterface
     /**
      * @inheritDoc
      */
-    public static function getTable(): string
+    public static function getTable(): ?string
     {
         return 'hardware_profiles';
     }
@@ -42,7 +42,7 @@ class Profiles extends DataList implements ProfilesInterface
     /**
      * @inheritDoc
      */
-    public static function getEntryClass(): string
+    public static function getEntryClass(): ?string
     {
         return Profile::class;
     }

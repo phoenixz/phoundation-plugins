@@ -66,7 +66,7 @@ class Device extends DataEntry implements DeviceInterface
     /**
      * @inheritDoc
      */
-    public static function getTable(): string
+    public static function getTable(): ?string
     {
         return 'hardware_devices';
     }
@@ -109,7 +109,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     public function setVendorString(Stringable|string|null $vendor): static
     {
-        return $this->setSourceValue('vendor_string', (string) $vendor);
+        return $this->set((string) $vendor, 'vendor_string');
     }
 
 
@@ -132,7 +132,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     protected function setSeoVendorString(Stringable|string|null $seo_vendor): static
     {
-        return $this->setSourceValue('seo_vendor_string', (string) $seo_vendor);
+        return $this->set((string) $seo_vendor, 'seo_vendor_string');
     }
 
 
@@ -155,7 +155,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     protected function setSeoProductString(Stringable|string|null $seo_product): static
     {
-        return $this->setSourceValue('seo_product_string', (string) $seo_product);
+        return $this->set((string) $seo_product, 'seo_product_string');
     }
 
 
@@ -178,7 +178,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     public function setProductString(Stringable|string|null $_product): static
     {
-        return $this->setSourceValue('product_string', (string) $_product);
+        return $this->set((string) $_product, 'product_string');
     }
 
 
@@ -201,7 +201,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     public function setString(Stringable|string|null $_product): static
     {
-        return $this->setSourceValue('string', (string) $_product);
+        return $this->set((string) $_product, 'string');
     }
 
 
@@ -224,7 +224,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     protected function setSeoString(Stringable|string|null $_product): static
     {
-        return $this->setSourceValue('seo_string', (string) $_product);
+        return $this->set((string) $_product, 'seo_string');
     }
 
 
@@ -247,7 +247,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     public function setLibusb(Stringable|string|null $_product): static
     {
-        return $this->setSourceValue('libusb', (string) $_product);
+        return $this->set((string) $_product, 'libusb');
     }
 
 
@@ -270,7 +270,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     public function setBus(Stringable|string|null $_product): static
     {
-        return $this->setSourceValue('bus', (string) $_product);
+        return $this->set((string) $_product, 'bus');
     }
 
 
@@ -293,7 +293,7 @@ class Device extends DataEntry implements DeviceInterface
      */
     public function setDefault(int|bool|null $_product): static
     {
-        return $this->setSourceValue('default', (bool) $_product);
+        return $this->set((bool) $_product, 'default');
     }
 
 

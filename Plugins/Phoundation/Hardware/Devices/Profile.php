@@ -50,7 +50,7 @@ class Profile extends DataEntry implements ProfileInterface
     /**
      * @inheritDoc
      */
-    public static function getTable(): string
+    public static function getTable(): ?string
     {
         return 'hardware_profiles';
     }
@@ -93,7 +93,7 @@ class Profile extends DataEntry implements ProfileInterface
      */
     public function setDefault(int|bool|null $default): static
     {
-        return $this->setSourceValue('default', $default);
+        return $this->set($default, 'default');
     }
 
 
@@ -163,7 +163,7 @@ class Profile extends DataEntry implements ProfileInterface
             ->save();
 
         // Copy the options to the new profile
-        $keys = Arrays::keepMatchingValues($this->getOptions()->getKeys(), $keys, Utils::MATCH_CASE_INSENSITIVE | Utils::MATCH_ANY | Utils::MATCH_ENDS_WITH);
+        $keys = Arrays::keepMatchingValues($this->getOptions()->getSourceKeys(), $keys, Utils::MATCH_CASE_INSENSITIVE | Utils::MATCH_ANY | Utils::MATCH_ENDS_WITH);
 
         foreach ($this->getOptions() as $key => $option) {
             if (in_array($key, $keys)) {

@@ -41,7 +41,7 @@ class Option extends DataEntry
     /**
      * @inheritDoc
      */
-    public static function getTable(): string
+    public static function getTable(): ?string
     {
         return 'hardware_options';
     }
@@ -84,7 +84,7 @@ class Option extends DataEntry
      */
     public function setKey(?string $key): static
     {
-        return $this->setSourceValue('key', $key);
+        return $this->set($key, 'key');
     }
 
 
@@ -114,7 +114,7 @@ class Option extends DataEntry
                  ->checkValues($value);
         }
 
-        return $this->setSourceValue('value', get_null($value));
+        return $this->set(get_null($value), 'value');
     }
 
 
@@ -191,7 +191,7 @@ class Option extends DataEntry
      */
     public function setValues(?string $values): static
     {
-        return $this->setSourceValue('values', $values);
+        return $this->set($values, 'values');
     }
 
 
@@ -214,7 +214,7 @@ class Option extends DataEntry
      */
     public function setRange(?string $range): static
     {
-        return $this->setSourceValue('range', $range);
+        return $this->set($range, 'range');
     }
 
 
@@ -237,7 +237,7 @@ class Option extends DataEntry
      */
     public function setDefault(?string $default): static
     {
-        return $this->setSourceValue('default', $default);
+        return $this->set($default, 'default');
     }
 
 
