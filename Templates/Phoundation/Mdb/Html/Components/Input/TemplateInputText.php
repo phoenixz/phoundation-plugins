@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Input;
+namespace Templates\Phoundation\Mdb\Html\Components\Input;
 
-use Phoundation\Utils\Arrays;
-use Phoundation\Web\Html\Components\Input\InputHidden;
 use Phoundation\Web\Html\Components\Input\InputText;
-use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
 
 
 /**

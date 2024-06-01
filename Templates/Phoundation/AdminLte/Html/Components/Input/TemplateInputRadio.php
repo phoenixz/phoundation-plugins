@@ -13,9 +13,10 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Input;
+namespace Templates\Phoundation\AdminLte\Html\Components\Input;
 
 use Phoundation\Web\Html\Components\Input\InputRadio;
+
 
 class TemplateInputRadio extends TemplateInput
 {
@@ -36,11 +37,11 @@ class TemplateInputRadio extends TemplateInput
      */
     public function render(): ?string
     {
-        $object = $this->getComponent();
+        $component = $this->getComponent();
 
         return '<div class="custom-control custom-checkbox">
                     ' . parent::render() . '
-                    ' . ($object->getLabel() ? '<label for="' . $object->getId() . '" class="custom-control-label">' . $object->getLabel() . '</label>' : '') . '
+                    ' . ($component->getLabel() ? '<label for="' . $component->getId() . '" class="custom-control-label">' . $component->getLabel() . '</label>' : '') . '
                 </div>';
     }
 }

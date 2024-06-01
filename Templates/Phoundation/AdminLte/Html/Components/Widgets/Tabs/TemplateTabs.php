@@ -12,12 +12,13 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets\Tabs;
+namespace Templates\Phoundation\AdminLte\Html\Components\Widgets\Tabs;
 
-use Phoundation\Exception\UnderConstructionException;
 use Phoundation\Enums\EnumOrientation;
+use Phoundation\Exception\UnderConstructionException;
 use Phoundation\Web\Html\Components\Widgets\Tabs\Tabs;
 use Phoundation\Web\Html\Template\TemplateRenderer;
+
 
 class TemplateTabs extends TemplateRenderer
 {

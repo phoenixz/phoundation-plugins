@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Tables;
+namespace Templates\Phoundation\AdminLte\Html\Components\Tables;
 
 use Phoundation\Web\Html\Template\TemplateRenderer;
 

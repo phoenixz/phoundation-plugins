@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets;
+namespace Templates\Phoundation\AdminLte\Html\Components\Widgets;
 
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Html;

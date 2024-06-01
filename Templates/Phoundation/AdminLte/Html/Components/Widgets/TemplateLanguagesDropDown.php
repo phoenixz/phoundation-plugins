@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets;
+namespace Templates\Phoundation\AdminLte\Html\Components\Widgets;
 
 use Phoundation\Date\Date;
 use Phoundation\Exception\OutOfBoundsException;
@@ -68,7 +68,7 @@ class TemplateLanguagesDropDown extends TemplateRenderer
                                   </a>
                                   <div class="dropdown-divider"></div>';
             }
-            
+
         } else {
             $this->render .= '  <span class="dropdown-item dropdown-header">' . tr('No alternative languages available') . '</span>
                                     <div class="dropdown-divider"></div>';

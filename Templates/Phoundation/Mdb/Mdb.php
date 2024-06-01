@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 
-namespace Templates\Mdb;
+namespace Templates\Phoundation\Mdb;
 
 use Phoundation\Web\Html\Template\Template;
-use Templates\Mdb\Html\Components\Widgets\Menus\TemplateMenu;
+use Templates\Phoundation\Mdb\Html\Components\Widgets\Menus\TemplateMenu;
 
 
 /**

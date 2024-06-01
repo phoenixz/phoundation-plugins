@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components;
+namespace Templates\Phoundation\Mdb\Html\Components;
 
 use Phoundation\Web\Html\Components\A;
-use Phoundation\Web\Html\Components\Icons\Icon;
-use Phoundation\Web\Html\Components\Icons\Icons;
-use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 
 

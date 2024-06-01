@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Menus;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Menus;
 
 use Phoundation\Web\Html\Components\Widgets\Menus\Interfaces\MenuInterface;
 use Phoundation\Web\Html\Html;

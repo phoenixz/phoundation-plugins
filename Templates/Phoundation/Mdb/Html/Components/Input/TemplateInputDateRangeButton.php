@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Input;
+namespace Templates\Phoundation\Mdb\Html\Components\Input;
 
 use Phoundation\Web\Html\Components\Input\InputDateRangeButton;
 

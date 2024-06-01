@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Input;
+namespace Templates\Phoundation\AdminLte\Html\Components\Input;
 
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Components\Input\InputDateRange;

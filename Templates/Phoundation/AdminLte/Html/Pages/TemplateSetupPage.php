@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Pages;
+namespace Templates\Phoundation\AdminLte\Html\Pages;
 
 use Phoundation\Web\Html\Template\TemplateRenderer;
 use Phoundation\Web\Requests\Response;
+
 
 throw new \Phoundation\Exception\UnderConstructionException();
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb;
+namespace Templates\Phoundation\Mdb;
 
 use Phoundation\Core\Plugins\Plugins;
 use Phoundation\Utils\Config;
@@ -118,16 +118,16 @@ class TemplatePage extends \Phoundation\Web\Html\Template\TemplatePage
         Response::loadCss([
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css',
             'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap',
-            'mdb/css/mdb',
-            'mdb/css/mdb-fix',
-            'mdb/css/phoundation',
+            'Phoundation/mdb/css/mdb',
+            'Phoundation/mdb/css/mdb-fix',
+            'Phoundation/mdb/css/phoundation',
         ], true);
 
         // Load configured CSS files
         Response::loadCss(Config::getArray('templates.mdb.css', []));
 
         // Load basic MDB amd jQuery javascript libraries
-        Response::loadJavascript('mdb/js/jquery,mdb/js/mdb.umd', prefix: true);
+        Response::loadJavascript('Phoundation/mdb/js/jquery,Phoundation/mdb/js/mdb.umd', prefix: true);
 
         // Set basic page details
         Response::setPageTitle(tr('Phoundation platform'));

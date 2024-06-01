@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Boxes;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Boxes;
 
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;

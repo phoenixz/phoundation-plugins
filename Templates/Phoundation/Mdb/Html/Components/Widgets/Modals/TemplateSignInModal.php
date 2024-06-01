@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Modals;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Modals;
 
 use Phoundation\Web\Html\Components\Script;
 use Phoundation\Web\Html\Enums\EnumDisplaySize;

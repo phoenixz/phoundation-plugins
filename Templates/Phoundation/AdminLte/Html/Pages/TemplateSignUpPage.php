@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Pages;
+namespace Templates\Phoundation\AdminLte\Html\Pages;
 
 use Phoundation\Core\Sessions\Session;
 use Phoundation\Utils\Config;
@@ -115,7 +115,7 @@ class TemplateSignUpPage extends TemplateRenderer
 
         if (Session::supports('copyright')) {
             $this->render .= '          <div class="login-footer text-center">
-                                            ' . 'Copyright © ' . Config::getString('project.copyright', '2023') . ' <b><a href="' . Config::getString('project.owner.url', 'https://phoundation.org') . '" target="_blank">' . Config::getString('project.owner.name', 'Phoundation') . '</a></b><br>' . '
+                                            ' . 'Copyright © ' . Config::getString('project.copyright', '2024') . ' <b><a href="' . Config::getString('project.owner.url', 'https://phoundation.org') . '" target="_blank">' . Config::getString('project.owner.name', 'Phoundation') . '</a></b><br>' . '
                                             All rights reserved
                                         </div>';
         }

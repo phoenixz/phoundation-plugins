@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Layouts;
+namespace Templates\Phoundation\AdminLte\Html\Layouts;
 
 use Phoundation\Web\Html\Layouts\Grid;
 use Phoundation\Web\Html\Template\TemplateRenderer;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Cards;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Cards;
 
 use Phoundation\Exception\UnderConstructionException;
 use Phoundation\Web\Html\Template\TemplateRenderer;

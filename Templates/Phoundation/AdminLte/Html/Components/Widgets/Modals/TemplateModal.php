@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets\Modals;
+namespace Templates\Phoundation\AdminLte\Html\Components\Widgets\Modals;
 
 use Phoundation\Web\Html\Template\TemplateRenderer;
 

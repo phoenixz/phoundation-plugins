@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Widgets\Panels;
+namespace Templates\Phoundation\AdminLte\Html\Components\Widgets\Panels;
 
 use Phoundation\Core\Sessions\Session;
 use Phoundation\Utils\Strings;
@@ -12,7 +12,7 @@ use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 use Phoundation\Web\Http\UrlBuilder;
-use Templates\AdminLte\Exception\AdminLteException;
+use Templates\Phoundation\AdminLte\Exception\AdminLteException;
 
 
 /**

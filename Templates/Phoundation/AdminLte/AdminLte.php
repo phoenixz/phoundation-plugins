@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 
-namespace Templates\AdminLte;
+namespace Templates\Phoundation\AdminLte;
 
 use Phoundation\Web\Html\Template\Template;
-use Templates\AdminLte\Html\Components\Widgets\Menus\TemplateMenu;
+use Templates\Phoundation\AdminLte\Html\Components\Widgets\Menus\TemplateMenu;
 
 
 /**

@@ -13,10 +13,11 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components;
+namespace Templates\Phoundation\Mdb\Html\Components;
 
 use Phoundation\Web\Html\Components\Label;
 use Phoundation\Web\Html\Template\TemplateRenderer;
+
 
 class TemplateLabel extends TemplateRenderer
 {

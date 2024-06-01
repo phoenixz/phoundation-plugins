@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Pages;
-
-use Phoundation\Core\Core;
-use Phoundation\Core\Sessions\Session;
-use Phoundation\Utils\Config;
-use Phoundation\Web\Html\Template\TemplateRenderer;
-use Phoundation\Web\Http\UrlBuilder;
-use Phoundation\Web\Requests\Response;
-
-
 /**
  * Class TemplateSignInPage
  *
@@ -22,6 +10,18 @@ use Phoundation\Web\Requests\Response;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Web
  */
+
+declare(strict_types=1);
+
+namespace Templates\Phoundation\Mdb\Html\Pages;
+
+use Phoundation\Core\Core;
+use Phoundation\Core\Sessions\Session;
+use Phoundation\Utils\Config;
+use Phoundation\Web\Html\Template\TemplateRenderer;
+use Phoundation\Web\Http\UrlBuilder;
+use Phoundation\Web\Requests\Response;
+
 class TemplateSignInPage extends TemplateRenderer
 {
     public function render(): ?string
@@ -60,7 +60,7 @@ class TemplateSignInPage extends TemplateRenderer
 
         // Render the signin page section
         $signin   = '   <form method="post" action="' . UrlBuilder::getWww() . '">
-                          <div class="text-center h1">
+                          <div class="sign-in text-center h1">
                               ' . Config::getString('project.owner.label', '<span>Phoun</span>dation') . '
                           </div>
                           <hr>';
@@ -115,7 +115,7 @@ class TemplateSignInPage extends TemplateRenderer
 
         if (Session::supports('copyright')) {
             $signin .= '  <div class="text-center">
-                            Copyright © 2023 ' . Config::getString('project.name', 'Phoundation') . '<br/><small>All rights reserved</small>
+                            Copyright © 2024 <a target="_blank" href="' . Config::getString('project.owner.url', 'https://phoundation.org') . '">' . Config::getString('project.owner.name', 'Phoundation') . '</a><br/><small>All rights reserved</small>
                           </div>';
         }
 
@@ -169,7 +169,7 @@ class TemplateSignInPage extends TemplateRenderer
 
             if (Session::supports('copyright')) {
                 $signup .= '  <div class="text-center">
-                                Copyright © 2023 ' . Config::getString('project.name', 'Phoundation') . '<br/><small>All rights reserved</small>
+                                Copyright © 2024 ' . Config::getString('project.name', 'Phoundation') . '<br/><small>All rights reserved</small>
                               </div>';
             }
 
@@ -182,7 +182,7 @@ class TemplateSignInPage extends TemplateRenderer
                               <!-- Heading -->
                               <section class="text-center text-md-start">
                                 <!-- Background gradient -->
-                                <div class="p-5" style="height: 200px; background: url(' . UrlBuilder::getImg('img/banners/' . Core::getProjectSeoName() . '/large.jpg') . ');">
+                                <div class="p-5" style="height: 200px; background: url(' . UrlBuilder::getImg('img/banners/' . Core::getProjectSeoName() . '/large.jpg') . ') no-repeat;">
                                 </div>
                                 <!-- Background gradient -->
                               </section>

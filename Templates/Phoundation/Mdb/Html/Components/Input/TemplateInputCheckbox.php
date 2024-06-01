@@ -13,9 +13,10 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Input;
+namespace Templates\Phoundation\Mdb\Html\Components\Input;
 
 use Phoundation\Web\Html\Components\Input\InputCheckbox;
+
 
 class TemplateInputCheckbox extends TemplateInput
 {
@@ -36,11 +37,11 @@ class TemplateInputCheckbox extends TemplateInput
      */
     public function render(): ?string
     {
-        $object = $this->getComponent();
+        $component = $this->getComponent();
 
-        return '<div class="form-check' . ($object->getInline() ? ' form-check-inline' : '') . '">
+        return '<div class="form-check' . ($component->getInline() ? ' form-check-inline' : '') . '">
                     ' . parent::render() . '
-                    ' . ($object->getLabel() ? '<label for="' . $object->getId() . '" class="form-check-label">' . $object->getLabel() . '</label>' : '') . '
+                    ' . ($component->getLabel() ? '<label for="' . $component->getId() . '" class="form-check-label">' . $component->getLabel() . '</label>' : '') . '
                 </div>';
     }
 }

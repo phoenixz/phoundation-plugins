@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class DataEntryForm
  *
@@ -12,15 +13,19 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Forms;
+namespace Templates\Phoundation\Mdb\Html\Components\Forms;
 
+use Phoundation\Core\Log\Log;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionInterface;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Components\Forms\Interfaces\DataEntryFormColumnInterface;
+use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
 use Phoundation\Web\Html\Components\Widgets\Tooltips\Tooltip;
+use Phoundation\Web\Html\Enums\EnumElement;
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
-use Templates\Mdb\TemplatePage;
+use Templates\Phoundation\Mdb\TemplatePage;
+
 
 class TemplateDataEntryFormColumn extends TemplateRenderer
 {
@@ -44,9 +49,12 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
      */
     public function render(): ?string
     {
+        if (!$this->component) {
+            return null;
+        }
+
         $definition = $this->component->getDefinition();
         $component  = $this->component->getColumnComponent();
-        $group      = ($component->hasBeforeButtons() or $component->hasAfterButtons());
         $scripts    = '';
 
         if (!$definition) {
@@ -54,7 +62,7 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
         }
 
         if (!$component) {
-            throw new OutOfBoundsException(tr('Cannot render form component, no component specified'));
+            return null;
         }
 
         // Add scripts?
@@ -64,12 +72,49 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
             }
         }
 
+        if (is_string($component)) {
+            $render = $component;
+            $group  = false;
+
+        } else {
+            if ($component instanceof InputSelectInterface) {
+                if ($definition->getElement() !== 'select') {
+                    $definition->setElement(EnumElement::select);
+
+                    Log::warning(tr('Encountered <select> component ":component" in data entry form ":data_entry" with element not set to EnumElement->select but to ":element" instead. This will cause rendering issues, forced $component->setElement(EnumElement->select)', [
+                        ':data_entry' => get_class($definition->getDataEntry()),
+                        ':component'  => $definition->getColumn(),
+                        ':element'    => $component->getElement(),
+                    ]));
+                }
+            }
+
+            $render = $component->render();
+            $group  = ($component->hasBeforeButtons() or $component->hasAfterButtons());
+
+            if ($component->hasOuterDiv()) {
+                // Get attributes and properties for the outer div
+                $outer      = $component->getOuterDiv();
+                $class      = $outer->getClass();
+                $attributes = $outer->getAttributesString();
+            }
+        }
+
         if ($definition->getHidden()) {
             // Hidden elements don't display anything beyond the hidden <input>
-            return $component . $scripts;
+            return $render . $scripts;
         }
 
         switch ($definition->getElement()) {
+            case 'select':
+                $this->render .= '<div class="' . ($group ? 'input-group ' : null) . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' d-none') . '">
+                                     ' . $render . $scripts .
+                    ($definition->getLabel() ? ' <label class="form-label select-label" for="' . Html::safe($definition->getColumn()) . '">
+                                                   ' . Html::safe($definition->getLabel()) . '
+                                                 </label>' : '') . '
+                                  </div>';
+                return parent::render();
+
             case 'textarea':
                 // no break
             case 'input':
@@ -77,27 +122,9 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
                 $mdb_init = ' data-mdb-input-init=""';
                 break;
 
-            case 'select':
-                $this->render .= '<div class="' . ($group ? 'input-group ' : null) . TemplatePage::getBottomMarginString() . Html::safe($definition->getSize() ? 'col-sm-' . $definition->getSize() : 'col') . ($definition->getVisible() ? '' : ' invisible') . ($definition->getDisplay() ? '' : ' d-none') . '">
-                                     ' . $component->render() . $scripts .
-                    ($definition->getLabel() ? ' <label class="form-label select-label" for="' . Html::safe($definition->getColumn()) . '">
-                                                   ' . Html::safe($definition->getLabel()) . '
-                                                 </label>' : '') . '
-                                  </div>';
-                return parent::render();
-
             default:
                 $label    = null;
                 $mdb_init = '';
-        }
-
-        $render = $component->render();
-
-        if ($component->hasOuterDiv()) {
-            // Get attributes and properties for the outer div
-            $outer      = $component->getOuterDiv();
-            $class      = $outer->getClass();
-            $attributes = $outer->getAttributesString();
         }
 
         $this->render .= match ($definition->getInputType()?->value) {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets;
 
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Components\Widgets\LanguagesDropDown;
@@ -72,7 +72,7 @@ class TemplateLanguagesDropDown extends TemplateRenderer
                                     <a class="dropdown-item" href="' . Html::safe(str_replace(':ID', $language->getId(), $this->component->getLanguagesUrl())) . '"><i class="flag-' . $language->getFlagName() . ' flag"></i>' . $language->getName() . '</a>
                                   </li>';
             }
-            
+
         } else {
             $this->render .= '    <li>
                                     <span class="dropdown-item" href="#">' . tr('No alternative languages available') . '</span>

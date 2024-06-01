@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Panels;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Panels;
 
 use Phoundation\Core\Core;
 use Phoundation\Core\Sessions\Session;
 use Phoundation\Utils\Config;
 use Phoundation\Utils\Strings;
-use Phoundation\Web\Html\Components\Script;
 use Phoundation\Web\Html\Components\Widgets\Panels\SidePanel;
-use Phoundation\Web\Html\Enums\EnumJavascriptWrappers;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 use Phoundation\Web\Http\UrlBuilder;
 
@@ -56,7 +54,7 @@ class TemplateSidePanel extends TemplateRenderer
                                         ->setAlt(tr('Profile picture for :user', [':user' => Session::getUser()->getDisplayName()]))
                                         ->setWidth(32)
                                         ->setHeight(32)
-                                        ->render() . Session::getUser()->getDisplayName() . '
+                                        ->render() . tr('Dr. Test') . '
                               </a>
                               ' . $this->component->getMenu()?->render() . '
                             </nav>';

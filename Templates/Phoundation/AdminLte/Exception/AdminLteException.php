@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Exception;
+namespace Templates\Phoundation\AdminLte\Exception;
 
 use Templates\Exception\TemplatesException;
 

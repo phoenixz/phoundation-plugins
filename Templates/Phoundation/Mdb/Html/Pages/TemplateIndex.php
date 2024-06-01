@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Pages;
+namespace Templates\Phoundation\Mdb\Html\Pages;
 
 class TemplateIndex
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Forms;
+namespace Templates\Phoundation\AdminLte\Html\Forms;
 
 use Phoundation\Web\Html\Forms\SignInForm;
 use Phoundation\Web\Html\Html;

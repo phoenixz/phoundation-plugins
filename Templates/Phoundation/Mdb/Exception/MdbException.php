@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Exception;
+namespace Templates\Phoundation\Mdb\Exception;
 
 use Templates\Exception\TemplatesException;
 

@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Templates\Mdb\Html\Components\Input;
-
-use Phoundation\Web\Html\Components\Input\InputTime;
-use Phoundation\Web\Html\Enums\EnumInputType;
-
 /**
  * Class TemplateInputTime
  *
@@ -17,6 +10,15 @@ use Phoundation\Web\Html\Enums\EnumInputType;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Templates\Mdb
  */
+
+declare(strict_types=1);
+
+namespace Templates\Phoundation\Mdb\Html\Components\Input;
+
+use Phoundation\Web\Html\Components\Input\InputTime;
+use Phoundation\Web\Html\Enums\EnumInputType;
+
+
 class TemplateInputTime extends TemplateInputText
 {
     /**

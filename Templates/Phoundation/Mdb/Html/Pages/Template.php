@@ -13,11 +13,12 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Pages;
+namespace Templates\Phoundation\Mdb\Html\Pages;
 
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Template\TemplateRenderer;
 use Phoundation\Web\Http\UrlBuilder;
+
 
 class Template extends TemplateRenderer
 {

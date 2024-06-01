@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Modals;
+namespace Templates\Phoundation\Mdb\Html\Modals;
 
 use Phoundation\Web\Html\Components\Script;
 use Phoundation\Web\Html\Components\Widgets\Modals\SignInModal;

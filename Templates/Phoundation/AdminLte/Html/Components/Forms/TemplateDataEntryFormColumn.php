@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Class DataEntryForm
+ * Class TemplateDataEntryFormColumn
  *
  *
  *
@@ -12,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Forms;
+namespace Templates\Phoundation\AdminLte\Html\Components\Forms;
 
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionInterface;
 use Phoundation\Exception\OutOfBoundsException;
@@ -36,7 +37,6 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
     {
         $definition = $this->component->getDefinition();
         $component  = $this->component->getColumnComponent();
-        $group      = ($component->hasBeforeButtons() or $component->hasAfterButtons());
         $scripts    = '';
 
         if (!$definition) {
@@ -44,11 +44,23 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
         }
 
         if (!$component) {
-            throw new OutOfBoundsException(tr('Cannot render form component, no component specified'));
+            return null;
         }
 
-        if (is_object($component)) {
-            $component = $component->render();
+        if (is_string($component)) {
+            $render = $component;
+            $group  = false;
+
+        } else {
+            $render = $component->render();
+            $group  = ($component->hasBeforeButtons() or $component->hasAfterButtons());
+
+            if ($component->hasOuterDiv()) {
+                // Get attributes and properties for the outer div
+                $outer      = $component->getOuterDiv();
+                $class      = $outer->getClass();
+                $attributes = $outer->getAttributesString();
+            }
         }
 
         // Add scripts?
@@ -60,30 +72,30 @@ class TemplateDataEntryFormColumn extends TemplateRenderer
 
         if ($definition->getHidden()) {
             // Hidden elements don't display anything beyond the hidden <input>
-            return $component . $scripts;
+            return $render . $scripts;
         }
 
         $this->render .= match ($definition->getInputType()?->value) {
             'checkbox' => '    <div class="col-sm-' . Html::safe($definition->getSize() ?? 12) . '">
-                                   <div class="form-group">
+                                   <div class="form-group'  . ($group ? 'input-group ' : null) . (isset($class) ? ' ' . $class : '') . '"' . (isset($attributes) ? ' ' . $attributes : '') . '>
                                        <div class="form-horizontal">
                                            <label for="' . Html::safe($definition->getColumn()) . '">' . Html::safe($definition->getLabel()) . '</label>
                                            ' . $this->renderTooltip($definition) . '
                                        </div>
                                        <div class="form-check">
-                                           ' . $component . $scripts . '
+                                           ' . $render . $scripts . '
                                            <label class="form-check-label" for="' . Html::safe($definition->getColumn()) . '">' . Html::safe($definition->getLabel()) . '</label>
                                        </div>
                                    </div>
                                </div>',
 
             default    => '    <div class="col-sm-' . Html::safe($definition->getSize() ?? 12) . '">
-                                   <div class="form-group'  . ($group ? 'input-group ' : null) . '">
+                                   <div class="form-group'  . ($group ? 'input-group ' : null) . (isset($class) ? ' ' . $class : '') . '"' . (isset($attributes) ? ' ' . $attributes : '') . '>
                                        <div class="form-horizontal">
                                            <label for="' . Html::safe($definition->getColumn()) . '">' . Html::safe($definition->getLabel()) . '</label>
                                            ' . $this->renderTooltip($definition) . '
                                        </div>
-                                       ' . $component . $scripts . '
+                                       ' . $render . $scripts . '
                                    </div>
                                 </div>',
         };

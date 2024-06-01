@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Panels;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Panels;
 
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Html;

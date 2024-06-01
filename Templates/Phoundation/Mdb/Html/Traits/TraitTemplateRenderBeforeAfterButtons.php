@@ -13,9 +13,10 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Traits;
+namespace Templates\Phoundation\Mdb\Html\Traits;
 
 use Phoundation\Web\Html\Components\Input\Interfaces\RenderInterface;
+
 
 trait TraitTemplateRenderBeforeAfterButtons
 {

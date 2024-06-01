@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Layouts;
+namespace Templates\Phoundation\Mdb\Html\Layouts;
 
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Layouts\GridColumn;

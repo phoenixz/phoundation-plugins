@@ -2,21 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Widgets\Panels;
+namespace Templates\Phoundation\Mdb\Html\Components\Widgets\Panels;
 
-use Phoundation\Core\Sessions\Session;
 use Phoundation\Utils\Strings;
 use Phoundation\Web\Html\Components\Icons\FullScreen;
-use Phoundation\Web\Html\Components\Icons\Icon;
 use Phoundation\Web\Html\Components\Icons\SignOut;
 use Phoundation\Web\Html\Components\Input\Interfaces\RenderInterface;
 use Phoundation\Web\Html\Components\Logo;
 use Phoundation\Web\Html\Components\Widgets\Panels\TopPanel;
-use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Html;
 use Phoundation\Web\Html\Template\TemplateRenderer;
-use Phoundation\Web\Http\UrlBuilder;
-use Templates\Mdb\Exception\MdbException;
+use Templates\Phoundation\Mdb\Exception\MdbException;
 
 
 /**

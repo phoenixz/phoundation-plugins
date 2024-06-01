@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Forms;
+namespace Templates\Phoundation\Mdb\Html\Components\Forms;
 
 use Templates\Mdb\Html\Components\DataEntryForm;
 

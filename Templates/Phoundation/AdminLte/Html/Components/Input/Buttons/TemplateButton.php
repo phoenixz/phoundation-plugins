@@ -13,10 +13,11 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Input\Buttons;
+namespace Templates\Phoundation\AdminLte\Html\Components\Input\Buttons;
 
 use Phoundation\Web\Html\Components\Input\Buttons\Button;
 use Phoundation\Web\Html\Template\TemplateRenderer;
+
 
 class TemplateButton extends TemplateRenderer
 {

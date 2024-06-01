@@ -13,12 +13,13 @@
 
 declare(strict_types=1);
 
-namespace Templates\Mdb\Html\Components\Input;
+namespace Templates\Phoundation\Mdb\Html\Components\Input;
 
 use Phoundation\Web\Html\Components\Input\InputHidden;
 use Phoundation\Web\Html\Components\Input\Interfaces\InputInterface;
 use Phoundation\Web\Html\Template\TemplateRenderer;
-use Templates\Mdb\Html\Traits\TraitTemplateRenderBeforeAfterButtons;
+use Templates\Phoundation\Mdb\Html\Traits\TraitTemplateRenderBeforeAfterButtons;
+
 
 class TemplateInput extends TemplateRenderer
 {

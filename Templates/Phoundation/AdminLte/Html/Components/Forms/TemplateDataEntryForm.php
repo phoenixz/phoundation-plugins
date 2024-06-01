@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Templates\AdminLte\Html\Components\Forms;
+namespace Templates\Phoundation\AdminLte\Html\Components\Forms;
 
 use Phoundation\Web\Html\Components\Forms\DataEntryForm;
 use Phoundation\Web\Html\Template\TemplateRenderer;
