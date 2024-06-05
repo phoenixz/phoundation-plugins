@@ -1,0 +1,82 @@
+#!/usr/bin/php
+<?php
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Filesystem\Directory;
+use Phoundation\Filesystem\Restrictions;
+use Plugins\Phoundation\Hardware\Devices\Device;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+use Plugins\Phoundation\Scanners\Scanner;
+
+
+/**
+ * Script scanners/scan
+ *
+ * This command will scan on the specified device using the specified profile
+ *
+ * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+$restrictions = Restrictions::writable(DIRECTORY_DATA);
+
+CliDocumentation::usage('./pho scanners scan DEVICE PROFILE PATH');
+
+CliDocumentation::help('This command will scan documents from the specified device with the specified profile to
+the specified path
+
+
+ARGUMENTS
+
+
+DEVICE                                  The device from which to scan
+
+PROFILE                                 The hardware device profile to use for this scan
+
+PATH                                    The path to which the scanned documents should be saved');
+
+CliDocumentation::autoComplete([
+    'positions' => [
+        0 => [
+            'word'   => function ($word) { return Devices::new()->load()->getMatchingKeys($word); },
+            'noword' => function ()      { return Devices::new()->load(); },
+        ],
+        1 => [
+            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
+            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getSourceKeys(); },
+        ],
+        2 => [
+            'word'   => function ($word) use ($restrictions) { return Directory::new(DIRECTORY_DATA, $restrictions)->scan($word . '*') ; },
+            'noword' => function ()      use ($restrictions) { return Directory::new(DIRECTORY_DATA, $restrictions)->scan(); },
+        ],
+    ],
+    'arguments' => [
+        '-b,--batch' => false
+    ]
+]);
+
+
+// Validate arguments
+$argv = ArgvValidator::new()
+    ->select('device')->isVariableName()
+    ->select('profile')->isVariableName()
+    ->select('path')->isPath()
+    ->select('-b,--batch')->isOptional()->isBoolean()
+    ->validate();
+
+
+// List available devices
+$scanner = Scanner::load($argv['device'])
+    ->setBatch($argv['batch'])
+    ->scan($argv['profile'], $argv['path']);
+
+
+// Done!
+Log::success(tr('Successfully scanned ":count" documents to ":path"', [
+    ':count' => $scanner->getScanCount()
+]));

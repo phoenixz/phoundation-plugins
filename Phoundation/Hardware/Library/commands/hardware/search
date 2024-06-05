@@ -1,0 +1,77 @@
+#!/usr/bin/php
+<?php
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Utils\Arrays;
+use Phoundation\Utils\Utils;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+
+
+/**
+ * Script hardware/search
+ *
+ * This command will scan for available hardware devices and register them
+ *
+ * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+CliDocumentation::usage('./pho hardware search');
+
+CliDocumentation::help('This command will search for available hardware devices and register them in the database
+
+ARGUMENTS
+
+
+[--clear]                               Clears the internal hardware table before scanning
+
+[-c / --class TYPE]                     The class of hardware to scan for. If not specified, will scan for all types of
+                                        hardware Must be one of "scanner,printer,webcam,biometric"
+
+[-n / --no-options]                     If specified, this command will not update the device options for each found 
+                                        device');
+
+CliDocumentation::autoComplete([
+    'arguments' => [
+        '--clear'  => false,
+        '-n,--no-options',
+        '-c,--class'  => [
+                'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_STARTS_WITH | Utils::MATCH_CASE_INSENSITIVE); },
+                'noword' => function ()      { return ['scanner', 'printer' , 'webcam', 'biometric']; },
+        ],
+    ]
+]);
+
+
+// Validate arguments
+$argv = ArgvValidator::new()
+    ->select('--clear')->isOptional()->isBoolean()
+    ->select('-n,--no-options')->isOptional()->isBoolean()
+    ->select('-c,--class', true)->isOptional()->isInArray(['scanner', 'printer' , 'webcam', 'biometric'])
+    ->validate();
+
+
+// Clear hardware table?
+if ($argv['clear']) {
+    Devices::new()->eraseAll();
+    Log::warning(tr('Cleared hardware devices table'));
+}
+
+
+// Scan for devices
+Log::action(tr('Searching for hardware devices'));
+
+if ($argv['no_options']) {
+    Log::warning(tr('Not updating hardware device options'));
+}
+
+$devices = Devices::new()->search(!$argv['no_options']);
+
+
+// Done!
+Log::success(tr('Found ":count" new devices', [':count' => $devices->getCount()]));

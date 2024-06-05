@@ -1,0 +1,38 @@
+#!/usr/bin/php
+<?php
+
+use Phoundation\Accounts\Users\User;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\DataEntry\Exception\DataEntryNotExistsException;
+use Phoundation\Data\Validator\ArgvValidator;
+use Plugins\Phoundation\Statistics\Statistics;
+
+
+/**
+ * Script statistics/flush
+ *
+ * This script will flush the statistics queue
+ *
+ * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Plugins/Statistics
+ */
+$usage = './pho statistics flush';
+
+$help  = 'This script will flush the statistics queue to the statistics rendering server  
+
+
+ARGUMENTS
+
+
+-';
+
+
+// This script takes no arguments
+$argv = ArgvValidator::new()->validate();
+
+
+Log::information(tr('Flushing statistics queue'));
+
+Statistics::new()->flushQueue();
