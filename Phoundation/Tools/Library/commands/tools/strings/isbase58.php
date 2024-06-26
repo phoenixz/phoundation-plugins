@@ -9,7 +9,7 @@ use Phoundation\Utils\Strings;
 
 
 /**
- * Script tools/isbase58
+ * Command tools/isbase58
  *
  *
  *

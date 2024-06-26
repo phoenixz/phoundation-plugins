@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Command tools/display/json
+ * Command tools numbers to bytes
  *
  *
  *
@@ -14,14 +14,17 @@
 declare(strict_types=1);
 
 use Phoundation\Cli\CliDocumentation;
+use Phoundation\Cli\CliCommand;
+use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Utils\Json;
+use Phoundation\Utils\Numbers;
+use Phoundation\Utils\Strings;
 
-CliDocumentation::setUsage('./pho tools display json');
-CliDocumentation::setHelp('The display json tool script will display the specified JSON text as a formatted JSON object');
+CliDocumentation::setUsage('./pho tools numbers to bytes');
+CliDocumentation::setHelp('This command will convert the given number of bytes to a human readable format');
 
 $argv = ArgvValidator::new()
-    ->select('text')->hasMaxCharacters(1048576)
+    ->select('text')->isPositive()
     ->validate();
 
-print_r(stripslashes(Json::decode($argv['text'])));
+Log::cli(Numbers::getHumanReadableBytes($argv['text']));

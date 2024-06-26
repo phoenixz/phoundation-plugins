@@ -369,7 +369,7 @@ class Device extends DataEntry implements DeviceInterface
                 ->setMaxlength(64)
                 ->setHelpText(tr('The name for this role'))
                 ->addValidationFunction(function (ValidatorInterface $validator) {
-                    $validator->isUnique(tr('value ":name" already exists', [':name' => $validator->getSelectedValue()]));
+                    $validator->isUnique();
                 }))
             ->add(DefinitionFactory::getSeoName($this))
             ->add(Definition::new($this, 'class')

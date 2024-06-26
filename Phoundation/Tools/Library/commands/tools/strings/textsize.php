@@ -9,7 +9,7 @@ use Phoundation\Data\Validator\ArgvValidator;
 
 
 /**
- * Script tools/textsize
+ * Command tools/textsize
  *
  *
  *

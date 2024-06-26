@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Script tools/os/filesystem/btrfs/subvolumes/create
+ * Command tools/os/filesystem/btrfs/subvolumes/create
  *
  *
  *
@@ -17,13 +17,13 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\Exception\FileExistsException;
-use Phoundation\Filesystem\File;
-use Phoundation\Filesystem\Directory;
-use Phoundation\Filesystem\Restrictions;
+use Phoundation\Filesystem\FsFile;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Security\Crypt;
 
 $directory    = '/';
-$restrictions = Restrictions::new('/', true, tr('btrfs subvolumes create'));
+$restrictions = FsRestrictions::new('/', true, tr('btrfs subvolumes create'));
 
 CliDocumentation::setUsage('./pho tools os filesystem btrfs subvolumes create PATH');
 
@@ -38,8 +38,8 @@ PATH                                    The path of the subvolume');
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($directory, $restrictions) { return FsDirectory::new($directory, $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($directory, $restrictions) { return FsDirectory::new($directory, $restrictions)->scan('*'); },
         ],
     ]
 ]);

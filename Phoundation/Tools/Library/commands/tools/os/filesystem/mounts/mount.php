@@ -1,18 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\Directory;
-use Phoundation\Os\Devices\Storage\Proc;
-use Phoundation\Os\Processes\Commands\Mount;
-use Phoundation\Utils\Arrays;
-
-
 /**
- * Script tools/os/filesystem/mounts/mount
+ * Command tools/os/filesystem/mounts/mount
  *
  *
  *
@@ -21,20 +10,41 @@ use Phoundation\Utils\Arrays;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$types = Proc::getSupportedFiletypes();
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Os\Devices\Storage\Proc;
+use Phoundation\Os\Processes\Commands\Mount;
+use Phoundation\Utils\Arrays;
+
+$types        = Proc::getSupportedFiletypes();
+$restrictions = FsRestrictions::getWritable('/', 'command tools os filesystem mounts');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => true,
         '1' => [
-            'word'   => function ($word) { return Directory::new(Directory::default($word), '/')->scan($word . '*'); },
-            'noword' => function ()      { return Directory::new(                 '/', '/')->scan(        '*'); },
+            'word'   => function ($word) use ($restrictions) {
+                return FsDirectory::new('/', $restrictions)->scan($word . '*');
+            },
+            'noword' => function () use ($restrictions) {
+                return FsDirectory::new('/', $restrictions)->scan('*');
+            },
         ],
     ],
     'arguments' => [
         '-t,--type' => [
-            'word'   => function ($word) use ($types) { return Arrays::match($types, $word); },
-            'noword' => function ()      use ($types) { return $types; },
+            'word'   => function ($word) use ($types) {
+                return Arrays::match($types, $word);
+            },
+            'noword' => function () use ($types) {
+                return $types;
+            },
         ],
         '-o,--options' => true
     ]

@@ -11,7 +11,7 @@ use Plugins\Phoundation\Hardware\Devices\Devices;
 
 
 /**
- * Script hardware/search
+ * Command hardware/search
  *
  * This command will scan for available hardware devices and register them
  *

@@ -38,11 +38,11 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.0.12', function () {
             // Drop the tables to be sure we have a clean slate
-            sql()->schema()->table('statistics_queue')->drop();
-            sql()->schema()->table('statistics_servers')->drop();
+            sql()->getSchemaObject()->getTableObject('statistics_queue')->drop();
+            sql()->getSchemaObject()->getTableObject('statistics_servers')->drop();
 
             // Create the statistics_queue table.
-            sql()->schema()->table('statistics_servers')->define()
+            sql()->getSchemaObject()->getTableObject('statistics_servers')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -69,7 +69,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                 ')->create();
 
             // Create the statistics_queue table.
-            sql()->schema()->table('statistics_queue')->define()
+            sql()->getSchemaObject()->getTableObject('statistics_queue')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `server` varchar(128) NOT NULL,

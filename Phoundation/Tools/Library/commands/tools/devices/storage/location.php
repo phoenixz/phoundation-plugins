@@ -5,13 +5,13 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Cli\CliCommand;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\Directory;
-use Phoundation\Filesystem\File;
-use Phoundation\Filesystem\Restrictions;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsFile;
+use Phoundation\Filesystem\FsRestrictions;
 
 
 /**
- * Script tools/devices/storage/encrypt
+ * Command tools/devices/storage/encrypt
  *
  *
  *
@@ -20,7 +20,7 @@ use Phoundation\Filesystem\Restrictions;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$restrictions = Restrictions::new('/');
+$restrictions = FsRestrictions::new('/');
 
 CliDocumentation::setUsage('./pho tools devices storage location
 ./pho tools devices storage location /home/user/filename');
@@ -36,8 +36,8 @@ FILE                                    The path to the file (or directory) whic
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($restrictions) { return Directory::new('/', $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($restrictions) { return Directory::new('/', $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($restrictions) { return FsDirectory::new('/', $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($restrictions) { return FsDirectory::new('/', $restrictions)->scan('*'); },
         ],
     ]
 ]);
@@ -50,4 +50,4 @@ $argv = ArgvValidator::new()
 
 
 // Echo the device path
-CliCommand::echo(File::new($argv['file'])->getMountDevice());
+CliCommand::echo(FsFile::new($argv['file'])->getMountDevice());

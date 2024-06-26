@@ -9,7 +9,7 @@ use Phoundation\Os\Devices\Storage\Proc;
 
 
 /**
- * Script tools/os/filesystem/list/supported
+ * Command tools/os/filesystem/list/supported
  *
  *
  *

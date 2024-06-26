@@ -1,18 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\Directory;
-use Phoundation\Filesystem\Mounts\Exception\NotMountedException;
-use Phoundation\Os\Devices\Storage\Proc;
-use Phoundation\Os\Processes\Commands\UnMount;
-
-
 /**
- * Script tools/os/filesystem/mounts/mount
+ * Command tools/os/filesystem/mounts/mount
  *
  *
  *
@@ -21,13 +10,30 @@ use Phoundation\Os\Processes\Commands\UnMount;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$types = Proc::getSupportedFiletypes();
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\Mounts\Exception\NotMountedException;
+use Phoundation\Os\Devices\Storage\Proc;
+use Phoundation\Os\Processes\Commands\UnMount;
+
+$types        = Proc::getSupportedFiletypes();
+$restrictions = FsRestrictions::getWritable('/', 'command tools os filesystem mounts');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
         '1' => [
-            'word'   => function ($word) { return Directory::new(Directory::default($word), '/')->scan($word . '*'); },
-            'noword' => function ()      { return Directory::new(                 '/', '/')->scan(        '*'); },
+            'word'   => function ($word) use ($restrictions) {
+                return FsDirectory::new('/', $restrictions)->scan($word . '*');
+            },
+            'noword' => function () use ($restrictions) {
+                return FsDirectory::new('/', $restrictions)->scan('*');
+            },
         ],
     ]
 ]);

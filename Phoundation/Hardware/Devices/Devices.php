@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Hardware\Devices;
 
 use Phoundation\Core\Log\Log;
-use Phoundation\Data\DataEntry\DataList;
+use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Os\Processes\Commands\ScanImage;
 use Phoundation\Seo\Seo;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\DevicesInterface;
@@ -22,7 +22,7 @@ use Plugins\Phoundation\Scanners\Exception\ScannersException;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
-class Devices extends DataList implements DevicesInterface
+class Devices extends DataIterator implements DevicesInterface
 {
     /**
      * Devices class constructor

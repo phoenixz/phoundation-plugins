@@ -11,7 +11,7 @@ use Plugins\Phoundation\Hardware\Devices\Profiles;
 
 
 /**
- * Script hardware/profiles/list
+ * Command hardware/profiles/list
  *
  * This command will scan for available hardware devices and register them
  *

@@ -12,13 +12,15 @@ use Phoundation\Databases\Connectors\Connector;
 use Phoundation\Databases\Connectors\Interfaces\ConnectorInterface;
 use Phoundation\Databases\Export;
 use Phoundation\Date\DateTime;
-use Phoundation\Filesystem\Directory;
+use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Definition;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\Traits\TraitDataTarget;
 use Phoundation\Exception\OutOfBoundsException;
-use Phoundation\Filesystem\Traits\TraitDataRestrictions;
+use Phoundation\Filesystem\Interfaces\FsDirectoryInterface;
+use Phoundation\Filesystem\Interfaces\FsFileInterface;
+use Phoundation\Data\Traits\TraitDataRestrictions;
 use Phoundation\Utils\Config;
 use Phoundation\Web\Html\Enums\EnumElementInputType;
 
@@ -49,9 +51,9 @@ class Backup extends DataEntry
     protected bool $init = false;
 
     /**
-     * @var string|null $path
+     * @var FsDirectoryInterface|null $path
      */
-    protected ?string $path = null;
+    protected ?FsDirectoryInterface $path = null;
 
     /**
      * The system date-time when this backup began
@@ -101,12 +103,10 @@ class Backup extends DataEntry
      */
     protected function init(): static
     {
-        $this->path = Directory::new($this->target)
-            ->addDirectory(DateTime::new()->format('Ymd-his'))
-            ->ensure()
-            ->getPath();
-
         $this->date_time = DateTime::new();
+        $this->path      = FsDirectory::new($this->target)
+                                      ->addDirectory(DateTime::new()->format('Ymd-his'))
+                                      ->ensure();
 
         return $this;
     }
@@ -229,7 +229,7 @@ class Backup extends DataEntry
             ':connector'   => $connector->getDisplayName()
         ]));
 
-        // Execute the dump on the specified server
+        // ExecuteExecuteInterface the dump on the specified server
         $this->executeHook('pre-backup-database');
 
         Export::new()
@@ -248,9 +248,9 @@ class Backup extends DataEntry
      * Returns the backup file to use
      *
      * @param ConnectorInterface|string $source
-     * @return string
+     * @return FsFileInterface
      */
-    protected function getFile(ConnectorInterface|string $source): string
+    protected function getFile(ConnectorInterface|string $source): FsFileInterface
     {
         if ($source instanceof ConnectorInterface){
             return $this->path . $this->date_time->format('Ymd-his') . '-' . strtolower($source->getDriver()) . '-' . $source->getDatabase() . '.sql';
@@ -327,7 +327,7 @@ class Backup extends DataEntry
 
 
     /**
-     * Execute the specified hook(s)
+     * ExecuteExecuteInterface the specified hook(s)
      *
      * @param array|string $hooks
      * @return static

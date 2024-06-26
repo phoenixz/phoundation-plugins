@@ -11,7 +11,7 @@ use Plugins\Phoundation\Hardware\Devices\Profile;
 
 
 /**
- * Script hardware/profiles/show
+ * Command hardware/profiles/show
  *
  * This command will show the details for the specified hardware device profile
  *

@@ -6,14 +6,14 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\Exception\FileExistsException;
-use Phoundation\Filesystem\File;
-use Phoundation\Filesystem\Directory;
-use Phoundation\Filesystem\Restrictions;
+use Phoundation\Filesystem\FsFile;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Security\Crypt;
 
 
 /**
- * Script tools/security/keyfiles/delete
+ * Command tools/security/keyfiles/delete
  *
  *
  *
@@ -23,7 +23,7 @@ use Phoundation\Security\Crypt;
  * @package Phoundation\Scripts
  */
 $directory = '/';
-$restrictions = Restrictions::new('/', true, tr('security keyfiles delete'));
+$restrictions = FsRestrictions::new('/', true, tr('security keyfiles delete'));
 
 CliDocumentation::setUsage('./pho tools security keyfiles delete
 ./pho tools security keyfiles create -s 8192');
@@ -41,8 +41,8 @@ FILE                                    The file where to write the
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($directory, $restrictions) { return Directory::new($directory, $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($directory, $restrictions) { return FsDirectory::new($directory, $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($directory, $restrictions) { return FsDirectory::new($directory, $restrictions)->scan('*'); },
         ],
     ],
     'arguments' => [
@@ -60,7 +60,7 @@ $argv = ArgvValidator::new()
 
 // Validate the target
 try {
-    File::new($argv['file'], $restrictions)->shred($argv['passes']);
+    FsFile::new($argv['file'], $restrictions)->shred($argv['passes']);
 
 } catch (FileExistsException $e) {
     throw $e->makeWarning();

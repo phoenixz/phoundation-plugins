@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Devices;
 
-use Phoundation\Data\DataEntry\DataList;
+use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Exception\OutOfBoundsException;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionsInterface;
 
@@ -19,7 +19,7 @@ use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionsInterface;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
-class Options extends DataList implements OptionsInterface
+class Options extends DataIterator implements OptionsInterface
 {
     /**
      * Options class constructor

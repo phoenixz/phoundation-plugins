@@ -8,7 +8,7 @@ use Phoundation\Data\Validator\ArgvValidator;
 
 
 /**
- * Script tools/urlencode
+ * Command tools/urlencode
  *
  *
  *

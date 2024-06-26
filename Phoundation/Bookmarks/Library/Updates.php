@@ -49,10 +49,10 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.3.0', function () {
             // Drop the tables to be sure we have a clean slate
-            sql()->schema()->table('bookmarks')->drop();
+            sql()->getSchemaObject()->getTableObject('bookmarks')->drop();
 
             // Create the health authorities table.
-            sql()->schema()->table('bookmarks')->define()
+            sql()->getSchemaObject()->getTableObject('bookmarks')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

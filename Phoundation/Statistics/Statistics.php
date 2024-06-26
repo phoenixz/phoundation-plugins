@@ -9,6 +9,8 @@ use Phoundation\Data\Validator\Validate;
 use Phoundation\Date\DateTime;
 use Phoundation\Date\Enums\DateTimeSegment;
 use Phoundation\Exception\OutOfBoundsException;
+use Phoundation\Filesystem\FsPath;
+use Phoundation\Filesystem\Interfaces\FsPathInterface;
 use Phoundation\Notifications\Notification;
 use Phoundation\Utils\Arrays;
 use Phoundation\Utils\Config;
@@ -128,12 +130,12 @@ class Statistics
     /**
      * Returns the path adjusted for project and environment so that these two are always separated
      *
-     * @param string $path
-     * @return string
+     * @param FsPathInterface $path
+     * @return FsPathInterface
      */
-    protected function getPath(string $path): string
+    protected function getPath(FsPathInterface $path): FsPathInterface
     {
-        return PROJECT . '.' . ENVIRONMENT . '.' . $path;
+        return new FsPath(PROJECT . '.' . ENVIRONMENT . '.' . $path);
     }
 
 

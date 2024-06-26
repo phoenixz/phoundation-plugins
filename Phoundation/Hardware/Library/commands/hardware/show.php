@@ -9,7 +9,7 @@ use Plugins\Phoundation\Hardware\Devices\Devices;
 
 
 /**
- * Script hardware/show
+ * Command hardware/show
  *
  * This command will show the details for the specified device
  *

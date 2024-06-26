@@ -9,7 +9,7 @@ use Plugins\Phoundation\FingerPrint\FingerPrint;
 
 
 /**
- * Script security/fingerprints/enroll
+ * Command security/fingerprints/enroll
  *
  * This script will enroll a new fingerprint in the database.
  *

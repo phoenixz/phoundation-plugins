@@ -38,10 +38,10 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.0.12', function () {
             // Drop the tables to be sure we have a clean slate
-            sql()->schema()->table('plugin_backups')->drop();
+            sql()->getSchemaObject()->getTableObject('plugin_backups')->drop();
 
             // Create the backups table.
-            sql()->schema()->table('plugin_backups')->define()
+            sql()->getSchemaObject()->getTableObject('plugin_backups')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

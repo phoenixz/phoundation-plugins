@@ -8,7 +8,7 @@ use Phoundation\Data\Validator\ArgvValidator;
 
 
 /**
- * Script tools/display/hex
+ * Command tools/display/hex
  *
  *
  *

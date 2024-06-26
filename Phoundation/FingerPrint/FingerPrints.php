@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\FingerPrint;
 
-use Phoundation\Data\DataEntry\DataList;
+use Phoundation\Data\DataEntry\DataIterator;
 use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
 
 
@@ -18,7 +18,7 @@ use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Processes
  */
-class FingerPrints extends DataList implements FingerPrintsInterface
+class FingerPrints extends DataIterator implements FingerPrintsInterface
 {
 
     /**

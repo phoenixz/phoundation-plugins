@@ -38,10 +38,10 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.0.15', function () {
             // Drop the tables to be sure we have a clean slate
-            sql()->schema()->table('fingerprints')->drop();
+            sql()->getSchemaObject()->getTableObject('fingerprints')->drop();
 
             // Create the fingerprints table.
-            sql()->schema()->table('fingerprints')->define()
+            sql()->getSchemaObject()->getTableObject('fingerprints')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

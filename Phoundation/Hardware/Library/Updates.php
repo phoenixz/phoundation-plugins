@@ -40,12 +40,12 @@ class Updates extends Libraries\Updates
     public function updates(): void
     {
         $this->addUpdate('0.20.0', function () {
-            sql()->schema()->table('hardware_options')->drop();
-            sql()->schema()->table('hardware_profiles')->drop();
-            sql()->schema()->table('hardware_devices')->drop();
+            sql()->getSchemaObject()->getTableObject('hardware_options')->drop();
+            sql()->getSchemaObject()->getTableObject('hardware_profiles')->drop();
+            sql()->getSchemaObject()->getTableObject('hardware_devices')->drop();
 
             // Add table for version control itself
-            sql()->schema()->table('hardware_devices')->define()
+            sql()->getSchemaObject()->getTableObject('hardware_devices')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -95,7 +95,7 @@ class Updates extends Libraries\Updates
                     CONSTRAINT `fk_hardware_devices_servers_id` FOREIGN KEY (`servers_id`) REFERENCES `servers` (`id`) ON DELETE CASCADE,
                 ')->create();
 
-            sql()->schema()->table('hardware_profiles')->define()
+            sql()->getSchemaObject()->getTableObject('hardware_profiles')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -124,7 +124,7 @@ class Updates extends Libraries\Updates
                     CONSTRAINT `fk_hardware_profiles_devices_id` FOREIGN KEY (`devices_id`) REFERENCES `hardware_devices` (`id`) ON DELETE CASCADE,
                 ')->create();
 
-            sql()->schema()->table('hardware_options')->define()
+            sql()->getSchemaObject()->getTableObject('hardware_options')->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

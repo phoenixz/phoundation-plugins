@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Devices\Interfaces;
 
-use Phoundation\Data\DataEntry\Interfaces\DataListInterface;
+use Phoundation\Data\DataEntry\Interfaces\DataIteratorInterface;
 
 
 /**
@@ -17,7 +17,7 @@ use Phoundation\Data\DataEntry\Interfaces\DataListInterface;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
-interface DevicesInterface extends DataListInterface
+interface DevicesInterface extends DataIteratorInterface
 {
     /**
      * Scans for known hardware devices and registers them in the database

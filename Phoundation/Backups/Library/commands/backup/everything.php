@@ -5,12 +5,12 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\Restrictions;
+use Phoundation\Filesystem\FsRestrictions;
 use Plugins\Phoundation\Backups\Backup;
 
 
 /**
- * Script system/backup/everything
+ * Command system/backup/everything
  *
  * This command will backup *everything* related to this project to the default backup directory
  *
@@ -19,7 +19,7 @@ use Plugins\Phoundation\Backups\Backup;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$restrictions = Restrictions::writable(DIRECTORY_DATA . 'backups/');
+$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA . 'backups/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [
@@ -43,7 +43,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('-t,--target', true)->isDirectory('/', new Restrictions('/', true))
+    ->select('-t,--target', true)->isDirectory('/', new FsRestrictions('/', true))
     ->validate();
 
 

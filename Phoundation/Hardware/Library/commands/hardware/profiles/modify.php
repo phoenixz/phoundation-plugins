@@ -13,7 +13,7 @@ use Plugins\Phoundation\Hardware\Devices\Profile;
 
 
 /**
- * Script hardware/profiles/copy
+ * Command hardware/profiles/copy
  *
  * This command will copy the specified profile to the specified target taking the specified option keys with it
  *

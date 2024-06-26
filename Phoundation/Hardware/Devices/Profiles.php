@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Devices;
 
-use Phoundation\Data\DataEntry\DataList;
+use Phoundation\Data\DataEntry\DataIterator;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfilesInterface;
 
 
@@ -18,7 +18,7 @@ use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfilesInterface;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
-class Profiles extends DataList implements ProfilesInterface
+class Profiles extends DataIterator implements ProfilesInterface
 {
     /**
      * Devices class constructor

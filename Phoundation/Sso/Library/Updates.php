@@ -38,10 +38,10 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.2.0', function () {
             // Drop the tables to be sure we have a clean slate
-            sql()->schema()->table('phoundation_sso_signins')->drop();
+            sql()->getSchemaObject()->getTableObject('phoundation_sso_signins')->drop();
 
             // Create the phoundation_sso_signins table.
-            sql()->schema()->table('phoundation_sso_signins')->define()
+            sql()->getSchemaObject()->getTableObject('phoundation_sso_signins')->define()
                  ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
