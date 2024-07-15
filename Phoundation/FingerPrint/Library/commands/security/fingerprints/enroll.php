@@ -11,7 +11,7 @@ use Plugins\Phoundation\FingerPrint\FingerPrint;
 /**
  * Command security/fingerprints/enroll
  *
- * This script will enroll a new fingerprint in the database.
+ * This command will enroll a new fingerprint in the database.
  *
  * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
