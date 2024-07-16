@@ -347,7 +347,7 @@ class Device extends DataEntry implements DeviceInterface
     public function getProfiles(): ProfilesInterface
     {
         if (empty($this->profiles)) {
-            $this->profiles = Profiles::new()->setParent($this)->load();
+            $this->profiles = Profiles::new()->setParentObject($this)->load();
         }
 
         return $this->profiles;

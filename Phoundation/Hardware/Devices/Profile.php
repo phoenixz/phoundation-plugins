@@ -105,7 +105,7 @@ class Profile extends DataEntry implements ProfileInterface
     public function getOptions(): OptionsInterface
     {
         if (empty($this->options)) {
-            $this->options = Options::new()->setParent($this)->load();
+            $this->options = Options::new()->setParentObject($this)->load();
         }
 
         return $this->options;
