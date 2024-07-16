@@ -70,7 +70,7 @@ ARGUMENTS
 
 $argv = ArgvValidator::new()
     ->select('source')->hasMaxCharacters(511)
-    ->select('target')->isDirectory('/', '/')
+    ->select('target')->isDirectory(FsDirectory::getFilesystemRoot())
     ->select('-o,--options', true)->isOptional()->hasMaxCharacters(511)
     ->select('-t,--file-system', true)->isOptional()->isInArray(Proc::getSupportedFiletypes())
     ->validate();

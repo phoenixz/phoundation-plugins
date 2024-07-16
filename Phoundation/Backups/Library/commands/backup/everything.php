@@ -41,7 +41,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('-t,--target', true)->isDirectory('/', new FsRestrictions('/', true))
+    ->select('-t,--target', true)->isDirectory(FsDirectory::getFilesystemRoot(true))
     ->validate();
 
 

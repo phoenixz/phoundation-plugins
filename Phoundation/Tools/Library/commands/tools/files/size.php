@@ -52,7 +52,7 @@ PATH                                    The path of which the size needs to be c
 
 // Get arguments
 $argv = ArgvValidator::new()
-    ->select('path')->isDirectory('/', FsRestrictions::getReadonly('/'))
+    ->select('path')->isDirectory(FsDirectory::getFilesystemRoot())
     ->select('-h,--human-readable')->isOptional(false)->isBoolean()
     ->validate();
 

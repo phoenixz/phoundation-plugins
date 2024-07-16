@@ -61,7 +61,7 @@ PATH                                    The path that should be scanned
 
 // Get arguments
 $argv = ArgvValidator::new()
-    ->select('path')->isDirectory('/', $restrictions)
+    ->select('path')->isDirectory(FsDirectory::getFilesystemRoot())
     ->select('-r,--recursive', true)->isOptional(0)->isInteger()->isPositive()
     ->select('-m,--max-size', true)->isOptional(1_073_741_824)->sanitizeBytes()
     ->validate();

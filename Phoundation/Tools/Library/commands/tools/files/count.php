@@ -44,7 +44,7 @@ ARGUMENTS
 PATH                                    The path that should have the files counted, must be a directory');
 
 $argv = ArgvValidator::new()
-    ->select('path')->isDirectory('/', FsRestrictions::getReadonly('/'))
+    ->select('path')->isDirectory(FsDirectory::getFilesystemRoot())
     ->select('-h,--human-readable')->isOptional(false)->isBoolean()
     ->validate();
 

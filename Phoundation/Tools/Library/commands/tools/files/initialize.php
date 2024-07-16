@@ -56,7 +56,7 @@ PATH                                    The path of which the size needs to be c
 
 // Get the arguments
 $argv = ArgvValidator::new()
-    ->select('path')->isFile('/', FsRestrictions::getWritable('/'))
+    ->select('path')->isFile(FsDirectory::getFilesystemRoot(true))
     ->select('-r,--random')->isOptional(false)->isBoolean()
     ->select('-d,--data', true)->isOptional(false)->isInteger()->isBetween(1, 100)
     ->validate();
