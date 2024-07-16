@@ -7,17 +7,6 @@ namespace Phoundation\Business\Companies\Interfaces;
 use Phoundation\Business\Companies\Branches\Interfaces\BranchesInterface;
 use Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
 
-/**
- *  Class Company
- *
- *
- *
- * @see       \Phoundation\Data\DataEntry\DataEntry
- * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package   Phoundation\Companies
- */
 interface CompanyInterface
 {
     /**
