@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
-use Plugins\Phoundation\Hardware\Devices\Device;
-use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Scanners\Scanner;
-
-
 /**
  * Command scanners/scan
  *
@@ -22,7 +10,17 @@ use Plugins\Phoundation\Scanners\Scanner;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA);
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsRestrictions;
+use Plugins\Phoundation\Hardware\Devices\Device;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+use Plugins\Phoundation\Scanners\Scanner;$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA);
 
 CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');
 

@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\Cli;
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Os\Devices\Storage\Proc;
-
-
 /**
  * Command tools/os/filesystem/list/supported
  *
@@ -18,7 +10,16 @@ use Phoundation\Os\Devices\Storage\Proc;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\Cli;
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Os\Devices\Storage\Proc;
+
 CliDocumentation::setUsage('./pho tools os filesystem list supported');
+
 CliDocumentation::setHelp('This command will list all supported filesystem types');
 
 $argv = ArgvValidator::new()

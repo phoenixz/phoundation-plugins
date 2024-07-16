@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Accounts\Users\User;
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Data\Validator\ArgvValidator;
-use Plugins\Phoundation\FingerPrint\FingerPrint;
-
-
 /**
  * Command security/fingerprints/enroll
  *
@@ -18,6 +10,14 @@ use Plugins\Phoundation\FingerPrint\FingerPrint;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Accounts\Users\User;
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Data\Validator\ArgvValidator;
+use Plugins\Phoundation\FingerPrint\FingerPrint;
+
 CliDocumentation::setUsage('./pho security fingerprints enroll -u EMAIL');
 
 CliDocumentation::setHelp('This script will enroll a new fingerprint in the database. The user which will have his / her 

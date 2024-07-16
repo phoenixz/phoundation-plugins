@@ -1,15 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Data\DataEntry\Exception\DataEntryNotExistsException;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Exception\NotExistsException;use Plugins\Phoundation\Hardware\Devices\Device;
-use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Hardware\Devices\Profile;
-
-
 /**
  * Command hardware/profiles/show
  *
@@ -20,6 +10,16 @@ use Plugins\Phoundation\Hardware\Devices\Profile;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Data\DataEntry\Exception\DataEntryNotExistsException;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Exception\NotExistsException;use Plugins\Phoundation\Hardware\Devices\Device;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+use Plugins\Phoundation\Hardware\Devices\Profile;
+
 CliDocumentation::setUsage('./pho hardware profiles show DEVICE PROFILE');
 
 CliDocumentation::setHelp('This command will show the details of the specified hardware device

@@ -33,6 +33,7 @@ CliDocumentation::setAutoComplete([
 ]);
 
 CliDocumentation::setUsage('./pho tools files count PATH');
+
 CliDocumentation::setHelp('This command will count all the files in the specified directory recursively and display  
 the amount found
 

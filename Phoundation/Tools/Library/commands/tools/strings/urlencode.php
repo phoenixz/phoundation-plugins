@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Cli\CliCommand;
-use Phoundation\Data\Validator\ArgvValidator;
-
-
 /**
  * Command tools/urlencode
  *
@@ -17,7 +10,15 @@ use Phoundation\Data\Validator\ArgvValidator;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Cli\CliCommand;
+use Phoundation\Data\Validator\ArgvValidator;
+
 CliDocumentation::setUsage('./pho tools urlencode TEXT');
+
 CliDocumentation::setHelp('This tool will echo the specified TEXT using URL encoding');
 
 $argv = ArgvValidator::new()

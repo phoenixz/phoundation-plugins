@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Command tools/security/keyfiles/delete
+ *
+ *
+ *
+ * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+
 declare(strict_types=1);
 
 use Phoundation\Cli\CliDocumentation;
@@ -11,17 +22,6 @@ use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Security\Crypt;
 
-
-/**
- * Command tools/security/keyfiles/delete
- *
- *
- *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Scripts
- */
 $directory = '/';
 $restrictions = FsRestrictions::new('/', true, tr('security keyfiles delete'));
 

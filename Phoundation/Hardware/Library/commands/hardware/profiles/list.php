@@ -1,15 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Utils\Arrays;
-use Phoundation\Utils\Utils;
-use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Hardware\Devices\Profiles;
-
-
 /**
  * Command hardware/profiles/list
  *
@@ -20,6 +10,15 @@ use Plugins\Phoundation\Hardware\Devices\Profiles;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Utils\Arrays;
+use Phoundation\Utils\Utils;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+use Plugins\Phoundation\Hardware\Devices\Profiles;
 
 CliDocumentation::setUsage('./pho hardware profiles list');
 

@@ -1,14 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsRestrictions;
-use Plugins\Phoundation\Backups\Backup;
-
-
 /**
  * Command system/backup/everything
  *
@@ -19,7 +10,14 @@ use Plugins\Phoundation\Backups\Backup;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA . 'backups/');
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Filesystem\FsRestrictions;
+use Plugins\Phoundation\Backups\Backup;$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA . 'backups/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

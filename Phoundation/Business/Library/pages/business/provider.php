@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use Phoundation\Business\Providers\Provider;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\GetValidator;

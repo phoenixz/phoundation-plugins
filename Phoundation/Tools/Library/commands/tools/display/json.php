@@ -18,6 +18,7 @@ use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Utils\Json;
 
 CliDocumentation::setUsage('./pho tools display json');
+
 CliDocumentation::setHelp('The display json tool script will display the specified JSON text as a formatted JSON object');
 
 $argv = ArgvValidator::new()

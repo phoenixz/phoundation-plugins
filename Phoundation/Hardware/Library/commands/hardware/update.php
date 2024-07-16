@@ -1,14 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Utils\Arrays;
-use Plugins\Phoundation\Hardware\Devices\Devices;
-
-
 /**
  * Command hardware/search
  *
@@ -19,6 +10,15 @@ use Plugins\Phoundation\Hardware\Devices\Devices;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Utils\Arrays;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+
 CliDocumentation::setUsage('./pho hardware update');
 
 CliDocumentation::setHelp('This command will update all options for all registered hardware devices

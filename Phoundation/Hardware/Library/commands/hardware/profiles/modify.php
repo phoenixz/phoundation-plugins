@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Utils\Arrays;
-use Phoundation\Utils\Utils;
-use Plugins\Phoundation\Hardware\Devices\Device;
-use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Hardware\Devices\Profile;
-
-
 /**
  * Command hardware/profiles/copy
  *
@@ -22,6 +10,17 @@ use Plugins\Phoundation\Hardware\Devices\Profile;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Utils\Arrays;
+use Phoundation\Utils\Utils;
+use Plugins\Phoundation\Hardware\Devices\Device;
+use Plugins\Phoundation\Hardware\Devices\Devices;
+use Plugins\Phoundation\Hardware\Devices\Profile;
 
 CliDocumentation::setUsage('./pho hardware profiles modify DEVICE PROFILE KEY VALUE');
 
@@ -42,6 +41,7 @@ VALUE                                   The new value this specified key should 
                                         should either fall within the range for this option, and if the option has a
                                         list of possible values, the specified value should be one of the possible
                                         values for this option');
+
 CliDocumentation::setAutoComplete([
     'positions' => [
         0  => [

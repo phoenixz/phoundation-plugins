@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use Phoundation\Business\Providers\FilterForm;
 use Phoundation\Business\Providers\Providers;
 use Phoundation\Web\Html\Components\Widgets\BreadCrumbs;

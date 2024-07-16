@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\Cli;
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-
-
 /**
  * Command tools/textsize
  *
@@ -18,7 +10,16 @@ use Phoundation\Data\Validator\ArgvValidator;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\Cli;
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+
 CliDocumentation::setUsage('./pho tools textsize');
+
 CliDocumentation::setHelp('The textsize tool script will display the size of the specified text');
 
 ArgvValidator::new()->validate();

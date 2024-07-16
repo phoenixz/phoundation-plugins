@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Cli\CliCommand;
-use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Utils\Strings;
-
-
 /**
  * Command tools/isbase58
  *
@@ -18,7 +10,16 @@ use Phoundation\Utils\Strings;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Cli\CliCommand;
+use Phoundation\Data\Validator\ArgvValidator;
+use Phoundation\Utils\Strings;
+
 CliDocumentation::setUsage('./pho tools isbase58');
+
 CliDocumentation::setHelp('The isbase58 tool script will return 1 if the specified string is base58, 0 otherwise');
 
 $argv = ArgvValidator::new()

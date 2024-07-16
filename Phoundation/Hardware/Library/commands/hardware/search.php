@@ -24,6 +24,7 @@ CliDocumentation::setUsage('./pho hardware search');
 
 CliDocumentation::setHelp('This command will search for available hardware devices and register them in the database
 
+
 ARGUMENTS
 
 

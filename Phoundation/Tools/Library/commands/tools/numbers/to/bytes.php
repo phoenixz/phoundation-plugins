@@ -21,6 +21,7 @@ use Phoundation\Utils\Numbers;
 use Phoundation\Utils\Strings;
 
 CliDocumentation::setUsage('./pho tools numbers to bytes');
+
 CliDocumentation::setHelp('This command will convert the given number of bytes to a human readable format');
 
 $argv = ArgvValidator::new()

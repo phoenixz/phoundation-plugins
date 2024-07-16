@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-use Phoundation\Business\Providers\Provider;
-use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Log\Log;
-use Phoundation\Data\Validator\ArgvValidator;
-
-
 /**
  * Command business/providers/create
  *
@@ -18,6 +10,14 @@ use Phoundation\Data\Validator\ArgvValidator;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Phoundation\Scripts
  */
+
+declare(strict_types=1);
+
+use Phoundation\Business\Providers\Provider;
+use Phoundation\Cli\CliDocumentation;
+use Phoundation\Core\Log\Log;
+use Phoundation\Data\Validator\ArgvValidator;
+
 CliDocumentation::setUsage('./pho business providers create NAME [OPTIONS]
 ./pho system business providers create test -d "This is a test provider!"');
 
