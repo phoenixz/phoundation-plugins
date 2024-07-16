@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\FingerPrint;
-
-use Phoundation\Accounts\Users\Interfaces\UserInterface;
-use Phoundation\Data\DataEntry\DataEntry;
-use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
-use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
 
 
 /**
@@ -20,6 +12,16 @@ use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Processes
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\FingerPrint;
+
+use Phoundation\Accounts\Users\Interfaces\UserInterface;
+use Phoundation\Data\DataEntry\DataEntry;
+use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
+use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
+
 class FingerPrint extends DataEntry
 {
     public static function getTable(): ?string

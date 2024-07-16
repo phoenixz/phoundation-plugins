@@ -1,10 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Tools\Library;
-
-
 /**
  * Class Plugin
  *
@@ -15,6 +10,13 @@ namespace Plugins\Phoundation\Tools\Library;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Phoundation
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Tools\Library;
+
+
+
 class Plugin extends \Phoundation\Core\Plugins\Plugin
 {
     /**

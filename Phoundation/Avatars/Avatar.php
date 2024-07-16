@@ -1,16 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Avatars;
-
-use Phoundation\Accounts\Interfaces\UserInterface;
-use Phoundation\Accounts\Users\Interfaces\UserInterface;
-use Phoundation\Content\Images\Image;
-use Phoundation\Content\Images\Interfaces\ImageInterface;
-use Phoundation\Utils\Config;
-use Phoundation\Exception\OutOfBoundsException;
-use Plugins\Phoundation\Avatars\Robohash\Robohash;
 
 
 /**
@@ -23,6 +12,19 @@ use Plugins\Phoundation\Avatars\Robohash\Robohash;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins/Avatars
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Avatars;
+
+use Phoundation\Accounts\Interfaces\UserInterface;
+use Phoundation\Accounts\Users\Interfaces\UserInterface;
+use Phoundation\Content\Images\Image;
+use Phoundation\Content\Images\Interfaces\ImageInterface;
+use Phoundation\Utils\Config;
+use Phoundation\Exception\OutOfBoundsException;
+use Plugins\Phoundation\Avatars\Robohash\Robohash;
+
 class Avatar
 {
     /**

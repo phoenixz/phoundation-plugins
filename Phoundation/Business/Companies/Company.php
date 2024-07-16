@@ -1,5 +1,17 @@
 <?php
 
+/**
+ *  Class Company
+ *
+ *
+ *
+ * @see       \Phoundation\Data\DataEntry\DataEntry
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package   Phoundation\Companies
+ */
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Companies;
@@ -13,17 +25,6 @@ use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
 
-/**
- *  Class Company
- *
- *
- *
- * @see       \Phoundation\Data\DataEntry\DataEntry
- * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package   Phoundation\Companies
- */
 class Company extends DataEntry implements CompanyInterface
 {
     use TraitDataEntryNameDescription;

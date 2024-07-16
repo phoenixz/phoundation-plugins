@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Phoundation\Business\Providers;
-
-use Phoundation\Core\Log\Log;
-use Phoundation\Developer\TestDataGenerator;
-
 /**
  * Importer class
  *
@@ -17,6 +10,14 @@ use Phoundation\Developer\TestDataGenerator;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Phoundation/Geo
  */
+
+declare(strict_types=1);
+
+namespace Phoundation\Business\Providers;
+
+use Phoundation\Core\Log\Log;
+use Phoundation\Developer\TestDataGenerator;
+
 class Import extends \Phoundation\Developer\Project\Import
 {
     /**

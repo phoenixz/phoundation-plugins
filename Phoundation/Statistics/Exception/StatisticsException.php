@@ -1,10 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Statistics\Exception;
-
-use Phoundation\Exception\Exception;
 
 
 /**
@@ -17,6 +12,13 @@ use Phoundation\Exception\Exception;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Statistics
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Statistics\Exception;
+
+use Phoundation\Exception\Exception;
+
 class StatisticsException extends Exception
 {
 }

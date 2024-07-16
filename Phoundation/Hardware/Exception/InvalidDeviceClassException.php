@@ -1,10 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Hardware\Exception;
-
-
 /**
  * Class InvalidDeviceClassException
  *
@@ -15,6 +10,13 @@ namespace Plugins\Phoundation\Hardware\Exception;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Hardware\Exception;
+
+
+
 class InvalidDeviceClassException extends HardwareException
 {
 }

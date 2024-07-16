@@ -1,11 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Phoundation\Business\Exception;
-
-use Phoundation\Exception\Exception;
-
 /**
  * Class BusinessException
  *
@@ -16,6 +10,13 @@ use Phoundation\Exception\Exception;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Phoundation\Business
  */
+
+declare(strict_types=1);
+
+namespace Phoundation\Business\Exception;
+
+use Phoundation\Exception\Exception;
+
 class BusinessException extends Exception
 {
 }

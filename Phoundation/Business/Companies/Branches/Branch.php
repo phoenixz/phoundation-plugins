@@ -1,13 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Phoundation\Business\Companies\Branches;
-
-use Phoundation\Data\DataEntry\DataEntry;
-use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
-
 /**
  * Class Branch
  *
@@ -19,6 +11,15 @@ use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Phoundation\Companies
  */
+
+declare(strict_types=1);
+
+namespace Phoundation\Business\Companies\Branches;
+
+use Phoundation\Data\DataEntry\DataEntry;
+use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
+use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
+
 class Branch extends DataEntry
 {
     use TraitDataEntryNameDescription;

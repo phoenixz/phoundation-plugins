@@ -1,12 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Hardware\Library;
-
-use Phoundation\Core\Libraries;
-use Phoundation\Core\Locale\Language\Import;
-use Phoundation\Core\Log\Log;
 
 
 /**
@@ -20,6 +13,15 @@ use Phoundation\Core\Log\Log;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Core
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Hardware\Library;
+
+use Phoundation\Core\Libraries;
+use Phoundation\Core\Locale\Language\Import;
+use Phoundation\Core\Log\Log;
+
 class Updates extends Libraries\Updates
 {
     /**

@@ -1,10 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Statistics\Library;
-
-
 /**
  * Updates class
  *
@@ -16,6 +11,13 @@ namespace Plugins\Phoundation\Statistics\Library;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Statistics
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Statistics\Library;
+
+
+
 class Updates extends \Phoundation\Core\Libraries\Updates
 {
     /**

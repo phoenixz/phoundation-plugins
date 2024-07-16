@@ -1,15 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Plugins\Phoundation\Avatars\Robohash;
-
-use Phoundation\Accounts\Users\Interfaces\UserInterface;
-use Phoundation\Content\Images\Image;
-use Phoundation\Content\Images\Interfaces\ImageInterface;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
-use Phoundation\Web\Requests\FileResponse;
 
 
 /**
@@ -22,6 +12,18 @@ use Phoundation\Web\Requests\FileResponse;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins/Avatars
  */
+
+declare(strict_types=1);
+
+namespace Plugins\Phoundation\Avatars\Robohash;
+
+use Phoundation\Accounts\Users\Interfaces\UserInterface;
+use Phoundation\Content\Images\Image;
+use Phoundation\Content\Images\Interfaces\ImageInterface;
+use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Web\Requests\FileResponse;
+
 class Robohash
 {
     /**

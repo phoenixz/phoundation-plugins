@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Customer class
+ *
+ *
+ *
+ * @see       \Phoundation\Data\DataEntry\DataEntry
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package   Phoundation\Business
+ */
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Customers;
@@ -21,17 +33,6 @@ use Phoundation\Data\DataEntry\Traits\TraitDataEntryPicture;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryUrl;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
 
-/**
- * Customer class
- *
- *
- *
- * @see       \Phoundation\Data\DataEntry\DataEntry
- * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package   Phoundation\Business
- */
 class Customer extends DataEntry
 {
     use TraitDataEntryGeo;

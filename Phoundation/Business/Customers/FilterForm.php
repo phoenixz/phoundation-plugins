@@ -1,9 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Phoundation\Business\Customers;
-
 /**
  * Class FilterForm
  *
@@ -14,6 +10,12 @@ namespace Phoundation\Business\Customers;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Phoundation\Business
  */
+
+declare(strict_types=1);
+
+namespace Phoundation\Business\Customers;
+
+
 class FilterForm extends \Phoundation\Web\Html\Components\Forms\FilterForm
 {
     /**
