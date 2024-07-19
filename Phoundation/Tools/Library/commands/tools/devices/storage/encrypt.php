@@ -64,9 +64,9 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-                     ->select('device')->hasMaxCharacters(64)->isFile(FsDirectory::new('/dev/', FsRestrictions::getWritable('/dev')))->sanitizeCallback(function(mixed $value, array $source) { return '/dev/' . $value; })
+                     ->select('device')->hasMaxCharacters(64)->sanitizeFile(FsDirectory::new('/dev/', FsRestrictions::getWritable('/dev')))->sanitizeCallback(function(mixed $value, array $source) { return '/dev/' . $value; })
                      ->select('-s,--scramble')->isOptional()->isBoolean()
-                     ->select('--key-file', true)->isOptional()->isFile(FsDirectory::getFilesystemRoot())
+                     ->select('--key-file', true)->isOptional()->sanitizeFile(FsDirectory::getFilesystemRootObject())
     ->validate();
 
 
@@ -82,7 +82,7 @@ try {
 // Read password from stdin stream?
 if (empty($argv['key_file'])) {
     if (CliCommand::hasStdInStream()) {
-        $argv['password'] = CliCommand::readStdInStream();
+        $argv['password']          = CliCommand::getStdInStream();
         $argv['password_validate'] = $argv['password'];
 
         if (!FORCE) {
@@ -91,7 +91,7 @@ if (empty($argv['key_file'])) {
 
     } else {
         // Read password in interactive mode instead
-        $argv['password'] = Cli::readPassword(tr('Please type the users password:'));
+        $argv['password']          = Cli::readPassword(tr('Please type the users password:'));
         $argv['password_validate'] = Cli::readPassword(tr('Please re-type the users password:'));
     }
 

@@ -56,11 +56,11 @@ PATH                                    The path of which the size needs to be c
 
 // Get the arguments
 $argv = ArgvValidator::new()
-    ->select('path')->isFile(FsDirectory::getFilesystemRoot(true))
+    ->select('path')->sanitizePath(FsDirectory::getFilesystemRootObject(true))
     ->select('-r,--random')->isOptional(false)->isBoolean()
     ->select('-d,--data', true)->isOptional(false)->isInteger()->isBetween(1, 100)
     ->validate();
 
 
 // Shred the specified file
-FsPath::newExisting($argv['path'], FsRestrictions::getWritable('/'))->initialize($argv['data'], $argv['random']);
+$argv['path']->initialize($argv['data'], $argv['random']);

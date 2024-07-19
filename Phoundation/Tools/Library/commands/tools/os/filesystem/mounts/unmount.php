@@ -71,7 +71,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('target')->isDirectory(FsDirectory::getFilesystemRoot())
+    ->select('target')->sanitizeDirectory(FsDirectory::getFilesystemRootObject())
     ->select('-l,--lazy')->isOptional()->isBoolean()
     ->validate();
 

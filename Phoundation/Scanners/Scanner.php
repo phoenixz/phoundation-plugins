@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Class Scanner
  *
@@ -20,6 +18,7 @@ namespace Plugins\Phoundation\Scanners;
 use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
 use Phoundation\Data\Traits\TraitDataBatch;
 use Phoundation\Exception\OutOfBoundsException;
+use Phoundation\Filesystem\Interfaces\FsPathInterface;
 use Phoundation\Os\Processes\Commands\ScanImage;
 use Phoundation\Utils\Arrays;
 use Plugins\Phoundation\Hardware\Devices\Device;
@@ -154,10 +153,10 @@ class Scanner extends Device
      * Scan using the specified profile
      *
      * @param ProfileInterface|string|int $profile
-     * @param string $path
+     * @param FsPathInterface $path
      * @return $this
      */
-    public function scan(ProfileInterface|string|int $profile, string $path): static
+    public function scan(ProfileInterface|string|int $profile, FsPathInterface $path): static
     {
         if (!$profile instanceof ProfileInterface) {
             $profile = $this->getProfiles()->get($profile);
@@ -172,9 +171,9 @@ class Scanner extends Device
         }
 
         ScanImage::new()
-            ->applyProfile($profile)
-            ->setBatch($this->batch)
-            ->scan($path);
+                 ->applyProfile($profile)
+                 ->setBatch($this->batch)
+                 ->scan($path);
 
         return $this;
     }

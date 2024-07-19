@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Class Profiles
  *
@@ -18,7 +16,9 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Hardware\Devices;
 
 use Phoundation\Data\DataEntry\DataIterator;
+use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfileInterface;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfilesInterface;
+use Stringable;
 
 class Profiles extends DataIterator implements ProfilesInterface
 {
@@ -56,5 +56,18 @@ class Profiles extends DataIterator implements ProfilesInterface
     public static function getUniqueColumn(): ?string
     {
         return 'name';
+    }
+
+
+    /**
+     * Returns the specified profile
+     *
+     * @param float|Stringable|int|string $key
+     * @param bool $exception
+     * @return ProfileInterface|null
+     */
+    public function get(float|Stringable|int|string $key, bool $exception = true): ?ProfileInterface
+    {
+        return parent::get($key, $exception);
     }
 }

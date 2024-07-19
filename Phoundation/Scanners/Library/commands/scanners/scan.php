@@ -62,15 +62,15 @@ CliDocumentation::setAutoComplete([
 $argv = ArgvValidator::new()
     ->select('device')->isVariableName()
     ->select('profile')->isVariableName()
-    ->select('path')->isPath()
+    ->select('path')->sanitizePath()
     ->select('-b,--batch')->isOptional()->isBoolean()
     ->validate();
 
 
 // List available devices
 $scanner = Scanner::load($argv['device'])
-    ->setBatch($argv['batch'])
-    ->scan($argv['profile'], $argv['path']);
+                  ->setBatch($argv['batch'])
+                  ->scan($argv['profile'], $argv['path']);
 
 
 // Done!

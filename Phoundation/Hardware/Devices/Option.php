@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Class Option
  *
@@ -28,10 +26,12 @@ use Phoundation\Data\DataEntry\Traits\TraitDataEntryProfileObject;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryUnits;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
+use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Utils\Arrays;
 use Phoundation\Web\Html\Enums\EnumInputType;
+use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionInterface;
 
-class Option extends DataEntry
+class Option extends DataEntry implements OptionInterface
 {
     use TraitDataEntryComments;
     use TraitDataEntryDescription;
@@ -74,7 +74,7 @@ class Option extends DataEntry
      */
     public function getKey(): ?string
     {
-        return $this->getSourceValueTypesafe('string', 'key');
+        return $this->getTypesafe('string', 'key');
     }
 
 
@@ -93,11 +93,12 @@ class Option extends DataEntry
     /**
      * Returns the value for this option
      *
+     * @param string $key
      * @return string|null
      */
-    public function get(): ?string
+    public function get(string $key = 'value'): ?string
     {
-        return $this->getSourceValueTypesafe('string', 'value');
+        return $this->getTypesafe('string', $key);
     }
 
 
@@ -106,28 +107,38 @@ class Option extends DataEntry
      *
      * The value must either be one of the values option, or fall within the range for this option
      *
-     * @param string|null $value
+     * @param mixed $value
+     * @param string $column
+     * @param bool $force
      * @return static
      */
-    public function set(?string $value): static
+    public function set(mixed $value, string $column = 'value', bool $force = false): static
     {
         if ($value) {
             $this->checkRange($value)
                  ->checkValues($value);
         }
 
-        return $this->set(get_null($value), 'value');
+        return $this->set(get_null($value), $column);
     }
 
 
     /**
      * Checks if the value is valid for this option
      *
-     * @param string|null $value
+     * @param mixed $value
      * @return $this
      */
-    protected function checkValues(?string $value): static
+    protected function checkValues(mixed $value): static
     {
+        if (!is_string($value)) {
+            if ($value !== null) {
+                throw new OutOfBoundsException(tr('Invalid value datatype ":value" specified, must be NULL or string', [
+                    ':value' => $value
+                ]));
+            }
+        }
+
         $values = $this->getValues();
 
         if ($values) {
@@ -181,7 +192,7 @@ class Option extends DataEntry
      */
     public function getValues(): ?string
     {
-        return $this->getSourceValueTypesafe('string', 'values');
+        return $this->getTypesafe('string', 'values');
     }
 
 
@@ -204,7 +215,7 @@ class Option extends DataEntry
      */
     public function getRange(): ?string
     {
-        return $this->getSourceValueTypesafe('string', 'range');
+        return $this->getTypesafe('string', 'range');
     }
 
 
@@ -227,7 +238,7 @@ class Option extends DataEntry
      */
     public function getDefault(): ?string
     {
-        return $this->getSourceValueTypesafe('string', 'default');
+        return $this->getTypesafe('string', 'default');
     }
 
 

@@ -17,13 +17,9 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\Exception\FileExistsException;
-use Phoundation\Filesystem\FsFile;
 use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
-use Phoundation\Security\Crypt;
 
-$directory = '/';
-$restrictions = FsRestrictions::new('/', true, tr('security keyfiles delete'));
+$directory = FsDirectory::getFilesystemRootObject();
 
 CliDocumentation::setUsage('./pho tools security keyfiles delete
 ./pho tools security keyfiles create -s 8192');
@@ -41,8 +37,8 @@ FILE                                    The file where to write the
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($directory, $restrictions) { return FsDirectory::new($directory, $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($directory, $restrictions) { return FsDirectory::new($directory, $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($directory) { return $directory->scan($word . '*'); },
+            'noword' => function ()      use ($directory) { return $directory->scan('*'); },
         ],
     ],
     'arguments' => [
@@ -53,14 +49,14 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-    ->select('file')->isFile($directory, $restrictions)
-    ->select('-p,--passes')->isOptional(3)->isNatural()->isLessThan(20, true)
-    ->validate();
+                     ->select('file')->sanitizeFile($directory)
+                     ->select('-p,--passes')->isOptional(3)->isNatural()->isLessThan(20, true)
+                     ->validate();
 
 
 // Validate the target
 try {
-    FsFile::new($argv['file'], $restrictions)->shred($argv['passes']);
+    $argv['file']->shred($argv['passes']);
 
 } catch (FileExistsException $e) {
     throw $e->makeWarning();

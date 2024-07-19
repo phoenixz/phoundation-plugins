@@ -66,20 +66,20 @@ FILE                                    The file to be created
 
 // Get the arguments
 $argv = ArgvValidator::new()
-    ->select('file')->isFile(FsDirectory::getFilesystemRoot(), FORCE ? null : false)
-    ->select('-s,--size', true)->isOptional(false)->sanitizeBytes()
-    ->select('-i,--initialize', true)->isOptional(false)->isString()->hasMinCharacters(1)->hasMaxCharacters(1_073_741_824)
-    ->select('-b,--block-size', true)->isOptional(4096)->sanitizeBytes()->isBetween(1024, 1_073_741_824)
-    ->select('-r,--randomized')->isOptional(false)->isBoolean()
-    ->validate();
+                     ->select('file')->sanitizeFile(FsDirectory::getFilesystemRootObject(), FORCE ? null : false)
+                     ->select('-s,--size', true)->isOptional(false)->sanitizeBytes()
+                     ->select('-i,--initialize', true)->isOptional(false)->isString()->hasMinCharacters(1)->hasMaxCharacters(1_073_741_824)
+                     ->select('-b,--block-size', true)->isOptional(4096)->sanitizeBytes()->isBetween(1024, 1_073_741_824)
+                     ->select('-r,--randomized')->isOptional(false)->isBoolean()
+                     ->validate();
 
 
 // Allocate the specified file
-$file = FsFile::new($argv['file'], $restrictions)->allocate($argv['size']);
+$argv['file']->allocate($argv['size']);
 
 
 // Initialize the file
 if ($argv['initialize']) {
     // Determine the initialization data
-    $file->initialize($argv['initialize'], $argv['block_size'], $argv['randomized']);
+    $argv['file']->initialize($argv['initialize'], $argv['block_size'], $argv['randomized']);
 }

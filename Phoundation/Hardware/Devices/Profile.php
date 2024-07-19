@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Class Profile
  *
@@ -83,7 +81,7 @@ class Profile extends DataEntry implements ProfileInterface
      */
     public function getDefault(): ?bool
     {
-        return $this->getSourceValueTypesafe('string', 'default');
+        return $this->getTypesafe('string', 'default');
     }
 
 

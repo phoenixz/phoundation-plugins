@@ -48,7 +48,7 @@ PATH                                    The path to test');
 
 
 $argv = ArgvValidator::new()
-    ->select('path')->isDirectory(FsDirectory::getFilesystemRoot())
+    ->select('path')->sanitizeDirectory(FsDirectory::getFilesystemRootObject())
     ->validate();
 
 show($argv);

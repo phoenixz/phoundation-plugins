@@ -29,6 +29,7 @@ class Company extends DataEntry implements CompanyInterface
 {
     use TraitDataEntryNameDescription;
 
+
     /**
      * The branches for this company
      *

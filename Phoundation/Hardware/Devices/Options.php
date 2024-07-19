@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Class Options
  *
@@ -29,6 +27,7 @@ class Options extends DataIterator implements OptionsInterface
     public function __construct()
     {
         $this->keys_are_unique_column = true;
+
         parent::__construct();
     }
 

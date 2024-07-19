@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Devices\Interfaces;
 
-interface ProfileInterface
+use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
+
+interface ProfileInterface extends DataEntryInterface
 {
     /**
      * Returns  if this profile is the default profile or not

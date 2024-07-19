@@ -24,6 +24,7 @@ class Employee extends DataEntry
 {
     use TraitDataEntryNameDescription;
 
+
     /**
      * Returns the table name used by this object
      *
