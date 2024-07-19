@@ -63,7 +63,7 @@ class Saml
         $spSsoDescriptor->addKeyDescriptor(
             $keyDescriptor = (new KeyDescriptor())
                 ->setUse(KeyDescriptor::USE_SIGNING)
-                ->setCertificate(X509Certificate::fromFile(FsFile::new(DIRECTORY_ROOT . 'config/saml/saml-public-key.crt')->getPath()))
+                ->setCertificate(X509Certificate::fromFile(FsFile::new(DIRECTORY_ROOT . 'config/saml/saml-public-key.crt')->getSource()))
         );
 
         $spSsoDescriptor->addAssertionConsumerService(
