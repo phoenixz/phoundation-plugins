@@ -15,7 +15,7 @@ use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\GetValidator;
 use Phoundation\Network\Relay\Relay;
 use Phoundation\Utils\Arrays;
-use Phoundation\Web\Http\UrlBuilder;
+use Phoundation\Web\Http\Url;
 use Phoundation\Web\Requests\Request;
 
 try {
@@ -36,8 +36,8 @@ try {
         $url = str_replace('/relay', '', $url);
     }
 
-    $url   = UrlBuilder::getWww('http://grafana.localhost:3000/grafana' . $url)->addQueries($get);
-    $relay = Relay::new($url)->setPageReplace(['public/' => (string) UrlBuilder::getCdn('grafana/public/')]);
+    $url   = Url::getWww('http://grafana.localhost:3000/grafana' . $url)->addQueries($get);
+    $relay = Relay::new($url)->setPageReplace(['public/' => (string) Url::getCdn('grafana/public/')]);
 
     $relay->getCurl()
         ->setFollowLocation(true)

@@ -29,7 +29,7 @@ use LightSaml\SamlConstants;
 use Phoundation\Accounts\Users\Interfaces\UserInterface;
 use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsFile;
-use Phoundation\Web\Http\UrlBuilder;
+use Phoundation\Web\Http\Url;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 class Saml
@@ -69,7 +69,7 @@ class Saml
         $spSsoDescriptor->addAssertionConsumerService(
             $acs = (new AssertionConsumerService())
                 ->setBinding(SamlConstants::BINDING_SAML2_HTTP_POST)
-                ->setLocation(UrlBuilder::getWww('/sso/saml/acs.html'))
+                ->setLocation(Url::getWww('/sso/saml/acs.html'))
         );
 
         $context = new SerializationContext();

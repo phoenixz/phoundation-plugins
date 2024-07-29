@@ -13,7 +13,7 @@ use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Enums\EnumDisplaySize;
 use Phoundation\Web\Html\Layouts\Grid;
 use Phoundation\Web\Html\Layouts\GridColumn;
-use Phoundation\Web\Http\UrlBuilder;
+use Phoundation\Web\Http\Url;
 use Phoundation\Web\Requests\Request;
 use Phoundation\Web\Requests\Response;
 
@@ -49,7 +49,7 @@ if (Request::isPostRequestMethod()) {
 // Build the buttons
 $buttons = Buttons::new()
                   ->addButton('Submit')
-                  ->addButton(tr('Back'), EnumDisplayMode::secondary, UrlBuilder::getPrevious('/accounts/providers.html'), true)
+                  ->addButton(tr('Back'), EnumDisplayMode::secondary, Url::getPrevious('/accounts/providers.html'), true)
                   ->addButton(tr('Audit'), EnumDisplayMode::information, '/audit/meta+' . $provider->getMetaId() . '.html', false, true);
 
 // Build the provider form
@@ -79,8 +79,8 @@ $picture = Card::new()
 $relevant = Card::new()
                 ->setMode(EnumDisplayMode::info)
                 ->setTitle(tr('Relevant links'))
-                ->setContent('<a href="' . UrlBuilder::getWww('/business/customers.html') . '">' . tr('Customers management') . '</a><br>
-                         <a href="' . UrlBuilder::getWww('/business/companies.html') . '">' . tr('Companies management') . '</a>');
+                ->setContent('<a href="' . Url::getWww('/business/customers.html') . '">' . tr('Customers management') . '</a><br>
+                         <a href="' . Url::getWww('/business/companies.html') . '">' . tr('Companies management') . '</a>');
 
 
 // Build documentation

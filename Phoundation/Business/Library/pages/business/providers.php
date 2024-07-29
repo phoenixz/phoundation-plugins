@@ -10,7 +10,7 @@ use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Enums\EnumDisplaySize;
 use Phoundation\Web\Html\Enums\EnumHttpRequestMethod;
 use Phoundation\Web\Html\Layouts\Grid;
-use Phoundation\Web\Http\UrlBuilder;
+use Phoundation\Web\Http\Url;
 use Phoundation\Web\Requests\Response;
 
 
@@ -38,7 +38,7 @@ $providers = Card::new()
                  ->useForm(true);
 
 $providers->getForm()
-          ->setAction(UrlBuilder::getCurrent())
+          ->setAction(Url::getCurrent())
           ->setMethod(EnumHttpRequestMethod::post);
 
 
@@ -47,8 +47,8 @@ $relevant = Card::new()
                 ->setMode(EnumDisplayMode::info)
                 ->setTitle(tr('Relevant links'))
                 ->setCollapseSwitch(true)
-                ->setContent('<a href="' . UrlBuilder::getWww('/business/customers.html') . '">' . tr('Customers management') . '</a><br>
-                         <a href="' . UrlBuilder::getWww('/business/companies.html') . '">' . tr('Companies management') . '</a>');
+                ->setContent('<a href="' . Url::getWww('/business/customers.html') . '">' . tr('Customers management') . '</a><br>
+                         <a href="' . Url::getWww('/business/companies.html') . '">' . tr('Companies management') . '</a>');
 
 
 // Build documentation
