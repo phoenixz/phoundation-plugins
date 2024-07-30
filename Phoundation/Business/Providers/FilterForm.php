@@ -15,7 +15,6 @@ declare(strict_types=1);
 
 namespace Phoundation\Business\Providers;
 
-
 class FilterForm extends \Phoundation\Web\Html\Components\Forms\FilterForm
 {
     /**
