@@ -22,7 +22,7 @@ use Phoundation\Utils\Strings;
 
 CliDocumentation::setUsage('./pho tools numbers from bytes');
 
-CliDocumentation::setHelp('This command will convert the given human readable bytes to a byte number');
+CliDocumentation::setHelp('This command will convert the given human-readable bytes to a byte number');
 
 $argv = ArgvValidator::new()
     ->select('text')->hasMaxCharacters(128)
