@@ -24,7 +24,7 @@ use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Utils\Numbers;
 
 
-$restrictions = FsRestrictions::getReadonly('/', 'command tools files duplicates find');
+$restrictions = FsRestrictions::getReadonly('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [

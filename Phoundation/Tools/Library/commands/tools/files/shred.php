@@ -21,7 +21,7 @@ use Phoundation\Filesystem\FsPath;
 use Phoundation\Filesystem\FsRestrictions;
 
 
-$restrictions = FsRestrictions::getWritable('/', 'command tools files shred');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

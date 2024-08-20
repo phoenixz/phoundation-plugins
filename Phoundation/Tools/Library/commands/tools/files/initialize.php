@@ -17,11 +17,10 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsPath;
 use Phoundation\Filesystem\FsRestrictions;
 
 
-$restrictions = FsRestrictions::getWritable('/', 'command tools files initalize');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

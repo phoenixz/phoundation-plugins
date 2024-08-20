@@ -21,7 +21,7 @@ use Phoundation\Filesystem\FsFile;
 use Phoundation\Filesystem\FsRestrictions;
 
 
-$restrictions = FsRestrictions::getWritable('/', 'command tools files allocate');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

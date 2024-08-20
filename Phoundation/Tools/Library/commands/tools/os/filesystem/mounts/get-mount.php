@@ -22,7 +22,7 @@ use Phoundation\Filesystem\Mounts\FsMounts;
 use Phoundation\Filesystem\FsRestrictions;
 
 
-$restrictions = FsRestrictions::getWritable('/', 'command tools os filesystem mounts');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [

@@ -24,7 +24,7 @@ use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Utils\Numbers;
 
 
-$restrictions = FsRestrictions::getWritable('/', 'command tools files duplicates delete');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

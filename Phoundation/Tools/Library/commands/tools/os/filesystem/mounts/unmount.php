@@ -25,7 +25,7 @@ use Phoundation\Os\Processes\Commands\UnMount;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = FsRestrictions::getWritable('/', 'command tools os filesystem mounts');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [

@@ -25,7 +25,7 @@ use Phoundation\Utils\Arrays;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = FsRestrictions::getWritable('/', 'command tools os filesystem mounts');
+$restrictions = FsRestrictions::getWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
