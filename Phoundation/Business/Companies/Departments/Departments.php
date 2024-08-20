@@ -12,6 +12,7 @@
  * @package   Phoundation\Companies
  */
 
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Companies\Departments;
@@ -19,6 +20,7 @@ namespace Phoundation\Business\Companies\Departments;
 use Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
 use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
+
 
 class Departments extends DataIterator implements DepartmentsInterface
 {
@@ -47,11 +49,11 @@ class Departments extends DataIterator implements DepartmentsInterface
 
 
     /**
-     * Returns the name of this DataEntry class
+     * Returns the class for a single DataEntry in this Iterator object
      *
      * @return string|null
      */
-    public static function getEntryClass(): ?string
+    public static function getDefaultContentDataTypes(): ?string
     {
         return Department::class;
     }

@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Command hardware search
+ *
+ * This command will scan for available hardware devices and register them
+ *
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+
+
 declare(strict_types=1);
 
 use Phoundation\Cli\CliDocumentation;
@@ -10,16 +22,6 @@ use Phoundation\Utils\Utils;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 
 
-/**
- * Command hardware/search
- *
- * This command will scan for available hardware devices and register them
- *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Scripts
- */
 CliDocumentation::setUsage('./pho hardware search');
 
 CliDocumentation::setHelp('This command will search for available hardware devices and register them in the database

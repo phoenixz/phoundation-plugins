@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Command business/providers/create
+ * Command business providers create
  *
  * This command will create a new provider with the specified properties
  *
@@ -11,12 +11,14 @@
  * @package   Phoundation\Scripts
  */
 
+
 declare(strict_types=1);
 
 use Phoundation\Business\Providers\Provider;
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
+
 
 CliDocumentation::setUsage('./pho business providers create NAME [OPTIONS]
 ./pho system business providers create test -d "This is a test provider!"');
@@ -41,7 +43,7 @@ $argv = ArgvValidator::new()
 
 
 // Check if the provider already exists
-Provider::notExists($argv['name'], 'name', null, true);
+Provider::notExists(['name' => $argv['name']], null, true);
 
 
 // Ensure that specified providers exist

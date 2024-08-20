@@ -11,11 +11,13 @@
  * @package   Phoundation\Companies
  */
 
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Companies\Exception;
 
 use Phoundation\Exception\Exception;
+
 
 class CompaniesException extends Exception
 {

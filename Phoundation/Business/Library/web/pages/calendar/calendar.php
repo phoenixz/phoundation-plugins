@@ -1,10 +1,5 @@
 <?php
 
-use Phoundation\Web\Html\Components\Script;
-use Phoundation\Web\Html\Enums\EnumJavascriptWrappers;
-use Phoundation\Web\Requests\Response;
-
-
 /**
  * Calendar page
  *
@@ -15,6 +10,14 @@ use Phoundation\Web\Requests\Response;
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Phoundation\Web
  */
+
+
+declare(strict_types=1);
+
+use Phoundation\Web\Html\Components\Script;
+use Phoundation\Web\Html\Enums\EnumJavascriptWrappers;
+use Phoundation\Web\Requests\Response;
+
 
 // Load required CSS
 Response::loadCss('Phoundation/adminlte/plugins/fullcalendar/main');

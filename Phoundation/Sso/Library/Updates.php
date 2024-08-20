@@ -12,6 +12,7 @@
  * @package   Phoundation\Accounts
  */
 
+
 declare(strict_types=1);
 
 namespace Plugins\Phoundation\Sso\Library;

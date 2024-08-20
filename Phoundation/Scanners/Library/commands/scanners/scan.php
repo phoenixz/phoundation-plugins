@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Command scanners/scan
+ * Command scanners scan
  *
  * This command will scan on the specified device using the specified profile
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
 
 declare(strict_types=1);
 
@@ -21,6 +22,7 @@ use Phoundation\Filesystem\FsRestrictions;
 use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 use Plugins\Phoundation\Scanners\Scanner;$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA);
+
 
 CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');
 

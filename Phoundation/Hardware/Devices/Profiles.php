@@ -5,11 +5,12 @@
  *
  *
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
+
 
 declare(strict_types=1);
 
@@ -19,6 +20,7 @@ use Phoundation\Data\DataEntry\DataIterator;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfileInterface;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfilesInterface;
 use Stringable;
+
 
 class Profiles extends DataIterator implements ProfilesInterface
 {
@@ -44,7 +46,7 @@ class Profiles extends DataIterator implements ProfilesInterface
     /**
      * @inheritDoc
      */
-    public static function getEntryClass(): ?string
+    public static function getDefaultContentDataTypes(): ?string
     {
         return Profile::class;
     }

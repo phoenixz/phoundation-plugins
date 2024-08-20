@@ -5,11 +5,12 @@
  *
  *
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
+
 
 declare(strict_types=1);
 
@@ -21,6 +22,7 @@ use Phoundation\Os\Processes\Commands\ScanImage;
 use Phoundation\Seo\Seo;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\DevicesInterface;
 use Plugins\Phoundation\Scanners\Exception\ScannersException;
+
 
 class Devices extends DataIterator implements DevicesInterface
 {
@@ -45,7 +47,7 @@ class Devices extends DataIterator implements DevicesInterface
     /**
      * @inheritDoc
      */
-    public static function getEntryClass(): ?string
+    public static function getDefaultContentDataTypes(): ?string
     {
         return Device::class;
     }
@@ -63,14 +65,14 @@ class Devices extends DataIterator implements DevicesInterface
      * Scans for known hardware devices and registers them in the database
      *
      * @param bool $update_options
-     * @return $this
+     * @return static
      */
     public function search(bool $update_options): static
     {
         $devices = ScanImage::new()->listDevices();
 
         foreach ($devices as $device) {
-            if (Device::notExists($device['device'], 'device')) {
+            if (Device::notExists(['name' => $device['device']])) {
                 $device['class'] = 'scanner';
                 $device['name']  = Seo::string($device['device']);
                 $device['url']   = $device['device'];

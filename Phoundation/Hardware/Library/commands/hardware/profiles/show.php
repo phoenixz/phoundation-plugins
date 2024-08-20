@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Command hardware/profiles/show
+ * Command hardware profiles show
  *
  * This command will show the details for the specified hardware device profile
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
 
 declare(strict_types=1);
 
@@ -19,6 +20,7 @@ use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Exception\NotExistsException;use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 use Plugins\Phoundation\Hardware\Devices\Profile;
+
 
 CliDocumentation::setUsage('./pho hardware profiles show DEVICE PROFILE');
 

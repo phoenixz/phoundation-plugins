@@ -5,11 +5,12 @@
  *
  *
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
+
 
 declare(strict_types=1);
 
@@ -18,6 +19,7 @@ namespace Plugins\Phoundation\Hardware\Devices;
 use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Exception\OutOfBoundsException;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionsInterface;
+
 
 class Options extends DataIterator implements OptionsInterface
 {
@@ -44,7 +46,7 @@ class Options extends DataIterator implements OptionsInterface
     /**
      * @inheritDoc
      */
-    public static function getEntryClass(): ?string
+    public static function getDefaultContentDataTypes(): ?string
     {
         return Option::class;
     }

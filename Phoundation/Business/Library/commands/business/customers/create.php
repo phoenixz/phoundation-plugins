@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Command business/customers/create
+ * Command business customers create
  *
  * This command will create a new customer with the specified properties
  *
@@ -11,12 +11,14 @@
  * @package   Phoundation\Scripts
  */
 
+
 declare(strict_types=1);
 
 use Phoundation\Business\Customers\Customer;
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
+
 
 CliDocumentation::setUsage('./pho business customers create NAME [OPTIONS]
 ./pho system business customers create test -d "This is a test customer!"');
@@ -41,7 +43,7 @@ $argv = ArgvValidator::new()
 
 
 // Check if the customer already exists
-Customer::notExists($argv['name'], 'name', null, true);
+Customer::notExists(['name' => $argv['name']], null, true);
 
 
 // Ensure that specified customers exist

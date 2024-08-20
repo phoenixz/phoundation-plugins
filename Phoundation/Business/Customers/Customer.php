@@ -12,6 +12,7 @@
  * @package   Phoundation\Business
  */
 
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Customers;
@@ -29,9 +30,10 @@ use Phoundation\Data\DataEntry\Traits\TraitDataEntryGeo;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryLanguage;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryPhones;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryPicture;
+use Phoundation\Data\DataEntry\Traits\TraitDataEntryImageFileObject;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryUrl;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
+
 
 class Customer extends DataEntry
 {
@@ -42,7 +44,7 @@ class Customer extends DataEntry
     use TraitDataEntryPhones;
     use TraitDataEntryAddress;
     use TraitDataEntryCompany;
-    use TraitDataEntryPicture;
+    use TraitDataEntryImageFileObject;
     use TraitDataEntryCategory;
     use TraitDataEntryLanguage;
     use TraitDataEntryNameDescription;
@@ -142,7 +144,7 @@ class Customer extends DataEntry
                     ->add(DefinitionFactory::getName($this)
                                            ->addValidationFunction(function (ValidatorInterface $validator) {
                                                $validator->isFalse(function ($value, $source) {
-                                                   Customer::exists($value, 'name', isset_get($source['id']));
+                                                   Customer::exists(['name' => $value], isset_get($source['id']));
                                                }, tr('already exists'));
                                            }))
                     ->add(DefinitionFactory::getSeoName($this))

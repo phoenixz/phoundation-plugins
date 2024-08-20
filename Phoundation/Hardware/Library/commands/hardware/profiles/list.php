@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Command hardware/profiles/list
+ * Command hardware profiles list
  *
  * This command will scan for available hardware devices and register them
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
 
 declare(strict_types=1);
 
@@ -19,6 +20,7 @@ use Phoundation\Utils\Arrays;
 use Phoundation\Utils\Utils;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 use Plugins\Phoundation\Hardware\Devices\Profiles;
+
 
 CliDocumentation::setUsage('./pho hardware profiles list');
 

@@ -5,11 +5,12 @@
  *
  *
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Scanner
  */
+
 
 declare(strict_types=1);
 
@@ -24,6 +25,7 @@ use Phoundation\Utils\Arrays;
 use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfileInterface;
 use Plugins\Phoundation\Hardware\Exception\InvalidDeviceClassException;
+
 
 class Scanner extends Device
 {
@@ -41,14 +43,13 @@ class Scanner extends Device
     /**
      * DataEntry class constructor
      *
-     * @param DataEntryInterface|string|int|null $identifier
-     * @param string|null                        $column
-     * @param bool|null                          $meta_enabled
-     * @param bool                               $init
+     * @param array|DataEntryInterface|string|int|null $identifier
+     * @param bool|null                                $meta_enabled
+     * @param bool                                     $init
      */
-    public function __construct(DataEntryInterface|string|int|null $identifier = null, ?string $column = null, ?bool $meta_enabled = null, bool $init = true)
+    public function __construct(array|DataEntryInterface|string|int|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
     {
-        parent::__construct($identifier, $column, $meta_enabled, $init);
+        parent::__construct($identifier, $meta_enabled, $init);
 
         if ($this->isNew()) {
             $this->setClass('scanner');
@@ -56,7 +57,7 @@ class Scanner extends Device
         } else {
             if ($this->getClass() !== 'scanner') {
                 throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
-                    ':column'     => static::determineColumn($identifier, $column),
+                    ':column'     => static::determineColumn($identifier),
                     ':identifier' => $identifier
                 ]));
             }
@@ -80,19 +81,19 @@ class Scanner extends Device
      * @note The test to see if a DataEntry object exists in the database can be either DataEntry::isNew() or
      *       DataEntry::getId(), which should return a valid database id
      *
-     * @param DataEntryInterface|string|int|null $identifier
-     * @param string|null $column
-     * @param bool $meta_enabled
-     * @param bool $force
+     * @param array|DataEntryInterface|string|int|null $identifier
+     * @param bool                                     $meta_enabled
+     * @param bool                                     $force
+     *
      * @return static
      */
-    public static function load(DataEntryInterface|string|int|null $identifier, ?string $column = null, bool $meta_enabled = false, bool $force = false): static
+    public static function load(array|DataEntryInterface|string|int|null $identifier, bool $meta_enabled = false, bool $force = false): static
     {
-        $entry = parent::load($identifier, $column, $meta_enabled, $force);
+        $entry = parent::load($identifier, $meta_enabled, $force);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
-                ':column'     => static::determineColumn($identifier, $column),
+                ':column'     => static::determineColumn($identifier),
                 ':identifier' => $identifier
             ]));
         }
@@ -139,7 +140,7 @@ class Scanner extends Device
 
 
     /**
-     * Returns the amount of scanned documents, NULL if nothing has been scanned yet
+     * Returns the number of scanned documents, NULL if nothing has been scanned yet
      *
      * @return int|null
      */
@@ -154,7 +155,7 @@ class Scanner extends Device
      *
      * @param ProfileInterface|string|int $profile
      * @param FsPathInterface $path
-     * @return $this
+     * @return static
      */
     public function scan(ProfileInterface|string|int $profile, FsPathInterface $path): static
     {

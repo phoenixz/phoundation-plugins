@@ -12,6 +12,7 @@
  * @package   Phoundation\Companies
  */
 
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Companies;
@@ -24,6 +25,7 @@ use Phoundation\Business\Companies\Interfaces\CompanyInterface;
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
+
 
 class Company extends DataEntry implements CompanyInterface
 {

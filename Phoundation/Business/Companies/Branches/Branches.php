@@ -12,6 +12,7 @@
  * @package   Phoundation\Companies
  */
 
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Companies\Branches;
@@ -19,6 +20,7 @@ namespace Phoundation\Business\Companies\Branches;
 use Phoundation\Business\Companies\Branches\Interfaces\BranchesInterface;
 use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
+
 
 class Branches extends DataIterator implements BranchesInterface
 {
@@ -47,11 +49,11 @@ class Branches extends DataIterator implements BranchesInterface
 
 
     /**
-     * Returns the name of this DataEntry class
+     * Returns the class for a single DataEntry in this Iterator object
      *
      * @return string|null
      */
-    public static function getEntryClass(): ?string
+    public static function getDefaultContentDataTypes(): ?string
     {
         return Branch::class;
     }

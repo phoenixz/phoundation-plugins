@@ -13,6 +13,7 @@
  * @package   Phoundation\Accounts
  */
 
+
 declare(strict_types=1);
 
 namespace Plugins\Phoundation\Sso;
@@ -31,6 +32,7 @@ use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsFile;
 use Phoundation\Web\Http\Url;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+
 
 class Saml
 {

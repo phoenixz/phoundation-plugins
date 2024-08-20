@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Command tools/os/filesystem/mounts/mount
+ * Command tools os filesystem mounts mount
  *
  *
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
 
 declare(strict_types=1);
 
@@ -21,6 +22,7 @@ use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Os\Devices\Storage\Proc;
 use Phoundation\Os\Processes\Commands\Mount;
 use Phoundation\Utils\Arrays;
+
 
 $types        = Proc::getSupportedFiletypes();
 $restrictions = FsRestrictions::getWritable('/', 'command tools os filesystem mounts');

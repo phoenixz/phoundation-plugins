@@ -5,11 +5,12 @@
  *
  *
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
+
 
 declare(strict_types=1);
 
@@ -30,6 +31,7 @@ use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Utils\Arrays;
 use Phoundation\Web\Html\Enums\EnumInputType;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionInterface;
+
 
 class Option extends DataEntry implements OptionInterface
 {
@@ -127,7 +129,7 @@ class Option extends DataEntry implements OptionInterface
      * Checks if the value is valid for this option
      *
      * @param mixed $value
-     * @return $this
+     * @return static
      */
     protected function checkValues(mixed $value): static
     {

@@ -123,7 +123,7 @@ interface DeviceInterface extends DataEntryInterface
     /**
      * Searches for driver options for this device and stores them in the database
      *
-     * @return $this
+     * @return static
      */
     public function updateOptions(): static;
 

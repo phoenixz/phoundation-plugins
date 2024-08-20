@@ -5,11 +5,12 @@
  *
  * This class can add (reasonably) reliable javascript copy method to the browser client
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Data
  */
+
 
 declare(strict_types=1);
 
@@ -21,6 +22,7 @@ use Phoundation\Data\Traits\TraitDataTarget;
 use Phoundation\Web\Http\Html\Components\Script;
 use Phoundation\Web\Http\Html\Enums\BrowserEvent;
 use Phoundation\Web\Http\Html\Traits\Rendered;
+
 
 class JavaScriptCopy extends Script
 {

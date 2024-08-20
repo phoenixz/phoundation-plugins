@@ -12,7 +12,7 @@ interface DevicesInterface extends DataIteratorInterface
      * Scans for known hardware devices and registers them in the database
      *
      * @param bool $update_options
-     * @return $this
+     * @return static
      */
     public function search(bool $update_options): static;
 }

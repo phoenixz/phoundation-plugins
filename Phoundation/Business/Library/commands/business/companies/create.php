@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Command business/companies/create
+ * Command business companies create
  *
  * This command will create a new company with the specified properties
  *
@@ -11,12 +11,14 @@
  * @package   Phoundation\Scripts
  */
 
+
 declare(strict_types=1);
 
 use Phoundation\Business\Companies\Company;
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
+
 
 CliDocumentation::setUsage('./pho business companies create NAME [OPTIONS]
 ./pho system business companies create test -d "This is a test company!"');
@@ -41,7 +43,7 @@ $argv = ArgvValidator::new()
 
 
 // Check if the company already exists
-Company::notExists($argv['name'], 'name', null, true);
+Company::notExists(['name' => $argv['name']], null, true);
 
 
 // Ensure that specified companies exist

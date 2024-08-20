@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Command tools/files/size
+ * Command tools files size
  *
  * Will count the sizes of all the files in the specified path recursively and display the amount found
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
 
 declare(strict_types=1);
 
@@ -20,6 +21,7 @@ use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsPath;
 use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Utils\Numbers;
+
 
 CliDocumentation::setAutoComplete([
     'positions' => [
@@ -46,7 +48,7 @@ ARGUMENTS
 PATH                                    The path of which the size needs to be calculated 
 
 
-[-h,--human-readable]                   If specified will display not the amount of bytes as an integer number, but a 
+[-h,--human-readable]                   If specified, will display not the number of bytes as an integer number, but a 
                                         human-readable size instead. Instead of 1073741824 bytes, it will display 1GiB');
 
 

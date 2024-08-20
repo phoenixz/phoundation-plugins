@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Command hardware show
+ *
+ * This command will show the details for the specified device
+ *
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+
+
 declare(strict_types=1);
 
 use Phoundation\Cli\CliDocumentation;
@@ -8,16 +20,6 @@ use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 
 
-/**
- * Command hardware/show
- *
- * This command will show the details for the specified device
- *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Scripts
- */
 CliDocumentation::setUsage('./pho hardware show DEVICE');
 
 CliDocumentation::setHelp('This command will show the details of the specified hardware device

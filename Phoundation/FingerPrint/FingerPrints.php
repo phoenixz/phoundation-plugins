@@ -5,11 +5,12 @@
  *
  * This class manages finger print access using the Fprint class
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Processes
  */
+
 
 declare(strict_types=1);
 
@@ -17,6 +18,7 @@ namespace Plugins\Phoundation\FingerPrint;
 
 use Phoundation\Data\DataEntry\DataIterator;
 use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
+
 
 class FingerPrints extends DataIterator implements FingerPrintsInterface
 {
@@ -32,7 +34,7 @@ class FingerPrints extends DataIterator implements FingerPrintsInterface
     /**
      * @inheritDoc
      */
-    public static function getEntryClass(): ?string
+    public static function getDefaultContentDataTypes(): ?string
     {
         return FingerPrint::class;
     }

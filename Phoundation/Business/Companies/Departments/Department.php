@@ -12,6 +12,7 @@
  * @package   Phoundation\Companies
  */
 
+
 declare(strict_types=1);
 
 namespace Phoundation\Business\Companies\Departments;
@@ -19,6 +20,7 @@ namespace Phoundation\Business\Companies\Departments;
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;
+
 
 class Department extends DataEntry
 {

@@ -6,6 +6,7 @@ namespace Plugins\Phoundation\Scanners;
 
 use Plugins\Phoundation\Hardware\Devices\Devices;
 
+
 class Scanners extends Devices
 {
 

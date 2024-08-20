@@ -5,11 +5,12 @@
  *
  * Will initalize the specified file by overwriting it (multiple times) with data
  *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Tools
  */
+
 
 declare(strict_types=1);
 
@@ -18,6 +19,7 @@ use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsPath;
 use Phoundation\Filesystem\FsRestrictions;
+
 
 $restrictions = FsRestrictions::getWritable('/', 'command tools files initalize');
 
@@ -51,7 +53,7 @@ PATH                                    The path of which the size needs to be c
                                         bytes), or "ones" (Will will the file with chr(255) bytes) or any other data 
                                         string that will be repeated over and over until the file is full
 
-[-r,--random]                           If specified will overwrite the file blocks randomly, instead of linearly');
+[-r,--random]                           If specified, will overwrite the file blocks randomly, instead of linearly');
 
 
 // Get the arguments
