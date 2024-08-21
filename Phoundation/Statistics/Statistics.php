@@ -132,12 +132,12 @@ class Statistics
     /**
      * Returns the path adjusted for project and environment so that these two are always separated
      *
-     * @param FsPathInterface $path
-     * @return FsPathInterface
+     * @param string $path
+     * @return string
      */
-    protected function getPath(FsPathInterface $path): FsPathInterface
+    protected function getPath(string $path): string
     {
-        return new FsPath(PROJECT . '.' . ENVIRONMENT . '.' . $path);
+        return PROJECT . '.' . ENVIRONMENT . '.' . $path;
     }
 
 
