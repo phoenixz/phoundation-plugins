@@ -39,7 +39,7 @@ $providers = Card::new()
 
 $providers->getForm()
           ->setAction(Url::getCurrent())
-          ->setMethod(EnumHttpRequestMethod::post);
+          ->setRequestMethod(EnumHttpRequestMethod::post);
 
 
 // Build relevant links
