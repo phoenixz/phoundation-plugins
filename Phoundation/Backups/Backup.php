@@ -150,7 +150,7 @@ class Backup extends DataEntry
      */
     public function backupSystem(): static
     {
-        $this->init();
+//        $this->init();
 
         return $this;
     }
@@ -163,7 +163,7 @@ class Backup extends DataEntry
      */
     public function backupPlugins(): static
     {
-        $this->init();
+//        $this->init();
 
         return $this;
     }
@@ -176,7 +176,7 @@ class Backup extends DataEntry
      */
     public function backupDataFiles(): static
     {
-        $this->init();
+//        $this->init();
 
         return $this;
     }
@@ -189,7 +189,7 @@ class Backup extends DataEntry
      */
     public function backupAllDatabases(): static
     {
-        $this->init();
+//        $this->init();
 
         Log::action(tr('Backing up all configured connectors for environment ":environment"', [
             ':environment' => ENVIRONMENT,

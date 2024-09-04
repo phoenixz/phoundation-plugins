@@ -53,7 +53,7 @@ class Departments extends DataIterator implements DepartmentsInterface
      *
      * @return string|null
      */
-    public static function getDefaultContentDataTypes(): ?string
+    public static function getDefaultContentDataType(): ?string
     {
         return Department::class;
     }

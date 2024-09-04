@@ -23,7 +23,7 @@ use Plugins\Phoundation\Scanners\Scanner;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA);
+$restrictions = FsRestrictions::newWritable(DIRECTORY_DATA);
 
 CliDocumentation::usage('./pho scanners scan DEVICE PROFILE PATH');
 

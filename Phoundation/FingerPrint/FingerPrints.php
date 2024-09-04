@@ -34,7 +34,7 @@ class FingerPrints extends DataIterator implements FingerPrintsInterface
     /**
      * @inheritDoc
      */
-    public static function getDefaultContentDataTypes(): ?string
+    public static function getDefaultContentDataType(): ?string
     {
         return FingerPrint::class;
     }

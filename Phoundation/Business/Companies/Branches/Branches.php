@@ -53,7 +53,7 @@ class Branches extends DataIterator implements BranchesInterface
      *
      * @return string|null
      */
-    public static function getDefaultContentDataTypes(): ?string
+    public static function getDefaultContentDataType(): ?string
     {
         return Branch::class;
     }

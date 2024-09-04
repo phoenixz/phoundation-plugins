@@ -21,7 +21,7 @@ use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsRestrictions;
 use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Scanners\Scanner;$restrictions = FsRestrictions::getWritable(DIRECTORY_DATA);
+use Plugins\Phoundation\Scanners\Scanner;$restrictions = FsRestrictions::newWritable(DIRECTORY_DATA);
 
 
 CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');

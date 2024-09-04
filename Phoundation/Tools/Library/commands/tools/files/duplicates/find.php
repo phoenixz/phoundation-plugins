@@ -24,7 +24,7 @@ use Phoundation\Filesystem\FsRestrictions;
 use Phoundation\Utils\Numbers;
 
 
-$restrictions = FsRestrictions::getReadonly('/');
+$restrictions = FsRestrictions::newReadonly('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
@@ -63,7 +63,7 @@ PATH                                    The path that should be scanned
 
 // Get arguments
 $argv = ArgvValidator::new()
-    ->select('path')->sanitizeDirectory(FsDirectory::getFilesystemRootObject())
+    ->select('path')->sanitizeDirectory(FsDirectory::newFilesystemRootObject())
     ->select('-r,--recursive', true)->isOptional(0)->isInteger()->isPositive()
     ->select('-m,--max-size', true)->isOptional(1_073_741_824)->sanitizeBytes()
     ->validate();

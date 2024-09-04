@@ -66,9 +66,9 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-                     ->select('device')->hasMaxCharacters(64)->sanitizeFile(FsDirectory::new('/dev/', FsRestrictions::getWritable('/dev')))->sanitizeCallback(function(mixed $value, array $source) { return '/dev/' . $value; })
+                     ->select('device')->hasMaxCharacters(64)->sanitizeFile(FsDirectory::new('/dev/', FsRestrictions::newWritable('/dev')))->sanitizeCallback(function(mixed $value, array $source) { return '/dev/' . $value; })
                      ->select('-s,--scramble')->isOptional()->isBoolean()
-                     ->select('--key-file', true)->isOptional()->sanitizeFile(FsDirectory::getFilesystemRootObject())
+                     ->select('--key-file', true)->isOptional()->sanitizeFile(FsDirectory::newFilesystemRootObject())
     ->validate();
 
 

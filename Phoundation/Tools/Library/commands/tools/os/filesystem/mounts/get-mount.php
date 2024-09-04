@@ -22,7 +22,7 @@ use Phoundation\Filesystem\Mounts\FsMounts;
 use Phoundation\Filesystem\FsRestrictions;
 
 
-$restrictions = FsRestrictions::getWritable('/');
+$restrictions = FsRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
@@ -50,7 +50,7 @@ PATH                                    The path to test');
 
 
 $argv = ArgvValidator::new()
-    ->select('path')->sanitizeDirectory(FsDirectory::getFilesystemRootObject())
+    ->select('path')->sanitizeDirectory(FsDirectory::newFilesystemRootObject())
     ->validate();
 
 show($argv);

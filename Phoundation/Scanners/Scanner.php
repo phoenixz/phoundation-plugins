@@ -83,13 +83,13 @@ class Scanner extends Device
      *
      * @param array|DataEntryInterface|string|int|null $identifier
      * @param bool                                     $meta_enabled
-     * @param bool                                     $force
+     * @param bool                                     $ignore_deleted
      *
      * @return static
      */
-    public static function load(array|DataEntryInterface|string|int|null $identifier, bool $meta_enabled = false, bool $force = false): static
+    public static function load(array|DataEntryInterface|string|int|null $identifier, bool $meta_enabled = false, bool $ignore_deleted = false): static
     {
-        $entry = parent::load($identifier, $meta_enabled, $force);
+        $entry = parent::load($identifier, $meta_enabled, $ignore_deleted);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
@@ -118,16 +118,16 @@ class Scanner extends Device
      * @note The test to see if a DataEntry object exists in the database can be either DataEntry::isNew() or
      *       DataEntry::getId(), which should return a valid database id
      *
-     * @param array $identifiers
-     * @param bool $meta_enabled
-     * @param bool $force
-     * @param bool $exception
+     * @param array  $identifiers
+     * @param bool   $meta_enabled
+     * @param bool   $ignore_deleted
+     * @param bool   $exception
      * @param string $filter
      * @return static|null
      */
-    public static function find(array $identifiers, bool $meta_enabled = false, bool $force = false, bool $exception = true, string $filter = 'AND'): ?static
+    public static function find(array $identifiers, bool $meta_enabled = false, bool $ignore_deleted = false, bool $exception = true, string $filter = 'AND'): ?static
     {
-        $entry = parent::find($identifiers, $meta_enabled, $force);
+        $entry = parent::find($identifiers, $meta_enabled, $ignore_deleted);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device "identifiers" is not a "scanner" class device', [

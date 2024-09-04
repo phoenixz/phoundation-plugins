@@ -46,7 +46,7 @@ class Profiles extends DataIterator implements ProfilesInterface
     /**
      * @inheritDoc
      */
-    public static function getDefaultContentDataTypes(): ?string
+    public static function getDefaultContentDataType(): ?string
     {
         return Profile::class;
     }

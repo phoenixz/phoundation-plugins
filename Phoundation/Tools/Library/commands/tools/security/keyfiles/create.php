@@ -22,7 +22,7 @@ use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Security\Crypt;
 
 
-$directory = FsDirectory::getFilesystemRootObject();
+$directory = FsDirectory::newFilesystemRootObject();
 
 CliDocumentation::setUsage('./pho tools security keyfiles create
 ./pho tools security keyfiles create -s 8192');

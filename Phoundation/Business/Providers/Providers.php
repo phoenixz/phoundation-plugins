@@ -54,7 +54,7 @@ class Providers extends DataIterator
      *
      * @return string|null
      */
-    public static function getDefaultContentDataTypes(): ?string
+    public static function getDefaultContentDataType(): ?string
     {
         return Provider::class;
     }

@@ -21,7 +21,7 @@ use Phoundation\Filesystem\Exception\FileExistsException;
 use Phoundation\Filesystem\FsDirectory;
 
 
-$directory = FsDirectory::getFilesystemRootObject();
+$directory = FsDirectory::newFilesystemRootObject();
 
 CliDocumentation::setUsage('./pho tools os filesystem btrfs subvolumes create PATH');
 

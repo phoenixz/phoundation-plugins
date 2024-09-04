@@ -47,7 +47,7 @@ class Devices extends DataIterator implements DevicesInterface
     /**
      * @inheritDoc
      */
-    public static function getDefaultContentDataTypes(): ?string
+    public static function getDefaultContentDataType(): ?string
     {
         return Device::class;
     }

@@ -20,7 +20,7 @@ use Phoundation\Filesystem\FsDirectory;
 use Phoundation\Filesystem\FsRestrictions;
 
 
-$restrictions = FsRestrictions::getWritable('/');
+$restrictions = FsRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [
@@ -57,7 +57,7 @@ PATH                                    The path of which the size needs to be c
 
 // Get the arguments
 $argv = ArgvValidator::new()
-    ->select('path')->sanitizePath(FsDirectory::getFilesystemRootObject(true))
+    ->select('path')->sanitizePath(FsDirectory::newFilesystemRootObject(true))
     ->select('-r,--random')->isOptional(false)->isBoolean()
     ->select('-d,--data', true)->isOptional(false)->isInteger()->isBetween(1, 100)
     ->validate();

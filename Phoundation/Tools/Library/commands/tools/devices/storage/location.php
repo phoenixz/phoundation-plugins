@@ -47,7 +47,7 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-    ->select('file')->hasMaxCharacters(2048)-->isFile(FsDirectory::getFilesystemRootObject())->sanitizeCallback(function(mixed $value, array $source) { return '/' . $value; })
+    ->select('file')->hasMaxCharacters(2048)-->isFile(FsDirectory::newFilesystemRootObject())->sanitizeCallback(function(mixed $value, array $source) { return '/' . $value; })
     ->validate();
 
 
