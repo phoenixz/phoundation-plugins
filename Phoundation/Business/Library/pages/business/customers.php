@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Page customers
+ *
+ *
+ *
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package   Plugins\Phoundation\Business
+ */
+
+
 declare(strict_types=1);
 
 use Phoundation\Business\Customers\Customers;
@@ -18,7 +30,7 @@ use Phoundation\Web\Requests\Response;
 
 
 // Build customers filter card
-$filters_content = FilterForm::new();
+$filters_content = FilterForm::new()->apply();
 
 $filters = Card::new()
                ->setTitle('Customers filters')
@@ -28,7 +40,7 @@ $filters = Card::new()
 
 
 // Build customers table
-$table = Customers::new()->getHtmlDataTable()
+$table = Customers::new()->getHtmlDataTableObject()
                   ->setRowUrl('/business/customer+:ROW.html');
 
 $customers = Card::new()
@@ -61,8 +73,8 @@ $documentation = Card::new()
 
 // Build and render the page grid
 $grid = Grid::new()
-            ->addColumn($filters->render() . $customers->render(), EnumDisplaySize::nine)
-            ->addColumn($relevant->render() . '<br>' . $documentation->render(), EnumDisplaySize::three);
+            ->addGridColumn($filters->render() . $customers->render(), EnumDisplaySize::nine)
+            ->addGridColumn($relevant->render() . '<br>' . $documentation->render(), EnumDisplaySize::three);
 
 echo $grid->render();
 

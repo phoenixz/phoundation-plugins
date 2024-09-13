@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Page providers
+ *
+ *
+ *
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package   Plugins\Phoundation\Business
+ */
+
+
 declare(strict_types=1);
 
 use Phoundation\Business\Providers\FilterForm;
@@ -18,7 +30,7 @@ use Phoundation\Web\Requests\Response;
 
 
 // Build providers filter card
-$filters_content = FilterForm::new();
+$filters_content = FilterForm::new()->apply();
 
 $filters = Card::new()
                ->setTitle('Providers filters')
@@ -28,7 +40,7 @@ $filters = Card::new()
 
 
 // Build providers table
-$table = Providers::new()->getHtmlDataTable()
+$table = Providers::new()->getHtmlDataTableObject()
                   ->setRowUrl('/business/provider+:ROW.html');
 
 $providers = Card::new()
@@ -61,8 +73,8 @@ $documentation = Card::new()
 
 // Build and render the page grid
 $grid = Grid::new()
-            ->addColumn($filters->render() . $providers->render(), EnumDisplaySize::nine)
-            ->addColumn($relevant->render() . '<br>' . $documentation->render(), EnumDisplaySize::three);
+            ->addGridColumn($filters->render() . $providers->render(), EnumDisplaySize::nine)
+            ->addGridColumn($relevant->render() . '<br>' . $documentation->render(), EnumDisplaySize::three);
 
 echo $grid->render();
 
