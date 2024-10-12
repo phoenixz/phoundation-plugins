@@ -109,19 +109,20 @@ class Option extends DataEntry implements OptionInterface
      *
      * The value must either be one of the values option, or fall within the range for this option
      *
-     * @param mixed $value
-     * @param string $column
-     * @param bool $force
+     * @param mixed  $value
+     * @param string $key
+     * @param bool   $force
+     *
      * @return static
      */
-    public function set(mixed $value, string $column = 'value', bool $force = false): static
+    public function set(mixed $value, string $key = 'value', bool $force = false): static
     {
         if ($value) {
             $this->checkRange($value)
                  ->checkValues($value);
         }
 
-        return $this->set(get_null($value), $column);
+        return $this->set(get_null($value), $key);
     }
 
 
@@ -346,9 +347,9 @@ class Option extends DataEntry implements OptionInterface
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(16))
-            ->add(DefinitionFactory::getComments($this)
+            ->add(DefinitionFactory::newComments($this)
                 ->setMaxlength(255))
-            ->add(DefinitionFactory::getDescription($this)
+            ->add(DefinitionFactory::newDescription($this)
                 ->setMaxlength(2048));
     }
 }

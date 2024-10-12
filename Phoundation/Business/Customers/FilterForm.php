@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Customers;
+namespace Plugins\Phoundation\Business\Customers;
 
 class FilterForm extends \Phoundation\Web\Html\Components\Forms\FilterForm
 {
@@ -24,18 +24,8 @@ class FilterForm extends \Phoundation\Web\Html\Components\Forms\FilterForm
     public function __construct()
     {
         parent::__construct();
-        $this->definitions = [
-            'type[]' => [
-                'element' => 'inputmultibuttontext',
-                'mode'    => 'info',
-                'label'   => tr('Filters'),
-                'source'  => [
-                    '#name'   => tr('Name'),
-                    '#code'   => tr('Code'),
-                    '#email'  => tr('Email'),
-                    '#phones' => tr('Phone number'),
-                ],
-            ],
-        ];
+
+        // Auto apply
+        $this->applyValidator(self::class);
     }
 }

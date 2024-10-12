@@ -30,12 +30,12 @@ use Phoundation\Web\Requests\Response;
 
 
 // Build customers filter card
-$filters_content = FilterForm::new()->apply();
+$filters_content = FilterForm::new();
 
 $filters = Card::new()
                ->setTitle('Customers filters')
                ->setCollapseSwitch(true)
-               ->setContent($filters_content->render())
+               ->setContent($filters_content)
                ->useForm(true);
 
 
@@ -46,7 +46,7 @@ $table = Customers::new()->getHtmlDataTableObject()
 $customers = Card::new()
                  ->setTitle('Active customers')
                  ->setSwitches('reload')
-                 ->setContent($table->render())
+                 ->setContent($table)
                  ->useForm(true);
 
 $customers->getForm()
@@ -71,10 +71,10 @@ $documentation = Card::new()
                      ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 
-// Build and render the page grid
+// Render and return the page grid
 $grid = Grid::new()
             ->addGridColumn($filters->render() . $customers->render(), EnumDisplaySize::nine)
-            ->addGridColumn($relevant->render() . '<br>' . $documentation->render(), EnumDisplaySize::three);
+            ->addGridColumn($relevant->render() . $documentation->render(), EnumDisplaySize::three);
 
 echo $grid->render();
 

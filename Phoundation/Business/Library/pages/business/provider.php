@@ -68,13 +68,13 @@ $buttons = Buttons::new()
 $provider_card = Card::new()
                      ->setCollapseSwitch(true)
                      ->setTitle(tr('Edit data for provider :name', [':name' => $provider->getName()]))
-                     ->setContent($provider->getHtmlDataEntryFormObject()->render())
+                     ->setContent($provider->getHtmlDataEntryFormObject())
                      ->setButtons($buttons);
 
 
 // Build the grid column with a form containing the provider and roles cards
 $column = GridColumn::new()
-                    ->addContent($provider_card->render())
+                    ->addContent($provider_card)
                     ->setSize(9)
                     ->useForm(true);
 
@@ -104,10 +104,10 @@ $documentation = Card::new()
                          <p>Et molestias aut vitae et autem distinctio. Molestiae quod ullam a. Fugiat veniam dignissimos rem repudiandae consequuntur voluptatem. Enim dolores sunt unde sit dicta animi quod. Nesciunt nisi non ea sequi aut. Suscipit aperiam amet fugit facere dolorem qui deserunt.</p>');
 
 
-// Build and render the page grid
+// Render and return the page grid
 $grid = Grid::new()
             ->addGridColumn($column)
-            ->addGridColumn($picture->render() . '<br>' . $relevant->render() . '<br>' . $documentation->render(), EnumDisplaySize::three);
+            ->addGridColumn($picture->render() . $relevant->render() . $documentation->render(), EnumDisplaySize::three);
 
 echo $grid->render();
 

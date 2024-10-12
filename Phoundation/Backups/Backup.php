@@ -221,26 +221,27 @@ class Backup extends DataEntry
     /**
      * Backs up the specified connector
      *
-     * @param ConnectorInterface $connector
+     * @param ConnectorInterface $o_connector
+     *
      * @return static
      */
-    protected function backupConnectorDatabase(ConnectorInterface $connector): static
+    protected function backupConnectorDatabase(ConnectorInterface $o_connector): static
     {
         Log::action(tr('Backup up ":driver" database with connector ":connector"', [
-            ':driver'      => $connector->getDriver(),
-            ':connector'   => $connector->getDisplayName()
+            ':driver' => $o_connector->getDriver(),
+            ':connector' => $o_connector->getDisplayName()
         ]));
 
         // ExecuteExecuteInterface the dump on the specified server
         $this->executeHook('pre-backup-database');
 
         Export::new()
-            ->setConnector($connector)
-            ->setDatabase($connector->getDatabase())
-            ->setDriver($connector->getDriver())
+            ->setConnectorObject($o_connector)
+            ->setDatabase($o_connector->getDatabase())
+            ->setDriver($o_connector->getDriver())
             ->setTimeout($this->timeout)
             ->setGzip($this->gzip)
-            ->dump($this->getFile($connector));
+            ->dump($this->getFile($o_connector));
 
         return $this->executeHook('post-backup-database');
     }

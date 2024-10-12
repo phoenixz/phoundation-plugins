@@ -207,14 +207,14 @@ class Profile extends DataEntry implements ProfileInterface
                 })
                 ->setLabel(tr('Device'))
                 ->setHelpText(tr('The device this driver option belongs')))
-            ->add(DefinitionFactory::getName($this))
-            ->add(DefinitionFactory::getSeoName($this))
+            ->add(DefinitionFactory::newName($this))
+            ->add(DefinitionFactory::newSeoName($this))
             ->add(Definition::new($this, 'default')
                 ->setRender(true)
                 ->setOptional(true, false)
                 ->setInputType(EnumInputType::checkbox)
                 ->setLabel(tr('Default profile'))
             )
-            ->add(DefinitionFactory::getComments($this));
+            ->add(DefinitionFactory::newComments($this));
     }
 }
