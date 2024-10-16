@@ -35,7 +35,7 @@ $filters_content = FilterForm::new();
 $filters = Card::new()
                ->setTitle('Customers filters')
                ->setCollapseSwitch(true)
-               ->setContent($filters_content->render())
+               ->setContent($filters_content)
                ->useForm(true);
 
 
@@ -46,7 +46,7 @@ $table = Customers::new()->getHtmlDataTableObject()
 $customers = Card::new()
                  ->setTitle('Active customers')
                  ->setSwitches('reload')
-                 ->setContent($table->render())
+                 ->setContent($table)
                  ->useForm(true);
 
 $customers->getForm()
