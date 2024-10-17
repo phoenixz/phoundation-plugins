@@ -35,7 +35,7 @@ $filters_content = FilterForm::new();
 $filters = Card::new()
                ->setTitle('Providers filters')
                ->setCollapseSwitch(true)
-               ->setContent($filters_content)
+               ->setContent($filters_content->render())
                ->useForm(true);
 
 
@@ -46,7 +46,7 @@ $table = Providers::new()->getHtmlDataTableObject()
 $providers = Card::new()
                  ->setTitle('Active providers')
                  ->setSwitches('reload')
-                 ->setContent($table)
+                 ->setContent($table->render())
                  ->useForm(true);
 
 $providers->getForm()

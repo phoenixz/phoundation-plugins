@@ -362,11 +362,11 @@ class Device extends DataEntry implements DeviceInterface
     protected function setDefinitions(DefinitionsInterface $definitions): void
     {
         $definitions
-            ->add(DefinitionFactory::newServersId($this))
+            ->add(DefinitionFactory::getServersId($this))
 
-            ->add(DefinitionFactory::newServer($this))
+            ->add(DefinitionFactory::getServer($this))
 
-            ->add(DefinitionFactory::newName($this)
+            ->add(DefinitionFactory::getName($this)
                 ->setOptional(false)
                 ->setInputType(EnumInputType::name)
                 ->setSize(12)
@@ -376,7 +376,7 @@ class Device extends DataEntry implements DeviceInterface
                     $validator->isUnique();
                 }))
 
-            ->add(DefinitionFactory::newSeoName($this))
+            ->add(DefinitionFactory::getSeoName($this))
 
             ->add(Definition::new($this, 'class')
                 ->setOptional(false)
@@ -508,8 +508,8 @@ class Device extends DataEntry implements DeviceInterface
                 ->setMaxlength(2048)
                 ->setLabel(tr('Default device')))
 
-            ->add(DefinitionFactory::newDescription($this))
+            ->add(DefinitionFactory::getDescription($this))
 
-            ->add(DefinitionFactory::newComments($this));
+            ->add(DefinitionFactory::getComments($this));
     }
 }
