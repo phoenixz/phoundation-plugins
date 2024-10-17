@@ -15,7 +15,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Customers;
+namespace Plugins\Phoundation\Business\Customers;
 
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Definition;

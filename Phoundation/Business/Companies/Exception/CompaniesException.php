@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies\Exception;
+namespace Plugins\Phoundation\Business\Companies\Exception;
 
 use Phoundation\Exception\Exception;
 

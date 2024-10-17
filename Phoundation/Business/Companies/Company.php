@@ -15,13 +15,13 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies;
+namespace Plugins\Phoundation\Business\Companies;
 
-use Phoundation\Business\Companies\Branches\Branches;
-use Phoundation\Business\Companies\Branches\Interfaces\BranchesInterface;
-use Phoundation\Business\Companies\Departments\Departments;
-use Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
-use Phoundation\Business\Companies\Interfaces\CompanyInterface;
+use Plugins\Phoundation\Business\Companies\Branches\Branches;
+use Plugins\Phoundation\Business\Companies\Branches\Interfaces\BranchesInterface;
+use Plugins\Phoundation\Business\Companies\Departments\Departments;
+use Plugins\Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
+use Plugins\Phoundation\Business\Companies\Interfaces\CompanyInterface;
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameDescription;

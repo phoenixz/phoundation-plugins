@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-use Phoundation\Business\Customers\Customer;
+use Plugins\Phoundation\Business\Customers\Customer;
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;

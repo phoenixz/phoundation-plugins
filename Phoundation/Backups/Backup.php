@@ -18,6 +18,7 @@ namespace Plugins\Phoundation\Backups;
 
 use Phoundation\Core\Hooks\Hook;
 use Phoundation\Core\Log\Log;
+use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
 use Phoundation\Data\Traits\TraitDataGzip;
 use Phoundation\Data\Traits\TraitDataTimeout;
 use Phoundation\Databases\Connectors\Connector;
@@ -66,6 +67,20 @@ class Backup extends DataEntry
 
 
     /**
+     * Initializes the backup object
+     */
+    public function __construct(int|array|string|DataEntryInterface|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
+    {
+        parent::__construct($identifier, $meta_enabled, $init);
+
+        $this->date_time = DateTime::new();
+        $this->path      = FsDirectory::new($this->target)
+                                      ->addDirectory(DateTime::new()->format('Ymd-his'))
+                                      ->ensure();
+    }
+
+
+    /**
      * Returns the table name used by this object
      *
      * @return string|null
@@ -95,22 +110,6 @@ class Backup extends DataEntry
     public static function getUniqueColumn(): ?string
     {
         return null;
-    }
-
-
-    /**
-     * Initializes the backup object
-     *
-     * @return static
-     */
-    protected function init(): static
-    {
-        $this->date_time = DateTime::new();
-        $this->path      = FsDirectory::new($this->target)
-                                      ->addDirectory(DateTime::new()->format('Ymd-his'))
-                                      ->ensure();
-
-        return $this;
     }
 
 

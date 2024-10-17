@@ -19,14 +19,13 @@ namespace Plugins\Phoundation\JavaScriptCopy;
 use Phoundation\Data\Traits\TraitDataBrowserEvent;
 use Phoundation\Data\Traits\TraitDataSelector;
 use Phoundation\Data\Traits\TraitDataTarget;
-use Phoundation\Web\Http\Html\Components\Script;
-use Phoundation\Web\Http\Html\Enums\BrowserEvent;
-use Phoundation\Web\Http\Html\Traits\Rendered;
-
+use Phoundation\Web\Html\Components\Script;
+use Phoundation\Web\Html\Enums\EnumBrowserEvent;
+use Phoundation\Web\Html\Traits\TraitRendered;
 
 class JavaScriptCopy extends Script
 {
-    use Rendered;
+    use TraitRendered;
     use TraitDataSelector;
     use TraitDataTarget;
     use TraitDataBrowserEvent;
@@ -38,7 +37,7 @@ class JavaScriptCopy extends Script
     public function __construct()
     {
         parent::__construct();
-        $this->browser_event = BrowserEvent::click;
+        $this->browser_event = EnumBrowserEvent::click;
     }
 
 

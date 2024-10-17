@@ -2,7 +2,10 @@
 
 namespace Plugins\Phoundation\Hardware\Devices\Interfaces;
 
-interface OptionInterface
+use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
+use Stringable;
+
+interface OptionInterface extends DataEntryInterface
 {
     /**
      * Returns the key for this option
@@ -22,19 +25,24 @@ interface OptionInterface
     /**
      * Returns the value for this option
      *
+     * @param float|Stringable|int|string $key
+     * @param bool                        $exception
+     *
      * @return string|null
      */
-    public function get(): ?string;
+    public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed;
 
     /**
      * Sets the value for this option
      *
      * The value must either be one of the values option, or fall within the range for this option
      *
-     * @param string|null $value
+     * @param mixed $value
+     * @param string $column
+     * @param bool $force
      * @return static
      */
-    public function set(?string $value): static;
+    public function set(mixed $value, float|Stringable|int|string $key = 'value'): static;
 
     /**
      * Returns the values for this option

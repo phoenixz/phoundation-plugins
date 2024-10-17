@@ -31,7 +31,7 @@ use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Utils\Arrays;
 use Phoundation\Web\Html\Enums\EnumInputType;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionInterface;
-
+use Stringable;
 
 class Option extends DataEntry implements OptionInterface
 {
@@ -95,12 +95,14 @@ class Option extends DataEntry implements OptionInterface
     /**
      * Returns the value for this option
      *
-     * @param string $key
+     * @param float|Stringable|int|string $key
+     * @param bool                        $exception
+     *
      * @return string|null
      */
-    public function get(string $key = 'value'): ?string
+    public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed
     {
-        return $this->getTypesafe('string', $key);
+        return parent::get($key, $exception);
     }
 
 
@@ -114,14 +116,14 @@ class Option extends DataEntry implements OptionInterface
      * @param bool $force
      * @return static
      */
-    public function set(mixed $value, string $column = 'value', bool $force = false): static
+    public function set(mixed $value, float|Stringable|int|string $key = 'value'): static
     {
         if ($value) {
             $this->checkRange($value)
                  ->checkValues($value);
         }
 
-        return $this->set(get_null($value), $column);
+        return parent::set($value, $key);
     }
 
 

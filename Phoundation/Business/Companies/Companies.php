@@ -15,7 +15,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies;
+namespace Plugins\Phoundation\Business\Companies;
 
 use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;

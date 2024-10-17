@@ -15,7 +15,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies\Departments;
+namespace Plugins\Phoundation\Business\Companies\Departments;
 
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;

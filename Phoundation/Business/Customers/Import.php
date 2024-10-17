@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Customers;
+namespace Plugins\Phoundation\Business\Customers;
 
 use Phoundation\Core\Log\Log;
 use Phoundation\Developer\TestDataGenerator;

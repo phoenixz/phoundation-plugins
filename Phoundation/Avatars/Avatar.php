@@ -16,9 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Avatars;
 
-use Phoundation\Accounts\Interfaces\UserInterface;
 use Phoundation\Accounts\Users\Interfaces\UserInterface;
-use Phoundation\Content\Images\ImageFile;
 use Phoundation\Content\Images\Interfaces\ImageFileInterface;
 use Phoundation\Utils\Config;
 use Phoundation\Exception\OutOfBoundsException;

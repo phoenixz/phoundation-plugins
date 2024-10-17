@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies\Interfaces;
+namespace Plugins\Phoundation\Business\Companies\Interfaces;
 
-use Phoundation\Business\Companies\Branches\Interfaces\BranchesInterface;
-use Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
+use Plugins\Phoundation\Business\Companies\Branches\Interfaces\BranchesInterface;
+use Plugins\Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
 
 interface CompanyInterface
 {

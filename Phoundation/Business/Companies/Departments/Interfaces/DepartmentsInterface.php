@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies\Departments\Interfaces;
+namespace Plugins\Phoundation\Business\Companies\Departments\Interfaces;
 
 use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
 

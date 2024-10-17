@@ -14,8 +14,8 @@
 
 declare(strict_types=1);
 
-use Phoundation\Business\Customers\Customers;
-use Phoundation\Business\Customers\FilterForm;
+use Plugins\Phoundation\Business\Customers\Customers;
+use Plugins\Phoundation\Business\Customers\FilterForm;
 use Phoundation\Web\Html\Components\Widgets\BreadCrumbs;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
 use Phoundation\Web\Html\Enums\EnumDisplayMode;

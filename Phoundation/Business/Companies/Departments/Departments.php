@@ -15,9 +15,9 @@
 
 declare(strict_types=1);
 
-namespace Phoundation\Business\Companies\Departments;
+namespace Plugins\Phoundation\Business\Companies\Departments;
 
-use Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
+use Plugins\Phoundation\Business\Companies\Departments\Interfaces\DepartmentsInterface;
 use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;
 
