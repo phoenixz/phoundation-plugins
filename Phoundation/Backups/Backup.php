@@ -25,14 +25,14 @@ use Phoundation\Databases\Connectors\Connector;
 use Phoundation\Databases\Connectors\Interfaces\ConnectorInterface;
 use Phoundation\Databases\Export;
 use Phoundation\Date\PhoDateTime;
-use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Data\DataEntry\DataEntry;
 use Phoundation\Data\DataEntry\Definitions\Definition;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\Traits\TraitDataTarget;
 use Phoundation\Exception\OutOfBoundsException;
-use Phoundation\Filesystem\Interfaces\FsDirectoryInterface;
-use Phoundation\Filesystem\Interfaces\FsFileInterface;
+use Phoundation\Filesystem\Interfaces\PhoDirectoryInterface;
+use Phoundation\Filesystem\Interfaces\PhoFileInterface;
 use Phoundation\Data\Traits\TraitDataRestrictions;
 use Phoundation\Utils\Config;
 use Phoundation\Web\Html\Enums\EnumInputType;
@@ -54,9 +54,9 @@ class Backup extends DataEntry
     protected bool $init = false;
 
     /**
-     * @var FsDirectoryInterface|null $path
+     * @var PhoDirectoryInterface|null $path
      */
-    protected ?FsDirectoryInterface $path = null;
+    protected ?PhoDirectoryInterface $path = null;
 
     /**
      * The system date-time when this backup began
@@ -74,9 +74,9 @@ class Backup extends DataEntry
         parent::__construct($identifier, $meta_enabled, $init);
 
         $this->date_time = PhoDateTime::new();
-        $this->path      = FsDirectory::new($this->target)
-                                      ->addDirectory(PhoDateTime::new()->format('Ymd-his'))
-                                      ->ensure();
+        $this->path      = PhoDirectory::new($this->target)
+                                       ->addDirectory(PhoDateTime::new()->format('Ymd-his'))
+                                       ->ensure();
     }
 
 
@@ -250,9 +250,10 @@ class Backup extends DataEntry
      * Returns the backup file to use
      *
      * @param ConnectorInterface|string $source
-     * @return FsFileInterface
+     *
+     * @return PhoFileInterface
      */
-    protected function getFile(ConnectorInterface|string $source): FsFileInterface
+    protected function getFile(ConnectorInterface|string $source): PhoFileInterface
     {
         if ($source instanceof ConnectorInterface){
             return $this->path . $this->date_time->format('Ymd-his') . '-' . strtolower($source->getDriver()) . '-' . $source->getDatabase() . '.sql';

@@ -6,9 +6,9 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Filesystem\Mounts\FsMounts;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoRestrictions;
 
 
 /**
@@ -24,8 +24,8 @@ use Phoundation\Filesystem\FsRestrictions;
 CliDocumentation::autoComplete([
     'positions' => [
         '0' => [
-            'word'   => function ($word) { return FsDirectory::new(FsDirectory::default($word), '/')->scan($word . '*'); },
-            'noword' => function ()      { return FsDirectory::new(                 '/', '/')->scan(        '*'); },
+            'word'   => function ($word) { return PhoDirectory::new(PhoDirectory::default($word), '/')->scan($word . '*'); },
+            'noword' => function ()      { return PhoDirectory::new(                 '/', '/')->scan(        '*'); },
         ],
     ]
 ]);
@@ -47,7 +47,7 @@ $argv = ArgvValidator::new()
     ->validate();
 
 show($argv);
-showdie(FsMounts::getMountSources($argv['path'], FsRestrictions::new('/')));
+showdie(FsMounts::getMountSources($argv['path'], PhoRestrictions::new('/')));
 
 Log::success(tr('Mounted source ":source" to target ":target"', [
     ':source' => $argv['source'],

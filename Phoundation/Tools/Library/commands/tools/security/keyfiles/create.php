@@ -18,11 +18,11 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\Exception\FileExistsException;
-use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Security\Crypt;
 
 
-$directory = FsDirectory::newFilesystemRootObject();
+$directory = PhoDirectory::newFilesystemRootObject();
 
 CliDocumentation::setUsage('./pho tools security keyfiles create
 ./pho tools security keyfiles create -s 8192');

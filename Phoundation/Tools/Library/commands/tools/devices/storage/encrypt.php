@@ -21,13 +21,13 @@ use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\Validate;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoRestrictions;
 use Phoundation\Os\Devices\Storage\Device;
 use Phoundation\Os\Devices\Storage\Exception\StorageException;
 
 
-$restrictions = FsRestrictions::new('/dev', true);
+$restrictions = PhoRestrictions::new('/dev', true);
 
 CliDocumentation::setUsage('./pho tools devices storage encrypt
 echo PASSWORD | ./pho tools devices storage encrypt -s');
@@ -53,8 +53,8 @@ DEVICE                                  The device file to be encrypted
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($restrictions) { return FsDirectory::new('/dev/', $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($restrictions) { return FsDirectory::new('/dev/', $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan('*'); },
         ],
     ],
     'arguments' => [
@@ -66,9 +66,9 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-                     ->select('device')->hasMaxCharacters(64)->sanitizeFile(FsDirectory::new('/dev/', FsRestrictions::newWritable('/dev')))->sanitizeCallback(function(mixed $value, array $source) { return '/dev/' . $value; })
+                     ->select('device')->hasMaxCharacters(64)->sanitizeFile(PhoDirectory::new('/dev/', PhoRestrictions::newWritable('/dev')))->sanitizeCallback(function(mixed $value, array $source) { return '/dev/' . $value; })
                      ->select('-s,--scramble')->isOptional()->isBoolean()
-                     ->select('--key-file', true)->isOptional()->sanitizeFile(FsDirectory::newFilesystemRootObject())
+                     ->select('--key-file', true)->isOptional()->sanitizeFile(PhoDirectory::newFilesystemRootObject())
     ->validate();
 
 

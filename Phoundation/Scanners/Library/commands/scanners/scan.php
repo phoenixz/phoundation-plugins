@@ -17,11 +17,11 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoRestrictions;
 use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Scanners\Scanner;$restrictions = FsRestrictions::newWritable(DIRECTORY_DATA);
+use Plugins\Phoundation\Scanners\Scanner;$restrictions = PhoRestrictions::newWritable(DIRECTORY_DATA);
 
 
 CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');
@@ -50,8 +50,8 @@ CliDocumentation::setAutoComplete([
             'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getSourceKeys(); },
         ],
         2 => [
-            'word'   => function ($word) use ($restrictions) { return FsDirectory::new(DIRECTORY_DATA, $restrictions)->scan($word . '*') ; },
-            'noword' => function ()      use ($restrictions) { return FsDirectory::new(DIRECTORY_DATA, $restrictions)->scan(); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan($word . '*') ; },
+            'noword' => function ()      use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan(); },
         ],
     ],
     'arguments' => [

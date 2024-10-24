@@ -17,18 +17,18 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Cli\CliCommand;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoRestrictions;
 
 
 CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => [
             'word'   => function ($word) {
-                return FsDirectory::new(FsDirectory::default($word), '/')->scan($word . '*');
+                return PhoDirectory::new(PhoDirectory::default($word), '/')->scan($word . '*');
             },
             'noword' => function () {
-                return FsDirectory::new('/', '/')->scan('*');
+                return PhoDirectory::new('/', '/')->scan('*');
             },
         ],
     ]
@@ -46,12 +46,12 @@ ARGUMENTS
 PATH                                    The path that should have the files counted, must be a directory');
 
 $argv = ArgvValidator::new()
-    ->select('path')->sanitizeDirectory(FsDirectory::newFilesystemRootObject())
+    ->select('path')->sanitizeDirectory(PhoDirectory::newFilesystemRootObject())
     ->select('-h,--human-readable')->isOptional(false)->isBoolean()
     ->validate();
 
 if ($argv['human_readable']) {
-    CliCommand::echo(number_format(FsDirectory::newExisting($argv['path'], FsRestrictions::new('/'))->getCount()));
+    CliCommand::echo(number_format(PhoDirectory::newExisting($argv['path'], PhoRestrictions::new('/'))->getCount()));
 } else {
-    CliCommand::echo(FsDirectory::newExisting($argv['path'], FsRestrictions::new('/'))->getCount());
+    CliCommand::echo(PhoDirectory::newExisting($argv['path'], PhoRestrictions::new('/'))->getCount());
 }

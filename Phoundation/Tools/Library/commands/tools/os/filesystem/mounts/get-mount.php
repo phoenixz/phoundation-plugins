@@ -17,21 +17,21 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Filesystem\Mounts\FsMounts;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoRestrictions;
 
 
-$restrictions = FsRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => [
             'word'   => function ($word) use ($restrictions) {
-                return FsDirectory::new('/', $restrictions)->scan($word . '*');
+                return PhoDirectory::new('/', $restrictions)->scan($word . '*');
             },
             'noword' => function () use ($restrictions) {
-                return FsDirectory::new('/', $restrictions)->scan('*');
+                return PhoDirectory::new('/', $restrictions)->scan('*');
             },
         ],
     ]
@@ -50,11 +50,11 @@ PATH                                    The path to test');
 
 
 $argv = ArgvValidator::new()
-    ->select('path')->sanitizeDirectory(FsDirectory::newFilesystemRootObject())
+    ->select('path')->sanitizeDirectory(PhoDirectory::newFilesystemRootObject())
     ->validate();
 
 show($argv);
-showdie(FsMounts::getMountSources($argv['path'], FsRestrictions::new('/')));
+showdie(FsMounts::getMountSources($argv['path'], PhoRestrictions::new('/')));
 
 Log::success(tr('Mounted source ":source" to target ":target"', [
     ':source' => $argv['source'],

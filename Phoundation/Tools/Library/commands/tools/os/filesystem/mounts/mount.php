@@ -17,25 +17,25 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoRestrictions;
 use Phoundation\Os\Devices\Storage\Proc;
 use Phoundation\Os\Processes\Commands\Mount;
 use Phoundation\Utils\Arrays;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = FsRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => true,
         '1' => [
             'word'   => function ($word) use ($restrictions) {
-                return FsDirectory::new('/', $restrictions)->scan($word . '*');
+                return PhoDirectory::new('/', $restrictions)->scan($word . '*');
             },
             'noword' => function () use ($restrictions) {
-                return FsDirectory::new('/', $restrictions)->scan('*');
+                return PhoDirectory::new('/', $restrictions)->scan('*');
             },
         ],
     ],
@@ -72,7 +72,7 @@ ARGUMENTS
 
 $argv = ArgvValidator::new()
     ->select('source')->hasMaxCharacters(511)
-    ->select('target')->sanitizeDirectory(FsDirectory::newFilesystemRootObject())
+    ->select('target')->sanitizeDirectory(PhoDirectory::newFilesystemRootObject())
     ->select('-o,--options', true)->isOptional()->hasMaxCharacters(511)
     ->select('-t,--file-system', true)->isOptional()->isInArray(Proc::getSupportedFiletypes())
     ->validate();

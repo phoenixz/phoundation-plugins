@@ -18,13 +18,13 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Cli\CliCommand;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoRestrictions;
 use Phoundation\Os\Devices\Storage\Device;
 use Phoundation\Os\Devices\Storage\Exception\StorageException;
 
 
-$restrictions = FsRestrictions::new('/dev', true);
+$restrictions = PhoRestrictions::new('/dev', true);
 
 CliDocumentation::setUsage('./pho tools devices storage shred');
 
@@ -44,8 +44,8 @@ DEVICE                                  The device file to be shredded
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($restrictions) { return FsDirectory::new('/dev/', $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($restrictions) { return FsDirectory::new('/dev/', $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan('*'); },
         ],
     ],
     'arguments' => [
@@ -56,7 +56,7 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-    ->select('device')->hasMaxCharacters(64)->sanitizeFile(FsDirectory::new('/dev/', FsRestrictions::newWritable('/dev')))
+    ->select('device')->hasMaxCharacters(64)->sanitizeFile(PhoDirectory::new('/dev/', PhoRestrictions::newWritable('/dev')))
     ->select('-p,--passes')->isOptional(3)->isNatural(false)->isBetween(1, 10)
     ->validate();
 

@@ -18,10 +18,10 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\Exception\FileExistsException;
-use Phoundation\Filesystem\FsDirectory;
+use Phoundation\Filesystem\PhoDirectory;
 
 
-$directory = FsDirectory::newFilesystemRootObject();
+$directory = PhoDirectory::newFilesystemRootObject();
 
 CliDocumentation::setUsage('./pho tools os filesystem btrfs subvolumes create PATH');
 

@@ -16,12 +16,12 @@ declare(strict_types=1);
 
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsFile;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoFile;
+use Phoundation\Filesystem\PhoRestrictions;
 
 
-$restrictions = FsRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [
@@ -32,8 +32,8 @@ CliDocumentation::setAutoComplete([
     ],
     'positions' => [
         '0' => [
-            'word'   => function ($word) use ($restrictions) { return FsDirectory::new('/', $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($restrictions) { return FsDirectory::new('/', $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/', $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($restrictions) { return PhoDirectory::new('/', $restrictions)->scan('*'); },
         ],
     ]
 ]);
@@ -68,7 +68,7 @@ FILE                                    The file to be created
 
 // Get the arguments
 $argv = ArgvValidator::new()
-                     ->select('file')->sanitizeFile(FsDirectory::newFilesystemRootObject(), FORCE ? null : false)
+                     ->select('file')->sanitizeFile(PhoDirectory::newFilesystemRootObject(), FORCE ? null : false)
                      ->select('-s,--size', true)->isOptional(false)->sanitizeBytes()
                      ->select('-i,--initialize', true)->isOptional(false)->isString()->hasMinCharacters(1)->hasMaxCharacters(1_073_741_824)
                      ->select('-b,--block-size', true)->isOptional(4096)->sanitizeBytes()->isBetween(1024, 1_073_741_824)

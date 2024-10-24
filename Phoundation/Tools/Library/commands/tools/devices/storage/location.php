@@ -17,12 +17,12 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Cli\CliCommand;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsFile;
-use Phoundation\Filesystem\FsRestrictions;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoFile;
+use Phoundation\Filesystem\PhoRestrictions;
 
 
-$restrictions = FsRestrictions::new('/');
+$restrictions = PhoRestrictions::new('/');
 
 CliDocumentation::setUsage('./pho tools devices storage location
 ./pho tools devices storage location /home/user/filename');
@@ -38,8 +38,8 @@ FILE                                    The path to the file (or directory) whic
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($restrictions) { return FsDirectory::new('/', $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($restrictions) { return FsDirectory::new('/', $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/', $restrictions)->scan($word . '*'); },
+            'noword' => function ()      use ($restrictions) { return PhoDirectory::new('/', $restrictions)->scan('*'); },
         ],
     ]
 ]);
@@ -47,9 +47,9 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-    ->select('file')->hasMaxCharacters(2048)-->isFile(FsDirectory::newFilesystemRootObject())->sanitizeCallback(function(mixed $value, array $source) { return '/' . $value; })
-    ->validate();
+    ->select('file')->hasMaxCharacters(2048)-->isFile(PhoDirectory::newFilesystemRootObject())->sanitizeCallback(function(mixed $value, array $source) { return '/' . $value; })
+                                                                                              ->validate();
 
 
 // Echo the device path
-CliCommand::echo(FsFile::new($argv['file'])->getMountDevice());
+CliCommand::echo(PhoFile::new($argv['file'])->getMountDevice());

@@ -28,8 +28,8 @@ use LightSaml\Model\Metadata\SpSsoDescriptor;
 use LightSaml\Model\XmlDSig\SignatureWriter;
 use LightSaml\SamlConstants;
 use Phoundation\Accounts\Users\Interfaces\UserInterface;
-use Phoundation\Filesystem\FsDirectory;
-use Phoundation\Filesystem\FsFile;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Filesystem\PhoFile;
 use Phoundation\Web\Http\Url;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
@@ -65,7 +65,7 @@ class Saml
         $spSsoDescriptor->addKeyDescriptor(
             $keyDescriptor = (new KeyDescriptor())
                 ->setUse(KeyDescriptor::USE_SIGNING)
-                ->setCertificate(X509Certificate::fromFile(FsFile::new(DIRECTORY_ROOT . 'config/saml/saml-public-key.crt')->getSource()))
+                ->setCertificate(X509Certificate::fromFile(PhoFile::new(DIRECTORY_ROOT . 'config/saml/saml-public-key.crt')->getSource()))
         );
 
         $spSsoDescriptor->addAssertionConsumerService(
