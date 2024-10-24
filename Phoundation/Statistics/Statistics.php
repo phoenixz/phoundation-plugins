@@ -19,7 +19,7 @@ namespace Plugins\Phoundation\Statistics;
 
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\Validate;
-use Phoundation\Date\DateTime;
+use Phoundation\Date\PhoDateTime;
 use Phoundation\Date\Enums\DateTimeSegment;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Filesystem\FsPath;
@@ -125,7 +125,7 @@ class Statistics
                 $timestamp = time();
         }
 
-        return DateTime::new('@' . $timestamp, 'user')->round($interval)->getTimestamp();
+        return PhoDateTime::new('@' . $timestamp, 'user')->round($interval)->getTimestamp();
     }
 
 
@@ -304,7 +304,7 @@ class Statistics
         $count   = sql()->getColumn('SELECT COUNT(*) AS `count` FROM `statistics_queue`');
         $entries = sql()->query('SELECT   * 
                                        FROM     `statistics_queue` 
-                                       WHERE    `timestamp` < ' . DateTime::new()->round(DateTimeSegment::minute)->getTimestamp() . ' 
+                                       WHERE    `timestamp` < ' . PhoDateTime::new()->round(DateTimeSegment::minute)->getTimestamp() . ' 
                                        ORDER BY `timestamp` LIMIT 0, ' . $limit);
 
         Log::notice(tr('Statistics queue contains ":count" entries', [
@@ -323,7 +323,7 @@ class Statistics
                 $this->push($entry['path'], $entry['value'], $entry['timestamp']);
 
                 // Delete entry from local queue
-                if (!$entry['clear_after'] or DateTime::new() > DateTime::new($entry['clear_after'])) {
+                if (!$entry['clear_after'] or PhoDateTime::new() > PhoDateTime::new($entry['clear_after'])) {
 //                    sql()->delete('statistics_queue', ['id' => $entry['id']]);
                 }
 
