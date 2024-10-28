@@ -16,9 +16,9 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Statistics\Exception;
 
-use Phoundation\Exception\Exception;
+use Phoundation\Exception\PhoException;
 
 
-class StatisticsException extends Exception
+class StatisticsException extends PhoException
 {
 }

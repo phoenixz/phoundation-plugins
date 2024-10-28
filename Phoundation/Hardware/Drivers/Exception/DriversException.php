@@ -16,9 +16,9 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Drivers\Exception;
 
-use Phoundation\Exception\Exception;
+use Phoundation\Exception\PhoException;
 
 
-class DriversException extends Exception
+class DriversException extends PhoException
 {
 }

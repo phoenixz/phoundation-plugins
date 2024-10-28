@@ -16,9 +16,9 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Business\Exception;
 
-use Phoundation\Exception\Exception;
+use Phoundation\Exception\PhoException;
 
 
-class BusinessException extends Exception
+class BusinessException extends PhoException
 {
 }

@@ -16,9 +16,9 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Exception;
 
-use Phoundation\Exception\Exception;
+use Phoundation\Exception\PhoException;
 
 
-class HardwareException extends Exception
+class HardwareException extends PhoException
 {
 }
