@@ -24,6 +24,7 @@ use Phoundation\Data\Traits\TraitDataTimeout;
 use Phoundation\Databases\Connectors\Connector;
 use Phoundation\Databases\Connectors\Interfaces\ConnectorInterface;
 use Phoundation\Databases\Export;
+use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 use Phoundation\Date\PhoDateTime;
 use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Data\DataEntry\DataEntry;
@@ -61,9 +62,9 @@ class Backup extends DataEntry
     /**
      * The system date-time when this backup began
      *
-     * @var PhoDateTime|null $date_time
+     * @var PhoDateTimeInterface|null $date_time
      */
-    protected ?PhoDateTime $date_time = null;
+    protected ?PhoDateTimeInterface $date_time = null;
 
 
     /**
