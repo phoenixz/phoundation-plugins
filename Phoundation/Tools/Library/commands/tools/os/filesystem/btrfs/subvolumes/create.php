@@ -37,7 +37,7 @@ CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($directory) { return $directory->scan($word . '*'); },
-            'noword' => function ()      use ($directory) { return $directory->scan('*'); },
+            'noword' => function ($word) use ($directory) { return $directory->scan('*'); },
         ],
     ]
 ]);

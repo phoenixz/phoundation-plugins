@@ -17,15 +17,15 @@ declare(strict_types=1);
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\PhoRestrictions;
-use Plugins\Phoundation\Backups\Backup;$restrictions = PhoRestrictions::newWritable(DIRECTORY_DATA . 'backups/');
+use Phoundation\Filesystem\PhoDirectory;
+use Plugins\Phoundation\Backups\Backup;
 
 
 CliDocumentation::setAutoComplete([
     'arguments' => [
         '-t,--target'  => [
-            'word'   => function ($word) use ($restrictions) { return Directory::new(DIRECTORY_DATA . 'backups/', $restrictions)->scan('*' . $word . '*', GLOB_MARK | GLOB_ONLYDIR); },
-            'noword' => function ()      use ($restrictions) { return Directory::new(DIRECTORY_DATA . 'backups/', $restrictions)->scan('*'              , GLOB_MARK | GLOB_ONLYDIR); },
+            'word'   => function ($word) { return PhoDirectory::newDataObject(false, 'backups/')->scan('/^.*?' . preg_quote($word, '/') . '.*?$/', glob_flags: GLOB_MARK | GLOB_ONLYDIR); },
+            'noword' => function ($word) { return PhoDirectory::newDataObject(false, 'backups/')->scan('/^.*?' . preg_quote($word, '/') . '.*?$/', glob_flags: GLOB_MARK | GLOB_ONLYDIR); },
         ],
     ]
 ]);
@@ -43,7 +43,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('-t,--target', true)->sanitizeDirectory(FsDirectory::getFilesystemRoot(true))
+    ->select('-t,--target', true)->sanitizeDirectory(PhoDirectory::newFilesystemRootObject(true))
     ->validate();
 
 

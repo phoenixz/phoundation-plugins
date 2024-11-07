@@ -53,8 +53,8 @@ DEVICE                                  The device file to be encrypted
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan($word . '*'); },
-            'noword' => function ()      use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan('*'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan($word, '/.*?$/'); },
+            'noword' => function ($word) use ($restrictions) { return PhoDirectory::new('/dev/', $restrictions)->scan($word, '/.*?$/'); },
         ],
     ],
     'arguments' => [

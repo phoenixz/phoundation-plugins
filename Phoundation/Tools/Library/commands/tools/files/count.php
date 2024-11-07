@@ -24,12 +24,8 @@ use Phoundation\Filesystem\PhoRestrictions;
 CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => [
-            'word'   => function ($word) {
-                return PhoDirectory::new(PhoDirectory::default($word), '/')->scan($word . '*');
-            },
-            'noword' => function () {
-                return PhoDirectory::new('/', '/')->scan('*');
-            },
+            'word'   => function ($word) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
+            'noword' => function ($word) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
         ],
     ]
 ]);

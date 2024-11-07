@@ -31,22 +31,14 @@ CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => true,
         '1' => [
-            'word'   => function ($word) use ($restrictions) {
-                return PhoDirectory::new('/', $restrictions)->scan($word . '*');
-            },
-            'noword' => function () use ($restrictions) {
-                return PhoDirectory::new('/', $restrictions)->scan('*');
-            },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
+            'noword' => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
         ],
     ],
     'arguments' => [
         '-t,--type' => [
-            'word'   => function ($word) use ($types) {
-                return Arrays::match($types, $word);
-            },
-            'noword' => function () use ($types) {
-                return $types;
-            },
+            'word'   => function ($word) use ($types) { return Arrays::keepMatchingValues($types, $word); },
+            'noword' => function ($word) use ($types) { return $types; },
         ],
         '-o,--options' => true
     ]

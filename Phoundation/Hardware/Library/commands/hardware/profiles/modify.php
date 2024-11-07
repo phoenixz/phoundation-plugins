@@ -48,7 +48,7 @@ CliDocumentation::setAutoComplete([
     'positions' => [
         0  => [
             'word'   => function ($word) { return Devices::new()->load()->keepMatchingKeysStartingWith($word,); },
-            'noword' => function ()      { return Devices::new()->load()->getSourceKeys(); },
+            'noword' => function ($word) { return Devices::new()->load()->getSourceKeys(); },
         ],
         1  => [
             'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->keepMatchingKeysStartingWith($word); },

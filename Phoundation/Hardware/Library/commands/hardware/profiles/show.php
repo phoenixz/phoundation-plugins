@@ -38,7 +38,7 @@ CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) { return Devices::new()->load()->getMatchingKeys($word); },
-            'noword' => function ()      { return Devices::new()->load(); },
+            'noword' => function ($word) { return Devices::new()->load(); },
         ],
         1 => [
             'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },

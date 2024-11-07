@@ -26,9 +26,9 @@ use Phoundation\Security\Crypt;
 $directory    = '/';
 $restrictions = PhoRestrictions::new('/', true, tr('btrfs subvolumes create'));
 
-CliDocumentation::usage('./pho tools os filesystem btrfs subvolumes create PATH');
+CliDocumentation::setUsage('./pho tools os filesystem btrfs subvolumes create PATH');
 
-CliDocumentation::help('The BTRFS subvolume create script can create BTRFS subvolumes
+CliDocumentation::setHelp('The BTRFS subvolume create script can create BTRFS subvolumes
 
 
 ARGUMENTS
@@ -36,7 +36,7 @@ ARGUMENTS
 
 PATH                                    The path of the subvolume');
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) use ($directory, $restrictions) { return PhoDirectory::new($directory, $restrictions)->scan($word . '*'); },

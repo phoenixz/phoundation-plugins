@@ -30,12 +30,8 @@ $restrictions = PhoRestrictions::newWritable('/');
 CliDocumentation::setAutoComplete([
     'positions' => [
         '1' => [
-            'word'   => function ($word) use ($restrictions) {
-                return PhoDirectory::new('/', $restrictions)->scan($word . '*');
-            },
-            'noword' => function () use ($restrictions) {
-                return PhoDirectory::new('/', $restrictions)->scan('*');
-            },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new('/', $restrictions)->scan($word, '/.*?$/'); },
+            'noword' => function ($word) use ($restrictions) { return PhoDirectory::new('/', $restrictions)->scan($word, '/.*?$/'); },
         ],
     ]
 ]);

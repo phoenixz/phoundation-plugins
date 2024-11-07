@@ -22,30 +22,31 @@ use Phoundation\Utils\Arrays;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
+
 $types = Proc::getSupportedFiletypes();
 
-CliDocumentation::autoComplete([
+CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => true,
         '1' => [
-            'word'   => function ($word) { return PhoDirectory::new(PhoDirectory::default($word), '/')->scan($word . '*'); },
-            'noword' => function ()      { return PhoDirectory::new(                 '/', '/')->scan(        '*'); },
+            'word'   => function ($word) { return PhoDirectory::newFilesystemRootObject()->scan($word . '*'); },
+            'noword' => function ()      { return PhoDirectory::newFilesystemRootObject()->scan(        '*'); },
         ],
     ],
     'arguments' => [
         '-t,--type' => [
-            'word'   => function ($word) use ($types) { return Arrays::match($types, $word); },
+            'word'   => function ($word) use ($types) { return Arrays::valuesMatch($types, $word); },
             'noword' => function ()      use ($types) { return $types; },
         ],
         '-o,--options' => true
     ]
 ]);
 
-CliDocumentation::usage('./pho tools os filesystem mounts mount SOURCE TARGET
+CliDocumentation::setUsage('./pho tools os filesystem mounts mount SOURCE TARGET
 ./pho tools os filesystem mounts mount SOURCE TARGET [-t FILESYSTEM]
 ./pho tools os filesystem mounts mount SOURCE TARGET [-t FILESYSTEM] [-o OPTIONS]');
 
-CliDocumentation::help('This command will mount the specified source device (or directory) on the specified target
+CliDocumentation::setHelp('This command will mount the specified source device (or directory) on the specified target
 directory
 
 

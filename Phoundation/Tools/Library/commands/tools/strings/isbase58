@@ -19,8 +19,8 @@ use Phoundation\Utils\Strings;
  * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
-CliDocumentation::usage('./pho tools isbase58');
-CliDocumentation::help('The isbase58 tool script will return 1 if the specified string is base58, 0 otherwise');
+CliDocumentation::setUsage('./pho tools isbase58');
+CliDocumentation::setHelp('The isbase58 tool script will return 1 if the specified string is base58, 0 otherwise');
 
 $argv = ArgvValidator::new()
     ->select('text')->hasMaxCharacters(1048576)
