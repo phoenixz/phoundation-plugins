@@ -30,7 +30,7 @@ class FingerPrint extends DataEntry
     }
 
 
-    public static function getDataEntryName(): string
+    public static function getEntryName(): string
     {
         return tr('Fingerprint');
     }

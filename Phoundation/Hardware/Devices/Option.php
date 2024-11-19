@@ -54,7 +54,7 @@ class Option extends DataEntry implements OptionInterface
     /**
      * @inheritDoc
      */
-    public static function getDataEntryName(): string
+    public static function getEntryName(): string
     {
         return tr('Device driver option');
     }

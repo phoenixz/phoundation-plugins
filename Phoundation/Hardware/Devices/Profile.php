@@ -61,7 +61,7 @@ class Profile extends DataEntry implements ProfileInterface
     /**
      * @inheritDoc
      */
-    public static function getDataEntryName(): string
+    public static function getEntryName(): string
     {
         return tr('Hardware profile');
     }

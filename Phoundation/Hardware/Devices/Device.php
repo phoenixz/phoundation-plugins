@@ -77,7 +77,7 @@ class Device extends DataEntry implements DeviceInterface
     /**
      * @inheritDoc
      */
-    public static function getDataEntryName(): string
+    public static function getEntryName(): string
     {
         return tr('Hardware device');
     }
