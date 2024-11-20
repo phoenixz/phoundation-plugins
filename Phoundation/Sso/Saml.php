@@ -71,7 +71,7 @@ class Saml
         $spSsoDescriptor->addAssertionConsumerService(
             $acs = (new AssertionConsumerService())
                 ->setBinding(SamlConstants::BINDING_SAML2_HTTP_POST)
-                ->setLocation(Url::getWww('/sso/saml/acs.html'))
+                ->setLocation(Url::new('/sso/saml/acs.html')->makeWww())
         );
 
         $context = new SerializationContext();
