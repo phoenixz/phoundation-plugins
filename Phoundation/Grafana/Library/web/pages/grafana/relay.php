@@ -37,8 +37,8 @@ try {
         $url = str_replace('/relay', '', $url);
     }
 
-    $url   = Url::getWww('http://grafana.localhost:3000/grafana' . $url)->addQueries($get);
-    $relay = Relay::new($url)->setPageReplace(['public/' => (string) Url::getCdn('grafana/public/')]);
+    $url   = Url::new('http://grafana.localhost:3000/grafana' . $url)->makeWww()->addQueries($get);
+    $relay = Relay::new($url)->setPageReplace(['public/' => (string) Url::new('grafana/public/')->makeCdn()]);
 
     $relay->getCurl()
         ->setFollowLocation(true)
