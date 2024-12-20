@@ -14,10 +14,9 @@
 
 declare(strict_types=1);
 
-namespace Plugins\Phoundation\Scanners;
+namespace Plugins\Phoundation\Hardware\Scanners;
 
 use Plugins\Phoundation\Hardware\Devices\Devices;
-
 
 class Scanners extends Devices
 {

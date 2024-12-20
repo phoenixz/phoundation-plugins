@@ -80,7 +80,7 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                         'url'    => '/security/non-200-urls.html',
                         'icon'   => 'fas fa-tasks'
                     ],
-                    tr('Activity log') => [
+                    tr('DatacenterActivity log') => [
                         'rights' => 'logs',
                         'url'    => '/security/activity',
                         'icon'   => 'fas fa-tasks'
