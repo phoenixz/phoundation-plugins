@@ -21,8 +21,7 @@ use Phoundation\Data\DataEntry\DataIterator;
 use Phoundation\Os\Processes\Commands\ScanImage;
 use Phoundation\Seo\Seo;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\DevicesInterface;
-use Plugins\Phoundation\Scanners\Exception\ScannersException;
-
+use Plugins\Phoundation\Hardware\Scanners\Exception\ScannersException;
 
 class Devices extends DataIterator implements DevicesInterface
 {

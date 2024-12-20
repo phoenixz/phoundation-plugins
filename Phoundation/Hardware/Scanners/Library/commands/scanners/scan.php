@@ -1,5 +1,16 @@
-#!/usr/bin/php
 <?php
+
+/**
+ * Command scanners scan
+ *
+ * This command will scan on the specified device using the specified profile
+ *
+ * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Phoundation\Scripts
+ */
+
 
 declare(strict_types=1);
 
@@ -10,20 +21,10 @@ use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Filesystem\PhoRestrictions;
 use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
-use Plugins\Phoundation\Scanners\Scanner;
+use Plugins\Phoundation\Hardware\Scanners\Scanner;
 
-
-/**
- * Script scanners/scan
- *
- * This command will scan on the specified device using the specified profile
- *
- * @author Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Scripts
- */
 $restrictions = PhoRestrictions::newWritable(DIRECTORY_DATA);
+
 
 CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');
 
@@ -44,15 +45,15 @@ CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
             'word'   => function ($word) { return Devices::new()->load()->getMatchingKeys($word); },
-            'noword' => function ()      { return Devices::new()->load(); },
+            'noword' => function ($word) { return Devices::new()->load(); },
         ],
         1 => [
             'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
             'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getSourceKeys(); },
         ],
         2 => [
-            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan($word . '*') ; },
-            'noword' => function ()      use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan(); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan($word, '/.*?$/'); },
+            'noword' => function ($word) use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan($word, '/.*?$/'); },
         ],
     ],
     'arguments' => [
@@ -65,15 +66,15 @@ CliDocumentation::setAutoComplete([
 $argv = ArgvValidator::new()
     ->select('device')->isVariableName()
     ->select('profile')->isVariableName()
-    ->select('path')->isPath()
+    ->select('path')->sanitizePath()
     ->select('-b,--batch')->isOptional()->isBoolean()
     ->validate();
 
 
 // List available devices
 $scanner = Scanner::load($argv['device'])
-    ->setBatch($argv['batch'])
-    ->scan($argv['profile'], $argv['path']);
+                  ->setBatch($argv['batch'])
+                  ->scan($argv['profile'], $argv['path']);
 
 
 // Done!
