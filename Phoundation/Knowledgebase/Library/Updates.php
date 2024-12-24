@@ -27,7 +27,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function version(): string
     {
-        return '0.0.1';
+        return '0.5.0';
     }
 
 
@@ -38,9 +38,9 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function updates(): void
     {
-        $this->addUpdate('0.0.1', function () {
+        $this->addUpdate('0.5.0', function () {
             // Create the health authorities table.
-            sql()->getSchemaObject()->getTableObject('knowledgebase_articles')->define()
+            sql()->getSchemaObject()->getTableObject('knowledgebase_articles')->drop()->define()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
