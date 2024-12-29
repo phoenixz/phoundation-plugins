@@ -19,6 +19,7 @@ namespace Plugins\Phoundation\Hardware\Devices;
 use Phoundation\Data\DataEntry\DataIterator;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfileInterface;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\ProfilesInterface;
+use ReturnTypeWillChange;
 use Stringable;
 
 
@@ -68,7 +69,7 @@ class Profiles extends DataIterator implements ProfilesInterface
      * @param bool $exception
      * @return ProfileInterface|null
      */
-    public function get(float|Stringable|int|string $key, bool $exception = true): ?ProfileInterface
+    #[ReturnTypeWillChange] public function get(float|Stringable|int|string $key, bool $exception = true): ?ProfileInterface
     {
         return parent::get($key, $exception);
     }

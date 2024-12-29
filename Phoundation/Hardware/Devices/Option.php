@@ -31,6 +31,7 @@ use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Utils\Arrays;
 use Phoundation\Web\Html\Enums\EnumInputType;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionInterface;
+use ReturnTypeWillChange;
 use Stringable;
 
 class Option extends DataEntry implements OptionInterface
@@ -100,7 +101,7 @@ class Option extends DataEntry implements OptionInterface
      *
      * @return string|null
      */
-    public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed
+    #[ReturnTypeWillChange] public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed
     {
         return parent::get($key, $exception);
     }
@@ -111,12 +112,12 @@ class Option extends DataEntry implements OptionInterface
      *
      * The value must either be one of the values option, or fall within the range for this option
      *
-     * @param mixed $value
-     * @param string $column
-     * @param bool $force
+     * @param mixed                       $value
+     * @param float|Stringable|int|string $key
+     *
      * @return static
      */
-    public function set(mixed $value, float|Stringable|int|string $key = 'value'): static
+    #[ReturnTypeWillChange] public function set(mixed $value, float|Stringable|int|string $key = 'value'): static
     {
         if ($value) {
             $this->checkRange($value)

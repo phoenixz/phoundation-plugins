@@ -3,6 +3,7 @@
 namespace Plugins\Phoundation\Hardware\Devices\Interfaces;
 
 use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
+use ReturnTypeWillChange;
 use Stringable;
 
 interface OptionInterface extends DataEntryInterface
@@ -30,7 +31,7 @@ interface OptionInterface extends DataEntryInterface
      *
      * @return string|null
      */
-    public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed;
+    #[ReturnTypeWillChange] public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed;
 
     /**
      * Sets the value for this option
@@ -42,7 +43,7 @@ interface OptionInterface extends DataEntryInterface
      * @param bool $force
      * @return static
      */
-    public function set(mixed $value, float|Stringable|int|string $key = 'value'): static;
+    #[ReturnTypeWillChange] public function set(mixed $value, float|Stringable|int|string $key = 'value'): static;
 
     /**
      * Returns the values for this option
