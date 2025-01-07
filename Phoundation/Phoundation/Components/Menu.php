@@ -88,7 +88,7 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                 ],
             ],
             tr('Development') => [
-                'rights' => 'admin,development',
+                'rights' => 'admin,developers',
                 'icon' => 'fas fa-lock',
                 'menu' => [
                     tr('Plugins') => [
