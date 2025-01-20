@@ -15,7 +15,7 @@
 
 declare(strict_types=1);
 
-namespace Plugins\Phoundation\FingerPrint\Library;
+namespace Plugins\Phoundation\Humans\FingerPrint\Library;
 
 
 
