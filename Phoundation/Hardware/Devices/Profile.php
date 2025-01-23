@@ -184,7 +184,7 @@ class Profile extends DataEntry implements ProfileInterface
     /**
      * @inheritDoc
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): void
+    protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
             ->add(Definition::new($this, 'devices_id')
@@ -195,6 +195,7 @@ class Profile extends DataEntry implements ProfileInterface
                     // Validate the programs id
                     $validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [':id' => '$devices_id']);
                 }))
+
             ->add(Definition::new($this, 'device')
                 ->setOptional(true)
                 ->setVirtual(true)
@@ -207,14 +208,18 @@ class Profile extends DataEntry implements ProfileInterface
                 })
                 ->setLabel(tr('Device'))
                 ->setHelpText(tr('The device this driver option belongs')))
-            ->add(DefinitionFactory::getName($this))
-            ->add(DefinitionFactory::getSeoName($this))
+
+            ->add(DefinitionFactory::newName($this))
+
+            ->add(DefinitionFactory::newSeoName($this))
+
             ->add(Definition::new($this, 'default')
                 ->setRender(true)
                 ->setOptional(true, false)
                 ->setInputType(EnumInputType::checkbox)
                 ->setLabel(tr('Default profile'))
             )
-            ->add(DefinitionFactory::getComments($this));
+
+            ->add(DefinitionFactory::newComments($this));
     }
 }

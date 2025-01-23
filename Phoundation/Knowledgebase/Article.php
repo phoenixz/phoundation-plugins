@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Knowledgebase;
 
+use Phoundation\Data\DataEntry\Interfaces\IdentifierInterface;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryBody;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryCode;
 use Plugins\Phoundation\Knowledgebase\Exception\KnowledgebaseArticleNotExistsException;
@@ -25,13 +26,12 @@ use Phoundation\Data\DataEntry\Definitions\DefinitionFactory;
 use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntry\Exception\DataEntryDeletedException;
 use Phoundation\Data\DataEntry\Exception\Interfaces\DataEntryNotExistsExceptionInterface;
-use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
 use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameLowercaseDash;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
 use Phoundation\Web\Html\Enums\EnumInputType;
 
 
-class Article extends DataEntry 
+class Article extends DataEntry
 {
     use TraitDataEntryNameLowercaseDash;
     use TraitDataEntryBody;
@@ -40,13 +40,11 @@ class Article extends DataEntry
     /**
      * Article class constructor
      *
-     * @param array|DataEntryInterface|string|int|null $identifier
-     * @param bool|null                                $meta_enabled
-     * @param bool                                     $init
+     * @param IdentifierInterface|array|string|int|null $identifier
      */
-    public function __construct(array|DataEntryInterface|string|int|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
+    public function __construct(IdentifierInterface|array|string|int|null $identifier = null)
     {
-        return parent::__construct(static::convertToLowerCaseDash($identifier), $meta_enabled, $init);
+        return parent::__construct(static::convertNameIdentifierToLowerCaseDash($identifier));
     }
 
 
@@ -90,17 +88,12 @@ class Article extends DataEntry
      *       simplify "if this is not DataEntry object then this is new DataEntry object" into
      *       "PossibleDataEntryVariable is DataEntry::new(PossibleDataEntryVariable)"
      *
-     * @param array|DataEntryInterface|string|int|null $identifier
-     * @param bool                                     $meta_enabled
-     * @param bool                                     $init
-     * @param bool                                     $ignore_deleted
-     *
      * @return Article
      */
-    public static function load(array|DataEntryInterface|string|int|null $identifier, bool $meta_enabled = false, bool $init = true, bool $ignore_deleted = false): static
+    public function load(): static
     {
         try {
-            return parent::load(static::convertToLowerCaseDash($identifier), $meta_enabled, $init, $ignore_deleted);
+            return parent::load();
 
         } catch (DataEntryNotExistsExceptionInterface|DataEntryDeletedException $e) {
             throw new KnowledgebaseArticleNotExistsException($e);
@@ -112,8 +105,10 @@ class Article extends DataEntry
      * Sets the available data keys for this entry
      *
      * @param DefinitionsInterface $definitions
+     *
+     * @return Article
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): void
+    protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions->add(DefinitionFactory::newName($this)
                                             ->setInputType(EnumInputType::name)
@@ -131,5 +126,7 @@ class Article extends DataEntry
                     ->add(DefinitionFactory::newSeoName($this))
 
                     ->add(DefinitionFactory::newBody($this));
+
+        return $this;
     }
 }

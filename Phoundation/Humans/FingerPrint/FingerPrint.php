@@ -92,8 +92,9 @@ class FingerPrint extends DataEntry
     }
 
 
-    protected function setDefinitions(DefinitionsInterface $definitions): void
+    protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         // TODO: Implement initDefinitions() method.
+        return $this;
     }
 }

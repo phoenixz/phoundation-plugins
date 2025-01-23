@@ -72,7 +72,7 @@ class Backup extends DataEntry
      */
     public function __construct(int|array|string|DataEntryInterface|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
     {
-        parent::__construct($identifier, $meta_enabled, $init);
+        parent::__construct($identifier);
 
         $this->date_time = PhoDateTime::new();
         $this->path      = PhoDirectory::new($this->target)
@@ -269,7 +269,7 @@ class Backup extends DataEntry
      *
      * @param DefinitionsInterface $definitions
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): void
+    protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
             ->add(Definition::new($this, 'size')

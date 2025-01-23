@@ -262,33 +262,35 @@ class Option extends DataEntry implements OptionInterface
     /**
      * @inheritDoc
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): void
+    protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
             ->add(Definition::new($this, 'devices_id')
-                ->setRender(true)
-                ->setOptional(true)
-                ->setSize(4)
-                ->addValidationFunction(function (ValidatorInterface $validator) {
-                    // Validate the devices id
-                    $validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [
-                        ':id' => '$devices_id'
-                    ]);
-                }))
+                            ->setRender(true)
+                            ->setOptional(true)
+                            ->setSize(4)
+                            ->addValidationFunction(function (ValidatorInterface $validator) {
+                                // Validate the devices id
+                                $validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [
+                                    ':id' => '$devices_id'
+                                ]);
+                            }))
+
             ->add(Definition::new($this, 'device')
-                ->setOptional(true)
-                ->setVirtual(true)
-                ->setRender(false)
-                ->setSize(4)
-                ->setInputType(EnumInputType::select)
-                ->addValidationFunction(function (ValidatorInterface $validator) {
-                    // Validate the device name
-                    $validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [
-                        ':name' => '$device'
-                    ]);
-                })
-                ->setLabel(tr('Device'))
-                ->setHelpText(tr('The device this driver option belongs')))
+                            ->setOptional(true)
+                            ->setVirtual(true)
+                            ->setRender(false)
+                            ->setSize(4)
+                            ->setInputType(EnumInputType::select)
+                            ->addValidationFunction(function (ValidatorInterface $validator) {
+                                // Validate the device name
+                                $validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [
+                                    ':name' => '$device'
+                                ]);
+                            })
+                            ->setLabel(tr('Device'))
+                            ->setHelpText(tr('The device this driver option belongs')))
+
             ->add(Definition::new($this, 'profiles_id')
                 ->setRender(true)
                 ->setOptional(true)
@@ -302,6 +304,7 @@ class Option extends DataEntry implements OptionInterface
                             ':id' => '$profiles_id'
                         ]);
                 }))
+
             ->add(Definition::new($this, 'profile')
                 ->setOptional(true)
                 ->setVirtual(true)
@@ -319,39 +322,49 @@ class Option extends DataEntry implements OptionInterface
                 })
                 ->setLabel(tr('Profile'))
                 ->setHelpText(tr('The profile this driver option belongs to')))
+
             ->add(Definition::new($this, 'key')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(32))
+
             ->add(Definition::new($this, 'value')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(255))
+
             ->add(Definition::new($this, 'default')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(255))
+
             ->add(Definition::new($this, 'range')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(64))
+
             ->add(Definition::new($this, 'values')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(255))
+
             ->add(Definition::new($this, 'units')
                 ->setOptional(true)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(16))
-            ->add(DefinitionFactory::getComments($this)
+
+            ->add(DefinitionFactory::newComments($this)
                 ->setMaxlength(255))
-            ->add(DefinitionFactory::getDescription($this)
+
+            ->add(DefinitionFactory::newDescription($this)
                 ->setMaxlength(2048));
+
+        return $this;
     }
 }
