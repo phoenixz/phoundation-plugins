@@ -92,6 +92,9 @@ class FingerPrint extends DataEntry
     }
 
 
+    /**
+     * @inheritDoc
+     */
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         // TODO: Implement initDefinitions() method.

@@ -106,7 +106,7 @@ class Article extends DataEntry
      *
      * @param DefinitionsInterface $definitions
      *
-     * @return Article
+     * @return static
      */
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {

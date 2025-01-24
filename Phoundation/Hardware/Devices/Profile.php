@@ -221,5 +221,7 @@ class Profile extends DataEntry implements ProfileInterface
             )
 
             ->add(DefinitionFactory::newComments($this));
+
+        return $this;
     }
 }

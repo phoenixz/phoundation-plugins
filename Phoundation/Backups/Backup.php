@@ -70,7 +70,7 @@ class Backup extends DataEntry
     /**
      * Initializes the backup object
      */
-    public function __construct(int|array|string|DataEntryInterface|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
+    public function __construct(int|array|string|DataEntryInterface|null $identifier = null)
     {
         parent::__construct($identifier);
 
@@ -268,6 +268,8 @@ class Backup extends DataEntry
      * Sets and returns the field definitions for the data fields in this DataEntry object
      *
      * @param DefinitionsInterface $definitions
+     *
+     * @return Backup
      */
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
@@ -277,6 +279,8 @@ class Backup extends DataEntry
                 ->setInputType(EnumInputType::positiveInteger)
                 ->setMin(0)
             );
+
+        return $this;
     }
 
 
