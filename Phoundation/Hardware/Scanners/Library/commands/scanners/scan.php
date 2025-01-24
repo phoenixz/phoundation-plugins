@@ -48,8 +48,8 @@ CliDocumentation::setAutoComplete([
             'noword' => function ($word) { return Devices::new()->load(); },
         ],
         1 => [
-            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
-            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getSourceKeys(); },
+            'word'   => function ($word, $arguments) { return Device::new($arguments[0])->load()->getProfiles()->getMatchingKeys($word); },
+            'noword' => function ($word, $arguments) { return Device::new($arguments[0])->load()->getProfiles()->getSourceKeys(); },
         ],
         2 => [
             'word'   => function ($word) use ($restrictions) { return PhoDirectory::new(DIRECTORY_DATA, $restrictions)->scan($word, '/.*?$/'); },
@@ -72,7 +72,7 @@ $argv = ArgvValidator::new()
 
 
 // List available devices
-$scanner = Scanner::load($argv['device'])
+$scanner = Scanner::new($argv['device'])->load()
                   ->setBatch($argv['batch'])
                   ->scan($argv['profile'], $argv['path']);
 

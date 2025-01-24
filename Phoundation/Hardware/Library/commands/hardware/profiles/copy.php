@@ -59,7 +59,7 @@ $argv = ArgvValidator::new()
 
 
 // Get the device and profile
-$device  = Device::load($argv['device']);
+$device  = Device::new($argv['device'])->load();
 $profile = Profile::find([
     'devices_id' => $device->getId(),
     'name'       => $argv['source']

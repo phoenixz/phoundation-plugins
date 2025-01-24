@@ -47,6 +47,6 @@ $argv = ArgvValidator::new()
 
 
 // Set fingerprint for this user
-$user = User::load($argv['user']);
+$user = User::new($argv['user'])->load();
 
 FingerPrint::new()->enroll($user);

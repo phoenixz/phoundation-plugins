@@ -202,7 +202,7 @@ class Backup extends DataEntry
 
         // Backup all databases in all connectors
         foreach ($connectors as $name => $connector) {
-            $connector = Connector::load($name);
+            $connector = Connector::new($name)->load();
 
             if ($connector->getBackup()) {
                 if ($connector->getType() === 'memcached') {
