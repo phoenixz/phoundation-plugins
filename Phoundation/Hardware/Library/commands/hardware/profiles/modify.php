@@ -51,21 +51,21 @@ CliDocumentation::setAutoComplete([
             'noword' => function ($word) { return Devices::new()->load()->getSourceKeys(); },
         ],
         1  => [
-            'word'   => function ($word, $arguments) { return Device::new($arguments[0])->load()->getProfiles()->keepMatchingKeysStartingWith($word); },
-            'noword' => function ($word, $arguments) { return Device::new($arguments[0])->load()->getProfiles()->getSourceKeys(); },
+            'word'   => function ($word, $arguments) { return Device::new()->load($arguments[0])->getProfiles()->keepMatchingKeysStartingWith($word); },
+            'noword' => function ($word, $arguments) { return Device::new()->load($arguments[0])->getProfiles()->getSourceKeys(); },
         ],
         2  => [
-            'word'   => function ($word, $arguments) { return Device::new($arguments[0])->load()->getProfiles()->get($arguments[1])->getOptions()->keepMatchingKeysStartingWith($word); },
-            'noword' => function ($word, $arguments) { return Device::new($arguments[0])->load()->getProfiles()->get($arguments[1])->getOptions()->getSourceKeys(); },
+            'word'   => function ($word, $arguments) { return Device::new()->load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->keepMatchingKeysStartingWith($word); },
+            'noword' => function ($word, $arguments) { return Device::new()->load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeys(); },
         ],
         3  => [
             'word'   => function ($word, $arguments) {
-                $values = Device::new($arguments[0])->load()->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
+                $values = Device::new()->load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
                 $values = Arrays::force($values, ',');
                 return Arrays::keepMatchingValuesStartingWith($values, $word);
             },
             'noword' => function ($word, $arguments) {
-                $values = Device::new($arguments[0])->load()->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
+                $values = Device::new()->load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
                 $values = Arrays::force($values, ',');
                 return $values;
             },
@@ -84,7 +84,7 @@ $argv = ArgvValidator::new()
 
 
 // Get the device and profile
-$device  = Device::new($argv['device'])->load();
+$device  = Device::new()->load($argv['device']);
 $profile = Profile::find([
     'devices_id' => $device->getId(),
     'name'       => $argv['profile']
