@@ -24,7 +24,7 @@ use Phoundation\Filesystem\PhoRestrictions;
 use Phoundation\Utils\Numbers;
 
 
-$restrictions = PhoRestrictions::newReadonly('/');
+$restrictions = PhoRestrictions::newReadonlyObject('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [

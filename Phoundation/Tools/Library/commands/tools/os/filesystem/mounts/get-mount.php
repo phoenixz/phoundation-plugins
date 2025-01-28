@@ -22,7 +22,7 @@ use Phoundation\Filesystem\Mounts\FsMounts;
 use Phoundation\Filesystem\PhoRestrictions;
 
 
-$restrictions = PhoRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritableObject('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [

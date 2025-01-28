@@ -24,7 +24,7 @@ use Phoundation\Filesystem\PhoRestrictions;
 use Phoundation\Utils\Numbers;
 
 
-$restrictions = PhoRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritableObject('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

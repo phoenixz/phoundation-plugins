@@ -23,7 +23,7 @@ use Plugins\Phoundation\Hardware\Devices\Device;
 use Plugins\Phoundation\Hardware\Devices\Devices;
 use Plugins\Phoundation\Hardware\Scanners\Scanner;
 
-$restrictions = PhoRestrictions::newWritable(DIRECTORY_DATA);
+$restrictions = PhoRestrictions::newWritableObject(DIRECTORY_DATA);
 
 
 CliDocumentation::setUsage('./pho scanners scan DEVICE PROFILE PATH');
