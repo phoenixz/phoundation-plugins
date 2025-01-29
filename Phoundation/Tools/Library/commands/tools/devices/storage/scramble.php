@@ -56,7 +56,7 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-    ->select('device')->hasMaxCharacters(64)->sanitizeFile(PhoDirectory::new('/dev/', PhoRestrictions::newWritable('/dev')))
+    ->select('device')->hasMaxCharacters(64)->sanitizeFile(PhoDirectory::new('/dev/', PhoRestrictions::newWritableObject('/dev')))
     ->select('-p,--passes')->isOptional(3)->isNatural(false)->isBetween(1, 10)
     ->validate();
 

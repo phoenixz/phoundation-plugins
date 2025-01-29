@@ -25,7 +25,7 @@ use Phoundation\Utils\Arrays;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = PhoRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritableObject('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [

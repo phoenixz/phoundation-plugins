@@ -20,7 +20,7 @@ use Phoundation\Filesystem\PhoDirectory;
 use Phoundation\Filesystem\PhoRestrictions;
 
 
-$restrictions = PhoRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritableObject('/');
 
 CliDocumentation::setAutoComplete([
     'arguments' => [

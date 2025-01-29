@@ -25,7 +25,7 @@ use Phoundation\Os\Processes\Commands\UnMount;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = PhoRestrictions::newWritable('/');
+$restrictions = PhoRestrictions::newWritableObject('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
