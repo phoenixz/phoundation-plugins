@@ -371,7 +371,7 @@ class Statistics
         try {
             if (empty(static::$config[$server])) {
                 try {
-                    static::$config[$server] = Config::getArray('statistics.servers.' . $server);
+                    static::$config[$server] = config()->getArray('statistics.servers.' . $server);
                 } catch (ConfigPathDoesNotExistsException $e) {
                     // If default configuration ignore. Other configurations must exist
                     if ($server !== 'default') {
@@ -405,7 +405,7 @@ class Statistics
      */
     protected function loadAllConfig(): void
     {
-        $servers = Config::getArray('statistics.servers');
+        $servers = config()->getArray('statistics.servers');
 
         foreach ($servers as $server => $config) {
             static::loadConfig($server);

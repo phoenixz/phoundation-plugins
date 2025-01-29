@@ -198,7 +198,7 @@ class Backup extends DataEntry
         $this->executeHook('pre-dump-all-databases');
 
         // Get connectors to back up
-        $connectors = Config::getArray('databases.connectors');
+        $connectors = config()->getArray('databases.connectors');
 
         // Backup all databases in all connectors
         foreach ($connectors as $name => $connector) {
@@ -288,7 +288,7 @@ class Backup extends DataEntry
      */
     protected function executeHook(array|string $hooks): static
     {
-        if (Config::get('backups.hooks.execute', true)) {
+        if (config()->get('backups.hooks.execute', true)) {
             Hook::new('backups')->execute($hooks);
         }
 
