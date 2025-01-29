@@ -7,14 +7,14 @@
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package   Plugins\Phoundation\FingerPrint
  */
 
 
 declare(strict_types=1);
 
-namespace Plugins\Phoundation\FingerPrint\Enums;
+namespace Plugins\Phoundation\Humans\FingerPrint\Enums;
 
 
 /**
@@ -24,8 +24,8 @@ namespace Plugins\Phoundation\FingerPrint\Enums;
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\FingerPrint
+ * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Plugins\Phoundation\Humans
  */
 enum EnumFinger: string
 {

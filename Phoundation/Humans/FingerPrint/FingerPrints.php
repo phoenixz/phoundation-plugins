@@ -7,17 +7,17 @@
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\FingerPrint
+ * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @package Plugins\Phoundation\Humans
  */
 
 
 declare(strict_types=1);
 
-namespace Plugins\Phoundation\FingerPrint;
+namespace Plugins\Phoundation\Humans\FingerPrint;
 
 use Phoundation\Data\DataEntry\DataIterator;
-use Plugins\Phoundation\FingerPrint\Interfaces\FingerPrintsInterface;
+use Plugins\Phoundation\Humans\FingerPrint\Interfaces\FingerPrintsInterface;
 
 
 class FingerPrints extends DataIterator implements FingerPrintsInterface

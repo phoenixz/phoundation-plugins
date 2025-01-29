@@ -7,7 +7,7 @@
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @copyright Copyright © 2022 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Phoundation\Scripts
  */
 
@@ -41,8 +41,8 @@ CliDocumentation::setAutoComplete([
             'noword' => function ($word) { return Devices::new()->load(); },
         ],
         1 => [
-            'word'   => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles()->getMatchingKeys($word); },
-            'noword' => function ($word, $arguments) { return Device::load($arguments[0])->getProfiles(); },
+            'word'   => function ($word, $arguments) { return Device::new()->load($arguments[0])->getProfiles()->getMatchingKeys($word); },
+            'noword' => function ($word, $arguments) { return Device::new()->load($arguments[0])->getProfiles(); },
         ],
     ]
 ]);
@@ -57,7 +57,7 @@ $argv = ArgvValidator::new()
 
 // Find the device and profile
 try {
-    $device = Device::load($argv['device']);
+    $device = Device::new()->load($argv['device']);
 
 } catch (DataEntryNotExistsException $e) {
     throw NotExistsException::new(tr('The specified device ":device" does not exist', [

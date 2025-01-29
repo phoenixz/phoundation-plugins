@@ -7,7 +7,7 @@
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Hardware
  */
 
@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Scanners;
 
-use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
+use Phoundation\Data\DataEntry\Interfaces\IdentifierInterface;
 use Phoundation\Data\Traits\TraitDataBatch;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Filesystem\Interfaces\PhoPathInterface;
@@ -42,13 +42,11 @@ class Scanner extends Device
     /**
      * DataEntry class constructor
      *
-     * @param array|DataEntryInterface|string|int|null $identifier
-     * @param bool|null                                $meta_enabled
-     * @param bool                                     $init
+     * @param IdentifierInterface|array|string|int|null $identifier
      */
-    public function __construct(array|DataEntryInterface|string|int|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
+    public function __construct(IdentifierInterface|array|string|int|null $identifier = null)
     {
-        parent::__construct($identifier, $meta_enabled, $init);
+        parent::__construct($identifier);
 
         if ($this->isNew()) {
             $this->setClass('scanner');
@@ -80,58 +78,16 @@ class Scanner extends Device
      * @note The test to see if a DataEntry object exists in the database can be either DataEntry::isNew() or
      *       DataEntry::getId(), which should return a valid database id
      *
-     * @param array|DataEntryInterface|string|int|null $identifier
-     * @param bool                                     $meta_enabled
-     * @param bool                                     $init
-     * @param bool                                     $ignore_deleted
-     *
      * @return static
      */
-    public static function load(array|DataEntryInterface|string|int|null $identifier, bool $meta_enabled = false, bool $init = true, bool $ignore_deleted = false): static
+    public function load(): static
     {
-        $entry = parent::load($identifier, $meta_enabled, $init, $ignore_deleted);
+        $entry = parent::load();
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
-                ':column'     => static::determineColumn($identifier),
-                ':identifier' => $identifier
-            ]));
-        }
-
-        return $entry;
-    }
-
-
-    /**
-     * Returns a DataEntry object matching the specified identifier that MUST exist in the database
-     *
-     * This method also accepts DataEntry objects of the same class, in which case it will simply return the specified
-     * object, as long as it exists in the database.
-     *
-     * If the DataEntry does not exist in the database, then this method will check if perhaps it exists as a
-     * configuration entry. This requires DataEntry::$config_path to be set. DataEntries from configuration will be in
-     * readonly mode automatically as they cannot be stored in the database.
-     *
-     * DataEntries from the database will also have their status checked. If the status is "deleted", then a
-     * DataEntryDeletedException will be thrown
-     *
-     * @note The test to see if a DataEntry object exists in the database can be either DataEntry::isNew() or
-     *       DataEntry::getId(), which should return a valid database id
-     *
-     * @param array  $identifiers
-     * @param bool   $meta_enabled
-     * @param bool   $ignore_deleted
-     * @param bool   $exception
-     * @param string $filter
-     * @return static|null
-     */
-    public static function find(array $identifiers, bool $meta_enabled = false, bool $ignore_deleted = false, bool $exception = true, string $filter = 'AND'): ?static
-    {
-        $entry = parent::find($identifiers, $meta_enabled, $ignore_deleted);
-
-        if ($entry->getClass() !== 'scanner') {
-            throw new InvalidDeviceClassException(tr('The specified device "identifiers" is not a "scanner" class device', [
-                ':identifiers' => Arrays::implodeWithKeys($identifiers, ',', '=')
+                ':column'     => static::determineColumn($this->identifier),
+                ':identifier' => $this->identifier
             ]));
         }
 

@@ -7,7 +7,7 @@
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
- * @copyright Copyright (c) 2024 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
+ * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
  * @package Plugins\Phoundation\Backup
  */
 
@@ -70,9 +70,9 @@ class Backup extends DataEntry
     /**
      * Initializes the backup object
      */
-    public function __construct(int|array|string|DataEntryInterface|null $identifier = null, ?bool $meta_enabled = null, bool $init = true)
+    public function __construct(int|array|string|DataEntryInterface|null $identifier = null)
     {
-        parent::__construct($identifier, $meta_enabled, $init);
+        parent::__construct($identifier);
 
         $this->date_time = PhoDateTime::new();
         $this->path      = PhoDirectory::new($this->target)
@@ -202,7 +202,7 @@ class Backup extends DataEntry
 
         // Backup all databases in all connectors
         foreach ($connectors as $name => $connector) {
-            $connector = Connector::load($name);
+            $connector = Connector::new()->load($name);
 
             if ($connector->getBackup()) {
                 if ($connector->getType() === 'memcached') {
@@ -268,8 +268,10 @@ class Backup extends DataEntry
      * Sets and returns the field definitions for the data fields in this DataEntry object
      *
      * @param DefinitionsInterface $definitions
+     *
+     * @return Backup
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): void
+    protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
             ->add(Definition::new($this, 'size')
@@ -277,6 +279,8 @@ class Backup extends DataEntry
                 ->setInputType(EnumInputType::positiveInteger)
                 ->setMin(0)
             );
+
+        return $this;
     }
 
 
