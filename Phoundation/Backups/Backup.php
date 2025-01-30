@@ -35,7 +35,6 @@ use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Filesystem\Interfaces\PhoDirectoryInterface;
 use Phoundation\Filesystem\Interfaces\PhoFileInterface;
 use Phoundation\Data\Traits\TraitDataRestrictions;
-use Phoundation\Utils\Config;
 use Phoundation\Web\Html\Enums\EnumInputType;
 
 

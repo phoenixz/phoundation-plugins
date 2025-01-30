@@ -26,7 +26,6 @@ use Phoundation\Filesystem\PhoPath;
 use Phoundation\Filesystem\Interfaces\PhoPathInterface;
 use Phoundation\Notifications\Notification;
 use Phoundation\Utils\Arrays;
-use Phoundation\Utils\Config;
 use Phoundation\Utils\Exception\ConfigPathDoesNotExistsException;
 use Plugins\Phoundation\Statistics\Exception\StatisticsException;
 use Throwable;
