@@ -274,7 +274,7 @@ class Backup extends DataEntry
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
-            ->add(Definition::new($this, 'size')
+            ->add(Definition::new('size')
                 ->setReadonly(true)
                 ->setInputType(EnumInputType::positiveInteger)
                 ->setMin(0)

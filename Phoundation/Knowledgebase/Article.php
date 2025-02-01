@@ -110,7 +110,7 @@ class Article extends DataEntry
      */
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
-        $definitions->add(DefinitionFactory::newName($this)
+        $definitions->add(DefinitionFactory::newName()
                                             ->setInputType(EnumInputType::name)
                                             ->setSize(12)
                                             ->setMaxlength(64)
@@ -119,13 +119,13 @@ class Article extends DataEntry
                                                 $validator->isUnique();
                                             }))
 
-                    ->add(DefinitionFactory::newCode($this)
+                    ->add(DefinitionFactory::newCode()
                                            ->setRender(false)
                                            ->setSize(6))
 
-                    ->add(DefinitionFactory::newSeoName($this))
+                    ->add(DefinitionFactory::newSeoName())
 
-                    ->add(DefinitionFactory::newBody($this));
+                    ->add(DefinitionFactory::newBody());
 
         return $this;
     }

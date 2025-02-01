@@ -362,11 +362,11 @@ class Device extends DataEntry implements DeviceInterface
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
-            ->add(DefinitionFactory::newDatabaseId($this, 'servers_id'))
+            ->add(DefinitionFactory::newDatabaseId('servers_id'))
 
-            ->add(DefinitionFactory::newServer($this))
+            ->add(DefinitionFactory::newServer())
 
-            ->add(DefinitionFactory::newName($this)
+            ->add(DefinitionFactory::newName()
                                    ->setOptional(false)
                                    ->setInputType(EnumInputType::name)
                                    ->setSize(12)
@@ -376,9 +376,9 @@ class Device extends DataEntry implements DeviceInterface
                                        $validator->isUnique();
                                    }))
 
-            ->add(DefinitionFactory::newSeoName($this))
+            ->add(DefinitionFactory::newSeoName())
 
-            ->add(Definition::new($this, 'class')
+            ->add(Definition::new('class')
                             ->setOptional(false)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
@@ -391,126 +391,126 @@ class Device extends DataEntry implements DeviceInterface
                             ->setMaxlength(9)
                             ->setLabel(tr('Class')))
 
-            ->add(Definition::new($this, 'type')
+            ->add(Definition::new('type')
                             ->setOptional(false)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Type')))
 
-            ->add(Definition::new($this, 'vendor')
+            ->add(Definition::new('vendor')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setMaxlength(32)
                             ->setSize(3)
                             ->setLabel(tr('Vendor')))
 
-            ->add(Definition::new($this, 'vendor_string')
+            ->add(Definition::new('vendor_string')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Vendor string')))
 
-            ->add(Definition::new($this, 'seo_vendor_string')
+            ->add(Definition::new('seo_vendor_string')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setRender(false)
                             ->setMaxlength(32))
 
-            ->add(Definition::new($this, 'vendor')
+            ->add(Definition::new('vendor')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Vendor')))
 
-            ->add(Definition::new($this, 'manufacturer')
+            ->add(Definition::new('manufacturer')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Manufacturer')))
 
-            ->add(Definition::new($this, 'model')
+            ->add(Definition::new('model')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Model')))
 
-            ->add(Definition::new($this, 'product')
+            ->add(Definition::new('product')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Product')))
 
-            ->add(Definition::new($this, 'product_string')
+            ->add(Definition::new('product_string')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Product string')))
 
-            ->add(Definition::new($this, 'seo_product_string')
+            ->add(Definition::new('seo_product_string')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setRender(false)
                             ->setMaxlength(32))
 
-            ->add(Definition::new($this, 'libusb')
+            ->add(Definition::new('libusb')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Libusb')))
 
-            ->add(Definition::new($this, 'bus')
+            ->add(Definition::new('bus')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(32)
                             ->setLabel(tr('Bus')))
 
-            ->add(Definition::new($this, 'device')
+            ->add(Definition::new('device')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(128)
                             ->setLabel(tr('Device')))
 
-            ->add(Definition::new($this, 'string')
+            ->add(Definition::new('string')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(128)
                             ->setLabel(tr('String')))
 
-            ->add(Definition::new($this, 'seo_string')
+            ->add(Definition::new('seo_string')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setRender(false)
                             ->setSize(3)
                             ->setMaxlength(128))
 
-            ->add(Definition::new($this, 'url')
+            ->add(Definition::new('url')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
                             ->setMaxlength(2048)
                             ->setLabel(tr('URL')))
 
-            ->add(Definition::new($this, 'default')
+            ->add(Definition::new('default')
                             ->setOptional(true)
                             ->setInputType(EnumInputType::checkbox)
                             ->setSize(3)
                             ->setMaxlength(2048)
                             ->setLabel(tr('Default device')))
 
-            ->add(DefinitionFactory::newDescription($this))
+            ->add(DefinitionFactory::newDescription())
 
-            ->add(DefinitionFactory::newComments($this));
+            ->add(DefinitionFactory::newComments());
 
         return $this;
     }
