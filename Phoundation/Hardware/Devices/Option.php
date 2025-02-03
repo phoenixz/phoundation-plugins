@@ -265,7 +265,7 @@ class Option extends DataEntry implements OptionInterface
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
-            ->add(Definition::new($this, 'devices_id')
+            ->add(Definition::new('devices_id')
                             ->setRender(true)
                             ->setOptional(true)
                             ->setSize(4)
@@ -276,7 +276,7 @@ class Option extends DataEntry implements OptionInterface
                                 ]);
                             }))
 
-            ->add(Definition::new($this, 'device')
+            ->add(Definition::new('device')
                             ->setOptional(true)
                             ->setVirtual(true)
                             ->setRender(false)
@@ -291,7 +291,7 @@ class Option extends DataEntry implements OptionInterface
                             ->setLabel(tr('Device'))
                             ->setHelpText(tr('The device this driver option belongs')))
 
-            ->add(Definition::new($this, 'profiles_id')
+            ->add(Definition::new('profiles_id')
                 ->setRender(true)
                 ->setOptional(true)
                 ->setSize(4)
@@ -305,7 +305,7 @@ class Option extends DataEntry implements OptionInterface
                         ]);
                 }))
 
-            ->add(Definition::new($this, 'profile')
+            ->add(Definition::new('profile')
                 ->setOptional(true)
                 ->setVirtual(true)
                 ->setRender(false)
@@ -323,46 +323,46 @@ class Option extends DataEntry implements OptionInterface
                 ->setLabel(tr('Profile'))
                 ->setHelpText(tr('The profile this driver option belongs to')))
 
-            ->add(Definition::new($this, 'key')
+            ->add(Definition::new('key')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(32))
 
-            ->add(Definition::new($this, 'value')
+            ->add(Definition::new('value')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(255))
 
-            ->add(Definition::new($this, 'default')
+            ->add(Definition::new('default')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(255))
 
-            ->add(Definition::new($this, 'range')
+            ->add(Definition::new('range')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(64))
 
-            ->add(Definition::new($this, 'values')
+            ->add(Definition::new('values')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(255))
 
-            ->add(Definition::new($this, 'units')
+            ->add(Definition::new('units')
                 ->setOptional(true)
                 ->setRender(true)
                 ->setSize(4)
                 ->setMaxlength(16))
 
-            ->add(DefinitionFactory::newComments($this)
+            ->add(DefinitionFactory::newComments()
                 ->setMaxlength(255))
 
-            ->add(DefinitionFactory::newDescription($this)
+            ->add(DefinitionFactory::newDescription()
                 ->setMaxlength(2048));
 
         return $this;

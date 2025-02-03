@@ -187,7 +187,7 @@ class Profile extends DataEntry implements ProfileInterface
     protected function setDefinitions(DefinitionsInterface $definitions): static
     {
         $definitions
-            ->add(Definition::new($this, 'devices_id')
+            ->add(Definition::new('devices_id')
                 ->setRender(true)
                 ->setOptional(true)
                 ->setSize(4)
@@ -196,7 +196,7 @@ class Profile extends DataEntry implements ProfileInterface
                     $validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [':id' => '$devices_id']);
                 }))
 
-            ->add(Definition::new($this, 'device')
+            ->add(Definition::new('device')
                 ->setOptional(true)
                 ->setVirtual(true)
                 ->setRender(false)
@@ -209,18 +209,18 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setLabel(tr('Device'))
                 ->setHelpText(tr('The device this driver option belongs')))
 
-            ->add(DefinitionFactory::newName($this))
+            ->add(DefinitionFactory::newName())
 
-            ->add(DefinitionFactory::newSeoName($this))
+            ->add(DefinitionFactory::newSeoName())
 
-            ->add(Definition::new($this, 'default')
+            ->add(Definition::new('default')
                 ->setRender(true)
                 ->setOptional(true, false)
                 ->setInputType(EnumInputType::checkbox)
                 ->setLabel(tr('Default profile'))
             )
 
-            ->add(DefinitionFactory::newComments($this));
+            ->add(DefinitionFactory::newComments());
 
         return $this;
     }
