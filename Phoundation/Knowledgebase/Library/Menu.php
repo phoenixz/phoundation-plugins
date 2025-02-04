@@ -32,6 +32,7 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                 'icon' => '',
             ],
             tr('articles') => [
+                'rights' => 'knowledgebase',
                 'url'    => 'knowledgebase.html',
                 'icon'   => 'fas fa-users'
             ],
