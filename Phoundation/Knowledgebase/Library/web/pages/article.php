@@ -38,7 +38,7 @@ $get = GetValidator::new()
 
 
 // Get the requested article and modify form design
-$article = Article::new($get['id']);
+$article = Article::new()->loadOrThis($get['id']);
 
 
 // Build the "article" card
