@@ -16,15 +16,15 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Devices;
 
-use Phoundation\Data\DataEntry\DataEntry;
-use Phoundation\Data\DataEntry\Definitions\Definition;
-use Phoundation\Data\DataEntry\Definitions\DefinitionFactory;
-use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
-use Phoundation\Data\DataEntry\Exception\DataEntryAlreadyExistsException;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryComments;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryDescription;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryDeviceObject;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryName;
+use Phoundation\Data\DataEntries\DataEntry;
+use Phoundation\Data\DataEntries\Definitions\Definition;
+use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
+use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
+use Phoundation\Data\DataEntries\Exception\DataEntryAlreadyExistsException;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryComments;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryDescription;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryDeviceObject;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryName;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
 use Phoundation\Utils\Arrays;
 use Phoundation\Utils\Utils;

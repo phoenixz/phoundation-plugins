@@ -18,7 +18,7 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Knowledgebase;
 
 use PDOStatement;
-use Phoundation\Data\DataEntry\DataIterator;
+use Phoundation\Data\DataEntries\DataIterator;
 use Phoundation\Data\Interfaces\IteratorInterface;
 use Phoundation\Web\Html\Components\Input\InputSelect;
 use Phoundation\Web\Html\Components\Input\Interfaces\InputSelectInterface;

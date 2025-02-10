@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Humans\Signatures;
 
-use Phoundation\Data\DataEntry\DataEntry;
+use Phoundation\Data\DataEntries\DataEntry;
 use Phoundation\Web\Html\Components\Input\Interfaces\RenderInterface;
 
 

@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Devices;
 
-use Phoundation\Data\DataEntry\DataIterator;
+use Phoundation\Data\DataEntries\DataIterator;
 use Phoundation\Exception\OutOfBoundsException;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionsInterface;
 
