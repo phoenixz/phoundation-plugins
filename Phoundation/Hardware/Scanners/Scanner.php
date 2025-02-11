@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Hardware\Scanners;
 
-use Phoundation\Data\DataEntry\Interfaces\IdentifierInterface;
+use Phoundation\Data\DataEntries\Interfaces\IdentifierInterface;
 use Phoundation\Data\Traits\TraitDataBatch;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Filesystem\Interfaces\PhoPathInterface;

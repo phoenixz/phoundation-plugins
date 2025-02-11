@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Knowledgebase\Exception;
 
-use Phoundation\Data\DataEntry\Exception\DataEntryNotExistsException;
+use Phoundation\Data\DataEntries\Exception\DataEntryNotExistsException;
 
 
 class KnowledgebaseArticleNotExistsException extends DataEntryNotExistsException

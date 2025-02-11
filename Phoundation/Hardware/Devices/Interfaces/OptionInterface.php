@@ -2,7 +2,7 @@
 
 namespace Plugins\Phoundation\Hardware\Devices\Interfaces;
 
-use Phoundation\Data\DataEntry\Interfaces\DataEntryInterface;
+use Phoundation\Data\DataEntries\Interfaces\DataEntryInterface;
 use ReturnTypeWillChange;
 use Stringable;
 

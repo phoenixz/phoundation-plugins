@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Humans\FingerPrint;
 
-use Phoundation\Data\DataEntry\DataIterator;
+use Phoundation\Data\DataEntries\DataIterator;
 use Plugins\Phoundation\Humans\FingerPrint\Interfaces\FingerPrintsInterface;
 
 

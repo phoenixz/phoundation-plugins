@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 use Phoundation\Accounts\Users\User;
 use Phoundation\Core\Log\Log;
-use Phoundation\Data\DataEntry\Exception\DataEntryNotExistsException;
+use Phoundation\Data\DataEntries\Exception\DataEntryNotExistsException;
 use Phoundation\Data\Validator\ArgvValidator;
 use Plugins\Phoundation\Statistics\Statistics;
 

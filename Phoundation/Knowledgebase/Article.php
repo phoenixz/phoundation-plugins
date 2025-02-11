@@ -17,16 +17,16 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Knowledgebase;
 
-use Phoundation\Data\DataEntry\Interfaces\IdentifierInterface;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryBody;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryCode;
+use Phoundation\Data\DataEntries\Interfaces\IdentifierInterface;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryBody;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryCode;
 use Plugins\Phoundation\Knowledgebase\Exception\KnowledgebaseArticleNotExistsException;
-use Phoundation\Data\DataEntry\DataEntry;
-use Phoundation\Data\DataEntry\Definitions\DefinitionFactory;
-use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
-use Phoundation\Data\DataEntry\Exception\DataEntryDeletedException;
-use Phoundation\Data\DataEntry\Exception\Interfaces\DataEntryNotExistsExceptionInterface;
-use Phoundation\Data\DataEntry\Traits\TraitDataEntryNameLowercaseDash;
+use Phoundation\Data\DataEntries\DataEntry;
+use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
+use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
+use Phoundation\Data\DataEntries\Exception\DataEntryDeletedException;
+use Phoundation\Data\DataEntries\Exception\Interfaces\DataEntryNotExistsExceptionInterface;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntryNameLowercaseDash;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
 use Phoundation\Web\Html\Enums\EnumInputType;
 

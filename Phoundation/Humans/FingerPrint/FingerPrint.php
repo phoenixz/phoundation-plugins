@@ -17,8 +17,8 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Humans\FingerPrint;
 
 use Phoundation\Accounts\Users\Interfaces\UserInterface;
-use Phoundation\Data\DataEntry\DataEntry;
-use Phoundation\Data\DataEntry\Definitions\Interfaces\DefinitionsInterface;
+use Phoundation\Data\DataEntries\DataEntry;
+use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
 use Plugins\Phoundation\Humans\FingerPrint\Interfaces\FingerPrintsInterface;
 
 

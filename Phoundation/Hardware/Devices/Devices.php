@@ -17,7 +17,7 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Hardware\Devices;
 
 use Phoundation\Core\Log\Log;
-use Phoundation\Data\DataEntry\DataIterator;
+use Phoundation\Data\DataEntries\DataIterator;
 use Phoundation\Os\Processes\Commands\ScanImage;
 use Phoundation\Seo\Seo;
 use Plugins\Phoundation\Hardware\Devices\Interfaces\DevicesInterface;
