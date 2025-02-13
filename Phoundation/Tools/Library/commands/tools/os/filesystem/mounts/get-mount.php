@@ -18,7 +18,7 @@ use Phoundation\Cli\CliDocumentation;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\ArgvValidator;
 use Phoundation\Filesystem\PhoDirectory;
-use Phoundation\Filesystem\Mounts\FsMounts;
+use Phoundation\Filesystem\Mounts\PhoMounts;
 use Phoundation\Filesystem\PhoRestrictions;
 
 
@@ -50,7 +50,7 @@ $argv = ArgvValidator::new()
     ->validate();
 
 show($argv);
-showdie(FsMounts::getMountSources($argv['path'], PhoRestrictions::new('/')));
+showdie(PhoMounts::getMountSources($argv['path'], PhoRestrictions::new('/')));
 
 Log::success(tr('Mounted source ":source" to target ":target"', [
     ':source' => $argv['source'],

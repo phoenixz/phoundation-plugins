@@ -17,7 +17,7 @@ declare(strict_types=1);
 use Phoundation\Cli\Cli;
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\Mounts\FsMounts;
+use Phoundation\Filesystem\Mounts\PhoMounts;
 use Phoundation\Utils\Arrays;
 
 
@@ -28,4 +28,4 @@ CliDocumentation::setHelp('This command will list all available mountable device
 $argv = ArgvValidator::new()
     ->validate();
 
-Cli::displayTable(Arrays::listKeepKeys(FsMounts::listMountSources(), 'filesystem'), id_column: 'source');
+Cli::displayTable(Arrays::listKeepKeys(PhoMounts::listMountSources(), 'filesystem'), id_column: 'source');

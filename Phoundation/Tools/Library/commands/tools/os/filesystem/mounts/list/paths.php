@@ -17,7 +17,7 @@ declare(strict_types=1);
 use Phoundation\Cli\Cli;
 use Phoundation\Cli\CliDocumentation;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Filesystem\Mounts\FsMounts;
+use Phoundation\Filesystem\Mounts\PhoMounts;
 use Phoundation\Utils\Arrays;
 
 
@@ -28,4 +28,4 @@ CliDocumentation::setHelp('This command will list all available mounted paths');
 $argv = ArgvValidator::new()
     ->validate();
 
-Cli::displayTable(Arrays::listKeepKeys(FsMounts::listMountTargets(), 'filesystem'), id_column: 'source');
+Cli::displayTable(Arrays::listKeepKeys(PhoMounts::listMountTargets(), 'filesystem'), id_column: 'source');
