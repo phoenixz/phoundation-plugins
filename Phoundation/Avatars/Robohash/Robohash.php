@@ -43,7 +43,7 @@ class Robohash
             $picture = ImageFile::new($directory . 'profile.png');
 
             rename($file, $picture);
-            $user->setProfilePictureFileFileObject($picture);
+            $user->setProfilePictureFileObject($picture);
 
             return $picture;
         });
