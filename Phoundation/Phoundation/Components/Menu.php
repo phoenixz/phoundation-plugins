@@ -65,23 +65,28 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                 'rights' => 'admin,security',
                 'icon' => 'fas fa-lock',
                 'menu' => [
+                    tr('Sessions') => [
+                        'rights' => 'security',
+                        'url'    => '/accounts/sessions.html',
+                        'icon'   => 'fas fa-key'
+                    ],
                     tr('Authentications') => [
-                        'rights' => 'logs',
+                        'rights' => 'security',
                         'url'    => '/security/authentications.html',
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Incidents') => [
-                        'rights' => 'logs',
+                        'rights' => 'security',
                         'url'    => '/security/incidents.html',
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Non HTTP-200 URL\'s') => [
-                        'rights' => 'logs',
+                        'rights' => 'security',
                         'url'    => '/security/non-200-urls.html',
                         'icon'   => 'fas fa-tasks'
                     ],
                     tr('Activity log') => [
-                        'rights' => 'logs',
+                        'rights' => 'security',
                         'url'    => '/security/activity',
                         'icon'   => 'fas fa-tasks'
                     ],
