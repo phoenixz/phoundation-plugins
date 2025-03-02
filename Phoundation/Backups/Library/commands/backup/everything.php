@@ -57,4 +57,4 @@ Backup::new()
 
 
 // Done!
-Log::success(tr('Successfully backed up everything'));
+Log::success(ts('Successfully backed up everything'));

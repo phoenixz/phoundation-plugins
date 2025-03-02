@@ -109,7 +109,7 @@ CliCommand::requestConfirmation(tr('This will irreparably destroy all informatio
 
 // Scramble?
 if ($argv['scramble']) {
-    Log::warning(tr('Scrambling device ":device". Depending on device size this may take a while...', [
+    Log::warning(ts('Scrambling device ":device". Depending on device size this may take a while...', [
         ':device' => $argv['device']
     ]));
 
@@ -122,6 +122,6 @@ $device->encrypt($argv['password'], $argv['key_file']);
 
 
 // Done!
-Log::success(tr('Finished encrypting device ":device"', [
+Log::success(ts('Finished encrypting device ":device"', [
     ':device' => $argv['device']
 ]));

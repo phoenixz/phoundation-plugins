@@ -318,7 +318,7 @@ class Device extends DataEntry implements DeviceInterface
             ->setName('options')
             ->save();
 
-        Log::action(tr('Adding driver options for ":class" class device ":name"', [
+        Log::action(ts('Adding driver options for ":class" class device ":name"', [
             ':class' => $this->getClass(),
             ':name'  => $this->getName()
         ]));
@@ -333,7 +333,7 @@ class Device extends DataEntry implements DeviceInterface
                 ->save());
         }
 
-        Log::success(tr('Added ":count" driver options for ":class" class device ":device"', [
+        Log::success(ts('Added ":count" driver options for ":class" class device ":device"', [
             ':count'  => $options->getCount(),
             ':class'  => $this->getClass(),
             ':device' => $this->getDevice()

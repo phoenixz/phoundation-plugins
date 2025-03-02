@@ -90,6 +90,6 @@ try {
 
 
 // Done
-Log::success(tr('UnMounted target ":target"', [
+Log::success(ts('UnMounted target ":target"', [
     ':target' => $argv['target']
 ]));

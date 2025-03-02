@@ -306,11 +306,11 @@ class Statistics
                                        WHERE    `timestamp` < ' . PhoDateTime::new()->round(DateTimeSegment::minute)->getTimestamp() . ' 
                                        ORDER BY `timestamp` LIMIT 0, ' . $limit);
 
-        Log::notice(tr('Statistics queue contains ":count" entries', [
+        Log::notice(ts('Statistics queue contains ":count" entries', [
             ':count' => $count
         ]));
 
-        Log::notice(tr('Flushing a maximum of ":limit" entries', [
+        Log::notice(ts('Flushing a maximum of ":limit" entries', [
             ':limit' => $limit
         ]));
 
@@ -351,7 +351,7 @@ class Statistics
             echo tr('Done') . PHP_EOL;
         }
 
-        Log::success(tr('Flushed ":count" statistics entries', [
+        Log::success(ts('Flushed ":count" statistics entries', [
             ':count' => $count
         ]));
 

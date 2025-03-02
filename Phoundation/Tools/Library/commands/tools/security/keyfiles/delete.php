@@ -66,6 +66,6 @@ try {
 
 
 // Done!
-Log::success(tr('Finished shredding keyfile ":file"', [
+Log::success(ts('Finished shredding keyfile ":file"', [
     ':file' => $argv['file']
 ]));

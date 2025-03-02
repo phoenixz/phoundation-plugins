@@ -190,7 +190,7 @@ class Backup extends DataEntry
     {
 //        $this->init();
 
-        Log::action(tr('Backing up all configured connectors for environment ":environment"', [
+        Log::action(ts('Backing up all configured connectors for environment ":environment"', [
             ':environment' => ENVIRONMENT,
         ]));
 
@@ -226,7 +226,7 @@ class Backup extends DataEntry
      */
     protected function backupConnectorDatabase(ConnectorInterface $o_connector): static
     {
-        Log::action(tr('Backup up ":driver" database with connector ":connector"', [
+        Log::action(ts('Backup up ":driver" database with connector ":connector"', [
             ':driver' => $o_connector->getDriver(),
             ':connector' => $o_connector->getDisplayName()
         ]));

@@ -96,7 +96,7 @@ $profile->getOptions()->get($argv['key'])->set($argv['value'])->save();
 
 
 // Done!
-Log::success(tr('Updated option ":key" for profile ":profile" with value ":value"', [
+Log::success(ts('Updated option ":key" for profile ":profile" with value ":value"', [
     ':profile' => $profile->getName(),
     ':key'     => $argv['key'],
     ':value'   => $argv['value']

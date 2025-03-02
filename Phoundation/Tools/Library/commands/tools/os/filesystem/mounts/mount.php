@@ -71,7 +71,7 @@ $argv = ArgvValidator::new()
 
 Mount::new()->mount($argv['source'], $argv['target'], $argv['file_system'], $argv['options']);
 
-Log::success(tr('Mounted source ":source" to target ":target"', [
+Log::success(ts('Mounted source ":source" to target ":target"', [
     ':source' => $argv['source'],
     ':target' => $argv['target']
 ]));

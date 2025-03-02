@@ -76,7 +76,7 @@ class Devices extends DataIterator implements DevicesInterface
                 $device['name']  = Seo::string($device['device']);
                 $device['url']   = $device['device'];
 
-                Log::action(tr('Adding ":class" class device ":device"', [
+                Log::action(ts('Adding ":class" class device ":device"', [
                     ':class'  => $device['class'],
                     ':device' => $device['device']
                 ]));

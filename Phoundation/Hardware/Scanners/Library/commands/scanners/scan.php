@@ -78,6 +78,6 @@ $scanner = Scanner::new()->load($argv['device'])
 
 
 // Done!
-Log::success(tr('Successfully scanned ":count" documents to ":path"', [
+Log::success(ts('Successfully scanned ":count" documents to ":path"', [
     ':count' => $scanner->getScanCount()
 ]));
