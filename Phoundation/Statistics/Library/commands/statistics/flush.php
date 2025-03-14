@@ -22,7 +22,7 @@ use Plugins\Phoundation\Statistics\Statistics;
 
 $usage = './pho statistics flush';
 
-$help  = 'This script will flush the statistics queue to the statistics rendering server  
+$help  = 'This command will flush the statistics queue to the statistics rendering server  
 
 
 ARGUMENTS
@@ -31,7 +31,7 @@ ARGUMENTS
 -';
 
 
-// This script takes no arguments
+// This command takes no arguments
 $argv = ArgvValidator::new()->validate();
 
 

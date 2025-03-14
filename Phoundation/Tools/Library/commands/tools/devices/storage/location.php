@@ -27,7 +27,7 @@ $restrictions = PhoRestrictions::new('/');
 CliDocumentation::setUsage('./pho tools devices storage location
 ./pho tools devices storage location /home/user/filename');
 
-CliDocumentation::setHelp('This script will display the device where the specified file is stored
+CliDocumentation::setHelp('This command will display the device where the specified file is stored
 
 
 ARGUMENTS

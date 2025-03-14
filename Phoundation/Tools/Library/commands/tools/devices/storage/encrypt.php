@@ -36,7 +36,7 @@ CliDocumentation::setHelp('The encrypt script will encrypt the specified device 
 
 NOTE: This will irreparably destroy all information on the specified device. Proceed with caution, here be dragons!
 
-NOTE: This script is interactive as it asks the password for the user on the command line! 
+NOTE: This command is interactive as it asks the password for the user on the command line! 
 
 NOTE This can run into non-interactive mode and accept the password through a CLI pipe. See USAGE for an example of this 
 

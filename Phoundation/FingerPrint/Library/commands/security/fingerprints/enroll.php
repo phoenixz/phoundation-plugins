@@ -21,7 +21,7 @@ use Plugins\Phoundation\Humans\FingerPrint\FingerPrint;
 
 CliDocumentation::setUsage('./pho security fingerprints enroll -u EMAIL');
 
-CliDocumentation::setHelp('This script will enroll a new fingerprint in the database. The user which will have his / her 
+CliDocumentation::setHelp('This command will enroll a new fingerprint in the database. The user which will have his / her 
 fingerprints enrolled in the database must already exist
 
 
