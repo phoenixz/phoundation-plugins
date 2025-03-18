@@ -26,13 +26,11 @@ use Phoundation\Core\Log\Log;
 use Phoundation\Core\Sessions\Session;
 use Phoundation\Data\Traits\TraitDataUserObject;
 use Phoundation\Exception\OutOfBoundsException;
-use Phoundation\Notifications\Notification;
 use Phoundation\Web\Html\Components\ElementsBlockCore;
 use Phoundation\Web\Html\Components\Forms\Form;
 use Phoundation\Web\Html\Components\Script;
 use Phoundation\Web\Html\Enums\EnumHttpRequestMethod;
 use Phoundation\Web\Html\Enums\EnumJavascriptWrappers;
-use Phoundation\Web\Http\Domains;
 use Plugins\Phoundation\MultiFactorAuthentication\Exception\MultiFactorAuthenticationFailedException;
 use Plugins\Phoundation\MultiFactorAuthentication\Interfaces\MultiFactorAuthenticationInterface;
 use RobThree\Auth\Providers\Qr\BaconQrCodeProvider;
@@ -312,7 +310,7 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
                                     $("#number" + field).focus().trigger(e);
 
                                     if (++field > 6) {
-                                        field = 1
+                                        field = 6
                                     }
                                 }
 
@@ -337,7 +335,7 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
                                         $("#number" + field).val("");
 
                                         if (--field < 1) {
-                                            field = 6
+                                            field = 1
                                         }
 
                                         $("#number" + field).focus();
@@ -355,12 +353,12 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
                                         // Tab, enter, and left arrow on any field will focus on the next field
                                         if (e.shiftKey) {
                                             if (--field < 1) {
-                                                field = 6
+                                                field = 1
                                             }
 
                                         } else {
                                             if (++field > 6) {
-                                                field = 1
+                                                field = 6
                                             }
                                         }
 
@@ -375,7 +373,7 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
                                     case 37:
                                         // Right arrow on any field will focus on the next field
                                         if (--field < 1) {
-                                            field = 6
+                                            field = 1
                                         }
 
                                         $("#number" + field).focus();
@@ -419,7 +417,7 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
 
                                 // Does the current field have a value? If so, overwrite it
                                 if (++field > 6) {
-                                    field = 1
+                                    field = 6
                                 }
 
                                 let count = 0;
