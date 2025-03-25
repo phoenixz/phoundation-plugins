@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Knowledgebase;
 
+use Phoundation\Data\DataEntries\Exception\DataEntryNotExistsException;
 use Phoundation\Data\DataEntries\Interfaces\IdentifierInterface;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryBody;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryCode;
@@ -25,7 +26,6 @@ use Phoundation\Data\DataEntries\DataEntry;
 use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
 use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntries\Exception\DataEntryDeletedException;
-use Phoundation\Data\DataEntries\Exception\Interfaces\DataEntryNotExistsExceptionInterface;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryNameLowercaseDash;
 use Phoundation\Data\Validator\Interfaces\ValidatorInterface;
 use Phoundation\Web\Html\Enums\EnumInputType;
@@ -36,6 +36,7 @@ class Article extends DataEntry
     use TraitDataEntryNameLowercaseDash;
     use TraitDataEntryBody;
     use TraitDataEntryCode;
+
 
     /**
      * Article class constructor
@@ -88,14 +89,16 @@ class Article extends DataEntry
      *       simplify "if this is not DataEntry object then this is new DataEntry object" into
      *       "PossibleDataEntryVariable is DataEntry::new(PossibleDataEntryVariable)"
      *
+     * @param IdentifierInterface|int|array|string|null $identifier
+     *
      * @return Article
      */
-    public function load(): static
+    public function load(IdentifierInterface|int|array|string|null $identifier = null): static
     {
         try {
-            return parent::load();
+            return parent::load($identifier);
 
-        } catch (DataEntryNotExistsExceptionInterface|DataEntryDeletedException $e) {
+        } catch (DataEntryNotExistsException|DataEntryDeletedException $e) {
             throw new KnowledgebaseArticleNotExistsException($e);
         }
     }
