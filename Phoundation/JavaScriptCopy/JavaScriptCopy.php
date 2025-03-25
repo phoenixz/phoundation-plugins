@@ -19,13 +19,14 @@ namespace Plugins\Phoundation\JavaScriptCopy;
 use Phoundation\Data\Traits\TraitDataBrowserEvent;
 use Phoundation\Data\Traits\TraitDataSelector;
 use Phoundation\Data\Traits\TraitDataTarget;
+use Phoundation\Data\Traits\TraitMethodHasRendered;
 use Phoundation\Web\Html\Components\Script;
 use Phoundation\Web\Html\Enums\EnumBrowserEvent;
-use Phoundation\Web\Html\Traits\TraitRendered;
+
 
 class JavaScriptCopy extends Script
 {
-    use TraitRendered;
+    use TraitMethodHasRendered;
     use TraitDataSelector;
     use TraitDataTarget;
     use TraitDataBrowserEvent;
@@ -46,8 +47,9 @@ class JavaScriptCopy extends Script
      */
     public function render(): ?string
     {
-        if (self::$rendered) {
+        if ($this->hasRendered()) {
             $this->content = '';
+
         } else {
             $this->content = 'function fallbackCopyTextToClipboard(text) {
               var textArea = document.createElement("textarea");
@@ -84,8 +86,6 @@ class JavaScriptCopy extends Script
               });
             }';
         }
-
-        self::$rendered = true;
 
         $this->content .= 'document.querySelector("' . $this->selector . '").addEventListener("' . $this->browser_event->name . '", function(event) {
              copyTextToClipboard(document.querySelector("' . $this->target . '").textContent);
