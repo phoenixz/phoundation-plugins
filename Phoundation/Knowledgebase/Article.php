@@ -43,7 +43,7 @@ class Article extends DataEntry
      *
      * @param IdentifierInterface|array|string|int|false|null $identifier
      */
-    public function __construct(IdentifierInterface|array|string|int|false|null $identifier = null)
+    public function __construct(IdentifierInterface|array|string|int|false|null $identifier = false)
     {
         return parent::__construct(static::convertNameIdentifierToLowerCaseDash($identifier));
     }
