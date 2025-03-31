@@ -69,7 +69,7 @@ class Backup extends DataEntry
     /**
      * Initializes the backup object
      */
-    public function __construct(int|array|string|DataEntryInterface|null $identifier = null)
+    public function __construct(int|array|string|DataEntryInterface|null $identifier = false)
     {
         parent::__construct($identifier);
 

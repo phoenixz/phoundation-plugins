@@ -93,7 +93,7 @@ class Article extends DataEntry
      *
      * @return Article
      */
-    public function load(IdentifierInterface|int|array|string|null $identifier = null): static
+    public function load(IdentifierInterface|int|array|string|null $identifier = false): static
     {
         try {
             return parent::load($identifier);
