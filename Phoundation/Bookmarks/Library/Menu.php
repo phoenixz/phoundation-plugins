@@ -27,7 +27,7 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
 
         $this->setSource([
             tr('Bookmarks') => [
-                'icon' => '',
+                'icon' => 'bookmarks',
             ],
         ]);
     }

@@ -29,7 +29,8 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
 
         $this->setSource([
             tr('Knowledgebase') => [
-                'icon' => '',
+                'rights' => 'knowledgebase',
+                'icon'   => '',
             ],
             tr('articles') => [
                 'rights' => 'knowledgebase',

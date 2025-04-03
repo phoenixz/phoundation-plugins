@@ -27,7 +27,8 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
 
         $this->setSource([
             tr('System') => [
-                'icon' => '',
+                'rights' => 'administrator',
+                'icon'   => '',
             ],
             tr('Dashboard') => [
                 'rights' => 'admin',
@@ -269,7 +270,8 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                 'icon' => ''
             ],
             tr('Productivity') => [
-                'icon' => '',
+                'rights' => 'productivity',
+                'icon'   => '',
             ],
             tr('Customers') => [
                 'rights' => 'admin,customers',
