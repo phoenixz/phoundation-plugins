@@ -34,7 +34,7 @@ class Avatar
      */
     public static function generate(UserInterface $user, ?string $generator = null): ImageFileInterface
     {
-        return match (config()->get('users.avatars.generator', 'robohash', $generator)) {
+        return match (config()->get('users.avatars.generator', $generator ?? 'robohash')) {
             'gravatar' => Gravatar::generate($user),
             'robohash' => Robohash::generate($user),
             default    => throw new OutOfBoundsException(tr('Unknown avatar generator ":generator" specified', [

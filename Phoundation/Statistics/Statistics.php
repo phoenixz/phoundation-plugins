@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Statistics;
 
-use Phoundation\Core\Config\Exception\ConfigPathDoesNotExistsException;
+use Phoundation\Accounts\Config\Exception\ConfigPathDoesNotExistsException;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\Validate;
 use Phoundation\Date\Enums\DateTimeSegment;
@@ -27,7 +27,6 @@ use Phoundation\Notifications\Notification;
 use Phoundation\Utils\Arrays;
 use Plugins\Phoundation\Statistics\Exception\StatisticsException;
 use Throwable;
-
 
 class Statistics
 {

@@ -164,7 +164,7 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
             return true;
         }
 
-        switch (sessionconfig()->getString('security.web.mfa.method', 'device')) {
+        switch (config()->getString('security.web.mfa.method', 'device', true)) {
             case 'session':
                 // 2FA has to be entered for each sign-in
                 return false;
@@ -178,7 +178,7 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
 
             default:
                 throw new OutOfBoundsException(tr('Unknown MFA method ":method" specified in configuration path ":path"', [
-                    ':method' => sessionconfig()->getString('security.web.mfa.method', 'device'),
+                    ':method' => config()->getString('security.web.mfa.method', 'device', true),
                     ':path'   => 'security.web.mfa.method'
                 ]));
         }
