@@ -22,8 +22,8 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\MultiFactorAuthentication;
 
 use Phoundation\Accounts\Users\Interfaces\UserInterface;
+use Phoundation\Accounts\Users\Sessions\Session;
 use Phoundation\Core\Log\Log;
-use Phoundation\Core\Sessions\Session;
 use Phoundation\Data\Traits\TraitDataUserObject;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Web\Html\Components\ElementsBlockCore;
@@ -36,7 +36,6 @@ use Plugins\Phoundation\MultiFactorAuthentication\Interfaces\MultiFactorAuthenti
 use RobThree\Auth\Providers\Qr\BaconQrCodeProvider;
 use RobThree\Auth\TwoFactorAuth;
 use RobThree\Auth\TwoFactorAuthException;
-
 
 class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactorAuthenticationInterface
 {

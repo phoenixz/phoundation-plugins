@@ -14,13 +14,12 @@
 
 declare(strict_types=1);
 
-use Phoundation\Core\Sessions\Session;
+use Phoundation\Accounts\Users\Sessions\Session;
 use Phoundation\Data\Validator\PostValidator;
 use Phoundation\Web\Html\Pages\MfaVerifyPage;
 use Phoundation\Web\Requests\Request;
 use Phoundation\Web\Requests\Response;
 use Plugins\Phoundation\MultiFactorAuthentication\Exception\MultiFactorAuthenticationFailedException;
-
 
 // Validate sign in data and sign in
 if (Request::isPostRequestMethod()) {
