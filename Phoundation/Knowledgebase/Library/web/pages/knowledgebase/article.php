@@ -87,7 +87,7 @@ if (Request::isPostRequestMethod()) {
 // Save button
 if (!$article->getReadonly()) {
     $save = Button::new()
-                  ->setValue(tr('Save'))
+                  ->setContent(tr('Save'))
                   ->setContent(tr('Save'));
 }
 
@@ -99,7 +99,7 @@ if (!$article->isNew()) {
                    ->setMode(EnumDisplayMode::information)
                    ->setAnchorUrl('/audit/meta+' . $article->getMetaId() . '.html')
                    ->setFloatRight(true)
-                   ->setValue(tr('Audit'))
+                   ->setContent(tr('Audit'))
                    ->setContent(tr('Audit'));
 }
 
