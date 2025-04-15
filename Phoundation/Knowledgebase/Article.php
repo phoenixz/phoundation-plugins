@@ -21,6 +21,7 @@ use Phoundation\Data\DataEntries\Exception\DataEntryNotExistsException;
 use Phoundation\Data\DataEntries\Interfaces\IdentifierInterface;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryBody;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryCode;
+use Phoundation\Data\Enums\EnumLoadParameters;
 use Plugins\Phoundation\Knowledgebase\Exception\KnowledgebaseArticleNotExistsException;
 use Phoundation\Data\DataEntries\DataEntry;
 use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
@@ -89,14 +90,39 @@ class Article extends DataEntry
      *       simplify "if this is not DataEntry object then this is new DataEntry object" into
      *       "PossibleDataEntryVariable is DataEntry::new(PossibleDataEntryVariable)"
      *
-     * @param IdentifierInterface|int|array|string|null $identifier
+     * @param IdentifierInterface|array|string|int|null $identifier              Identifier for the DataEntry object to
+     *                                                                           load. Can be specified with a
+     *                                                                           [column => value] array, though also
+     *                                                                           accepts an integer value which will convert
+     *                                                                           to [id_column => integer_value] or a string
+     *                                                                           value which will convert to
+     *                                                                           [unique_column => string_value]]
+     * @param EnumLoadParameters|null                   $on_load_null_identifier Specifies how this load method will handle
+     *                                                                           the specified identifier being NULL.
+     *                                                                           Options are: EnumLoadParameters::exception
+     *                                                                           (Throws a
+     *                                                                           DataEntryNoIdentifierSpecifiedException),
+     *                                                                           EnumLoadParameters::null (will return NULL)
+     *                                                                           or EnumLoadParameters::this (Will return
+     *                                                                           the object as-is, without loading
+     *                                                                           anything). Defaults to
+     *                                                                           EnumLoadParameters::exception
+     * @param EnumLoadParameters|null                   $on_load_not_exists      Specifies how this load method will handle
+     *                                                                           the specified identifier not existing in
+     *                                                                           the database. Options are:
+     *                                                                           EnumLoadParameters::exception (Throws a
+     *                                                                           DataEntryNotExistsException),
+     *                                                                           EnumLoadParameters::null (will return NULL)
+     *                                                                           or EnumLoadParameters::this (Will return
+     *                                                                           the object as-is, without loading anything)
+     *                                                                           Defaults to EnumLoadParameters::exception
      *
-     * @return Article
+     * @return static|null
      */
-    public function load(IdentifierInterface|int|array|string|null $identifier = false): static
+    public function load(IdentifierInterface|array|string|int|null $identifier, ?EnumLoadParameters $on_load_null_identifier = null, ?EnumLoadParameters $on_load_not_exists = null): ?static
     {
         try {
-            return parent::load($identifier);
+            return parent::load($identifier, $on_load_null_identifier, $on_load_not_exists);
 
         } catch (DataEntryNotExistsException|DataEntryDeletedException $e) {
             throw new KnowledgebaseArticleNotExistsException($e);

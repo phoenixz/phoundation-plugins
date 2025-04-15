@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Hardware\Scanners;
 
 use Phoundation\Data\DataEntries\Interfaces\IdentifierInterface;
+use Phoundation\Data\Enums\EnumLoadParameters;
 use Phoundation\Data\Traits\TraitDataBatch;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Filesystem\Interfaces\PhoPathInterface;
@@ -63,26 +64,40 @@ class Scanner extends Device
 
 
     /**
-     * Returns a DataEntry object matching the specified identifier that MUST exist in the database
+     * Loads the data for this Scanner object for the specified identifier
      *
-     * This method also accepts DataEntry objects of the same class, in which case it will simply return the specified
-     * object, as long as it exists in the database.
+     * @param IdentifierInterface|array|string|int|null $identifier                    Identifier for the DataEntry object to
+     *                                                                                 load. Can be specified with a
+     *                                                                                 [column => value] array, though also
+     *                                                                                 accepts an integer value which will convert
+     *                                                                                 to [id_column => integer_value] or a string
+     *                                                                                 value which will convert to
+     *                                                                                 [unique_column => string_value]]
+     * @param EnumLoadParameters|null                   $on_load_null_identifier       Specifies how this load method will handle
+     *                                                                                 the specified identifier being NULL.
+     *                                                                                 Options are: EnumLoadParameters::exception
+     *                                                                                 (Throws a
+     *                                                                                 DataEntryNoIdentifierSpecifiedException),
+     *                                                                                 EnumLoadParameters::null (will return NULL)
+     *                                                                                 or EnumLoadParameters::this (Will return
+     *                                                                                 the object as-is, without loading
+     *                                                                                 anything). Defaults to
+     *                                                                                 EnumLoadParameters::exception
+     * @param EnumLoadParameters|null                   $on_load_not_exists            Specifies how this load method will handle
+     *                                                                                 the specified identifier not existing in
+     *                                                                                 the database. Options are:
+     *                                                                                 EnumLoadParameters::exception (Throws a
+     *                                                                                 DataEntryNotExistsException),
+     *                                                                                 EnumLoadParameters::null (will return NULL)
+     *                                                                                 or EnumLoadParameters::this (Will return
+     *                                                                                 the object as-is, without loading anything)
+     *                                                                                 Defaults to EnumLoadParameters::exception
      *
-     * If the DataEntry does not exist in the database, then this method will check if perhaps it exists as a
-     * configuration entry. This requires DataEntry::$config_path to be set. DataEntries from configuration will be in
-     * readonly mode automatically as they cannot be stored in the database.
-     *
-     * DataEntries from the database will also have their status checked. If the status is "deleted", then a
-     * DataEntryDeletedException will be thrown
-     *
-     * @note The test to see if a DataEntry object exists in the database can be either DataEntry::isNew() or
-     *       DataEntry::getId(), which should return a valid database id
-     *
-     * @return static
+     * @return static|null
      */
-    public function load(): static
+    public function load(IdentifierInterface|array|string|int|null $identifier, ?EnumLoadParameters $on_load_null_identifier = null, ?EnumLoadParameters $on_load_not_exists = null): ?static
     {
-        $entry = parent::load();
+        $entry = parent::load($identifier, $on_load_null_identifier, $on_load_not_exists);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [
