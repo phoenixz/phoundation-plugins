@@ -95,7 +95,7 @@ class Scanner extends Device
      *
      * @return static|null
      */
-    public function load(IdentifierInterface|array|string|int|null $identifier, ?EnumLoadParameters $on_load_null_identifier = null, ?EnumLoadParameters $on_load_not_exists = null): ?static
+    public function load(IdentifierInterface|array|string|int|null $identifier = null, ?EnumLoadParameters $on_load_null_identifier = null, ?EnumLoadParameters $on_load_not_exists = null): ?static
     {
         $entry = parent::load($identifier, $on_load_null_identifier, $on_load_not_exists);
 
