@@ -359,9 +359,9 @@ class Device extends DataEntry implements DeviceInterface
     /**
      * @inheritDoc
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
     {
-        $definitions
+        $o_definitions
             ->add(DefinitionFactory::newDatabaseId('servers_id'))
 
             ->add(DefinitionFactory::newServer())

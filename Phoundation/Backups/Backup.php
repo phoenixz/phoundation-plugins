@@ -266,13 +266,13 @@ class Backup extends DataEntry
     /**
      * Sets and returns the field definitions for the data fields in this DataEntry object
      *
-     * @param DefinitionsInterface $definitions
+     * @param DefinitionsInterface $o_definitions
      *
      * @return Backup
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
     {
-        $definitions
+        $o_definitions
             ->add(Definition::new('size')
                 ->setReadonly(true)
                 ->setInputType(EnumInputType::positiveInteger)

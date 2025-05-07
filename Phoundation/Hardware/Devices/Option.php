@@ -262,9 +262,9 @@ class Option extends DataEntry implements OptionInterface
     /**
      * @inheritDoc
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
     {
-        $definitions
+        $o_definitions
             ->add(Definition::new('devices_id')
                             ->setRender(true)
                             ->setOptional(true)

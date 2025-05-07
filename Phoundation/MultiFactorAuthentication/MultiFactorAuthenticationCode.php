@@ -69,18 +69,19 @@ class MultiFactorAuthenticationCode extends DataEntry
     /**
      * Sets the available data keys for this entry
      *
-     * @param DefinitionsInterface $definitions
+     * @param DefinitionsInterface $o_definitions
+     *
      * @return static
      */
-    protected function setDefinitions(DefinitionsInterface $definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
     {
-        $definitions->add(DefinitionFactory::newUsersId())
+        $o_definitions->add(DefinitionFactory::newUsersId())
 
-                    ->add(DefinitionFactory::newCode('code'))
+                      ->add(DefinitionFactory::newCode('code'))
 
-                    ->add(DefinitionFactory::newCode('session_code'))
+                      ->add(DefinitionFactory::newCode('session_code'))
 
-                    ->add(DefinitionFactory::newIpAddress());
+                      ->add(DefinitionFactory::newIpAddress());
 
         return $this;
     }
