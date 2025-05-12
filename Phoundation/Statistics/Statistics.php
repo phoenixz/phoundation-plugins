@@ -218,7 +218,7 @@ class Statistics
      * @param int|null $timestamp
      * @return Statistics
      */
-    protected function push(float|int|null $value, string $path, int $timestamp = null): static
+    protected function push(float|int|null $value, string $path, ?int $timestamp = null): static
     {
         $this->connect();
         fwrite(static::$socket[$this->server], str_replace(' ', '-', $path) . " " . ($value ?? 0) . " " . $this->getTimestamp($timestamp) . "\n");
