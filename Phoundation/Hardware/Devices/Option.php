@@ -327,43 +327,43 @@ class Option extends DataEntry implements OptionInterface
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
-                ->setMaxlength(32))
+                ->setMaxLength(32))
 
             ->add(Definition::new('value')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
-                ->setMaxlength(255))
+                ->setMaxLength(255))
 
             ->add(Definition::new('default')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
-                ->setMaxlength(255))
+                ->setMaxLength(255))
 
             ->add(Definition::new('range')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
-                ->setMaxlength(64))
+                ->setMaxLength(64))
 
             ->add(Definition::new('values')
                 ->setOptional(false)
                 ->setRender(true)
                 ->setSize(4)
-                ->setMaxlength(255))
+                ->setMaxLength(255))
 
             ->add(Definition::new('units')
                 ->setOptional(true)
                 ->setRender(true)
                 ->setSize(4)
-                ->setMaxlength(16))
+                ->setMaxLength(16))
 
             ->add(DefinitionFactory::newComments()
-                ->setMaxlength(255))
+                ->setMaxLength(255))
 
             ->add(DefinitionFactory::newDescription()
-                ->setMaxlength(2048));
+                ->setMaxLength(2048));
 
         return $this;
     }

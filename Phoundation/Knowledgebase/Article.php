@@ -142,7 +142,7 @@ class Article extends DataEntry
         $o_definitions->add(DefinitionFactory::newName()
                                              ->setInputType(EnumInputType::name)
                                              ->setSize(12)
-                                             ->setMaxlength(64)
+                                             ->setMaxLength(64)
                                              ->setHelpText(tr('The name for this article'))
                                              ->addValidationFunction(function (ValidatorInterface $validator) {
                                                 $validator->isUnique();
