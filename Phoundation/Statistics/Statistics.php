@@ -20,7 +20,7 @@ namespace Plugins\Phoundation\Statistics;
 use Phoundation\Accounts\Config\Exception\ConfigPathDoesNotExistsException;
 use Phoundation\Core\Log\Log;
 use Phoundation\Data\Validator\Validate;
-use Phoundation\Date\Enums\DateTimeSegment;
+use Phoundation\Date\Enums\EnumDateTimeSegment;
 use Phoundation\Date\PhoDateTime;
 use Phoundation\Exception\OutOfBoundsException;
 use Phoundation\Notifications\Notification;
@@ -102,11 +102,12 @@ class Statistics
     /**
      * Return correct timestamp for use in statistics by removing the seconds from the current minute
      *
-     * @param int|null $timestamp
-     * @param DateTimeSegment|null $interval
+     * @param int|null                 $timestamp
+     * @param EnumDateTimeSegment|null $interval
+     *
      * @return int
      */
-    protected function getTimestamp(?int $timestamp, ?DateTimeSegment $interval = null): int
+    protected function getTimestamp(?int $timestamp, ?EnumDateTimeSegment $interval = null): int
     {
         if (!$interval) {
             $interval = static::$config[$this->server]['interval'];
@@ -300,7 +301,7 @@ class Statistics
         $count   = sql()->getColumn('SELECT COUNT(*) AS `count` FROM `statistics_queue`');
         $entries = sql()->query('SELECT   * 
                                        FROM     `statistics_queue` 
-                                       WHERE    `timestamp` < ' . PhoDateTime::new()->round(DateTimeSegment::minute)->getTimestamp() . ' 
+                                       WHERE    `timestamp` < ' . PhoDateTime::new()->round(EnumDateTimeSegment::minute)->getTimestamp() . ' 
                                        ORDER BY `timestamp` LIMIT 0, ' . $limit);
 
         Log::notice(ts('Statistics queue contains ":count" entries', [
@@ -379,10 +380,10 @@ class Statistics
                 Arrays::default(static::$config[$server], 'host'    , 'localhost');
                 Arrays::default(static::$config[$server], 'port'    , 2003);
                 Arrays::default(static::$config[$server], 'engine'  , 'grafana');
-                Arrays::default(static::$config[$server], 'interval', DateTimeSegment::minute->value);
+                Arrays::default(static::$config[$server], 'interval', EnumDateTimeSegment::minute->value);
             }
 
-            static::$config[$server]['interval'] = DateTimeSegment::from(static::$config[$server]['interval']);
+            static::$config[$server]['interval'] = EnumDateTimeSegment::from(static::$config[$server]['interval']);
             Validate::new(static::$config[$server]['port'])->isPort();
             Validate::new(static::$config[$server]['engine'])->isInArray(['grafana']);
 
