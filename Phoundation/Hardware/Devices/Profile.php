@@ -191,9 +191,9 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setRender(true)
                 ->setOptional(true)
                 ->setSize(4)
-                ->addValidationFunction(function (ValidatorInterface $validator) {
+                ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the programs id
-                    $validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [':id' => '$devices_id']);
+                    $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [':id' => '$devices_id']);
                 }))
 
             ->add(Definition::new('device')
@@ -202,9 +202,9 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setRender(false)
                 ->setSize(4)
                 ->setInputType(EnumInputType::select)
-                ->addValidationFunction(function (ValidatorInterface $validator) {
+                ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the device name
-                    $validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [':name' => '$device']);
+                    $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [':name' => '$device']);
                 })
                 ->setLabel(tr('Device'))
                 ->setHelpText(tr('The device this driver option belongs')))

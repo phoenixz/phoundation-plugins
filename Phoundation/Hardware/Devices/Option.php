@@ -269,9 +269,9 @@ class Option extends DataEntry implements OptionInterface
                             ->setRender(true)
                             ->setOptional(true)
                             ->setSize(4)
-                            ->addValidationFunction(function (ValidatorInterface $validator) {
+                            ->addValidationFunction(function (ValidatorInterface $o_validator) {
                                 // Validate the devices id
-                                $validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [
+                                $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [
                                     ':id' => '$devices_id'
                                 ]);
                             }))
@@ -282,9 +282,9 @@ class Option extends DataEntry implements OptionInterface
                             ->setRender(false)
                             ->setSize(4)
                             ->setInputType(EnumInputType::select)
-                            ->addValidationFunction(function (ValidatorInterface $validator) {
+                            ->addValidationFunction(function (ValidatorInterface $o_validator) {
                                 // Validate the device name
-                                $validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [
+                                $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [
                                     ':name' => '$device'
                                 ]);
                             })
@@ -295,9 +295,9 @@ class Option extends DataEntry implements OptionInterface
                 ->setRender(true)
                 ->setOptional(true)
                 ->setSize(4)
-                ->addValidationFunction(function (ValidatorInterface $validator) {
+                ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the programs id
-                    $validator
+                    $o_validator
                         ->xorColumn('profile')
                         ->isDbId()
                         ->isQueryResult('SELECT `id` FROM `hardware_profiles` WHERE `id` = :id AND `status` IS NULL', [
@@ -311,9 +311,9 @@ class Option extends DataEntry implements OptionInterface
                 ->setRender(false)
                 ->setSize(4)
                 ->setInputType(EnumInputType::select)
-                ->addValidationFunction(function (ValidatorInterface $validator) {
+                ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the profile name
-                    $validator
+                    $o_validator
                         ->xorColumn('profiles_id')
                         ->isName()
                         ->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_profiles` WHERE `name` = :name AND `status` IS NULL', [

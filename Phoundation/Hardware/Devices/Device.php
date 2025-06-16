@@ -372,8 +372,8 @@ class Device extends DataEntry implements DeviceInterface
                                    ->setSize(12)
                                    ->setMaxLength(64)
                                    ->setHelpText(tr('The name for this device'))
-                                   ->addValidationFunction(function (ValidatorInterface $validator) {
-                                       $validator->isUnique();
+                                   ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                                       $o_validator->isUnique();
                                    }))
 
             ->add(DefinitionFactory::newSeoName())
