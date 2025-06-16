@@ -31,7 +31,7 @@ class Articles extends DataIterator
      */
     public function __construct(IteratorInterface|array|string|PDOStatement|null $source = null)
     {
-        $this->getQueryBuilder()->addSelect('`knowledgebase_articles`.`id`, 
+        $this->getQueryBuilderObject()->addSelect('`knowledgebase_articles`.`id`, 
                                              `knowledgebase_articles`.`seo_name`, 
                                              `knowledgebase_articles`.`body`,
                                              CONCAT(UPPER(LEFT(`knowledgebase_articles`.`name`, 1)), SUBSTRING(`knowledgebase_articles`.`name`, 2)) AS `article`, 

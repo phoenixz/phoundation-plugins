@@ -29,7 +29,7 @@ use Phoundation\Web\Requests\Response;
 
 // Get the articles list and apply filters
 $articles = Articles::new();
-$builder  = $articles->getQueryBuilder()
+$builder  = $articles->getQueryBuilderObject()
     ->addSelect('    `knowledgebase_articles`.`id`, 
                      `knowledgebase_articles`.`name`, 
                      `knowledgebase_articles`.`status`, 
