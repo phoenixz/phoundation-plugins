@@ -80,13 +80,13 @@ CliCommand::requestConfirmation(tr('This will irreparably destroy all informatio
 Log::information(ts('Shredding device ":device" in ":pass" passes. Depending on device size this may take a while...', [
     ':pass' => $argv['passes'],
     ':device' => $argv['device']
-]));
+]), 10);
 
 for ($i = 1; $i <= $argv['passes']; $i++) {
     Log::warning(ts('Shredding device ":device", pass ":pass". Depending on device size this may take a while...', [
         ':pass' => $i,
         ':device' => $argv['device']
-    ]));
+    ]), 10);
 
     // Ensure this is a device that can be shredded
     try {
@@ -101,4 +101,4 @@ for ($i = 1; $i <= $argv['passes']; $i++) {
 // Done!
 Log::success(ts('Finished shredding device ":device"', [
     ':device' => $argv['device']
-]));
+]), 10);

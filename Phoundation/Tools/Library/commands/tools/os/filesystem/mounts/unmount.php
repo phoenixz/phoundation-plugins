@@ -92,4 +92,4 @@ try {
 // Done
 Log::success(ts('UnMounted target ":target"', [
     ':target' => $argv['target']
-]));
+]), 10);

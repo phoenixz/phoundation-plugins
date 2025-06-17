@@ -68,4 +68,4 @@ try {
 // Done!
 Log::success(ts('Finished shredding keyfile ":file"', [
     ':file' => $argv['file']
-]));
+]), 10);

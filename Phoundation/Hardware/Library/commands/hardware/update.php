@@ -49,18 +49,18 @@ $argv = ArgvValidator::new()
 
 
 // Update options for all devices
-Log::action(ts('Updating all registered hardware devices'));
+Log::action(ts('Updating all registered hardware devices'), 10);
 
 $devices = Devices::new()->load();
 
 foreach ($devices as $device) {
     Log::action(ts('Updating device ":name"', [
         ':name' => $device->getName()
-    ]));
+    ]), 10);
 
     $device->updateOptions();
 }
 
 
 // Done!
-Log::success(ts('Updated ":count" devices', [':count' => $devices->getCount()]));
+Log::success(ts('Updated ":count" devices', [':count' => $devices->getCount()]), 10);

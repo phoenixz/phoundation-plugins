@@ -55,4 +55,4 @@ showdie(PhoMounts::getMountSources($argv['path'], PhoRestrictions::new('/')));
 Log::success(ts('Mounted source ":source" to target ":target"', [
     ':source' => $argv['source'],
     ':target' => $argv['target']
-]));
+]), 10);

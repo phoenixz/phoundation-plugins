@@ -100,4 +100,4 @@ Log::success(ts('Updated option ":key" for profile ":profile" with value ":value
     ':profile' => $profile->getName(),
     ':key'     => $argv['key'],
     ':value'   => $argv['value']
-]));
+]), 10);

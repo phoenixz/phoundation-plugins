@@ -63,4 +63,4 @@ try {
 // Done!
 Log::success(ts('Finished generating subvolume ":path"', [
     ':path' => $argv['path']
-]));
+]), 10);

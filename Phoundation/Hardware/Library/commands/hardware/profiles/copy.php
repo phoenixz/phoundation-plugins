@@ -74,4 +74,4 @@ $copy = $profile->copy($argv['target'], $argv['keys'], FORCE);
 Log::success(ts('Created new profile ":profile" with ":count" options', [
     ':profile' => $copy->getName(),
     ':count'   => $copy->getOptions()->getCount()
-]));
+]), 10);

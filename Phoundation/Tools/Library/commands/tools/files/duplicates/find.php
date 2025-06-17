@@ -71,14 +71,14 @@ $duplicates = PhoDirectory::new($argv['path'], $restrictions)->getDuplicateFiles
 if ($duplicates->getCount()) {
     Log::success(ts('Found ":count" duplicate files', [
         ':count' => $duplicates->getCount()
-    ]));
+    ]), 10);
 
     foreach ($duplicates as $hash => $files) {
-        Log::notice($hash);
-        Log::debug($files, echo_header: false);
+        Log::notice($hash, 10);
+        Log::debug($files, 10, echo_header: false);
         Log::cli(' ');
     }
 
 } else {
-    Log::success('No duplicate files found');
+    Log::success('No duplicate files found', 10);
 }

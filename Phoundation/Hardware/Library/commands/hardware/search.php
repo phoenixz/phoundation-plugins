@@ -61,19 +61,19 @@ $argv = ArgvValidator::new()
 // Clear hardware table?
 if ($argv['clear']) {
     Devices::new()->eraseAll();
-    Log::warning(ts('Cleared hardware devices table'));
+    Log::warning(ts('Cleared hardware devices table'), 10);
 }
 
 
 // Scan for devices
-Log::action(ts('Searching for hardware devices'));
+Log::action(ts('Searching for hardware devices'), 10);
 
 if ($argv['no_options']) {
-    Log::warning(ts('Not updating hardware device options'));
+    Log::warning(ts('Not updating hardware device options'), 10);
 }
 
 $devices = Devices::new()->search(!$argv['no_options']);
 
 
 // Done!
-Log::success(ts('Found ":count" new devices', [':count' => $devices->getCount()]));
+Log::success(ts('Found ":count" new devices', [':count' => $devices->getCount()]), 10);

@@ -74,4 +74,4 @@ Mount::new()->mount($argv['source'], $argv['target'], $argv['file_system'], $arg
 Log::success(ts('Mounted source ":source" to target ":target"', [
     ':source' => $argv['source'],
     ':target' => $argv['target']
-]));
+]), 10);

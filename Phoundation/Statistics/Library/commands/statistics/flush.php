@@ -35,6 +35,6 @@ ARGUMENTS
 $argv = ArgvValidator::new()->validate();
 
 
-Log::information(ts('Flushing statistics queue'));
+Log::information(ts('Flushing statistics queue'), 10);
 
 Statistics::new()->flushQueue();

@@ -124,4 +124,4 @@ $device->encrypt($argv['password'], $argv['key_file']);
 // Done!
 Log::success(ts('Finished encrypting device ":device"', [
     ':device' => $argv['device']
-]));
+]), 10);

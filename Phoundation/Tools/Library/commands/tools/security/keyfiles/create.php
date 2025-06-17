@@ -76,4 +76,4 @@ Crypt::createCryptFile($argv['file'], $argv['size']);
 // Done!
 Log::success(ts('Finished generating keyfile ":file"', [
     ':file' => $argv['file']
-]));
+]), 10);
