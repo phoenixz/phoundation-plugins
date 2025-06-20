@@ -70,7 +70,7 @@ try {
 
 
 // Generate the file
-Crypt::createCryptFile($argv['file'], $argv['size']);
+Crypt::createFile($argv['file'], $argv['size']);
 
 
 // Done!

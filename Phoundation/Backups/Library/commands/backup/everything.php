@@ -30,7 +30,7 @@ CliDocumentation::setAutoComplete([
     ]
 ]);
 
-CliDocumentation::setUsage('./pho system backup everything');
+CliDocumentation::setUsage('./pho backup everything');
 
 CliDocumentation::setHelp('This command will backup *everything* related to this project to the default backup directory
 
