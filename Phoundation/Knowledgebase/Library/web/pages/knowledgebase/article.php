@@ -14,6 +14,7 @@
 
 declare(strict_types=1);
 
+use Phoundation\Exception\AccessDeniedException;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\GetValidator;
@@ -76,7 +77,7 @@ if (Request::isPostRequestMethod()) {
                 Response::redirect();
         }
 
-    } catch (IncidentsException | ValidationFailedException $e) {
+    } catch (IncidentsException | ValidationFailedException | AccessDeniedException $e) {
         // Oops! Show validation errors and remain on the page
         Response::getFlashMessagesObject()->addMessage($e);
         $article->forceApply();
