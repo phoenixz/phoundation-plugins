@@ -32,7 +32,7 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
             ],
             tr('Dashboard') => [
                 'rights' => 'admin',
-                'url'    => '/',
+                'url'    => '/index.html',
                 'icon'   => 'fas fa-tachometer-alt',
             ],
             tr('Accounts') => [

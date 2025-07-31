@@ -17,8 +17,7 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Humans\Signatures;
 
 use Phoundation\Data\DataEntries\DataEntry;
-use Phoundation\Web\Html\Components\Input\Interfaces\RenderInterface;
-
+use Phoundation\Web\Html\Components\Interfaces\RenderInterface;
 
 abstract class Signature extends DataEntry implements RenderInterface
 {
