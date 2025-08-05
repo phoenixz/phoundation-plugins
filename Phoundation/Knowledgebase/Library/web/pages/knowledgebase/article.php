@@ -15,6 +15,7 @@
 declare(strict_types=1);
 
 use Phoundation\Exception\AccessDeniedException;
+use Phoundation\Web\Html\Components\Anchor;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\GetValidator;
@@ -146,11 +147,11 @@ $documentation_card = Card::new()
 Response::setPageTitle(tr('Article :article', [':article' => $article->getDisplayName()]));
 Response::setHeaderTitle(tr('Article'));
 Response::setHeaderSubTitle($article->getDisplayName());
-Response::setBreadCrumbs(BreadCrumbs::new()->setSource([
-    '/'                    => tr('Home'),
-    '/accounts/articles.html' => tr('Articles'),
-    ''                     => $article->getDisplayName(),
-]));
+Response::setBreadCrumbs([
+    Anchor::new('/'                      , tr('Home')),
+    Anchor::new('/accounts/articles.html', tr('Articles')),
+    Anchor::new(''                       , $article->getDisplayName()),
+]););
 
 
 // Render and return the page grid
