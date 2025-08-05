@@ -6,9 +6,9 @@
  * This class manages finger print access using the Fprint class
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\Humans
+ * @package   Plugins\Phoundation\Humans
  */
 
 

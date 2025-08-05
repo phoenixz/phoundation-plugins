@@ -6,9 +6,9 @@
  * This class manages a single backup. It can create a new backup, or restore an existing one
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\Backup
+ * @package   Plugins\Phoundation\Backup
  */
 
 
