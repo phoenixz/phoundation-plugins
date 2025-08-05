@@ -40,7 +40,7 @@ $articles_card = Card::new()
     ->setSwitches('reload')
     ->setContent($articles->load()
                           ->getHtmlTableObject([
-                              'name'          => tr('Name'),
+                              'name' => tr('Name'),
                           ])
                           ->setRowUrl('/knowledgebase/article+:ROW.html')
                           ->setComponentEmptyLabel(tr('No articles available')))
@@ -56,7 +56,7 @@ $articles_card->getForm()
 $relevant_card = Card::new()
                      ->setMode(EnumDisplayMode::info)
                      ->setTitle(tr('Relevant links'))
-                     ->setContent('<a href="' . Url::new('/knowledgebase/articles.html')->makeWww() . '">' . tr('Knowledgebase') . '</a>');
+                     ->setContent(Anchor::new(Url::new('/knowledgebase/articles.html')->makeWww(), tr('Knowledgebase')));
 
 
 // Build documentation

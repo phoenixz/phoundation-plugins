@@ -87,9 +87,7 @@ if (Request::isPostRequestMethod()) {
 
 // Save button
 if (!$article->getReadonly()) {
-    $save = Button::new()
-                  ->setContent(tr('Save'))
-                  ->setContent(tr('Save'));
+    $save = Button::new()->setContent(tr('Save'));
 }
 
 
@@ -100,7 +98,6 @@ if (!$article->isNew()) {
                    ->setMode(EnumDisplayMode::information)
                    ->setAnchorUrl('/audit/meta+' . $article->getMetaId() . '.html')
                    ->setFloatRight(true)
-                   ->setContent(tr('Audit'))
                    ->setContent(tr('Audit'));
 }
 
@@ -124,13 +121,12 @@ $article_card = Card::new()
 $relevant_card = Card::new()
                      ->setMode(EnumDisplayMode::info)
                      ->setTitle(tr('Relevant links'))
-                     ->setContent(($article->isNew() ? '' : '<a href="' . Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww() . '">' . tr('Profile page for this article') . '</a><br>
-                                                          <a href="' . Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww() . '">' . tr('Change password for this article') . '</a><br>
-                                                          <a href="' . Url::new('/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()) . '">' . tr('Authentications for this article') . '</a><br>
-                                                          <a href="' . Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()) . '">' . tr('Security incidents for this article') . '</a>
-                                                          <hr>') . '
-                                   <a href="' . Url::new('/accounts/roles.html')->makeWww() . '">' . tr('Roles management') . '</a><br>
-                                   <a href="' . Url::new('/accounts/rights.html')->makeWww() . '">' . tr('Rights management') . '</a>' );
+                     ->setContent(($article->isNew() ? '' : Anchor::new(Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
+                                                            Anchor::new(Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww(), tr('Change password for this article'), '<br>') .
+                                                            Anchor::new(Url::new('/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article'), '<br>') .
+                                                            Anchor::new(Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()) . '">' . tr('Security incidents for this article'), '<br>')) .
+                                                            hr(Anchor::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
+                                                               Anchor::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'), '<br>')));
 
 
 // Build documentation

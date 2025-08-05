@@ -65,7 +65,7 @@ $articles_card->getForm()
 $relevant_card = Card::new()
                      ->setMode(EnumDisplayMode::info)
                      ->setTitle(tr('Relevant links'))
-                     ->setContent('<a href="' . Url::new('/knowledgebase/articles.html')->makeWww() . '">' . tr('Knowledgebase') . '</a>');
+                     ->setContent(Anchor::new(Url::new('/knowledgebase/articles.html')->makeWww(), tr('Knowledgebase')));
 
 
 // Build documentation
