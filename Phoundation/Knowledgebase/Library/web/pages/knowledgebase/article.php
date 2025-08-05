@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 use Phoundation\Exception\AccessDeniedException;
 use Phoundation\Web\Html\Components\Anchor;
+use Phoundation\Web\Html\Components\AnchorBlock;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\GetValidator;
@@ -121,12 +122,12 @@ $article_card = Card::new()
 $relevant_card = Card::new()
                      ->setMode(EnumDisplayMode::info)
                      ->setTitle(tr('Relevant links'))
-                     ->setContent(($article->isNew() ? '' : Anchor::new(Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
-                                                            Anchor::new(Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww(), tr('Change password for this article'), '<br>') .
-                                                            Anchor::new(Url::new('/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article'), '<br>') .
-                                                            Anchor::new(Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()) . '">' . tr('Security incidents for this article'), '<br>')) .
-                                                            hr(Anchor::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
-                                                               Anchor::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'), '<br>')));
+                     ->setContent(($article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
+                                                            AnchorBlock::new(Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
+                                                            AnchorBlock::new(Url::new('/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article')) .
+                                                            AnchorBlock::new(Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()) . '">' . tr('Security incidents for this article'))) .
+                                                            hr(AnchorBlock::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
+                                                               AnchorBlock::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'))));
 
 
 // Build documentation

@@ -15,6 +15,7 @@
 declare(strict_types=1);
 
 use Phoundation\Web\Html\Components\Anchor;
+use Phoundation\Web\Html\Components\AnchorBlock;
 use Plugins\Phoundation\Knowledgebase\Articles;
 use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
@@ -65,7 +66,7 @@ $articles_card->getForm()
 $relevant_card = Card::new()
                      ->setMode(EnumDisplayMode::info)
                      ->setTitle(tr('Relevant links'))
-                     ->setContent(Anchor::new(Url::new('/knowledgebase/articles.html')->makeWww(), tr('Knowledgebase')));
+                     ->setContent(AnchorBlock::new(Url::new('/knowledgebase/articles.html')->makeWww(), tr('Knowledgebase')));
 
 
 // Build documentation
