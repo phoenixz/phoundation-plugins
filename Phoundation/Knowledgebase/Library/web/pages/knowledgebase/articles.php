@@ -17,7 +17,6 @@ declare(strict_types=1);
 use Phoundation\Web\Html\Components\Anchor;
 use Plugins\Phoundation\Knowledgebase\Articles;
 use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
-use Phoundation\Web\Html\Components\Widgets\BreadCrumbs;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
 use Phoundation\Web\Html\Enums\EnumButtonType;
 use Phoundation\Web\Html\Enums\EnumDisplayMode;
@@ -82,7 +81,7 @@ Response::setBreadCrumbs([
     Anchor::new('/'                  , tr('Home')),
     Anchor::new('/knowledgebase.html', tr('Knowledgebase')),
     Anchor::new(''                   , tr('Articles')),
-]););
+]);
 
 
 // Render and return the page grid

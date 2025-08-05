@@ -23,7 +23,6 @@ use Phoundation\Data\Validator\PostValidator;
 use Phoundation\Security\Incidents\Exception\IncidentsException;
 use Phoundation\Web\Html\Components\Input\Buttons\Button;
 use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
-use Phoundation\Web\Html\Components\Widgets\BreadCrumbs;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
 use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Enums\EnumDisplaySize;
@@ -151,14 +150,13 @@ Response::setBreadCrumbs([
     Anchor::new('/'                      , tr('Home')),
     Anchor::new('/accounts/articles.html', tr('Articles')),
     Anchor::new(''                       , $article->getDisplayName()),
-]););
+]);
 
 
 // Render and return the page grid
 return Grid::new()
             ->addGridColumn(GridColumn::new()
-                                  // The article card and all additional cards
-                                  ->addContent($article_card)
-                                  ->setSize(9)
-                                  ->useForm(true))
+                                      ->addContent($article_card)
+                                      ->setSize(9)
+                                      ->useForm(true))
             ->addGridColumn($relevant_card . $documentation_card, EnumDisplaySize::three);

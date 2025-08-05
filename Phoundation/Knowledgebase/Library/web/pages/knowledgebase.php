@@ -16,7 +16,6 @@ declare(strict_types=1);
 
 use Phoundation\Web\Html\Components\Anchor;
 use Plugins\Phoundation\Knowledgebase\Articles;
-use Phoundation\Web\Html\Components\Widgets\BreadCrumbs;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
 use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Enums\EnumDisplaySize;
@@ -72,7 +71,7 @@ Response::setHeaderTitle(tr('Articles'));
 Response::setBreadCrumbs([
     Anchor::new('/', tr('Home')),
     Anchor::new('' , tr('Knowledgebase')),
-]););
+]);
 
 
 // Render and return the page grid

@@ -18,7 +18,6 @@ use Phoundation\Web\Html\Components\Anchor;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\GetValidator;
 use Phoundation\Web\Html\Components\Input\Buttons\Button;
-use Phoundation\Web\Html\Components\Widgets\BreadCrumbs;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
 use Phoundation\Web\Html\Enums\EnumDisplayMode;
 use Phoundation\Web\Html\Enums\EnumDisplaySize;
@@ -72,7 +71,7 @@ Response::setBreadCrumbs([
     Anchor::new('/Knowledgebase.html'         , tr('Knowledgebase')),
     Anchor::new('/knowledgebase/articles.html', tr('Articles')),
     Anchor::new(''                            , $article->getDisplayName()),
-]););
+]);
 
 
 // Render and return the page grid
