@@ -142,7 +142,7 @@ $documentation_card = Card::new()
 Response::setPageTitle(tr('Article :article', [':article' => $article->getDisplayName()]));
 Response::setHeaderTitle(tr('Article'));
 Response::setHeaderSubTitle($article->getDisplayName());
-Response::setBreadCrumbs([
+Response::setBreadcrumbs([
     Anchor::new('/'                      , tr('Home')),
     Anchor::new('/accounts/articles.html', tr('Articles')),
     Anchor::new(''                       , $article->getDisplayName()),
