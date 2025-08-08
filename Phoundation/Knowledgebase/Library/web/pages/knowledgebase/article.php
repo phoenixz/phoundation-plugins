@@ -119,19 +119,19 @@ $article_card = Card::new()
 
 
 // Build relevant links
-$relevant_card = Card::new()
+$o_relevant_card = Card::new()
                      ->setMode(EnumDisplayMode::info)
                      ->setTitle(tr('Relevant links'))
                      ->setContent(($article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
                                                             AnchorBlock::new(Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
                                                             AnchorBlock::new(Url::new('/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article')) .
-                                                            AnchorBlock::new(Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()) . '">' . tr('Security incidents for this article'))) .
+                                                            AnchorBlock::new(Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Security incidents for this article'))) .
                                                             hr(AnchorBlock::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
                                                                AnchorBlock::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'))));
 
 
 // Build documentation
-$documentation_card = Card::new()
+$o_documentation_card = Card::new()
                           ->setMode(EnumDisplayMode::info)
                           ->setTitle(tr('Documentation'))
                           ->setContent('<p>Soluta a rerum quia est blanditiis ipsam ut libero. Pariatur est ut qui itaque dolor nihil illo quae. Asperiores ut corporis et explicabo et. Velit perspiciatis sunt dicta maxime id nam aliquid repudiandae. Et id quod tempore.</p>
@@ -156,4 +156,4 @@ return Grid::new()
                                       ->addContent($article_card)
                                       ->setSize(9)
                                       ->useForm(true))
-            ->addGridColumn($relevant_card . $documentation_card, EnumDisplaySize::three);
+            ->addGridColumn($o_relevant_card . $o_documentation_card, EnumDisplaySize::three);
