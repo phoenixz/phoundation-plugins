@@ -51,10 +51,6 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                         'url'    => '/accounts/rights.html',
                         'icon'   => 'fas fa-lock'
                     ],
-                    tr('Groups') => [
-                        'url'    => '/accounts/groups.html',
-                        'icon'   => 'fas fa-users'
-                    ],
                     tr('Switch user') => [
                         'rights' => 'user-switch',
                         'url'    => '/accounts/switch',
@@ -72,22 +68,18 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Authentications') => [
-                        'rights' => 'security',
                         'url'    => '/security/authentications.html',
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Incidents') => [
-                        'rights' => 'security',
                         'url'    => '/security/incidents.html',
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Non HTTP-200 URL\'s') => [
-                        'rights' => 'security',
                         'url'    => '/security/non-200-urls.html',
                         'icon'   => 'fas fa-tasks'
                     ],
                     tr('Activity log') => [
-                        'rights' => 'security',
                         'url'    => '/security/activity',
                         'icon'   => 'fas fa-tasks'
                     ],
