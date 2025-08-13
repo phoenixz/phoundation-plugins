@@ -28,7 +28,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function version(): string
     {
-        return '0.0.12';
+        return '0.8.0';
     }
 
 
@@ -84,6 +84,12 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `server` (`server`,`path`,`timestamp`),
                 ')->create();
+
+        })->addUpdate('0.8.0', function () {
+            // Add support for modified_on and modified_by
+            $this->ensureModifiedColumns([
+                'statistics_servers',
+            ]);
         });
     }
 }

@@ -26,7 +26,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function version(): string
     {
-        return '0.2.0';
+        return '0.8.0';
     }
 
 
@@ -67,6 +67,12 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     CONSTRAINT `fk_phoundation_sso_signins_meta_id` FOREIGN KEY (`meta_id`) REFERENCES `meta` (`id`) ON DELETE CASCADE,
                     CONSTRAINT `fk_phoundation_sso_signins_users_id` FOREIGN KEY (`users_id`) REFERENCES `accounts_users` (`id`) ON DELETE RESTRICT,
                 ')->create();
+
+        })->addUpdate('0.8.0', function () {
+            // Add support for modified_on and modified_by
+            $this->ensureModifiedColumns([
+                'phoundation_sso_signins',
+            ]);
         });
     }
 }

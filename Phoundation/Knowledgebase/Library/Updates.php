@@ -27,7 +27,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function version(): string
     {
-        return '0.5.0';
+        return '0.8.0';
     }
 
 
@@ -69,6 +69,12 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     CONSTRAINT `fk_knowledgebase_articles_meta_id` FOREIGN KEY (`meta_id`) REFERENCES `meta` (`id`) ON DELETE CASCADE,
                     CONSTRAINT `fk_knowledgebase_articles_languages_id` FOREIGN KEY (`languages_id`) REFERENCES `core_languages` (`id`) ON DELETE RESTRICT,
                 ')->create();
+
+        })->addUpdate('0.8.0', function () {
+            // Add support for modified_on and modified_by
+            $this->ensureModifiedColumns([
+                'knowledgebase_articles',
+            ]);
         });
     }
 }
