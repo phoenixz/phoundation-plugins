@@ -20,7 +20,7 @@ use Phoundation\Data\DataEntries\DataEntry;
 use Phoundation\Data\DataEntries\Definitions\Definition;
 use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
 use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
-use Phoundation\Data\DataEntries\Exception\DataEntryAlreadyExistsException;
+use Phoundation\Data\DataEntries\Exception\DataEntryExistsException;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryComments;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryDescription;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryDeviceObject;
@@ -149,7 +149,7 @@ class Profile extends DataEntry implements ProfileInterface
         if ($profile) {
             // $this profile already exists!
             if (!$force) {
-                throw new DataEntryAlreadyExistsException(tr('The specified target profile ":target" already exists', [
+                throw new DataEntryExistsException(tr('The specified target profile ":target" already exists', [
                     ':target' => $target
                 ]));
             }
