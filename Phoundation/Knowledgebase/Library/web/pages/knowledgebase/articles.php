@@ -14,8 +14,8 @@
 
 declare(strict_types=1);
 
-use Phoundation\Web\Html\Components\Anchor;
 use Phoundation\Web\Html\Components\AnchorBlock;
+use Phoundation\Web\Html\Components\Widgets\Breadcrumbs\Breadcrumb;
 use Plugins\Phoundation\Knowledgebase\Articles;
 use Phoundation\Web\Html\Components\Input\Buttons\Buttons;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
@@ -79,9 +79,9 @@ $o_documentation_card = Card::new()
 // Set page meta data
 Response::setHeaderTitle(tr('Knowledgebase Articles'));
 Response::setBreadcrumbs([
-    Anchor::new('/'                  , tr('Home')),
-    Anchor::new('/knowledgebase.html', tr('Knowledgebase')),
-    Anchor::new(''                   , tr('Articles')),
+    Breadcrumb::new('/'                  , tr('Home')),
+    Breadcrumb::new('/knowledgebase.html', tr('Knowledgebase')),
+    Breadcrumb::new(''                   , tr('Articles')),
 ]);
 
 

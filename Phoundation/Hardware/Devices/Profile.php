@@ -193,7 +193,12 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setSize(4)
                 ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the programs id
-                    $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [':id' => '$devices_id']);
+                    $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
+                                                                               FROM   `hardware_devices` 
+                                                                               WHERE   `id` = :id 
+                                                                               AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                   ':id' => '$devices_id'
+                    ]);
                 }))
 
             ->add(Definition::new('device')
@@ -204,7 +209,12 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setInputType(EnumInputType::select)
                 ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the device name
-                    $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [':name' => '$device']);
+                    $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
+                                                                                                           FROM   `hardware_devices` 
+                                                                                                           WHERE  `name` = :name 
+                                                                                                           AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                                               ':name' => '$device'
+                    ]);
                 })
                 ->setLabel(tr('Device'))
                 ->setHelpText(tr('The device this driver option belongs')))

@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-use Phoundation\Web\Html\Components\Anchor;
+use Phoundation\Web\Html\Components\Widgets\Breadcrumbs\Breadcrumb;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\GetValidator;
 use Phoundation\Web\Html\Components\Input\Buttons\Button;
@@ -67,10 +67,10 @@ Response::setPageTitle(tr('Article :article', [':article' => $article->getDispla
 Response::setHeaderTitle(tr('Article'));
 Response::setHeaderSubTitle($article->getDisplayName());
 Response::setBreadcrumbs([
-    Anchor::new('/'                           , tr('Home')),
-    Anchor::new('/Knowledgebase.html'         , tr('Knowledgebase')),
-    Anchor::new('/knowledgebase/articles.html', tr('Articles')),
-    Anchor::new(''                            , $article->getDisplayName()),
+    Breadcrumb::new('/'                           , tr('Home')),
+    Breadcrumb::new('/Knowledgebase.html'         , tr('Knowledgebase')),
+    Breadcrumb::new('/knowledgebase/articles.html', tr('Articles')),
+    Breadcrumb::new(''                            , $article->getDisplayName()),
 ]);
 
 

@@ -14,8 +14,8 @@
 
 declare(strict_types=1);
 
-use Phoundation\Web\Html\Components\Anchor;
 use Phoundation\Web\Html\Components\AnchorBlock;
+use Phoundation\Web\Html\Components\Widgets\Breadcrumbs\Breadcrumb;
 use Plugins\Phoundation\Knowledgebase\Articles;
 use Phoundation\Web\Html\Components\Widgets\Cards\Card;
 use Phoundation\Web\Html\Enums\EnumDisplayMode;
@@ -70,8 +70,8 @@ $o_documentation_card = Card::new()
 // Set page meta data
 Response::setHeaderTitle(tr('Articles'));
 Response::setBreadcrumbs([
-    Anchor::new('/', tr('Home')),
-    Anchor::new('' , tr('Knowledgebase')),
+    Breadcrumb::new('/', tr('Home')),
+    Breadcrumb::new('' , tr('Knowledgebase')),
 ]);
 
 

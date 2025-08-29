@@ -15,8 +15,8 @@
 declare(strict_types=1);
 
 use Phoundation\Exception\AccessDeniedException;
-use Phoundation\Web\Html\Components\Anchor;
 use Phoundation\Web\Html\Components\AnchorBlock;
+use Phoundation\Web\Html\Components\Widgets\Breadcrumbs\Breadcrumb;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
 use Phoundation\Data\Validator\GetValidator;
@@ -144,9 +144,9 @@ Response::setPageTitle(tr('Article :article', [':article' => $article->getDispla
 Response::setHeaderTitle(tr('Article'));
 Response::setHeaderSubTitle($article->getDisplayName());
 Response::setBreadcrumbs([
-    Anchor::new('/'                      , tr('Home')),
-    Anchor::new('/accounts/articles.html', tr('Articles')),
-    Anchor::new(''                       , $article->getDisplayName()),
+    Breadcrumb::new('/'                      , tr('Home')),
+    Breadcrumb::new('/accounts/articles.html', tr('Articles')),
+    Breadcrumb::new(''                       , $article->getDisplayName()),
 ]);
 
 
