@@ -43,7 +43,7 @@ $article_card = Card::new()
                     ->setMaximizeSwitch(true)
                     ->setTitle($article->getDisplayName())
                     ->setContent($article->getBody())
-                    ->setButtons(Button::new()->setContent(tr('Back'))->setAnchorUrl(Url::new('prev')));
+                    ->setButtonsObject(Button::new()->setContent(tr('Back'))->setAnchorUrl(Url::new('prev')));
 
 
 // Build relevant links

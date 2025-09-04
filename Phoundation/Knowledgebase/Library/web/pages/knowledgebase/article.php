@@ -109,13 +109,13 @@ $article_card = Card::new()
                  ->setMaximizeSwitch(true)
                  ->setTitle(tr('Edit profile for article :name', [':name' => $article->getDisplayName()]))
                  ->setContent($article->getHtmlDataEntryFormObject())
-                 ->setButtons(Buttons::new()
-                                     ->addButton(isset_get($save))
-                                     ->addButton(tr('Back'), EnumDisplayMode::secondary, Url::newPrevious('/accounts/articles.html'), true)
-                                     ->addButton(isset_get($audit))
-                                     ->addButton(isset_get($delete))
-                                     ->addButton(isset_get($lock))
-                                     ->addButton(isset_get($impersonate)));
+                 ->setButtonsObject(Buttons::new()
+                                           ->addButton(isset_get($save))
+                                           ->addButton(tr('Back'), EnumDisplayMode::secondary, Url::newPrevious('/accounts/articles.html'), true)
+                                           ->addButton(isset_get($audit))
+                                           ->addButton(isset_get($delete))
+                                           ->addButton(isset_get($lock))
+                                           ->addButton(isset_get($impersonate)));
 
 
 // Build relevant links

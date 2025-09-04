@@ -54,7 +54,7 @@ $articles_card = Card::new()
                           ])
                           ->setRowUrl('/knowledgebase/article+:ROW.html'))
     ->useForm(true)
-    ->setButtons($buttons);
+    ->setButtonsObject($buttons);
 
 
 $articles_card->getForm()
