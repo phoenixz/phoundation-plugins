@@ -382,7 +382,7 @@ class Device extends DataEntry implements DeviceInterface
                             ->setOptional(false)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
-                            ->setDataSource([
+                            ->setSource([
                                 'scanner'   => tr('Scanner'),
                                 'printer'   => tr('Printer'),
                                 'webcam'    => tr('Webcam'),
