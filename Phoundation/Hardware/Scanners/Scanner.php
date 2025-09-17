@@ -6,9 +6,9 @@
  *
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\Hardware
+ * @package   Plugins\Phoundation\Hardware
  */
 
 
@@ -73,7 +73,7 @@ class Scanner extends Device
      *                                                                                 to [id_column => integer_value] or a string
      *                                                                                 value which will convert to
      *                                                                                 [unique_column => string_value]]
-     * @param EnumLoadParameters|null                   $on_load_null_identifier       Specifies how this load method will handle
+     * @param EnumLoadParameters|null                   $on_null_identifier       Specifies how this load method will handle
      *                                                                                 the specified identifier being NULL.
      *                                                                                 Options are: EnumLoadParameters::exception
      *                                                                                 (Throws a
@@ -83,7 +83,7 @@ class Scanner extends Device
      *                                                                                 the object as-is, without loading
      *                                                                                 anything). Defaults to
      *                                                                                 EnumLoadParameters::exception
-     * @param EnumLoadParameters|null                   $on_load_not_exists            Specifies how this load method will handle
+     * @param EnumLoadParameters|null                   $on_not_exists            Specifies how this load method will handle
      *                                                                                 the specified identifier not existing in
      *                                                                                 the database. Options are:
      *                                                                                 EnumLoadParameters::exception (Throws a
@@ -95,9 +95,9 @@ class Scanner extends Device
      *
      * @return static|null
      */
-    public function load(IdentifierInterface|array|string|int|null $identifier = null, ?EnumLoadParameters $on_load_null_identifier = null, ?EnumLoadParameters $on_load_not_exists = null): ?static
+    public function load(IdentifierInterface|array|string|int|null $identifier = null, ?EnumLoadParameters $on_null_identifier = null, ?EnumLoadParameters $on_not_exists = null): ?static
     {
-        $entry = parent::load($identifier, $on_load_null_identifier, $on_load_not_exists);
+        $entry = parent::load($identifier, $on_null_identifier, $on_not_exists);
 
         if ($entry->getClass() !== 'scanner') {
             throw new InvalidDeviceClassException(tr('The specified device ":column=:identifier" is not a "scanner" class device', [

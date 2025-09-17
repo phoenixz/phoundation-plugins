@@ -97,7 +97,7 @@ class Article extends DataEntry
      *                                                                           to [id_column => integer_value] or a string
      *                                                                           value which will convert to
      *                                                                           [unique_column => string_value]]
-     * @param EnumLoadParameters|null                   $on_load_null_identifier Specifies how this load method will handle
+     * @param EnumLoadParameters|null                   $on_null_identifier Specifies how this load method will handle
      *                                                                           the specified identifier being NULL.
      *                                                                           Options are: EnumLoadParameters::exception
      *                                                                           (Throws a
@@ -107,7 +107,7 @@ class Article extends DataEntry
      *                                                                           the object as-is, without loading
      *                                                                           anything). Defaults to
      *                                                                           EnumLoadParameters::exception
-     * @param EnumLoadParameters|null                   $on_load_not_exists      Specifies how this load method will handle
+     * @param EnumLoadParameters|null                   $on_not_exists      Specifies how this load method will handle
      *                                                                           the specified identifier not existing in
      *                                                                           the database. Options are:
      *                                                                           EnumLoadParameters::exception (Throws a
@@ -119,10 +119,10 @@ class Article extends DataEntry
      *
      * @return static|null
      */
-    public function load(IdentifierInterface|array|string|int|null $identifier = null, ?EnumLoadParameters $on_load_null_identifier = null, ?EnumLoadParameters $on_load_not_exists = null): ?static
+    public function load(IdentifierInterface|array|string|int|null $identifier = null, ?EnumLoadParameters $on_null_identifier = null, ?EnumLoadParameters $on_not_exists = null): ?static
     {
         try {
-            return parent::load($identifier, $on_load_null_identifier, $on_load_not_exists);
+            return parent::load($identifier, $on_null_identifier, $on_not_exists);
 
         } catch (DataEntryNotExistsException|DataEntryDeletedException $e) {
             throw new KnowledgebaseArticleNotExistsException($e);

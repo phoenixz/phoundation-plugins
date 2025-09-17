@@ -7,9 +7,9 @@
  *
  * @see \Phoundation\Core\Libraries\Updates
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Medinet
+ * @package   Phoundation\Medinet
  */
 
 
@@ -28,7 +28,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function version(): string
     {
-        return '0.0.15';
+        return '0.8.0';
     }
 
 
@@ -66,6 +66,12 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     CONSTRAINT `fk_fingerprints_meta_id` FOREIGN KEY (`meta_id`) REFERENCES `meta` (`id`) ON DELETE CASCADE,
                     CONSTRAINT `fk_fingerprints_users_id` FOREIGN KEY (`users_id`) REFERENCES `accounts_users` (`id`) ON DELETE RESTRICT,
                 ')->create();
+
+        })->addUpdate('0.8.0', function () {
+            // Add support for modified_on and modified_by
+            $this->ensureModifiedColumns([
+                'fingerprints',
+            ]);
         });
     }
 }

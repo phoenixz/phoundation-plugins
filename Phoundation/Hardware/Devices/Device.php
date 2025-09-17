@@ -6,9 +6,9 @@
  *
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\Hardware
+ * @package   Plugins\Phoundation\Hardware
  */
 
 
@@ -382,7 +382,7 @@ class Device extends DataEntry implements DeviceInterface
                             ->setOptional(false)
                             ->setInputType(EnumInputType::text)
                             ->setSize(3)
-                            ->setDataSource([
+                            ->setSource([
                                 'scanner'   => tr('Scanner'),
                                 'printer'   => tr('Printer'),
                                 'webcam'    => tr('Webcam'),

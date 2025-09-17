@@ -6,9 +6,9 @@
  *
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\Hardware
+ * @package   Plugins\Phoundation\Hardware
  */
 
 
@@ -20,7 +20,7 @@ use Phoundation\Data\DataEntries\DataEntry;
 use Phoundation\Data\DataEntries\Definitions\Definition;
 use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
 use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
-use Phoundation\Data\DataEntries\Exception\DataEntryAlreadyExistsException;
+use Phoundation\Data\DataEntries\Exception\DataEntryExistsException;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryComments;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryDescription;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryDeviceObject;
@@ -149,7 +149,7 @@ class Profile extends DataEntry implements ProfileInterface
         if ($profile) {
             // $this profile already exists!
             if (!$force) {
-                throw new DataEntryAlreadyExistsException(tr('The specified target profile ":target" already exists', [
+                throw new DataEntryExistsException(tr('The specified target profile ":target" already exists', [
                     ':target' => $target
                 ]));
             }
@@ -193,7 +193,12 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setSize(4)
                 ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the programs id
-                    $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [':id' => '$devices_id']);
+                    $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
+                                                                               FROM   `hardware_devices` 
+                                                                               WHERE   `id` = :id 
+                                                                               AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                   ':id' => '$devices_id'
+                    ]);
                 }))
 
             ->add(Definition::new('device')
@@ -204,7 +209,12 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setInputType(EnumInputType::select)
                 ->addValidationFunction(function (ValidatorInterface $o_validator) {
                     // Validate the device name
-                    $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [':name' => '$device']);
+                    $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
+                                                                                                           FROM   `hardware_devices` 
+                                                                                                           WHERE  `name` = :name 
+                                                                                                           AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                                               ':name' => '$device'
+                    ]);
                 })
                 ->setLabel(tr('Device'))
                 ->setHelpText(tr('The device this driver option belongs')))

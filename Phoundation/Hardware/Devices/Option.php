@@ -6,9 +6,9 @@
  *
  *
  * @author    Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Plugins\Phoundation\Hardware
+ * @package   Plugins\Phoundation\Hardware
  */
 
 
@@ -271,8 +271,11 @@ class Option extends DataEntry implements OptionInterface
                             ->setSize(4)
                             ->addValidationFunction(function (ValidatorInterface $o_validator) {
                                 // Validate the devices id
-                                $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` FROM `hardware_devices` WHERE `id` = :id AND `status` IS NULL', [
-                                    ':id' => '$devices_id'
+                                $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
+                                                                                           FROM   `hardware_devices` 
+                                                                                           WHERE  `id` = :id 
+                                                                                           AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                               ':id' => '$devices_id'
                                 ]);
                             }))
 
@@ -284,8 +287,11 @@ class Option extends DataEntry implements OptionInterface
                             ->setInputType(EnumInputType::select)
                             ->addValidationFunction(function (ValidatorInterface $o_validator) {
                                 // Validate the device name
-                                $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_devices` WHERE `name` = :name AND `status` IS NULL', [
-                                    ':name' => '$device'
+                                $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
+                                                                                                                       FROM   `hardware_devices` 
+                                                                                                                       WHERE  `name` = :name 
+                                                                                                                       AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                                                           ':name' => '$device'
                                 ]);
                             })
                             ->setLabel(tr('Device'))
@@ -300,8 +306,11 @@ class Option extends DataEntry implements OptionInterface
                     $o_validator
                         ->xorColumn('profile')
                         ->isDbId()
-                        ->isQueryResult('SELECT `id` FROM `hardware_profiles` WHERE `id` = :id AND `status` IS NULL', [
-                            ':id' => '$profiles_id'
+                        ->isQueryResult('SELECT `id` 
+                                         FROM   `hardware_profiles` 
+                                         WHERE  `id` = :id 
+                                         AND   (`status` IS NULL OR `status` != "deleted")', [
+                                             ':id' => '$profiles_id'
                         ]);
                 }))
 
@@ -316,8 +325,11 @@ class Option extends DataEntry implements OptionInterface
                     $o_validator
                         ->xorColumn('profiles_id')
                         ->isName()
-                        ->setColumnFromQuery('programs_id', 'SELECT `id` FROM `hardware_profiles` WHERE `name` = :name AND `status` IS NULL', [
-                            ':name' => '$profile'
+                        ->setColumnFromQuery('programs_id', 'SELECT `id` 
+                                                             FROM   `hardware_profiles` 
+                                                             WHERE  `name` = :name 
+                                                             AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                 ':name' => '$profile'
                         ]);
                 })
                 ->setLabel(tr('Profile'))

@@ -7,15 +7,16 @@
  *
  * @see \Phoundation\Core\Libraries\Updates
  * @author    Sven Olaf Oostenbrink <sven@medinet.ca>
- * @license http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
+ * @license   http://opensource.org/licenses/GPL-2.0 GNU Public License, Version 2
  * @copyright Copyright © 2025 Sven Olaf Oostenbrink <so.oostenbrink@gmail.com>
- * @package Phoundation\Bookmarks
+ * @package   Phoundation\Bookmarks
  */
 
 
 declare(strict_types=1);
 
 namespace Plugins\Phoundation\Bookmarks\Library;
+
 
 class Updates extends \Phoundation\Core\Libraries\Updates
 {
@@ -26,7 +27,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
      */
     public function version(): string
     {
-        return '0.3.0';
+        return '0.8.0';
     }
 
 
@@ -86,6 +87,12 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     CONSTRAINT `fk_bookmarks_meta_id` FOREIGN KEY (`meta_id`) REFERENCES `meta` (`id`) ON DELETE CASCADE,
                     CONSTRAINT `fk_bookmarks_users_id` FOREIGN KEY (`users_id`) REFERENCES `accounts_users` (`id`) ON DELETE RESTRICT,
                 ')->create();
+
+        })->addUpdate('0.8.0', function () {
+            // Add support for modified_on and modified_by
+            $this->ensureModifiedColumns([
+                'bookmarks',
+            ]);
         });
     }
 }
