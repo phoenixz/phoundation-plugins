@@ -34,6 +34,7 @@ use Plugins\Phoundation\Hardware\Devices\Interfaces\OptionInterface;
 use ReturnTypeWillChange;
 use Stringable;
 
+
 class Option extends DataEntry implements OptionInterface
 {
     use TraitDataEntryComments;
@@ -96,14 +97,15 @@ class Option extends DataEntry implements OptionInterface
     /**
      * Returns the value for this option
      *
-     * @param float|Stringable|int|string $key
-     * @param bool                        $exception
+     * @param Stringable|string|float|int $key
+     * @param mixed                       $default
+     * @param bool|null                   $exception
      *
      * @return string|null
      */
-    #[ReturnTypeWillChange] public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed
+    #[ReturnTypeWillChange] public function get(Stringable|string|float|int $key = 'value', mixed $default = null, ?bool $exception = null): mixed
     {
-        return parent::get($key, $exception);
+        return parent::get($key, $default, $exception);
     }
 
 
@@ -113,11 +115,12 @@ class Option extends DataEntry implements OptionInterface
      * The value must either be one of the values option, or fall within the range for this option
      *
      * @param mixed                       $value
-     * @param float|Stringable|int|string $key
+     * @param Stringable|string|float|int $key
+     * @param bool                        $skip_null_values
      *
      * @return static
      */
-    #[ReturnTypeWillChange] public function set(mixed $value, float|Stringable|int|string $key = 'value'): static
+    public function set(mixed $value, Stringable|string|float|int $key = 'value', bool $skip_null_values = false): static
     {
         if ($value) {
             $this->checkRange($value)
@@ -264,118 +267,117 @@ class Option extends DataEntry implements OptionInterface
      */
     protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
     {
-        $o_definitions
-            ->add(Definition::new('devices_id')
-                            ->setRender(true)
-                            ->setOptional(true)
-                            ->setSize(4)
-                            ->addValidationFunction(function (ValidatorInterface $o_validator) {
-                                // Validate the devices id
-                                $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
-                                                                                           FROM   `hardware_devices` 
-                                                                                           WHERE  `id` = :id 
-                                                                                           AND   (`status` IS NULL OR `status` != "deleted")', [
-                                                                                               ':id' => '$devices_id'
-                                ]);
-                            }))
+        $o_definitions->add(Definition::new('devices_id')
+                                      ->setRender(true)
+                                      ->setOptional(true)
+                                      ->setSize(4)
+                                      ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                                          // Validate the devices id
+                                          $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
+                                                                                                     FROM   `hardware_devices` 
+                                                                                                     WHERE  `id` = :id 
+                                                                                                     AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                                         ':id' => '$devices_id'
+                                          ]);
+                                      }))
 
-            ->add(Definition::new('device')
-                            ->setOptional(true)
-                            ->setVirtual(true)
-                            ->setRender(false)
-                            ->setSize(4)
-                            ->setInputType(EnumInputType::select)
-                            ->addValidationFunction(function (ValidatorInterface $o_validator) {
-                                // Validate the device name
-                                $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
-                                                                                                                       FROM   `hardware_devices` 
-                                                                                                                       WHERE  `name` = :name 
-                                                                                                                       AND   (`status` IS NULL OR `status` != "deleted")', [
-                                                                                                                           ':name' => '$device'
-                                ]);
-                            })
-                            ->setLabel(tr('Device'))
-                            ->setHelpText(tr('The device this driver option belongs')))
+                      ->add(Definition::new('device')
+                                      ->setOptional(true)
+                                      ->setVirtual(true)
+                                      ->setRender(false)
+                                      ->setSize(4)
+                                      ->setInputType(EnumInputType::select)
+                                      ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                                          // Validate the device name
+                                          $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
+                                                                                                                                 FROM   `hardware_devices` 
+                                                                                                                                 WHERE  `name` = :name 
+                                                                                                                                 AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                                                                     ':name' => '$device'
+                                          ]);
+                                      })
+                                      ->setLabel(tr('Device'))
+                                      ->setHelpText(tr('The device this driver option belongs')))
 
-            ->add(Definition::new('profiles_id')
-                ->setRender(true)
-                ->setOptional(true)
-                ->setSize(4)
-                ->addValidationFunction(function (ValidatorInterface $o_validator) {
-                    // Validate the programs id
-                    $o_validator
-                        ->xorColumn('profile')
-                        ->isDbId()
-                        ->isQueryResult('SELECT `id` 
-                                         FROM   `hardware_profiles` 
-                                         WHERE  `id` = :id 
-                                         AND   (`status` IS NULL OR `status` != "deleted")', [
-                                             ':id' => '$profiles_id'
-                        ]);
-                }))
+                      ->add(Definition::new('profiles_id')
+                                      ->setRender(true)
+                                      ->setOptional(true)
+                                      ->setSize(4)
+                                      ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                                          // Validate the programs id
+                                          $o_validator
+                                              ->xorColumn('profile')
+                                              ->isDbId()
+                                              ->isQueryResult('SELECT `id` 
+                                                               FROM   `hardware_profiles` 
+                                                               WHERE  `id` = :id 
+                                                               AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                   ':id' => '$profiles_id'
+                                              ]);
+                                      }))
 
-            ->add(Definition::new('profile')
-                ->setOptional(true)
-                ->setVirtual(true)
-                ->setRender(false)
-                ->setSize(4)
-                ->setInputType(EnumInputType::select)
-                ->addValidationFunction(function (ValidatorInterface $o_validator) {
-                    // Validate the profile name
-                    $o_validator
-                        ->xorColumn('profiles_id')
-                        ->isName()
-                        ->setColumnFromQuery('programs_id', 'SELECT `id` 
-                                                             FROM   `hardware_profiles` 
-                                                             WHERE  `name` = :name 
-                                                             AND   (`status` IS NULL OR `status` != "deleted")', [
-                                                                 ':name' => '$profile'
-                        ]);
-                })
-                ->setLabel(tr('Profile'))
-                ->setHelpText(tr('The profile this driver option belongs to')))
+                      ->add(Definition::new('profile')
+                                      ->setOptional(true)
+                                      ->setVirtual(true)
+                                      ->setRender(false)
+                                      ->setSize(4)
+                                      ->setInputType(EnumInputType::select)
+                                      ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                                          // Validate the profile name
+                                          $o_validator
+                                              ->xorColumn('profiles_id')
+                                              ->isName()
+                                              ->setColumnFromQuery('programs_id', 'SELECT `id` 
+                                                                                   FROM   `hardware_profiles` 
+                                                                                   WHERE  `name` = :name 
+                                                                                   AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                       ':name' => '$profile'
+                                              ]);
+                                      })
+                                      ->setLabel(tr('Profile'))
+                                      ->setHelpText(tr('The profile this driver option belongs to')))
 
-            ->add(Definition::new('key')
-                ->setOptional(false)
-                ->setRender(true)
-                ->setSize(4)
-                ->setMaxLength(32))
+                      ->add(Definition::new('key')
+                                      ->setOptional(false)
+                                      ->setRender(true)
+                                      ->setSize(4)
+                                      ->setMaxLength(32))
 
-            ->add(Definition::new('value')
-                ->setOptional(false)
-                ->setRender(true)
-                ->setSize(4)
-                ->setMaxLength(255))
+                      ->add(Definition::new('value')
+                                      ->setOptional(false)
+                                      ->setRender(true)
+                                      ->setSize(4)
+                                      ->setMaxLength(255))
 
-            ->add(Definition::new('default')
-                ->setOptional(false)
-                ->setRender(true)
-                ->setSize(4)
-                ->setMaxLength(255))
+                      ->add(Definition::new('default')
+                                      ->setOptional(false)
+                                      ->setRender(true)
+                                      ->setSize(4)
+                                      ->setMaxLength(255))
 
-            ->add(Definition::new('range')
-                ->setOptional(false)
-                ->setRender(true)
-                ->setSize(4)
-                ->setMaxLength(64))
+                      ->add(Definition::new('range')
+                                      ->setOptional(false)
+                                      ->setRender(true)
+                                      ->setSize(4)
+                                      ->setMaxLength(64))
 
-            ->add(Definition::new('values')
-                ->setOptional(false)
-                ->setRender(true)
-                ->setSize(4)
-                ->setMaxLength(255))
+                      ->add(Definition::new('values')
+                                      ->setOptional(false)
+                                      ->setRender(true)
+                                      ->setSize(4)
+                                      ->setMaxLength(255))
 
-            ->add(Definition::new('units')
-                ->setOptional(true)
-                ->setRender(true)
-                ->setSize(4)
-                ->setMaxLength(16))
+                      ->add(Definition::new('units')
+                                      ->setOptional(true)
+                                      ->setRender(true)
+                                      ->setSize(4)
+                                      ->setMaxLength(16))
 
-            ->add(DefinitionFactory::newComments()
-                ->setMaxLength(255))
+                      ->add(DefinitionFactory::newComments()
+                                             ->setMaxLength(255))
 
-            ->add(DefinitionFactory::newDescription()
-                ->setMaxLength(2048));
+                      ->add(DefinitionFactory::newDescription()
+                                             ->setMaxLength(2048));
 
         return $this;
     }

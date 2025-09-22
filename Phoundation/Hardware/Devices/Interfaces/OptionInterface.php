@@ -23,27 +23,31 @@ interface OptionInterface extends DataEntryInterface
      */
     public function setKey(?string $key): static;
 
+
     /**
      * Returns the value for this option
      *
-     * @param float|Stringable|int|string $key
-     * @param bool                        $exception
+     * @param Stringable|string|float|int $key
+     * @param mixed                       $default
+     * @param bool|null                   $exception
      *
      * @return string|null
      */
-    #[ReturnTypeWillChange] public function get(float|Stringable|int|string $key = 'value', bool $exception = true): mixed;
+    #[ReturnTypeWillChange] public function get(Stringable|string|float|int $key = 'value', mixed $default = null, ?bool $exception = true): mixed;
+
 
     /**
      * Sets the value for this option
      *
      * The value must either be one of the values option, or fall within the range for this option
      *
-     * @param mixed $value
-     * @param string $column
-     * @param bool $force
+     * @param mixed                       $value
+     * @param Stringable|string|float|int $key
+     * @param bool                        $skip_null_values
+     *
      * @return static
      */
-    #[ReturnTypeWillChange] public function set(mixed $value, float|Stringable|int|string $key = 'value'): static;
+    public function set(mixed $value, Stringable|string|float|int $key = 'value', bool $skip_null_values = false): static;
 
     /**
      * Returns the values for this option

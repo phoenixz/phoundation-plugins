@@ -54,7 +54,7 @@ class Profiles extends DataIterator implements ProfilesInterface
 
 
     /**
-     * @inheritDoc
+     * @inheritDoc`
      */
     public static function getUniqueColumn(): ?string
     {
@@ -65,12 +65,14 @@ class Profiles extends DataIterator implements ProfilesInterface
     /**
      * Returns the specified profile
      *
-     * @param float|Stringable|int|string $key
-     * @param bool $exception
+     * @param Stringable|string|float|int $key
+     * @param mixed                       $default
+     * @param bool                        $exception
+     *
      * @return ProfileInterface|null
      */
-    #[ReturnTypeWillChange] public function get(float|Stringable|int|string $key, bool $exception = true): ?ProfileInterface
+    #[ReturnTypeWillChange] public function get(Stringable|string|float|int $key, mixed $default = null, ?bool $exception = null): ?ProfileInterface
     {
-        return parent::get($key, $exception);
+        return parent::get($key, $default, $exception);
     }
 }
