@@ -81,6 +81,17 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                     ],
                 ],
             ],
+            tr('Os') => [
+                'rights' => 'admin,os',
+                'icon' => 'fas fa-computer',
+                'menu' => [
+                    tr('Tasks') => [
+                        'rights' => 'admin,os',
+                        'url'    => '/reports/os/tasks.html',
+                        'icon'   => 'fas fa-bars-progress'
+                    ],
+                ],
+            ],
             tr('Development') => [
                 'rights' => 'admin,developer',
                 'icon' => 'fas fa-lock',
