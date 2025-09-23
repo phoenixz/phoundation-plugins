@@ -124,8 +124,8 @@ $o_relevant_card = Card::new()
                      ->setTitle(tr('Relevant links'))
                      ->setContent(($article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
                                                             AnchorBlock::new(Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
-                                                            AnchorBlock::new(Url::new('/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article')) .
-                                                            AnchorBlock::new(Url::new('/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Security incidents for this article'))) .
+                                                            AnchorBlock::new(Url::new('/reports/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article')) .
+                                                            AnchorBlock::new(Url::new('/reports/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Security incidents for this article'))) .
                                                             hr(AnchorBlock::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
                                                                AnchorBlock::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'))));
 
