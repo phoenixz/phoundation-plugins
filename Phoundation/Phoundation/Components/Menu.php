@@ -263,11 +263,11 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                     ],
                 ],
             ],
-            tr('About') => [
-                'rights' => 'admin',
-                'url'  => '/about.html',
-                'icon' => ''
-            ],
+//            tr('About') => [
+//                'rights' => 'admin',
+//                'url'  => '/about.html',
+//                'icon' => ''
+//            ],
             tr('Productivity') => [
                 'rights' => 'productivity',
                 'icon'   => '',
