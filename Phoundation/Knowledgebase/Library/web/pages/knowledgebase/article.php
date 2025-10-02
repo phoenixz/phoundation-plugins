@@ -97,7 +97,7 @@ if (!$article->isNew()) {
     $audit = Button::new()
                    ->setFloatRight(true)
                    ->setMode(EnumDisplayMode::information)
-                   ->setAnchorUrl('/audit/meta+' . $article->getMetaId() . '.html')
+                   ->setUrlObject('/audit/meta+' . $article->getMetaId() . '.html')
                    ->setFloatRight(true)
                    ->setContent(tr('Audit'));
 }
