@@ -75,10 +75,10 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                         'url'    => '/reports/security/incidents.html',
                         'icon'   => 'fas fa-key'
                     ],
-                    tr('Activity log') => [
-                        'url'    => '/security/activity',
-                        'icon'   => 'fas fa-tasks'
-                    ],
+//                    tr('Activity log') => [
+//                        'url'    => '/security/activities.html',
+//                        'icon'   => 'fas fa-tasks'
+//                    ],
                 ],
             ],
             tr('Os') => [
