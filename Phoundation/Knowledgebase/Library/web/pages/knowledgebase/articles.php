@@ -52,7 +52,7 @@ $articles_card = Card::new()
                           ->getHtmlDataTableObject([
                               'name' => tr('Name'),
                           ])
-                          ->setRowUrl('/knowledgebase/article+:ROW.html'))
+                          ->setRowUrls('/knowledgebase/article+:ROW.html'))
     ->useForm(true)
     ->setButtonsObject($buttons);
 

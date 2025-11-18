@@ -43,7 +43,7 @@ $articles_card = Card::new()
                           ->getHtmlTableObject([
                               'name' => tr('Name'),
                           ])
-                          ->setRowUrl('/knowledgebase/article+:ROW.html')
+                          ->setRowUrls('/knowledgebase/article+:ROW.html')
                           ->setComponentEmptyLabel(tr('No articles available')))
     ->useForm(true);
 
