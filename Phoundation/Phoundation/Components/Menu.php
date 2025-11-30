@@ -68,20 +68,27 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Authentications') => [
-                        'url'    => '/security/authentications.html',
+                        'url'    => '/reports/security/authentications.html',
                         'icon'   => 'fas fa-key'
                     ],
                     tr('Incidents') => [
-                        'url'    => '/security/incidents.html',
+                        'url'    => '/reports/security/incidents.html',
                         'icon'   => 'fas fa-key'
                     ],
-                    tr('Non HTTP-200 URL\'s') => [
-                        'url'    => '/security/non-200-urls.html',
-                        'icon'   => 'fas fa-tasks'
-                    ],
-                    tr('Activity log') => [
-                        'url'    => '/security/activity',
-                        'icon'   => 'fas fa-tasks'
+//                    tr('Activity log') => [
+//                        'url'    => '/security/activities.html',
+//                        'icon'   => 'fas fa-tasks'
+//                    ],
+                ],
+            ],
+            tr('Os') => [
+                'rights' => 'admin,os',
+                'icon' => 'fas fa-computer',
+                'menu' => [
+                    tr('Tasks') => [
+                        'rights' => 'admin,os',
+                        'url'    => '/reports/os/tasks.html',
+                        'icon'   => 'fas fa-bars-progress'
                     ],
                 ],
             ],
@@ -256,11 +263,11 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
                     ],
                 ],
             ],
-            tr('About') => [
-                'rights' => 'admin',
-                'url'  => '/about.html',
-                'icon' => ''
-            ],
+//            tr('About') => [
+//                'rights' => 'admin',
+//                'url'  => '/about.html',
+//                'icon' => ''
+//            ],
             tr('Productivity') => [
                 'rights' => 'productivity',
                 'icon'   => '',
