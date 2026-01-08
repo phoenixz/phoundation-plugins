@@ -61,7 +61,7 @@ $argv = ArgvValidator::new()
 // Validate the target
 try {
     $argv['file']->checkNotExists()
-                 ->getParentDirectory()
+                 ->getParentDirectoryObject()
                  ->checkWritable();
 
 } catch (FileExistsException $e) {
