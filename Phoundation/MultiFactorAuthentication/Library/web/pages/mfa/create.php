@@ -26,7 +26,7 @@ use Plugins\Phoundation\MultiFactorAuthentication\Exception\MultiFactorAuthentic
 if (Request::isPostRequestMethod()) {
     try {
         if (PostValidator::new()->get('number1') === null) {
-            // We're testing the newly created MFA code
+            // We are testing the newly created MFA code
             $post = PostValidator::new()->validate();
 
         } else {

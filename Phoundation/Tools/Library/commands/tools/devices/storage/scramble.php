@@ -70,7 +70,7 @@ try {
 }
 
 
-// Have user confirm that they're sure
+// Have user confirm that they are sure
 CliCommand::requestConfirmation(tr('This will irreparably destroy all information on device ":device", please type YES in all uppercase to continue:', [
     ':device' => $argv['device']
 ]));
