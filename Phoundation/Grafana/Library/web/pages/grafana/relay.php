@@ -48,7 +48,7 @@ try {
     $relay->get();
 
 } catch (ValidationFailedException $e) {
-    // Don't allow phoundation to catch this, as it will show validation error information that should be kept private
+    // Do not allow phoundation to catch this, as it will show validation error information that should be kept private
     // Show the 400-page directly
     Request::execute('system/400');
 }
