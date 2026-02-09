@@ -16,6 +16,8 @@ declare(strict_types=1);
 
 use Phoundation\Exception\AccessDeniedException;
 use Phoundation\Web\Html\Components\AnchorBlock;
+use Phoundation\Web\Html\Components\Input\Buttons\AuditButton;
+use Phoundation\Web\Html\Components\Input\Buttons\SaveButton;
 use Phoundation\Web\Html\Components\Widgets\Breadcrumbs\Breadcrumb;
 use Plugins\Phoundation\Knowledgebase\Article;
 use Phoundation\Data\Validator\Exception\ValidationFailedException;
@@ -41,7 +43,7 @@ $get = GetValidator::new()
 
 
 // Get the requested article and modify form design
-$article = Article::new()->loadThis($get['id']);
+$o_article = Article::new()->loadThis($get['id']);
 
 
 // Validate POST and submit
@@ -50,29 +52,29 @@ if (Request::isPostRequestMethod()) {
         switch (PostValidator::new()->getSubmitButton()) {
             case tr('Save'):
                 // Update article
-                $article->apply()->save();
+                $o_article->apply()->save();
 
                 Response::getFlashMessagesObject()->addSuccess(tr('The article ":article" has been saved', [
-                    ':article' => $article->getDisplayName(),
+                    ':article' => $o_article->getDisplayName(),
                 ]));
 
                 // Redirect away from POST
-                Response::redirect(Url::new('/accounts/article+' . $article->getId() . '.html')->makeWww());
+                Response::redirect(Url::new('/accounts/article+' . $o_article->getId() . '.html')->makeWww());
 
             case tr('Delete'):
-                $article->delete();
+                $o_article->delete();
 
                 Response::getFlashMessagesObject()->addSuccess(tr('The account for article ":article" has been deleted', [
-                    ':article' => $article->getDisplayName(),
+                    ':article' => $o_article->getDisplayName(),
                 ]));
 
                 Response::redirect();
 
             case tr('Undelete'):
-                $article->undelete();
+                $o_article->undelete();
 
                 Response::getFlashMessagesObject()->addSuccess(tr('The account for article ":article" has been undeleted', [
-                    ':article' => $article->getDisplayName(),
+                    ':article' => $o_article->getDisplayName(),
                 ]));
 
                 Response::redirect();
@@ -81,53 +83,47 @@ if (Request::isPostRequestMethod()) {
     } catch (IncidentsException | ValidationFailedException | AccessDeniedException $e) {
         // Oops! Show validation errors and remain on the page
         Response::getFlashMessagesObject()->addMessage($e);
-        $article->forceApply();
+        $o_article->forceApply();
     }
 }
 
 
 // Save button
-if (!$article->getReadonly()) {
-    $save = Button::new()->setContent(tr('Save'));
+if (!$o_article->getReadonly()) {
+    $o_save = SaveButton::new();
 }
 
 
 // Audit button.
-if (!$article->isNew()) {
-    $audit = Button::new()
-                   ->setFloatRight(true)
-                   ->setMode(EnumDisplayMode::information)
-                   ->setUrlObject('/audit/meta+' . $article->getMetaId() . '.html')
-                   ->setFloatRight(true)
-                   ->setContent(tr('Audit'));
+if (!$o_article->isNew()) {
+    $o_audit = AuditButton::new()
+                          ->setFloatRight(true)
+                          ->setUrlObject('/audit/meta+' . $o_article->getMetaId() . '.html');
 }
 
 
 // Build the "article" form
 $article_card = Card::new()
-                 ->setCollapseSwitch(true)
-                 ->setMaximizeSwitch(true)
-                 ->setTitle(tr('Edit profile for article :name', [':name' => $article->getDisplayName()]))
-                 ->setContent($article->getHtmlDataEntryFormObject())
-                 ->setButtonsObject(Buttons::new()
-                                           ->addButton(isset_get($save))
-                                           ->addButton(tr('Back'), EnumDisplayMode::secondary, Url::newPrevious('/accounts/articles.html'), true)
-                                           ->addButton(isset_get($audit))
-                                           ->addButton(isset_get($delete))
-                                           ->addButton(isset_get($lock))
-                                           ->addButton(isset_get($impersonate)));
+                    ->setCollapseSwitch(true)
+                    ->setMaximizeSwitch(true)
+                    ->setTitle(tr('Edit profile for article :name', [':name' => $o_article->getDisplayName()]))
+                    ->setContent($o_article->getHtmlDataEntryFormObject())
+                    ->setButtonsObject(Buttons::new()
+                                              ->addButton(isset_get($o_save))
+                                              ->addBackButton(Url::newPrevious('/accounts/articles.html'), true)
+                                              ->addButton(isset_get($o_audit)));
 
 
 // Build relevant links
 $o_relevant_card = Card::new()
-                     ->setMode(EnumDisplayMode::info)
-                     ->setTitle(tr('Relevant links'))
-                     ->setContent(($article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
-                                                            AnchorBlock::new(Url::new('/accounts/password+' . $article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
-                                                            AnchorBlock::new(Url::new('/reports/security/authentications.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Authentications for this article')) .
-                                                            AnchorBlock::new(Url::new('/reports/security/incidents.html')->makeWww()->addQueries('articles_id=' . $article->getId()), tr('Security incidents for this article'))) .
-                                                            hr(AnchorBlock::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
-                                                               AnchorBlock::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'))));
+                       ->setMode(EnumDisplayMode::info)
+                       ->setTitle(tr('Relevant links'))
+                       ->setContent(($o_article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $o_article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
+                                                                AnchorBlock::new(Url::new('/accounts/password+' . $o_article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
+                                                                AnchorBlock::new(Url::new('/reports/security/authentications.html')->makeWww()->addQueries('articles_id=' . $o_article->getId()), tr('Authentications for this article')) .
+                                                                AnchorBlock::new(Url::new('/reports/security/incidents.html')->makeWww()->addQueries('articles_id=' . $o_article->getId()), tr('Security incidents for this article'))) .
+                                    hr(AnchorBlock::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
+                                                                 AnchorBlock::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'))));
 
 
 // Build documentation
@@ -140,13 +136,13 @@ $o_documentation_card = Card::new()
 
 
 // Set page meta-data
-Response::setPageTitle(tr('Article :article', [':article' => $article->getDisplayName()]));
+Response::setPageTitle(tr('Article :article', [':article' => $o_article->getDisplayName()]));
 Response::setHeaderTitle(tr('Article'));
-Response::setHeaderSubTitle($article->getDisplayName());
+Response::setHeaderSubTitle($o_article->getDisplayName());
 Response::setBreadcrumbs([
     Breadcrumb::new('/'                      , tr('Home')),
     Breadcrumb::new('/accounts/articles.html', tr('Articles')),
-    Breadcrumb::new(''                       , $article->getDisplayName()),
+    Breadcrumb::new(''                       , $o_article->getDisplayName()),
 ]);
 
 

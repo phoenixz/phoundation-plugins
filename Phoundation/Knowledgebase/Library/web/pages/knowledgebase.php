@@ -48,7 +48,7 @@ $articles_card = Card::new()
     ->useForm(true);
 
 
-$articles_card->getForm()
+$articles_card->getFormObject()
               ->setAction(Url::newCurrent())
               ->setRequestMethod(EnumHttpRequestMethod::post);
 
