@@ -48,17 +48,13 @@ $o_buttons = Buttons::new()
 $o_articles_card = Card::new()
                        ->setTitle('Active articles')
                        ->setSwitches('reload')
+                       ->useForm(true)
                        ->setContent($o_articles->load()
                                                ->getHtmlDataTableObject([
                                                    'name' => tr('Name'),
                                                ])
                                                ->setRowUrls('/knowledgebase/article+:ROW.html'))
-                       ->useForm(true)
                        ->setButtonsObject($o_buttons);
-
-$o_articles_card->getFormObject()
-                ->setAction(Url::newCurrent())
-                ->setRequestMethod(EnumHttpRequestMethod::post);
 
 
 // Build relevant links
