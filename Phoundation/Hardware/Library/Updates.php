@@ -29,7 +29,7 @@ class Updates extends Libraries\Updates
      */
     public function version(): string
     {
-        return '0.20.0';
+        return '0.20.1';
     }
 
     /**
@@ -157,6 +157,76 @@ class Updates extends Libraries\Updates
                     CONSTRAINT `fk_hardware_options_devices_id` FOREIGN KEY (`devices_id`) REFERENCES `hardware_devices` (`id`) ON DELETE CASCADE,
                     CONSTRAINT `fk_hardware_options_profiles_id` FOREIGN KEY (`profiles_id`) REFERENCES `hardware_profiles` (`id`) ON DELETE CASCADE,
                 ')->create();
+
+        })->addUpdate('0.13.1', function () {
+            // Fix indices to include `status` for databases_connectors
+            $tables = [
+                'bookmarks',
+            ];
+
+            foreach ($tables as $table) {
+                $_table  = sql()->getSchemaObject()->getTableObject($table);
+                $indices = [
+                    'name',
+                ];
+
+                foreach ($indices as $index) {
+                    $_table->alter()->dropIndex($index, true);
+                }
+
+                $_table->alter()->dropIndex('users_id_name_status', true)
+                                ->addIndex('UNIQUE KEY `users_id_name_status` (`users_id`, `name`, `status`)');
+            }
+
+        })->addUpdate('0.20.1', function () {
+            // Fix indices to include `status` for hardware_devices
+            $tables = [
+                'hardware_devices',
+            ];
+
+            foreach ($tables as $table) {
+                $_table  = sql()->getSchemaObject()->getTableObject($table);
+                $indices = [
+                    'name',
+                ];
+
+                foreach ($indices as $index) {
+                    $_table->alter()->dropIndex($index, true);
+                }
+
+                $_table->alter()->dropIndex('name_status', true)
+                                ->addIndex('UNIQUE KEY `name_status` (`name`, `status`)');
+            }
+
+            // Fix indices to include `status` for databases_connectors
+            $tables = [
+                'hardware_profiles',
+            ];
+
+            foreach ($tables as $table) {
+                $_table  = sql()->getSchemaObject()->getTableObject($table);
+                $indices = [
+                    'devices_id_name',
+                ];
+
+                foreach ($indices as $index) {
+                    $_table->alter()->dropIndex($index, true);
+                }
+
+                $_table->alter()->dropIndex('devices_id_name_status', true)
+                                ->addIndex('UNIQUE KEY `devices_id_name_status` (`devices_id`, `name`, `status`)');
+            }
+
+            // Fix indices to include `status` for databases_connectors
+            $tables = [
+                'hardware_options',
+            ];
+
+            foreach ($tables as $table) {
+                sql()->getSchemaObject()->getTableObject($table)
+                                        ->alter()->dropIndex('devices_id_profiles_id_key_status', true)
+                                                 ->addIndex('UNIQUE KEY `devices_id_profiles_id_key_status` (`devices_id`, `profiles_id`, `key`, `status`)');
+            }
         });
     }
 }
