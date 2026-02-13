@@ -33,13 +33,13 @@ $argv = ArgvValidator::new()
 
 
 // Define the callback
-$callback = function ($o_file) use ($argv, &$callback) {
+$callback = function ($_file) use ($argv, &$callback) {
     static $results = [];
-show($o_file->getSource());
-    if ($o_file->isDirectory()) {
+show($_file->getSource());
+    if ($_file->isDirectory()) {
 show('IS DIR!');
         if ($argv['recursive']) {
-            $o_file->onFiles($callback);
+            $_file->onFiles($callback);
         }
 
         return;
@@ -47,7 +47,7 @@ show('IS DIR!');
 
 show('IS FILE!');
 
-    preg_match_all($argv['regex'], $o_file->getContentsAsString(), $matches);
+    preg_match_all($argv['regex'], $_file->getContentsAsString(), $matches);
 
     if (empty($matches)) {
         return;
@@ -58,8 +58,8 @@ showdie($matches);
 
 
 // Default files is the current directory
-foreach ($argv['files'] as $o_file) {
-show($o_file->getSource());
-    $callback($o_file);
+foreach ($argv['files'] as $_file) {
+show($_file->getSource());
+    $callback($_file);
 }
 show('FINISHED!');

@@ -133,19 +133,19 @@ class Article extends DataEntry
     /**
      * Sets the available data keys for this entry
      *
-     * @param DefinitionsInterface $o_definitions
+     * @param DefinitionsInterface $_definitions
      *
      * @return static
      */
-    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $_definitions): static
     {
-        $o_definitions->add(DefinitionFactory::newName()
+        $_definitions->add(DefinitionFactory::newName()
                                              ->setInputType(EnumInputType::name)
                                              ->setSize(12)
                                              ->setMaxLength(64)
                                              ->setHelpText(tr('The name for this article'))
-                                             ->addValidationFunction(function (ValidatorInterface $o_validator) {
-                                                $o_validator->isUnique();
+                                             ->addValidationFunction(function (ValidatorInterface $_validator) {
+                                                $_validator->isUnique();
                                             }))
 
                     ->add(DefinitionFactory::newCode()

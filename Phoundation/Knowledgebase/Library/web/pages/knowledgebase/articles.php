@@ -29,8 +29,8 @@ use Phoundation\Web\Requests\Response;
 
 
 // Get the articles list and apply filters
-$o_articles = Articles::new();
-$o_builder  = $o_articles->getQueryBuilderObject()
+$_articles = Articles::new();
+$_builder  = $_articles->getQueryBuilderObject()
                          ->addSelect(' `knowledgebase_articles`.`id`, 
                                        `knowledgebase_articles`.`name`, 
                                        `knowledgebase_articles`.`status`,')
@@ -38,34 +38,34 @@ $o_builder  = $o_articles->getQueryBuilderObject()
 
 
 // Build "articles" table
-$o_buttons = Buttons::new()
+$_buttons = Buttons::new()
                     ->addCreateButton(Url::new('/knowledgebase/article.html'))
                     ->addDeleteButton(true);
 
 
 // TODO Automatically re-select items if possible
 //    ->select($post['id']);
-$o_articles_card = Card::new()
+$_articles_card = Card::new()
                        ->setTitle('Active articles')
                        ->setSwitches('reload')
                        ->useForm(true)
-                       ->setContent($o_articles->load()
+                       ->setContent($_articles->load()
                                                ->getHtmlDataTableObject([
                                                    'name' => tr('Name'),
                                                ])
                                                ->setRowUrls('/knowledgebase/article+:ROW.html'))
-                       ->setButtonsObject($o_buttons);
+                       ->setButtonsObject($_buttons);
 
 
 // Build relevant links
-$o_relevant_card = Card::new()
+$_relevant_card = Card::new()
                        ->setMode(EnumDisplayMode::info)
                        ->setTitle(tr('Relevant links'))
                        ->setContent(AnchorBlock::new(Url::new('/knowledgebase/articles.html')->makeWww(), tr('Knowledgebase')));
 
 
 // Build documentation
-$o_documentation_card = Card::new()
+$_documentation_card = Card::new()
                             ->setMode(EnumDisplayMode::info)
                             ->setTitle(tr('Documentation'))
                             ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
@@ -82,5 +82,5 @@ Response::setBreadcrumbs([
 
 // Render and return the page grid
 return Grid::new()
-           ->addGridColumn($o_articles_card                        , EnumDisplaySize::nine)
-           ->addGridColumn($o_relevant_card . $o_documentation_card, EnumDisplaySize::three);
+           ->addGridColumn($_articles_card                        , EnumDisplaySize::nine)
+           ->addGridColumn($_relevant_card . $_documentation_card, EnumDisplaySize::three);

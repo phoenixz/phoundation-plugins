@@ -43,7 +43,7 @@ $get = GetValidator::new()
 
 
 // Get the requested article and modify form design
-$o_article = Article::new()->loadThis($get['id']);
+$_article = Article::new()->loadThis($get['id']);
 
 
 // Validate POST and submit
@@ -52,29 +52,29 @@ if (Request::isPostRequestMethod()) {
         switch (PostValidator::new()->getSubmitButton()) {
             case tr('Save'):
                 // Update article
-                $o_article->apply()->save();
+                $_article->apply()->save();
 
                 Response::getFlashMessagesObject()->addSuccess(tr('The article ":article" has been saved', [
-                    ':article' => $o_article->getDisplayName(),
+                    ':article' => $_article->getDisplayName(),
                 ]));
 
                 // Redirect away from POST
-                Response::redirect(Url::new('/accounts/article+' . $o_article->getId() . '.html')->makeWww());
+                Response::redirect(Url::new('/accounts/article+' . $_article->getId() . '.html')->makeWww());
 
             case tr('Delete'):
-                $o_article->delete();
+                $_article->delete();
 
                 Response::getFlashMessagesObject()->addSuccess(tr('The account for article ":article" has been deleted', [
-                    ':article' => $o_article->getDisplayName(),
+                    ':article' => $_article->getDisplayName(),
                 ]));
 
                 Response::redirect();
 
             case tr('Undelete'):
-                $o_article->undelete();
+                $_article->undelete();
 
                 Response::getFlashMessagesObject()->addSuccess(tr('The account for article ":article" has been undeleted', [
-                    ':article' => $o_article->getDisplayName(),
+                    ':article' => $_article->getDisplayName(),
                 ]));
 
                 Response::redirect();
@@ -83,22 +83,22 @@ if (Request::isPostRequestMethod()) {
     } catch (IncidentsException | ValidationFailedException | AccessDeniedException $e) {
         // Oops! Show validation errors and remain on the page
         Response::getFlashMessagesObject()->addMessage($e);
-        $o_article->forceApply();
+        $_article->forceApply();
     }
 }
 
 
 // Save button
-if (!$o_article->getReadonly()) {
-    $o_save = SaveButton::new();
+if (!$_article->getReadonly()) {
+    $_save = SaveButton::new();
 }
 
 
 // Audit button.
-if (!$o_article->isNew()) {
-    $o_audit = AuditButton::new()
+if (!$_article->isNew()) {
+    $_audit = AuditButton::new()
                           ->setFloatRight(true)
-                          ->setUrlObject('/audit/meta+' . $o_article->getMetaId() . '.html');
+                          ->setUrlObject('/audit/meta+' . $_article->getMetaId() . '.html');
 }
 
 
@@ -106,28 +106,28 @@ if (!$o_article->isNew()) {
 $article_card = Card::new()
                     ->setCollapseSwitch(true)
                     ->setMaximizeSwitch(true)
-                    ->setTitle(tr('Edit profile for article :name', [':name' => $o_article->getDisplayName()]))
-                    ->setContent($o_article->getHtmlDataEntryFormObject())
+                    ->setTitle(tr('Edit profile for article :name', [':name' => $_article->getDisplayName()]))
+                    ->setContent($_article->getHtmlDataEntryFormObject())
                     ->setButtonsObject(Buttons::new()
-                                              ->addButton(isset_get($o_save))
+                                              ->addButton(isset_get($_save))
                                               ->addBackButton(Url::newPrevious('/accounts/articles.html'), true)
-                                              ->addButton(isset_get($o_audit)));
+                                              ->addButton(isset_get($_audit)));
 
 
 // Build relevant links
-$o_relevant_card = Card::new()
+$_relevant_card = Card::new()
                        ->setMode(EnumDisplayMode::info)
                        ->setTitle(tr('Relevant links'))
-                       ->setContent(($o_article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $o_article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
-                                                                AnchorBlock::new(Url::new('/accounts/password+' . $o_article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
-                                                                AnchorBlock::new(Url::new('/reports/security/authentications.html')->makeWww()->addQueries('articles_id=' . $o_article->getId()), tr('Authentications for this article')) .
-                                                                AnchorBlock::new(Url::new('/reports/security/incidents.html')->makeWww()->addQueries('articles_id=' . $o_article->getId()), tr('Security incidents for this article'))) .
+                       ->setContent(($_article->isNew() ? '' : AnchorBlock::new(Url::new('/profiles/profile+' . $_article->getId() . '.html')->makeWww(), tr('Profile page for this article')) .
+                                                                AnchorBlock::new(Url::new('/accounts/password+' . $_article->getId() . '.html')->makeWww(), tr('Change password for this article')) .
+                                                                AnchorBlock::new(Url::new('/reports/security/authentications.html')->makeWww()->addQueries('articles_id=' . $_article->getId()), tr('Authentications for this article')) .
+                                                                AnchorBlock::new(Url::new('/reports/security/incidents.html')->makeWww()->addQueries('articles_id=' . $_article->getId()), tr('Security incidents for this article'))) .
                                     hr(AnchorBlock::new(Url::new('/accounts/roles.html')->makeWww(), tr('Roles management')) .
                                                                  AnchorBlock::new(Url::new('/accounts/rights.html')->makeWww(), tr('Rights management'))));
 
 
 // Build documentation
-$o_documentation_card = Card::new()
+$_documentation_card = Card::new()
                           ->setMode(EnumDisplayMode::info)
                           ->setTitle(tr('Documentation'))
                           ->setContent('<p>Soluta a rerum quia est blanditiis ipsam ut libero. Pariatur est ut qui itaque dolor nihil illo quae. Asperiores ut corporis et explicabo et. Velit perspiciatis sunt dicta maxime id nam aliquid repudiandae. Et id quod tempore.</p>
@@ -136,13 +136,13 @@ $o_documentation_card = Card::new()
 
 
 // Set page meta-data
-Response::setPageTitle(tr('Article :article', [':article' => $o_article->getDisplayName()]));
+Response::setPageTitle(tr('Article :article', [':article' => $_article->getDisplayName()]));
 Response::setHeaderTitle(tr('Article'));
-Response::setHeaderSubTitle($o_article->getDisplayName());
+Response::setHeaderSubTitle($_article->getDisplayName());
 Response::setBreadcrumbs([
     Breadcrumb::new('/'                      , tr('Home')),
     Breadcrumb::new('/accounts/articles.html', tr('Articles')),
-    Breadcrumb::new(''                       , $o_article->getDisplayName()),
+    Breadcrumb::new(''                       , $_article->getDisplayName()),
 ]);
 
 
@@ -152,4 +152,4 @@ return Grid::new()
                                       ->addContent($article_card)
                                       ->setSize(9)
                                       ->useForm(true))
-            ->addGridColumn($o_relevant_card . $o_documentation_card, EnumDisplaySize::three);
+            ->addGridColumn($_relevant_card . $_documentation_card, EnumDisplaySize::three);

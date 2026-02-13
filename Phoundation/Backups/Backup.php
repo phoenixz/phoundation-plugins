@@ -220,27 +220,27 @@ class Backup extends DataEntry
     /**
      * Backs up the specified connector
      *
-     * @param ConnectorInterface $o_connector
+     * @param ConnectorInterface $_connector
      *
      * @return static
      */
-    protected function backupConnectorDatabase(ConnectorInterface $o_connector): static
+    protected function backupConnectorDatabase(ConnectorInterface $_connector): static
     {
         Log::action(ts('Backup up ":driver" database with connector ":connector"', [
-            ':driver' => $o_connector->getDriver(),
-            ':connector' => $o_connector->getDisplayName()
+            ':driver' => $_connector->getDriver(),
+            ':connector' => $_connector->getDisplayName()
         ]));
 
         // ExecuteExecuteInterface the dump on the specified server
         $this->executeHook('pre-backup-database');
 
         Export::new()
-            ->setConnectorObject($o_connector)
-            ->setDatabase($o_connector->getDatabase())
-            ->setDriver($o_connector->getDriver())
+            ->setConnectorObject($_connector)
+            ->setDatabase($_connector->getDatabase())
+            ->setDriver($_connector->getDriver())
             ->setTimeout($this->timeout)
             ->setGzip($this->gzip)
-            ->dump($this->getFile($o_connector));
+            ->dump($this->getFile($_connector));
 
         return $this->executeHook('post-backup-database');
     }
@@ -266,13 +266,13 @@ class Backup extends DataEntry
     /**
      * Sets and returns the field definitions for the data fields in this DataEntry object
      *
-     * @param DefinitionsInterface $o_definitions
+     * @param DefinitionsInterface $_definitions
      *
      * @return Backup
      */
-    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $_definitions): static
     {
-        $o_definitions
+        $_definitions
             ->add(Definition::new('size')
                 ->setReadonly(true)
                 ->setInputType(EnumInputType::positiveInteger)

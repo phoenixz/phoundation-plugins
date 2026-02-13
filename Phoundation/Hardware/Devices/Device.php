@@ -359,9 +359,9 @@ class Device extends DataEntry implements DeviceInterface
     /**
      * @inheritDoc
      */
-    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $_definitions): static
     {
-        $o_definitions
+        $_definitions
             ->add(DefinitionFactory::newDatabaseId('servers_id'))
 
             ->add(DefinitionFactory::newServer())
@@ -372,8 +372,8 @@ class Device extends DataEntry implements DeviceInterface
                                    ->setSize(12)
                                    ->setMaxLength(64)
                                    ->setHelpText(tr('The name for this device'))
-                                   ->addValidationFunction(function (ValidatorInterface $o_validator) {
-                                       $o_validator->isUnique();
+                                   ->addValidationFunction(function (ValidatorInterface $_validator) {
+                                       $_validator->isUnique();
                                    }))
 
             ->add(DefinitionFactory::newSeoName())

@@ -21,14 +21,14 @@ use Phoundation\Web\Requests\Request;
 
 try {
     // Validate relay data and start building relay URL
-    $o_validator = GetValidator::new()
+    $_validator = GetValidator::new()
         ->select('url')->hasMaxCharacters(255)->matchesRegex('/^\/[a-z0-9]+[a-z0-9-.\/]+/i')
         ->select('orgId')->isOptional()->isInteger()->isPositive()
         ->select('panelId')->isOptional()->isInteger()->isPositive()
         ->select('from')->isOptional()->isInteger()->isPositive()
         ->select('to')->isOptional()->isInteger()->isPositive();
 
-    $get = $o_validator->validate(false);
+    $get = $_validator->validate(false);
     $url = Arrays::extractKey($get, 'url');
 
     if (str_starts_with($url, '/relay')) {

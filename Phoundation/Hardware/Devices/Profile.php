@@ -184,16 +184,16 @@ class Profile extends DataEntry implements ProfileInterface
     /**
      * @inheritDoc
      */
-    protected function setDefinitionsObject(DefinitionsInterface $o_definitions): static
+    protected function setDefinitionsObject(DefinitionsInterface $_definitions): static
     {
-        $o_definitions
+        $_definitions
             ->add(Definition::new('devices_id')
                 ->setRender(true)
                 ->setOptional(true)
                 ->setSize(4)
-                ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                ->addValidationFunction(function (ValidatorInterface $_validator) {
                     // Validate the programs id
-                    $o_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
+                    $_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
                                                                                FROM   `hardware_devices` 
                                                                                WHERE   `id` = :id 
                                                                                AND   (`status` IS NULL OR `status` != "deleted")', [
@@ -207,9 +207,9 @@ class Profile extends DataEntry implements ProfileInterface
                 ->setRender(false)
                 ->setSize(4)
                 ->setInputType(EnumInputType::select)
-                ->addValidationFunction(function (ValidatorInterface $o_validator) {
+                ->addValidationFunction(function (ValidatorInterface $_validator) {
                     // Validate the device name
-                    $o_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
+                    $_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
                                                                                                            FROM   `hardware_devices` 
                                                                                                            WHERE  `name` = :name 
                                                                                                            AND   (`status` IS NULL OR `status` != "deleted")', [

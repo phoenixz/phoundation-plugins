@@ -67,11 +67,11 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
     /**
      * MultiFactorAuthentication class constructor
      *
-     * @param UserInterface $o_user
+     * @param UserInterface $_user
      */
-    public function __construct(UserInterface $o_user)
+    public function __construct(UserInterface $_user)
     {
-        $this->o_user = $o_user;
+        $this->_user = $_user;
         parent::__construct();
     }
 
@@ -79,13 +79,13 @@ class MultiFactorAuthentication extends ElementsBlockCore implements MultiFactor
     /**
      * Returns a new static object
      *
-     * @param UserInterface $o_user
+     * @param UserInterface $_user
      *
      * @return static
      */
-    public static function new(UserInterface $o_user): static
+    public static function new(UserInterface $_user): static
     {
-        return new static($o_user);
+        return new static($_user);
     }
 
 
