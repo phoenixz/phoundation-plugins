@@ -41,7 +41,7 @@ CliDocumentation::setAutoComplete([
         '--clear'  => false,
         '-n,--no-options',
         '-c,--class'  => [
-                'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_STARTS_WITH | Utils::MATCH_CASE_INSENSITIVE); },
+                'word'   => function ($word) { return Arrays::getMatches(['scanner', 'printer' , 'webcam', 'biometric'], $word, Utils::MATCH_ALL | Utils::MATCH_BEGINS_WITH | Utils::MATCH_CASE_INSENSITIVE); },
                 'noword' => function ()      { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]

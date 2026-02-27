@@ -62,7 +62,7 @@ CliDocumentation::setAutoComplete([
             'word'   => function ($word, $arguments) {
                 $values = Device::new()->load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');
                 $values = Arrays::force($values, ',');
-                return Arrays::keepMatchingValuesStartingWith($values, $word);
+                return Arrays::keepMatchingValuesBeginningWith($values, $word);
             },
             'noword' => function ($word, $arguments) {
                 $values = Device::new()->load($arguments[0])->getProfiles()->get($arguments[1])->getOptions()->getSourceKeyColumn($arguments[2], 'values');

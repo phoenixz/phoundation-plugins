@@ -42,7 +42,7 @@ TARGET                                  The target profile name. This profile mu
 CliDocumentation::setAutoComplete([
     'arguments' => [
         '-k, --keys'  => [
-            'word'   => function ($word) { return Arrays::keepMatchingValuesStartingWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
+            'word'   => function ($word) { return Arrays::keepMatchingValuesBeginningWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
             'noword' => function ($word) { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]

@@ -35,7 +35,7 @@ ARGUMENTS
 CliDocumentation::setAutoComplete([
     'arguments' => [
         '-c,--class'  => [
-            'word'   => function ($word) { return Arrays::keepMatchingValuesStartingWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
+            'word'   => function ($word) { return Arrays::keepMatchingValuesBeginningWith(['scanner', 'printer', 'webcam', 'biometric'], $word); },
             'noword' => function ($word) { return ['scanner', 'printer' , 'webcam', 'biometric']; },
         ],
     ]
