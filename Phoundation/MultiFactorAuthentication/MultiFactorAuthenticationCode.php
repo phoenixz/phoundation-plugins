@@ -21,7 +21,7 @@ use Phoundation\Data\DataEntries\Definitions\DefinitionFactory;
 use Phoundation\Data\DataEntries\Definitions\Interfaces\DefinitionsInterface;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryCode;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryIpAddress;
-use Phoundation\Data\DataEntries\Traits\TraitDataEntrySessionCode;
+use Phoundation\Data\DataEntries\Traits\TraitDataEntrySessionsCode;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryUser;
 
 
@@ -29,7 +29,7 @@ class MultiFactorAuthenticationCode extends DataEntry
 {
     use TraitDataEntryUser;
     use TraitDataEntryCode;
-    use TraitDataEntrySessionCode;
+    use TraitDataEntrySessionsCode;
     use TraitDataEntryIpAddress;
 
 
