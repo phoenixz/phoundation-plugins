@@ -21,7 +21,7 @@ use Phoundation\Filesystem\Exception\FileExistsException;
 use Phoundation\Filesystem\PhoDirectory;
 
 
-$directory = PhoDirectory::newFilesystemRootObject();
+$directory = PhoDirectory::newFilesystemRoot();
 
 CliDocumentation::setUsage('./pho tools security keyfiles delete
 ./pho tools security keyfiles create -s 8192');

@@ -24,8 +24,8 @@ use Plugins\Phoundation\Backups\Backup;
 CliDocumentation::setAutoComplete([
     'arguments' => [
         '-t,--target'  => [
-            'word'   => function ($word) { return PhoDirectory::newDataObject(false, 'backups/')->scan('/^.*?' . preg_quote($word, '/') . '.*?$/', glob_flags: GLOB_MARK | GLOB_ONLYDIR); },
-            'noword' => function ($word) { return PhoDirectory::newDataObject(false, 'backups/')->scan('/^.*?' . preg_quote($word, '/') . '.*?$/', glob_flags: GLOB_MARK | GLOB_ONLYDIR); },
+            'word'   => function ($word) { return PhoDirectory::newData(false, 'backups/')->scan('/^.*?' . preg_quote($word, '/') . '.*?$/', glob_flags: GLOB_MARK | GLOB_ONLYDIR); },
+            'noword' => function ($word) { return PhoDirectory::newData(false, 'backups/')->scan('/^.*?' . preg_quote($word, '/') . '.*?$/', glob_flags: GLOB_MARK | GLOB_ONLYDIR); },
         ],
     ]
 ]);
@@ -43,7 +43,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('-t,--target', true)->sanitizeDirectory(PhoDirectory::newFilesystemRootObject(true))
+    ->select('-t,--target', true)->sanitizeDirectory(PhoDirectory::newFilesystemRoot(true))
     ->validate();
 
 
