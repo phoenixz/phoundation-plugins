@@ -25,14 +25,14 @@ use Phoundation\Utils\Arrays;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = PhoRestrictions::newWritableObject('/');
+$restrictions = PhoRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
         '0' => true,
         '1' => [
-            'word'   => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
-            'noword' => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRoot()->scan($word, '/.*?$/'); },
+            'noword' => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRoot()->scan($word, '/.*?$/'); },
         ],
     ],
     'arguments' => [
@@ -64,7 +64,7 @@ ARGUMENTS
 
 $argv = ArgvValidator::new()
     ->select('source')->hasMaxCharacters(511)
-    ->select('target')->sanitizeDirectory(PhoDirectory::newFilesystemRootObject())
+    ->select('target')->sanitizeDirectory(PhoDirectory::newFilesystemRoot())
     ->select('-o,--options', true)->isOptional()->hasMaxCharacters(511)
     ->select('-t,--file-system', true)->isOptional()->isInArray(Proc::getSupportedFiletypes())
     ->validate();

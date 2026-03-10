@@ -25,7 +25,7 @@ use Phoundation\Os\Processes\Commands\UnMount;
 
 
 $types        = Proc::getSupportedFiletypes();
-$restrictions = PhoRestrictions::newWritableObject('/');
+$restrictions = PhoRestrictions::newWritable('/');
 
 CliDocumentation::setAutoComplete([
     'positions' => [
@@ -69,7 +69,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('target')->sanitizeDirectory(PhoDirectory::newFilesystemRootObject())
+    ->select('target')->sanitizeDirectory(PhoDirectory::newFilesystemRoot())
     ->select('-l,--lazy')->isOptional()->isBoolean()
     ->validate();
 

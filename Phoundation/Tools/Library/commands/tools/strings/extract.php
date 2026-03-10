@@ -28,7 +28,7 @@ CliDocumentation::setHelp('The extract tool allows you to extract all matches of
 $argv = ArgvValidator::new()
                      ->select('regex')->hasMaxCharacters(255)
                      ->select('-r,--recursive')->isOptional()->isBoolean()
-                     ->selectAll('files')->isOptional([PhoDirectory::newRootObject()])->sanitizeForceArray()->forEachField()->isPath()
+                     ->selectAll('files')->isOptional([PhoDirectory::newRoot()])->sanitizeForceArray()->forEachField()->isPath()
                      ->validate();
 
 
