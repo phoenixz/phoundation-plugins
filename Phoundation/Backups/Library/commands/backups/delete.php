@@ -43,7 +43,7 @@ ARGUMENTS
 
 // Validate arguments
 $argv = ArgvValidator::new()
-    ->select('-t,--target', true)->sanitizeDirectory(PhoDirectory::newFilesystemRootObject(true))
+    ->select('-t,--target', true)->sanitizeDirectory(PhoDirectory::newFilesystemRoot(true))
     ->validate();
 
 

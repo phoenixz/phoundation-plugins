@@ -38,8 +38,8 @@ FILE                                    The path to the file (or directory) whic
 CliDocumentation::setAutoComplete([
     'positions' => [
         0 => [
-            'word'   => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
-            'noword' => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRootObject()->scan($word, '/.*?$/'); },
+            'word'   => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRoot()->scan($word, '/.*?$/'); },
+            'noword' => function ($word) use ($restrictions) { return PhoDirectory::newFilesystemRoot()->scan($word, '/.*?$/'); },
         ],
     ]
 ]);
@@ -47,7 +47,7 @@ CliDocumentation::setAutoComplete([
 
 // Validate data
 $argv = ArgvValidator::new()
-    ->select('file')->hasMaxCharacters(2048)-->isFile(PhoDirectory::newFilesystemRootObject())->sanitizeCallback(function(mixed $value, array $source) { return '/' . $value; })
+    ->select('file')->hasMaxCharacters(2048)-->isFile(PhoDirectory::newFilesystemRoot())->sanitizeCallback(function(mixed $value, array $source) { return '/' . $value; })
                                                                                               ->validate();
 
 
