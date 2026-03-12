@@ -196,7 +196,7 @@ class Profile extends DataEntry implements ProfileInterface
                     $_validator->orColumn('device')->isDbId()->isQueryResult('SELECT `id` 
                                                                                FROM   `hardware_devices` 
                                                                                WHERE   `id` = :id 
-                                                                               AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                               AND   (`status` IS NULL OR `status` NOT LIKE "deleted%")', [
                                                                                    ':id' => '$devices_id'
                     ]);
                 }))
@@ -212,7 +212,7 @@ class Profile extends DataEntry implements ProfileInterface
                     $_validator->orColumn('devices_id')->isVariable()->setColumnFromQuery('programs_id', 'SELECT `id` 
                                                                                                            FROM   `hardware_devices` 
                                                                                                            WHERE  `name` = :name 
-                                                                                                           AND   (`status` IS NULL OR `status` != "deleted")', [
+                                                                                                           AND   (`status` IS NULL OR `status` NOT LIKE "deleted%")', [
                                                                                                                ':name' => '$device'
                     ]);
                 })
