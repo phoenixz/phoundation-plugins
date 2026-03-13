@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class IpTables
+ * Class Ufw
  *
  *
  *
@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-namespace Plugins\Phoundation\Firewalls\IpTables;
+namespace Plugins\Phoundation\Firewalls\Ufw;
 
 use Phoundation\Data\Traits\TraitStaticMethodNew;
 use Phoundation\Date\Interfaces\PhoDateTimeInterface;
@@ -24,7 +24,7 @@ use Phoundation\Os\Processes\Process;
 use Plugins\Phoundation\Firewalls\Interfaces\FirewallInterface;
 
 
-class IpTables implements FirewallInterface
+class Ufw implements FirewallInterface
 {
     use TraitStaticMethodNew;
 
@@ -43,7 +43,7 @@ class IpTables implements FirewallInterface
     public function __construct()
     {
 throw new UnderConstructionException();
-//        $this->_engine = Process::new('csf');
+        $this->_engine = Process::new('ufw');
     }
 
 
@@ -103,7 +103,6 @@ throw new UnderConstructionException();
      */
     public function deny(string $ip, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comment = null): static
     {
-
         return $this;
     }
 }
