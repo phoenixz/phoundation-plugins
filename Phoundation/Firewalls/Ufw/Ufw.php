@@ -16,9 +16,11 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Firewalls\Ufw;
 
+use Phoundation\Core\Core;
 use Phoundation\Data\Traits\TraitStaticMethodNew;
 use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 use Phoundation\Exception\UnderConstructionException;
+use Phoundation\Os\Processes\Commands\SystemCtl;
 use Phoundation\Os\Processes\Interfaces\ProcessInterface;
 use Phoundation\Os\Processes\Process;
 use Plugins\Phoundation\Firewalls\Interfaces\FirewallInterface;
@@ -32,9 +34,9 @@ class Ufw implements FirewallInterface
     /**
      * Tracks the firewall process object
      *
-     * @var ProcessInterface $_engine
+     * @var ProcessInterface $_firewall
      */
-    protected ProcessInterface $_engine;
+    protected ProcessInterface $_firewall;
 
 
     /**
@@ -42,8 +44,56 @@ class Ufw implements FirewallInterface
      */
     public function __construct()
     {
+        Core::checkProcessIsRoot();
+
+        $this->_firewall = Process::new('ufw');
+    }
+
+
+    /**
+     * Installs UFW on this host
+     *
+     * @return static
+     */
+    public function install(): static
+    {
 throw new UnderConstructionException();
-        $this->_engine = Process::new('ufw');
+//
+//        tar -xzf csf.tgz
+//
+//        cd csf
+//
+//        sh install.sh
+    }
+
+
+    /**
+     * Disables the firewall from starting up
+     *
+     * @return static
+     */
+    public function disable(): static
+    {
+        SystemCtl::new()
+                 ->setOsProcessName('ufw')
+                 ->disable();
+
+        return $this;
+    }
+
+
+    /**
+     * Enables the firewall so it automatically starts up
+     *
+     * @return static
+     */
+    public function enable(): static
+    {
+        SystemCtl::new()
+                 ->setOsProcessName('ufw')
+                 ->enable();
+
+        return $this;
     }
 
 
@@ -54,8 +104,9 @@ throw new UnderConstructionException();
      */
     public function start(): static
     {
-        // sudo iptables -t filter -F
-        // sudo iptables -t filter -X
+        SystemCtl::new()
+                 ->setOsProcessName('ufw')
+                 ->start();
 
         return $this;
     }
@@ -68,8 +119,9 @@ throw new UnderConstructionException();
      */
     public function stop(): static
     {
-        // sudo iptables -t filter -F
-        // sudo iptables -t filter -X
+        SystemCtl::new()
+                 ->setOsProcessName('ufw')
+                 ->stop();
 
         return $this;
     }
@@ -82,8 +134,9 @@ throw new UnderConstructionException();
      */
     public function restart(): static
     {
-        // sudo iptables -t filter -F
-        // sudo iptables -t filter -X
+        SystemCtl::new()
+                 ->setOsProcessName('ufw')
+                 ->restart();
 
         return $this;
     }
@@ -92,16 +145,16 @@ throw new UnderConstructionException();
     /**
      * Will block the specified IP address for the (optionally) specified datetime range
      *
-     * @param string                    $ip             The IP address to deny
-     * @param PhoDateTimeInterface|null $_until  [null] If specified, this rule will be applied until the specified starting date. If not specified, the rule
-     *                                                  will apply forever
-     * @param PhoDateTimeInterface|null $_from   [null] If specified, this rule will be applied from the specified starting date. If not specified, the rule
-     *                                                  will apply immediately
-     * @param string|null               $comment [null] The optional comment to add
+     * @param string                    $ip_address         The IP address to deny
+     * @param PhoDateTimeInterface|null $_until      [null] If specified, this rule will be applied until the specified starting date. If not specified, the rule
+     *                                                      will apply forever
+     * @param PhoDateTimeInterface|null $_from       [null] If specified, this rule will be applied from the specified starting date. If not specified, the rule
+     *                                                      will apply immediately
+     * @param string|null               $comments    [null] The optional comment to add
      *
      * @return static
      */
-    public function deny(string $ip, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comment = null): static
+    public function deny(string $ip_address, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comments = null): static
     {
         return $this;
     }

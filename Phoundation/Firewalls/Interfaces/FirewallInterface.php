@@ -7,20 +7,27 @@ use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 interface FirewallInterface
 {
     /**
-     * Will block the specified IP address for the (optionally) specified datetime range
-     *
-     * @param string                      $ip             The IP address to deny
-     * @param PhoDateTimeInterface|null   $_until  [null] If specified, this rule will be applied until the specified starting date. If not specified, the rule
-     * *                                                  will apply forever
-     * * @param PhoDateTimeInterface|null $_from   [null] If specified, this rule will be applied from the specified starting date. If not specified, the rule
-     * *                                                  will apply immediately
-     * @param string|null                 $comment [null] The optional comment to add
+     * Installs Config Server Firewall on this host
      *
      * @return static
      */
-    public function deny(string $ip, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comment = null): static;
+    public function install(): static;
 
      /**
+     * Disables the firewall from starting up
+     *
+     * @return static
+     */
+    public function disable(): static;
+
+    /**
+     * Enables the firewall so it automatically starts up
+     *
+     * @return static
+     */
+    public function enable(): static;
+
+    /**
      * Starts the firewall
      *
      * @return static
@@ -40,4 +47,18 @@ interface FirewallInterface
      * @return static
      */
     public function restart(): static;
+
+    /**
+     * Will block the specified IP address for the (optionally) specified datetime range
+     *
+     * @param string                    $ip_address         The IP address to deny
+     * @param PhoDateTimeInterface|null $_until      [null] If specified, this rule will be applied until the specified starting date. If not specified, the rule
+     *                                                      will apply forever
+     * @param PhoDateTimeInterface|null $_from       [null] If specified, this rule will be applied from the specified starting date. If not specified, the rule
+     *                                                      will apply immediately
+     * @param string|null               $comments    [null] The optional comment to add
+     *
+     * @return static
+     */
+    public function deny(string $ip_address, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comments = null): static;
 }

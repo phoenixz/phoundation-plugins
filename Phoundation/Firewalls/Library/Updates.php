@@ -62,7 +62,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     `meta_state` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
                     `status` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
                     `action` varchar(32) NULL DEFAULT NULL,
-                    `ip` varchar(46) NULL DEFAULT NULL,
+                    `ip_address` varchar(46) NULL DEFAULT NULL,
                     `from` datetime NULL DEFAULT NULL,
                     `until` datetime NULL DEFAULT NULL,
                     `comments` text NULL DEFAULT NULL,
@@ -74,7 +74,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                     KEY `modified_by` (`modified_by`),
                     KEY `status` (`status`),
                     KEY `action` (`action`),
-                    KEY `ip` (`ip`),
+                    KEY `ip_address` (`ip_address`),
                     KEY `from` (`from`),
                     KEY `until` (`until`),
                 ')->setForeignKeys('

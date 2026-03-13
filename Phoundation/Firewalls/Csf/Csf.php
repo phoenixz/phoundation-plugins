@@ -16,11 +16,17 @@ declare(strict_types=1);
 
 namespace Plugins\Phoundation\Firewalls\Csf;
 
+use Phoundation\Core\Core;
 use Phoundation\Data\Traits\TraitStaticMethodNew;
 use Phoundation\Date\Interfaces\PhoDateTimeInterface;
+use Phoundation\Filesystem\PhoDirectory;
+use Phoundation\Os\Processes\Commands\SystemCtl;
+use Phoundation\Os\Processes\Commands\Tar;
+use Phoundation\Os\Processes\Commands\Wget;
 use Phoundation\Os\Processes\Interfaces\ProcessInterface;
 use Phoundation\Os\Processes\Process;
 use Plugins\Phoundation\Firewalls\Interfaces\FirewallInterface;
+use Plugins\Phoundation\Firewalls\Ufw\Ufw;
 
 
 class Csf implements FirewallInterface
@@ -31,9 +37,9 @@ class Csf implements FirewallInterface
     /**
      * Tracks the firewall process object
      *
-     * @var ProcessInterface $_engine
+     * @var ProcessInterface $_firewall
      */
-    protected ProcessInterface $_engine;
+    protected ProcessInterface $_firewall;
 
 
     /**
@@ -41,7 +47,9 @@ class Csf implements FirewallInterface
      */
     public function __construct()
     {
-        $this->_engine = Process::new('csf');
+        Core::checkProcessIsRoot();
+
+        $this->_firewall = Process::new('csf');
     }
 
 
@@ -52,13 +60,49 @@ class Csf implements FirewallInterface
      */
     public function install(): static
     {
-//        wget https://github.com/waytotheweb/scripts/raw/refs/heads/main/csf.tgz
-//
-//        tar -xzf csf.tgz
-//
-//        cd csf
-//
-//        sh install.sh
+        // Disable all other firewalls
+        Ufw::new()
+            ->stop()
+            ->disable();
+
+        $_directory = PhoDirectory::newTemporary();
+
+        Wget::new($_directory)->setTarget('https://download.configserver.dev/csf.tgz');
+        Tar::new()->untar($_directory->addFile('csf.tgz'), $_directory);
+
+        Process::new()
+               ->setCommand($_directory->addFile('csf/install.tgz'))
+               ->executeNoReturn();
+
+        return $this;
+    }
+
+
+    /**
+     * Disables the firewall from starting up
+     *
+     * @return static
+     */
+    public function disable(): static
+    {
+        // csf -x, systemctl
+        return $this->restart();
+    }
+
+
+    /**
+     * Enables the firewall so it automatically starts up
+     *
+     * @return static
+     */
+    public function enable(): static
+    {
+        // csf -e, systemctl
+        $this->_firewall->clearArguments()
+                        ->appendArgument('-f')
+                        ->executeNoReturn();
+
+        return $this;
     }
 
 
@@ -80,9 +124,9 @@ class Csf implements FirewallInterface
      */
     public function stop(): static
     {
-        $this->_engine->clearArguments()
-                      ->appendArgument('-f')
-                      ->executeNoReturn();
+        $this->_firewall->clearArguments()
+                        ->appendArgument('-f')
+                        ->executeNoReturn();
 
         return $this;
     }
@@ -95,9 +139,9 @@ class Csf implements FirewallInterface
      */
     public function restart(): static
     {
-        $this->_engine->clearArguments()
-                      ->appendArgument('-ra')
-                      ->executeNoReturn();
+        $this->_firewall->clearArguments()
+                        ->appendArgument('-ra')
+                        ->executeNoReturn();
 
         return $this;
     }
@@ -106,19 +150,19 @@ class Csf implements FirewallInterface
     /**
      * Will block the specified IP address for the (optionally) specified datetime range
      *
-     * @param string                    $ip             The IP address to deny
-     * @param PhoDateTimeInterface|null $_until  [null] If specified, this rule will be applied until the specified starting date. If not specified, the rule
-     *                                                  will apply forever
-     * @param PhoDateTimeInterface|null $_from   [null] If specified, this rule will be applied from the specified starting date. If not specified, the rule
-     *                                                  will apply immediately
-     * @param string|null               $comment [null] The optional comment to add
+     * @param string                    $ip_address         The IP address to deny
+     * @param PhoDateTimeInterface|null $_until      [null] If specified, this rule will be applied until the specified starting date. If not specified, the rule
+     *                                                      will apply forever
+     * @param PhoDateTimeInterface|null $_from       [null] If specified, this rule will be applied from the specified starting date. If not specified, the rule
+     *                                                      will apply immediately
+     * @param string|null               $comments    [null] The optional comment to add
      *
      * @return static
      */
-    public function deny(string $ip, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comment = null): static
+    public function deny(string $ip_address, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comments = null): static
     {
-        $this->_engine->clearArguments()
-                      ->appendArguments(['-d', $ip, $comment]);
+        $this->_firewall->clearArguments()
+                        ->appendArguments(['-d', $ip_address, $comments]);
 
         return $this;
     }
