@@ -20,7 +20,6 @@ use Phoundation\Core\Core;
 use Phoundation\Data\Traits\TraitStaticMethodNew;
 use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 use Phoundation\Filesystem\PhoDirectory;
-use Phoundation\Os\Processes\Commands\SystemCtl;
 use Phoundation\Os\Processes\Commands\Tar;
 use Phoundation\Os\Processes\Commands\Wget;
 use Phoundation\Os\Processes\Interfaces\ProcessInterface;
@@ -50,6 +49,41 @@ class Csf implements FirewallInterface
         Core::checkProcessIsRoot();
 
         $this->_firewall = Process::new('csf');
+    }
+
+
+    /**
+     * Returns the short name for the firewall
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return 'csf';
+    }
+
+
+    /**
+     * Returns the full name for the firewall
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return 'Config Server Firewall';
+    }
+
+
+    /**
+     * Returns the version for the firewall
+     *
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->_firewall->clearArguments()
+                               ->appendArgument('-v')
+                               ->executeReturnString();
     }
 
 

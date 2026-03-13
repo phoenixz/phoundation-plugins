@@ -22,6 +22,7 @@ use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 use Phoundation\Exception\UnderConstructionException;
 use Phoundation\Os\Processes\Interfaces\ProcessInterface;
 use Phoundation\Os\Processes\Process;
+use Phoundation\Utils\Strings;
 use Plugins\Phoundation\Firewalls\Interfaces\FirewallInterface;
 
 
@@ -43,10 +44,45 @@ class IpTables implements FirewallInterface
      */
     public function __construct()
     {
-throw new UnderConstructionException();
         Core::checkProcessIsRoot();
+        $this->_firewall = Process::new('iptables');
+    }
 
-        //        $this->_firewall = Process::new('csf');
+
+    /**
+     * Returns the short name for the firewall
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return 'iptables';
+    }
+
+
+    /**
+     * Returns the full name for the firewall
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return 'iptables';
+    }
+
+
+    /**
+     * Returns the version for the firewall
+     *
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        $return = $this->_firewall->clearArguments()
+                                  ->appendArgument('-v')
+                                  ->executeReturnString();
+
+        return trim(Strings::until($return, "\n"));
     }
 
 

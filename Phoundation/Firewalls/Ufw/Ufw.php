@@ -23,6 +23,7 @@ use Phoundation\Exception\UnderConstructionException;
 use Phoundation\Os\Processes\Commands\SystemCtl;
 use Phoundation\Os\Processes\Interfaces\ProcessInterface;
 use Phoundation\Os\Processes\Process;
+use Phoundation\Utils\Strings;
 use Plugins\Phoundation\Firewalls\Interfaces\FirewallInterface;
 
 
@@ -47,6 +48,43 @@ class Ufw implements FirewallInterface
         Core::checkProcessIsRoot();
 
         $this->_firewall = Process::new('ufw');
+    }
+
+
+    /**
+     * Returns the short name for the firewall
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return 'ufw';
+    }
+
+
+    /**
+     * Returns the full name for the firewall
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return 'Uncomplicated Firewall';
+    }
+
+
+    /**
+     * Returns the version for the firewall
+     *
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        $return = $this->_firewall->clearArguments()
+                                  ->appendArgument('--version')
+                                  ->executeReturnString();
+
+        return trim(Strings::until($return, "\n"));
     }
 
 

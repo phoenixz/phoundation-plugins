@@ -7,6 +7,27 @@ use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 interface FirewallInterface
 {
     /**
+     * Returns the short name for the firewall
+     *
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
+     * Returns the full name for the firewall
+     *
+     * @return string
+     */
+    public function getFullName(): string;
+
+    /**
+     * Returns the version for the firewall
+     *
+     * @return string
+     */
+    public function getVersion(): string;
+
+    /**
      * Installs Config Server Firewall on this host
      *
      * @return static

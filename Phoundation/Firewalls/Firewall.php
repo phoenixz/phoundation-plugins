@@ -158,6 +158,39 @@ class Firewall extends DataEntryCore implements FirewallInterface
 
 
     /**
+     * Returns the short name for the firewall
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->_firewall->getName();
+    }
+
+
+    /**
+     * Returns the full name for the firewall
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->_firewall->getFullName();
+    }
+
+
+    /**
+     * Returns the version for the firewall
+     *
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->_firewall->getVersion();
+    }
+
+
+    /**
      * Installs Config Server Firewall on this host
      *
      * @return static
