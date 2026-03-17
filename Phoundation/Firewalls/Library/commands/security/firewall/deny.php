@@ -16,11 +16,9 @@ declare(strict_types=1);
 
 use Phoundation\Accounts\Users\User;
 use Phoundation\Cli\CliDocumentation;
-use Phoundation\Core\Core;
 use Phoundation\Data\Validator\ArgvValidator;
-use Phoundation\Web\Routing\Route;
 use Plugins\Phoundation\Firewalls\Firewall;
-use Plugins\Phoundation\Humans\FingerPrint\FingerPrint;
+
 
 CliDocumentation::setUsage('./pho security firewall deny IP');
 
