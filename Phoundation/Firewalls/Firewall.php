@@ -28,6 +28,7 @@ use Phoundation\Data\DataEntries\Traits\TraitDataEntryIpAddress;
 use Phoundation\Data\DataEntries\Traits\TraitDataEntryUntil;
 use Phoundation\Data\Traits\TraitStaticMethodNew;
 use Phoundation\Date\Interfaces\PhoDateTimeInterface;
+use Phoundation\Web\Html\Enums\EnumInputType;
 use Plugins\Phoundation\Firewalls\Csf\Csf;
 use Plugins\Phoundation\Firewalls\Interfaces\FirewallInterface;
 use Plugins\Phoundation\Firewalls\Ufw\Ufw;
@@ -62,6 +63,7 @@ class Firewall extends DataEntryCore implements FirewallInterface
 
         // Initialize the firewall engine to use
         $this->_firewall = $this->getConfigFirewallEngineObject();
+        $this->setPermittedColumns('net_len');
     }
 
 
@@ -290,15 +292,26 @@ class Firewall extends DataEntryCore implements FirewallInterface
      */
     protected function setDefinitionsObject(DefinitionsInterface $_definitions): static
     {
-        $_definitions->add(Definition::new())
+        $_definitions->add(Definition::new('action')
+                                     ->setReadonly(true)
+                                     ->setInputType(EnumInputType::text)
+                                     ->setSize(3)
+                                     ->setMaxLength(32)
+                                     ->setCliAutoComplete(true)
+                                     ->setLabel(tr('Action')))
 
-                     ->add(DefinitionFactory::newIpAddress())
+                     ->add(DefinitionFactory::newIpAddress()
+                                            ->setSize(3)
+                                            ->setReadonly(true))
 
-                     ->add(DefinitionFactory::newDateTime('from'))
+                     ->add(DefinitionFactory::newDateTime('from')
+                                            ->setReadonly(true))
 
-                     ->add(DefinitionFactory::newDateTime('until'))
+                     ->add(DefinitionFactory::newDateTime('until')
+                                            ->setReadonly(true))
 
-                     ->add(DefinitionFactory::newComments());
+                     ->add(DefinitionFactory::newComments()
+                                            ->setReadonly(true));
 
         return $this;
     }

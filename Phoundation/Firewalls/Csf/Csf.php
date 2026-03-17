@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace Plugins\Phoundation\Firewalls\Csf;
 
 use Phoundation\Core\Core;
+use Phoundation\Core\Log\Log;
 use Phoundation\Data\Traits\TraitStaticMethodNew;
 use Phoundation\Date\Interfaces\PhoDateTimeInterface;
 use Phoundation\Filesystem\PhoDirectory;
@@ -95,8 +96,8 @@ class Csf implements FirewallInterface
     {
         // Disable all other firewalls
         Ufw::new()
-            ->stop()
-            ->disable();
+           ->stop()
+           ->disable();
 
         $_directory = PhoDirectory::newTemporary();
 
@@ -194,10 +195,12 @@ class Csf implements FirewallInterface
      */
     public function deny(string $ip_address, ?PhoDateTimeInterface $_until = null, ?PhoDateTimeInterface $_from = null, ?string $comments = null): static
     {
-showdie();
-        $this->_firewall->clearArguments()
-                        ->appendArguments(['-d', $ip_address, $comments]);
+        $output = $this->_firewall
+                       ->clearArguments()
+                       ->appendArguments(['-d', $ip_address, $comments])
+                       ->executeReturnString();
 
+        Log::notice($output, 1, false);
         return $this;
     }
 }

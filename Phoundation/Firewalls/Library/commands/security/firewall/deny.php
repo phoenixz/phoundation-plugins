@@ -44,13 +44,17 @@ CliDocumentation::setAutoComplete(User::getAutoComplete([
     'positions' => [
         0 => true
     ],
+    'arguments' => [
+        '-c,--comments' => true,
+        '-u,--until'    => true,
+    ]
 ]));
 
 
 // Validate arguments
 $argv = ArgvValidator::new()
                      ->select('-u,--until', true)->isOptional()->sanitizeToDateTime()
-                     ->select('-c,--comment', true)->isOptional()->hasMaxCharacters(65_535)
+                     ->select('-c,--comments', true)->isOptional()->hasMaxCharacters(65_535)
                      ->selectAll('ip')->sanitizeForceArray()->forEachField()->isIpAddress()
                      ->validate();
 
