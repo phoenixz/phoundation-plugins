@@ -184,7 +184,7 @@ throw new UnderConstructionException();
      *
      * @return static
      */
-    public function deny(string $ip_address, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comments = null): static
+    public function deny(string $ip_address, ?PhoDateTimeInterface $_until = null, ?PhoDateTimeInterface $_from = null, ?string $comments = null): static
     {
 
         return $this;

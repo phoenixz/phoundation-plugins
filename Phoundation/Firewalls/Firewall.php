@@ -274,7 +274,7 @@ class Firewall extends DataEntryCore implements FirewallInterface
      *
      * @return static
      */
-    public function deny(string $ip_address, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comments = null): static
+    public function deny(string $ip_address, ?PhoDateTimeInterface $_until = null, ?PhoDateTimeInterface $_from = null, ?string $comments = null): static
     {
         $this->_firewall->deny($ip_address, $_until, $_from, $comments);
         return $this->writeRule('deny', $ip_address, $_until, $_from, $comments);

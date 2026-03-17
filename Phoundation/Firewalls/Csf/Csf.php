@@ -47,7 +47,6 @@ class Csf implements FirewallInterface
     public function __construct()
     {
         Core::checkProcessIsRoot();
-
         $this->_firewall = Process::new('csf');
     }
 
@@ -193,8 +192,9 @@ class Csf implements FirewallInterface
      *
      * @return static
      */
-    public function deny(string $ip_address, ?PhoDateTimeInterface $_until, ?PhoDateTimeInterface $_from, ?string $comments = null): static
+    public function deny(string $ip_address, ?PhoDateTimeInterface $_until = null, ?PhoDateTimeInterface $_from = null, ?string $comments = null): static
     {
+showdie();
         $this->_firewall->clearArguments()
                         ->appendArguments(['-d', $ip_address, $comments]);
 
