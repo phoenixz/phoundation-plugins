@@ -44,7 +44,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
             sql()->getSchemaObject()->getTableObject('fingerprints')->drop();
 
             // Create the fingerprints table.
-            sql()->getSchemaObject()->getTableObject('fingerprints')->define()
+            sql()->getSchemaObject()->getTableObject('fingerprints')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

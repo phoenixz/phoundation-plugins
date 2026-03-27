@@ -40,7 +40,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.5.0', function () {
             // Create the health authorities table.
-            sql()->getSchemaObject()->getTableObject('knowledgebase_articles')->drop()->define()
+            sql()->getSchemaObject()->getTableObject('knowledgebase_articles')->drop()->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

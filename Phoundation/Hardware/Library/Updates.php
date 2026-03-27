@@ -45,7 +45,7 @@ class Updates extends Libraries\Updates
             sql()->getSchemaObject()->getTableObject('hardware_devices')->drop();
 
             // Add table for version control itself
-            sql()->getSchemaObject()->getTableObject('hardware_devices')->define()
+            sql()->getSchemaObject()->getTableObject('hardware_devices')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -95,7 +95,7 @@ class Updates extends Libraries\Updates
                     CONSTRAINT `fk_hardware_devices_servers_id` FOREIGN KEY (`servers_id`) REFERENCES `servers` (`id`) ON DELETE CASCADE,
                 ')->create();
 
-            sql()->getSchemaObject()->getTableObject('hardware_profiles')->define()
+            sql()->getSchemaObject()->getTableObject('hardware_profiles')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -124,7 +124,7 @@ class Updates extends Libraries\Updates
                     CONSTRAINT `fk_hardware_profiles_devices_id` FOREIGN KEY (`devices_id`) REFERENCES `hardware_devices` (`id`) ON DELETE CASCADE,
                 ')->create();
 
-            sql()->getSchemaObject()->getTableObject('hardware_options')->define()
+            sql()->getSchemaObject()->getTableObject('hardware_options')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -171,10 +171,10 @@ class Updates extends Libraries\Updates
                 ];
 
                 foreach ($indices as $index) {
-                    $_table->alter()->dropIndex($index, true);
+                    $_table->getAlterObject()->dropIndex($index, true);
                 }
 
-                $_table->alter()->dropIndex('users_id_name_status', true)
+                $_table->getAlterObject()->dropIndex('users_id_name_status', true)
                                 ->addIndex('UNIQUE KEY `users_id_name_status` (`users_id`, `name`, `status`)');
             }
 
@@ -191,10 +191,10 @@ class Updates extends Libraries\Updates
                 ];
 
                 foreach ($indices as $index) {
-                    $_table->alter()->dropIndex($index, true);
+                    $_table->getAlterObject()->dropIndex($index, true);
                 }
 
-                $_table->alter()->dropIndex('name_status', true)
+                $_table->getAlterObject()->dropIndex('name_status', true)
                                 ->addIndex('UNIQUE KEY `name_status` (`name`, `status`)');
             }
 
@@ -210,10 +210,10 @@ class Updates extends Libraries\Updates
                 ];
 
                 foreach ($indices as $index) {
-                    $_table->alter()->dropIndex($index, true);
+                    $_table->getAlterObject()->dropIndex($index, true);
                 }
 
-                $_table->alter()->dropIndex('devices_id_name_status', true)
+                $_table->getAlterObject()->dropIndex('devices_id_name_status', true)
                                 ->addIndex('UNIQUE KEY `devices_id_name_status` (`devices_id`, `name`, `status`)');
             }
 
@@ -224,7 +224,7 @@ class Updates extends Libraries\Updates
 
             foreach ($tables as $table) {
                 sql()->getSchemaObject()->getTableObject($table)
-                                        ->alter()->dropIndex('devices_id_profiles_id_key_status', true)
+                     ->getAlterObject()->dropIndex('devices_id_profiles_id_key_status', true)
                                                  ->addIndex('UNIQUE KEY `devices_id_profiles_id_key_status` (`devices_id`, `profiles_id`, `key`, `status`)');
             }
         });

@@ -42,7 +42,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
             sql()->getSchemaObject()->getTableObject('phoundation_sso_signins')->drop();
 
             // Create the phoundation_sso_signins table.
-            sql()->getSchemaObject()->getTableObject('phoundation_sso_signins')->define()
+            sql()->getSchemaObject()->getTableObject('phoundation_sso_signins')->getDefineObject()
                  ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

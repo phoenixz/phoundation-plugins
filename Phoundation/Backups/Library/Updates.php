@@ -44,7 +44,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
             sql()->getSchemaObject()->getTableObject('plugin_backups')->drop();
 
             // Create the backups table.
-            sql()->getSchemaObject()->getTableObject('plugin_backups')->define()
+            sql()->getSchemaObject()->getTableObject('plugin_backups')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

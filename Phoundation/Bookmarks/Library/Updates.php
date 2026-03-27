@@ -54,7 +54,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
             sql()->getSchemaObject()->getTableObject('bookmarks')->drop();
 
             // Create the health authorities table.
-            sql()->getSchemaObject()->getTableObject('bookmarks')->define()
+            sql()->getSchemaObject()->getTableObject('bookmarks')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -107,10 +107,10 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                 ];
 
                 foreach ($indices as $index) {
-                    $_table->alter()->dropIndex($index, true);
+                    $_table->getAlterObject()->dropIndex($index, true);
                 }
 
-                $_table->alter()->dropIndex('users_id_name_status', true)
+                $_table->getAlterObject()->dropIndex('users_id_name_status', true)
                                 ->addIndex('UNIQUE KEY `users_id_name_status` (`users_id`, `name`, `status`)');
             }
         });

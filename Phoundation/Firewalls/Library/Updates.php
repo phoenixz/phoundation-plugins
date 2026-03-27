@@ -51,7 +51,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
     {
         $this->addUpdate('0.8.0', function () {
             // Drop the tables to be sure we have a clean slate
-            sql()->getSchemaObject()->getTableObject('phoundation_firewalls')->drop()->define()
+            sql()->getSchemaObject()->getTableObject('phoundation_firewalls')->drop()->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -45,7 +45,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
             sql()->getSchemaObject()->getTableObject('statistics_servers')->drop();
 
             // Create the statistics_queue table.
-            sql()->getSchemaObject()->getTableObject('statistics_servers')->define()
+            sql()->getSchemaObject()->getTableObject('statistics_servers')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -72,7 +72,7 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                 ')->create();
 
             // Create the statistics_queue table.
-            sql()->getSchemaObject()->getTableObject('statistics_queue')->define()
+            sql()->getSchemaObject()->getTableObject('statistics_queue')->getDefineObject()
                 ->setColumns('
                     `id` bigint NOT NULL AUTO_INCREMENT,
                     `server` varchar(128) NOT NULL,
@@ -104,10 +104,10 @@ class Updates extends \Phoundation\Core\Libraries\Updates
                 ];
 
                 foreach ($indices as $index) {
-                    $_table->alter()->dropIndex($index, true);
+                    $_table->getAlterObject()->dropIndex($index, true);
                 }
 
-                $_table->alter()->dropIndex('name_status', true)
+                $_table->getAlterObject()->dropIndex('name_status', true)
                                 ->addIndex('UNIQUE KEY `name_status` (`name`, `status`)');
             }
         });
