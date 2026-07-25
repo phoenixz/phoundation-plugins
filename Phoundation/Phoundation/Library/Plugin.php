@@ -18,7 +18,6 @@ namespace Plugins\Phoundation\Phoundation\Library;
 
 use Phoundation\Web\Html\Components\Widgets\Menus\Menu;
 use Phoundation\Web\Requests\Request;
-use Plugins\Phoundation\Phoundation\Components\ProfileImageMenu;
 
 
 class Plugin extends \Phoundation\Core\Plugins\Plugin
@@ -30,10 +29,11 @@ class Plugin extends \Phoundation\Core\Plugins\Plugin
     {
         // TODO Use hooks after startup!
         Request::getMenusObject()->setMenus([
-            'primary'       => Menu::new()->appendSource(\Plugins\Phoundation\Phoundation\Components\Menu::new()),
+            'primary'       => Menu::new()->appendSource(\Plugins\Phoundation\Phoundation\Library\Menu::new()),
             'profile_image' => Menu::new()->appendSource(ProfileImageMenu::new()),
         ]);
     }
+
 
     /**
      * Returns the plugin description

@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-namespace Plugins\Phoundation\Phoundation\Components;
+namespace Plugins\Phoundation\Phoundation\Library;
 
 class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
 {
@@ -268,51 +268,6 @@ class Menu extends \Phoundation\Web\Html\Components\Widgets\Menus\Menu
 //                'url'  => '/about.html',
 //                'icon' => ''
 //            ],
-            tr('Productivity') => [
-                'rights' => 'productivity',
-                'icon'   => '',
-            ],
-            tr('Customers') => [
-                'rights' => 'admin,customers',
-                'url'  => '/business/customers.html',
-                'icon' => 'fas fa-users'
-            ],
-            tr('Providers') => [
-                'rights' => 'admin,providers',
-                'url'    => '/business/providers.html',
-                'icon'   => 'fas fa-users'
-            ],
-            tr('Businesses') => [
-                'rights' => 'admin,businesses',
-                'icon'   => 'fas fa-building',
-                'menu'   => [
-                    tr('Companies') => [
-                        'rights' => 'companies',
-                        'url'    => '/companies/companies.html',
-                        'icon'   => 'fas fa-building'
-                    ],
-                    tr('Branches') => [
-                        'rights' => 'branches',
-                        'url'    => '/companies/branches.html',
-                        'icon'   => 'fas fa-building'
-                    ],
-                    tr('Departments') => [
-                        'rights' => 'departments',
-                        'url'    => '/companies/departments.html',
-                        'icon'   => 'fas fa-sitemap'
-                    ],
-                    tr('Employees') => [
-                        'rights' => 'employees',
-                        'url'    => '/companies/employees.html',
-                        'icon'   => 'fas fa-users'
-                    ],
-                    tr('Inventory') => [
-                        'rights' => 'employees',
-                        'url'    => '/companies/inventory/inventory.html',
-                        'icon'   => 'fas fa-shopping-cart'
-                    ]
-                ]
-            ]
         ]);
     }
 }

@@ -15,7 +15,7 @@
 declare(strict_types=1);
 
 
-namespace Plugins\Phoundation\Phoundation\Components;
+namespace Plugins\Phoundation\Phoundation\Library;
 
 use Phoundation\Web\Html\Components\Widgets\Menus\Menu;
 
